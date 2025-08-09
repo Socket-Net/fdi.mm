@@ -3,21 +3,170 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FDI.mm - Heart Rate Monitor & Fitness Tracker</title>
-  <meta name="description" content="FDI.mm — профессиональный мониторинг пульса, фитнес-трекер и анализ тренировок в реальном времени. Поддержка BLE, Polar, Wahoo и других датчиков."/>
-  <meta name="keywords" content="heart rate monitor, fitness tracker, pulse app, workout monitor, BLE, Android, Polar, Wahoo, Garmin"/>
+  <title>FDI.mm - Professional Heart Rate Monitor & Fitness Tracker</title>
+  <meta name="description" content="FDI.mm — real-time heart rate monitoring for individuals, families, sports teams & events. Supports BLE, ANT+, Polar, Wahoo, Garmin. Voice-guided workouts & group training."/>
+  <meta name="keywords" content="heart rate monitor, fitness tracker, pulse app, workout monitor, BLE, ANT+, Android, Polar, Wahoo, Garmin, group fitness, voice guide"/>
+  <meta name="author" content="FDI.mm Team"/>
+  <meta name="theme-color" content="#4285F4">
+  <style>
+    :root {
+      --primary: #4285F4;
+      --dark: #333;
+      --gray: #555;
+      --light-gray: #f8f9fa;
+      --border: #ddd;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: #fff;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: var(--primary);
+      margin: 10px 0;
+    }
+    h2 {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 5px;
+      margin: 30px 0 15px;
+    }
+    p {
+      margin: 12px 0;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .feature {
+      background: var(--light-gray);
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+    .cta {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 14px 28px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.1em;
+      margin: 10px;
+      box-shadow: 0 4px 6px rgba(66, 133, 244, 0.2);
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #3367d6;
+    }
+    .compatibility {
+      font-size: 0.9em;
+      color: var(--gray);
+      margin-top: 10px;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 0.85em;
+      color: var(--gray);
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    @media (max-width: 600px) {
+      body { padding: 15px; }
+      h1 { font-size: 2em; }
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; text-align: center;">
-  <h1>FDI.mm</h1>
-  <p><strong>Heart Rate Monitor & Fitness Tracker</strong></p>
-  <p>Track your pulse, steps, calories, and training metrics in real-time on screen or projector. Supports BLE devices from Polar, Wahoo, Garmin, Xiaomi, Samsung, and more.</p>
-  <p>
-    <a href="https://play.google.com/store/apps/details?id=com.fdimm.app" style="background: #4285F4; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+<body>
+
+  <header>
+    <h1>FDI.mm</h1>
+    <p><strong>Professional Heart Rate Monitor & Fitness Tracker</strong></p>
+    <p>Real-time monitoring for individuals, families, sports teams, and events.</p>
+  </header>
+
+  <section>
+    <h2>Track Performance. Improve Results.</h2>
+    <p>
+      FDI.mm is a powerful solution for real-time heart rate and pulse monitoring during group and individual workouts. Designed for trainers, sports clubs, event organizers, and health-conscious families.
+    </p>
+    <p>
+      Monitor athlete performance, prevent overtraining, and improve team health with advanced biometric analytics.
+    </p>
+  </section>
+
+  <section>
+    <h2>Key Features</h2>
+    <div class="features">
+      <div class="feature">
+        <strong>Group & Individual Workouts</strong>
+        <p>Supports group training with real-time display on screen or projector. Perfect for gyms and fitness classes.</p>
+      </div>
+      <div class="feature">
+        <strong>Voice-Guided Training</strong>
+        <p>Multilingual assistant for hands-free workouts. Ideal for interval and HIIT training.</p>
+      </div>
+      <div class="feature">
+        <strong>Advanced Analytics</strong>
+        <p>Track heart rate, calories, SpO2, blood pressure, Vo2Max, stamina, and emotional state in real time.</p>
+      </div>
+      <div class="feature">
+        <strong>Family & Child Safety</strong>
+        <p>Monitor loved ones’ vital signs. Get alerts if someone leaves a safe zone or shows abnormal heart activity.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>For Whom?</h2>
+    <ul>
+      <li><strong>Sports Clubs & Trainers</strong> — Optimize team performance and training effectiveness.</li>
+      <li><strong>Event Organizers</strong> — Scale monitoring for marathons, competitions, and mass events.</li>
+      <li><strong>Families</strong> — Track health during hikes, bike rides, or outdoor activities.</li>
+      <li><strong>Animal Performance</strong> — Unique support for tracking horse and rider metrics.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Compatible Devices</h2>
+    <p>Supports all major BLE and ANT+ sensors:</p>
+    <p>Polar, Wahoo, Garmin, Xiaomi, Samsung, Suunto, and more.</p>
+    <p class="compatibility">
+      Also works with smartwatches in heart rate broadcast mode. Additional parameters (Vo2Max, Stress, Respiration) supported if available from the device.
+    </p>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to Optimize Your Training?</h2>
+    <p>Download the app and take control of your fitness journey.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.fdimm.app" class="btn">
       Download on Google Play
     </a>
-  </p>
-  <p style="margin-top: 20px; font-size: 0.9em; color: #555;">
-    Compatible with most Bluetooth heart rate monitors and fitness trackers.
-  </p>
+  </section>
+
+  <footer>
+    <p>© 2025 FDI.mm. All rights reserved.</p>
+    <p>
+      <em>Exercise with caution. Always consult a professional before starting any fitness program.</em>
+    </p>
+  </footer>
+
 </body>
 </html>
