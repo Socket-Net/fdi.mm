@@ -25,8 +25,8 @@
 
 ## 🖼 Screenshots
 <!-- Добавь 3–4 скриншота из Google Play -->
-![Grid view](screenshots/grid.png)
-![BLE connection](screenshots/ble.png)
+![Grid view](Feature graphic-min.png)
+![BLE connection](8_.png)
 
 ---
 
