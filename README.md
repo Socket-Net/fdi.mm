@@ -23,12 +23,6 @@
 
 ---
 
-## 🖼 Screenshots
-<!-- Добавь 3–4 скриншота из Google Play -->
-![Grid view](Feature graphic-min.png)
-![BLE connection](8_.png)
-
----
 
 ## 🛠 Tech Stack
 - 🔹 **Frontend**: Vue.js, Tauri
