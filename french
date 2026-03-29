@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇫🇷 French Vocab Trainer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #f7fcf7;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: rgba(31, 41, 55, 0.9);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(75,85,99,0.5);
+    }
+    
+    .header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .settings {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 0.5rem 0 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .settings input {
+      width: 50px;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid rgba(75,85,99,0.5);
+      border-radius: 0.25rem;
+      background: rgba(17,24,39,0.8);
+      color: #fff;
+      text-align: center;
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    
+    .stat {
+      background: rgba(59,130,246,0.2);
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+    }
+    
+    .stat-value {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #93c5fd;
+    }
+    
+    .word-card {
+      text-align: center;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      background: rgba(17,24,39,0.8);
+      border-radius: 1rem;
+      border: 1px solid rgba(75,85,99,0.5);
+    }
+    
+    .word {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    
+    .word-progress {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+    
+    .word-progress .bar {
+      display: inline-block;
+      width: 100px;
+      height: 6px;
+      background: rgba(75,85,99,0.5);
+      border-radius: 3px;
+      margin: 0 0.5rem;
+      vertical-align: middle;
+      overflow: hidden;
+    }
+    
+    .word-progress .fill {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #3b82f6);
+      transition: width 0.3s;
+    }
+    
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .option {
+      padding: 0.5rem 0.75rem;
+      background: rgba(75,85,99,0.5);
+      border: 1px solid rgba(107,114,128,0.5);
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      font-size: 0.95rem;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .option:hover:not(:disabled) {
+      background: rgba(59,130,246,0.3);
+      border-color: rgba(59,130,246,0.5);
+    }
+    
+    .option:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    
+    .option.correct {
+      background: rgba(34,197,94,0.3) !important;
+      border-color: rgba(34,197,94,0.5) !important;
+      color: #86efac;
+    }
+    
+    .option.wrong {
+      background: rgba(239,68,68,0.3) !important;
+      border-color: rgba(239,68,68,0.5) !important;
+      color: #fca5a5;
+    }
+    
+    .feedback {
+      text-align: center;
+      margin: 0.5rem 0;
+      font-weight: bold;
+      min-height: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .feedback.correct { color: #86efac; }
+    .feedback.wrong { color: #fca5a5; }
+    
+    .correct-answer {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 0.25rem;
+      font-weight: normal;
+    }
+    
+    .next-btn-container {
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem 0;
+    }
+    
+    .extra-controls {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(75,85,99,0.3);
+      flex-wrap: wrap;
+    }
+    
+    button {
+      padding: 0.75rem 1.5rem;
+      background: rgba(59,130,246,0.9);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    
+    button:hover:not(:disabled) {
+      background: rgba(59,130,246,1);
+      transform: translateY(-1px);
+    }
+    
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .secondary-btn {
+      background: rgba(107,114,128,0.5);
+    }
+    
+    .secondary-btn:hover {
+      background: rgba(107,114,128,0.8);
+    }
+    
+    .danger-btn {
+      background: rgba(239,68,68,0.8);
+    }
+    
+    .danger-btn:hover {
+      background: rgba(239,68,68,1);
+    }
+    
+    .file-input {
+      margin: 1rem 0;
+      text-align: center;
+    }
+    
+    .file-input input {
+      display: none;
+    }
+    
+    .file-input label {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(107,114,128,0.5);
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .file-input label:hover {
+      background: rgba(107,114,128,0.8);
+    }
+    
+    .progress-bar {
+      height: 4px;
+      background: rgba(75,85,99,0.5);
+      border-radius: 2px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, rgba(59,130,246,0.8), rgba(168,85,247,0.8));
+      transition: width 0.3s;
+    }
+    
+    .hidden { display: none; }
+    
+    .choice-screen {
+      text-align: center;
+      padding: 1rem;
+    }
+    
+    .choice-screen p {
+      margin: 1rem 0;
+      color: #94a3b8;
+    }
+    
+    .choice-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    
+    @media (max-width: 480px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .word { font-size: 1.5rem; }
+      .container { padding: 1rem; }
+      .options { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🇫🇷 French Vocab Trainer</h1>
+      
+      <div class="settings">
+        <label>Pool:</label>
+        <input type="number" id="poolSizeInput" min="20" max="200" value="75">
+        <button class="secondary-btn" id="applyPoolBtn" style="padding:0.25rem 0.5rem;font-size:0.8rem">OK</button>
+      </div>
+      
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value" id="learnedCount">0</div>
+          <div>Learned</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="totalCount">0</div>
+          <div>Dictionary</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="correctCount">0</div>
+          <div>Correct</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="errorCount" style="color:#fca5a5">0</div>
+          <div>Errors</div>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Экран выбора -->
+    <div id="choiceSection" class="hidden">
+      <div class="choice-screen">
+        <h2>📚 Dictionary saved</h2>
+        <p>You have a saved dictionary with <span id="savedWordCount">0</span> words.</p>
+        <div class="choice-buttons">
+          <button id="continueBtn">▶️ Continue with saved</button>
+          <button class="secondary-btn" id="loadNewBtn">📁 Load new dictionary</button>
+        </div>
+        <p style="font-size:0.8rem;color:#94a3b8">Loading new will reset all progress</p>
+      </div>
+    </div>
+
+    <!-- Загрузка нового CSV -->
+    <div class="file-input" id="fileSection">
+      <label for="csvFile">📁 Load words.csv</label>
+      <input type="file" id="csvFile" accept=".csv">
+      <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;">
+        Format: french,correct,wrong1,wrong2,wrong3,wrong4
+      </p>
+    </div>
+
+    <!-- Тест -->
+    <div id="quizSection" class="hidden">
+      <div class="word-card">
+        <div class="word" id="word">Loading...</div>
+        <div class="word-progress" id="wordProgress"></div>
+        <div class="options" id="options"></div>
+      </div>
+      
+      <div class="next-btn-container">
+        <button id="nextBtn" disabled>Next →</button>
+      </div>
+      
+      <div class="feedback" id="feedback"></div>
+      
+      <div class="extra-controls">
+        <button class="secondary-btn" id="reviewBtn">🔄 Review</button>
+        <button class="secondary-btn" id="historyBtn">📜 History</button>
+        <button class="danger-btn" id="finishBtn">✅ Finish</button>
+      </div>
+    </div>
+
+    <!-- История -->
+    <div id="historySection" class="hidden">
+      <h3 style="text-align:center;margin-bottom:1rem;">📜 Last 20</h3>
+      <div class="history-list" id="historyList" style="max-height:200px;overflow-y:auto;text-align:left;font-size:0.85rem"></div>
+      <div class="controls" style="display:flex;justify-content:center;margin-top:1rem">
+        <button class="secondary-btn" id="backToQuizBtn">← Back</button>
+      </div>
+    </div>
+
+    <!-- Завершение -->
+    <div id="summarySection" class="hidden">
+      <div style="text-align:center;padding:1rem">
+        <h2>🎉 Done!</h2>
+        <p style="margin:1rem 0;color:#94a3b8">Progress auto-saved. Just close the tab.</p>
+        <button id="closeBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== CONFIG =====
+    const CONFIG = {
+      POINTS_TO_LEARN: 5,
+      MIN_POINTS: -3,
+      DEFAULT_POOL_SIZE: 75,
+      STORAGE_KEY: 'vocabTrainer_v8'
+    };
+
+    // ===== STATE =====
+    let allWords = [];
+    let progress = {};
+    let stats = { totalCorrect: 0, sessionErrors: 0 };
+    let history = [];
+    let currentWord = null;
+    let answered = false;
+    let reviewMode = false;
+    let poolSize = CONFIG.DEFAULT_POOL_SIZE;
+    let dictionarySaved = false;  // 🔥 Флаг: сохранён ли словарь
+
+    // ===== DOM =====
+    const els = {
+      choiceSection: document.getElementById('choiceSection'),
+      fileSection: document.getElementById('fileSection'),
+      quizSection: document.getElementById('quizSection'),
+      historySection: document.getElementById('historySection'),
+      summarySection: document.getElementById('summarySection'),
+      csvFile: document.getElementById('csvFile'),
+      poolSizeInput: document.getElementById('poolSizeInput'),
+      applyPoolBtn: document.getElementById('applyPoolBtn'),
+      continueBtn: document.getElementById('continueBtn'),
+      loadNewBtn: document.getElementById('loadNewBtn'),
+      savedWordCount: document.getElementById('savedWordCount'),
+      word: document.getElementById('word'),
+      wordProgress: document.getElementById('wordProgress'),
+      options: document.getElementById('options'),
+      feedback: document.getElementById('feedback'),
+      nextBtn: document.getElementById('nextBtn'),
+      reviewBtn: document.getElementById('reviewBtn'),
+      historyBtn: document.getElementById('historyBtn'),
+      finishBtn: document.getElementById('finishBtn'),
+      backToQuizBtn: document.getElementById('backToQuizBtn'),
+      closeBtn: document.getElementById('closeBtn'),
+      learnedCount: document.getElementById('learnedCount'),
+      totalCount: document.getElementById('totalCount'),
+      correctCount: document.getElementById('correctCount'),
+      errorCount: document.getElementById('errorCount'),
+      progressFill: document.getElementById('progressFill'),
+      historyList: document.getElementById('historyList')
+    };
+
+    // ===== AUTO-SAVE =====
+    function saveData() {
+      try {
+        const hasProgress = Object.values(progress).some(p => p.points > 0);
+        
+        const data = {
+          progress,
+          stats: { totalCorrect: stats.totalCorrect },
+          history,
+          poolSize,
+          sessionStarted: hasProgress,
+          savedAt: Date.now()
+        };
+        
+        // 🔥 Сохраняем словарь, если он есть и ещё не сохранён
+        if (allWords.length > 0 && !dictionarySaved) {
+          data.dictionary = allWords;
+          dictionarySaved = true;  // 🔥 Помечаем, что словарь сохранён
+        }
+        
+        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
+      } catch (e) { console.warn('Save failed:', e); }
+    }
+
+    // ===== INIT =====
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+      
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          
+          // Загружаем всё
+          progress = data.progress || {};
+          stats.totalCorrect = data.stats?.totalCorrect ?? 0;
+          history = data.history || [];
+          poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
+          els.poolSizeInput.value = poolSize;
+          
+          // 🔥 Проверяем и загружаем словарь
+          if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
+            allWords = data.dictionary;
+            dictionarySaved = true;  // 🔥 Помечаем, что словарь уже в памяти
+            
+            // Если сессия начата — сразу тест
+            if (data.sessionStarted || Object.values(progress).some(p => p.points > 0)) {
+              els.fileSection.classList.add('hidden');
+              els.choiceSection.classList.add('hidden');
+              els.quizSection.classList.remove('hidden');
+              updateStats();
+              nextWord();
+            } else {
+              showChoiceScreen();
+            }
+          } else {
+            els.fileSection.classList.remove('hidden');
+          }
+        } catch (e) {
+          console.warn('Load failed:', e);
+          els.fileSection.classList.remove('hidden');
+        }
+      } else {
+        els.fileSection.classList.remove('hidden');
+      }
+      
+      console.log('🇫🇷 French Vocab Trainer v8 — dictionary persistence fixed');
+    });
+
+    // ===== CSV =====
+    function parseCSV(text) {
+      const lines = text.trim().split('\n').filter(l => l.trim() && !l.startsWith('#'));
+      const words = [];
+      for (let i = 1; i < lines.length; i++) {
+        const parts = lines[i].split(',').map(p => p.trim());
+        if (parts.length >= 6) words.push({ french: parts[0], correct: parts[1], wrong: parts.slice(2, 6) });
+      }
+      return words;
+    }
+
+    // ===== SHOW CHOICE SCREEN =====
+    function showChoiceScreen() {
+      els.savedWordCount.textContent = allWords.length;
+      els.choiceSection.classList.remove('hidden');
+      els.fileSection.classList.add('hidden');
+      els.quizSection.classList.add('hidden');
+    }
+
+    // ===== LOAD NEW DICTIONARY =====
+    function loadNewDictionary() {
+      allWords = [];
+      progress = {};
+      stats = { totalCorrect: 0, sessionErrors: 0 };
+      history = [];
+      reviewMode = false;
+      dictionarySaved = false;  // 🔥 Сбрасываем флаг
+      localStorage.removeItem(CONFIG.STORAGE_KEY);
+      
+      els.choiceSection.classList.add('hidden');
+      els.fileSection.classList.remove('hidden');
+      els.quizSection.classList.add('hidden');
+      updateStats();
+    }
+
+    // ===== CONTINUE WITH SAVED =====
+    function continueWithSaved() {
+      if (allWords.length === 0) {
+        alert('⚠️ No saved dictionary found');
+        loadNewDictionary();
+        return;
+      }
+      
+      els.choiceSection.classList.add('hidden');
+      els.quizSection.classList.remove('hidden');
+      updateStats();
+      nextWord();
+    }
+
+    // ===== FILE LOAD =====
+    els.csvFile.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const text = await file.text();
+      allWords = parseCSV(text);
+      if (allWords.length === 0) { alert('❌ No valid words'); return; }
+      
+      // Сброс прогресса
+      progress = {};
+      stats = { totalCorrect: 0, sessionErrors: 0 };
+      history = [];
+      dictionarySaved = false;  // 🔥 Новый словарь — флаг сброс
+      
+      saveData();  // 🔥 Сохраняем словарь + прогресс
+      els.fileSection.classList.add('hidden');
+      els.quizSection.classList.remove('hidden');
+      updateStats();
+      nextWord();
+    });
+
+    // ===== POOL SIZE =====
+    els.applyPoolBtn.onclick = () => {
+      const val = parseInt(els.poolSizeInput.value);
+      if (val >= 20 && val <= 200) {
+        poolSize = val;
+        saveData();
+        alert(`✅ Pool: ${poolSize}`);
+      } else { alert('⚠️ 20-200'); }
+    };
+
+    // ===== CHOICE BUTTONS =====
+    els.continueBtn.onclick = continueWithSaved;
+    els.loadNewBtn.onclick = loadNewDictionary;
+
+    // ===== POOL =====
+    function getActivePool() {
+      const source = reviewMode 
+        ? allWords.filter(w => (progress[w.french]?.points ?? 0) >= CONFIG.POINTS_TO_LEARN)
+        : allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+      return [...source].sort(() => Math.random() - 0.5).slice(0, poolSize);
+    }
+
+    // ===== DISPLAY =====
+    function getWordProgressText(word) {
+      const p = progress[word]?.points ?? 0;
+      if (reviewMode) return '🔁 Review';
+      if (p >= CONFIG.POINTS_TO_LEARN) return '🎉 Learned';
+      if (p >= 0) return `${p}/${CONFIG.POINTS_TO_LEARN} • ${CONFIG.POINTS_TO_LEARN - p} more`;
+      return `${p}/${CONFIG.POINTS_TO_LEARN} • ${Math.abs(p)} wrong`;
+    }
+
+    function getWordProgressBar(word) {
+      const p = progress[word]?.points ?? 0;
+      const clamped = Math.max(0, Math.min(CONFIG.POINTS_TO_LEARN, p));
+      return `<span class="bar"><span class="fill" style="width:${(clamped/CONFIG.POINTS_TO_LEARN)*100}%"></span></span>`;
+    }
+
+    // ===== NEXT WORD =====
+    function nextWord() {
+      answered = false;
+      els.feedback.textContent = '';
+      els.feedback.className = 'feedback';
+      els.nextBtn.disabled = true;
+      els.options.innerHTML = '';
+      
+      const pool = getActivePool();
+      
+      if (pool.length === 0) {
+        els.word.textContent = reviewMode ? '✅ Reviewed!' : '🎉 All learned!';
+        els.wordProgress.textContent = reviewMode ? 'Exit review' : 'Great job!';
+        els.options.innerHTML = `<div class="option" style="cursor:default">${reviewMode ? '🔙 Exit' : '🔄 Reset'}</div>`;
+        els.options.firstChild.onclick = () => {
+          if (reviewMode) { reviewMode = false; nextWord(); }
+          else if (confirm('Reset all?')) { localStorage.removeItem(CONFIG.STORAGE_KEY); location.reload(); }
+        };
+        return;
+      }
+      
+      currentWord = pool[Math.floor(Math.random() * pool.length)];
+      els.word.textContent = currentWord.french;
+      els.wordProgress.innerHTML = `${getWordProgressText(currentWord.french)} ${getWordProgressBar(currentWord.french)}`;
+      
+      const wrong = allWords.filter(w => w.french !== currentWord.french).map(w => w.correct).sort(() => Math.random() - 0.5).slice(0, 4);
+      const opts = [...wrong, currentWord.correct].sort(() => Math.random() - 0.5);
+      
+      opts.forEach(opt => {
+        const btn = document.createElement('div');
+        btn.className = 'option';
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(opt, currentWord.correct);
+        els.options.appendChild(btn);
+      });
+    }
+
+    // ===== ANSWER =====
+    function handleAnswer(selected, correct) {
+      if (answered) return;
+      answered = true;
+      
+      const opts = els.options.querySelectorAll('.option');
+      opts.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+        if (opt.textContent === correct) opt.classList.add('correct');
+        if (opt.textContent === selected && selected !== correct) opt.classList.add('wrong');
+      });
+      
+      const isCorrect = selected === correct;
+      const key = currentWord.french;
+      
+      if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
+      
+      if (isCorrect) {
+        progress[key].points++;
+        stats.totalCorrect++;
+        els.feedback.innerHTML = reviewMode ? '✅ Still know it!' : '✅ +1';
+        els.feedback.className = 'feedback correct';
+      } else {
+        stats.sessionErrors++;
+        if (reviewMode) {
+          progress[key].points = 0;
+          els.feedback.innerHTML = `❌ Forgot! Reset<br><span class="correct-answer">${correct}</span>`;
+        } else {
+          progress[key].points = Math.max(CONFIG.MIN_POINTS, progress[key].points - 1);
+          els.feedback.innerHTML = `❌ -1<br><span class="correct-answer">${correct}</span>`;
+        }
+        els.feedback.className = 'feedback wrong';
+      }
+      
+      history.unshift({ word: key, correct: isCorrect, timestamp: Date.now() });
+      if (history.length > 50) history.pop();
+      progress[key].lastSeen = Date.now();
+      saveData();  // 🔥 Просто saveData(), словарь не перезапишется
+      
+      els.wordProgress.innerHTML = `${getWordProgressText(key)} ${getWordProgressBar(key)}`;
+      updateStats();
+      els.nextBtn.disabled = false;
+    }
+
+    // ===== STATS =====
+    function updateStats() {
+      const learned = Object.values(progress).filter(p => p.points >= CONFIG.POINTS_TO_LEARN).length;
+      const percent = allWords.length > 0 ? (learned / allWords.length) * 100 : 0;
+      
+      els.learnedCount.textContent = learned;
+      els.totalCount.textContent = allWords.length;
+      els.correctCount.textContent = stats.totalCorrect;
+      els.errorCount.textContent = stats.sessionErrors;
+      els.progressFill.style.width = `${Math.min(percent, 100)}%`;
+    }
+
+    // ===== HISTORY =====
+    function showHistory() {
+      els.quizSection.classList.add('hidden');
+      els.historySection.classList.remove('hidden');
+      els.historyList.innerHTML = history.slice(0,20).map(h => 
+        `<div class="history-item ${h.correct?'correct':'wrong'}" style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2);display:flex;justify-content:space-between">
+          <span>${h.word}</span><span>${h.correct?'✅':'❌'} ${new Date(h.timestamp).toLocaleTimeString()}</span>
+        </div>`
+      ).join('');
+    }
+
+    // ===== FINISH =====
+    function showSummary() {
+      els.quizSection.classList.add('hidden');
+      els.summarySection.classList.remove('hidden');
+    }
+
+    // ===== EVENTS =====
+    els.nextBtn.onclick = nextWord;
+    els.reviewBtn.onclick = () => { reviewMode = true; nextWord(); };
+    els.historyBtn.onclick = showHistory;
+    els.finishBtn.onclick = showSummary;
+    els.backToQuizBtn.onclick = () => { els.historySection.classList.add('hidden'); els.quizSection.classList.remove('hidden'); };
+    els.closeBtn.onclick = () => { saveData(); window.close(); };
+    
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (!answered && !els.quizSection.classList.contains('hidden')) {
+        if (e.key >= '1' && e.key <= '6') {
+          const opts = els.options.querySelectorAll('.option');
+          if (opts[e.key-1]) opts[e.key-1].click();
+        }
+      }
+      if (answered && e.key === 'Enter' && !els.nextBtn.disabled) nextWord();
+    });
+  </script>
+</body>
+</html>
