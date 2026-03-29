@@ -1,0 +1,918 @@
+le pouls,pulse,heart,beat,rate,flow,pull
+l'entraînement,workout,training,exercise,practice,session,trainer
+la fréquence cardiaque,heart rate,pulse rate,cardiac rhythm,heart beat,cardio,freqence
+l'endurance,endurance,stamina,lasting,power,strength,endure
+la récupération,recovery,rest,healing,repair,restore,operation
+je,I,you,he,she,we,they
+tu,you (informal),I,he,she,we,they
+il,he it,she,they,you,we,him
+elle,she it,he,they,you,we,her
+nous,we,us,they,you,I,he
+vous,you (formal/plural),we,they,I,he,us
+ils,they (masc),he,she,we,you,us
+elles,they (fem),he,she,we,you,us
+on,one we,they,you,he,she,it
+être,to be,to have,to do,to go,to see,to know
+avoir,to have,to be,to do,to want,to can,to go
+aller,to go,to come,to run,to walk,to see,to do
+faire,to do to make,to go,to be,to have,to say,to see
+dire,to say,to tell,to ask,to do,to make,to speak
+pouvoir,to be able to,to want,to know,to have,to go,to do
+vouloir,to want,to can,to know,to like,to love,to need
+savoir,to know,to can,to think,to believe,to understand,to learn
+voir,to see,to look,to watch,to know,to find,to understand
+venir,to come,to go,to arrive,to return,to leave,to enter
+prendre,to take,to get,to bring,to make,to do,to give
+donner,to give,to take,to bring,to make,to do,to say
+parler,to speak,to talk,to say,to tell,to ask,to call
+aimer,to like,to love,to want,to know,to see,to have
+manger,to eat,to drink,to take,to have,to consume,to enjoy
+boire,to drink,to eat,to take,to have,to consume,to enjoy
+dormir,to sleep,to rest,to lie,to stay,to go,to wake
+travailler,to work,to do,to make,to study,to go,to live
+étudier,to study,to learn,to read,to work,to know,to see
+lire,to read,to see,to write,to study,to learn,to speak
+écrire,to write,to read,to say,to tell,to study,to learn
+écouter,to listen,to hear,to speak,to talk,to say,to tell
+regarder,to watch,to look,to see,to listen,to find,to know
+acheter,to buy,to sell,to take,to get,to have,to give
+vendre,to sell,to buy,to take,to give,to have,to find
+la maison,house,home,building,room,place,family
+le temps,time,weather,hour,day,moment,period
+le jour,day,time,night,week,sun,light
+l'année,year,time,day,month,period,age
+l'homme,man,woman,person,child,friend,adult
+la femme,woman,man,person,child,friend,adult
+l'enfant,child,kid,boy,girl,adult,friend
+l'ami,friend,best friend,companion,pal,partner,family
+l'eau,water,river,sea,liquid,drink,beverage
+la nourriture,food,meal,dish,plate,breakfast,dinner
+la voiture,car,vehicle,truck,bike,train,bus
+le livre,book,novel,story,page,chapter,read
+le chien,dog,pet,animal,cat,horse,friend
+le chat,cat,pet,animal,dog,horse,friend
+le travail,work,job,employment,career,office,task
+l'école,school,university,class,lesson,teacher,student
+grand,big,large,great,tall,small,good
+petit,small,little,big,young,old,short
+bon,good,bad,nice,well,fine,great
+nouveau,new,old,modern,fresh,young,recent
+vieux,old,new,ancient,classic,used,aged
+beau,beautiful,handsome,pretty,ugly,nice,fine
+mauvais,bad,good,terrible,awful,nice,wrong
+heureux,happy,sad,glad,joyful,content,excited
+triste,sad,happy,down,unhappy,melancholy,depressed
+merci,thank you,thanks,please,you're welcome,excuse me,hello
+bonjour,hello,hi,good morning,good day,goodbye,thanks
+au revoir,goodbye,bye,see you,hello,good night,thanks
+s'il vous plaît,please,thank you,excuse me,sorry,hello,goodbye
+oui,yes,no,maybe,okay,sure,perhaps
+non,no,yes,maybe,okay,not,sure
+où,where,when,why,how,who,what
+quand,when,where,why,how,who,what
+pourquoi,why,where,when,how,who,what
+comment,how,where,when,why,who,what
+qui,who,where,when,why,how,what
+quoi,what,where,when,why,how,who
+il y a,there is,there are,it is,he has,I have,we have
+je suis,I am,he is,she is,we are,you are,they are
+tu es,you are,I am,he is,she is,we are,they are
+il est,he is,she is,it is,you are,we are,they are
+je vais,I go,I am going,I come,I want,I can,she goes
+je pense,I think,I believe,I know,I say,I go,he thinks
+elle fait,she does,she makes,he does,I do,we do,she goes
+je fais,I do,I make,I go,I am,I think,I have
+nous avons,we have,we are,we do,we go,we want,we think
+vous êtes,you are,you have,you do,you go,you want,you think
+je veux,I want,I can,I need,I like,I love,I know
+je sais,I know,I think,I believe,I understand,I learn,I see
+tu as,you have,you are,you do,you go,you want,you think
+maintenant,now,later,soon,then,today,yesterday
+plus tard,later,now,soon,then,today,yesterday
+la famille,family,friend,house,parents,children,home
+le monde,world,earth,planet,country,place,universe
+la vie,life,death,existence,day,time,world
+la chose,thing,object,item,stuff,piece,bit
+la partie,part,piece,whole,section,bit,share
+l'endroit,place,spot,location,site,area,position
+la personne,person,man,woman,child,individual,someone
+l'amour,love,like,affection,passion,friendship,hate
+l'argent,money,cash,wealth,coin,bill,fortune
+la ville,city,town,village,place,capital,area
+le pays,country,nation,state,land,region,kingdom
+le soleil,sun,star,light,day,heat,moon
+la lune,moon,sun,star,night,light,dark
+la nuit,night,day,evening,dark,time,sleep
+le matin,morning,day,evening,night,dawn,sunrise
+le soir,evening,night,morning,day,dusk,sunset
+la semaine,week,day,month,year,time,period
+le mois,month,week,day,year,time,period
+l'an,year,age,time,day,month,period
+l'amie,female friend,friend,companion,pal,buddy,partner
+le frère,brother,sister,family,son,father,uncle
+la sœur,sister,brother,family,daughter,mother,aunt
+le père,father,mother,parent,dad,son,brother
+la mère,mother,father,parent,mom,daughter,sister
+le fils,son,boy,child,daughter,father,brother
+la fille,daughter,girl,child,son,mother,sister
+le cœur,heart,core,center,love,beat,feeling
+la tête,head,mind,brain,top,leader,face
+la main,hand,arm,palm,finger,help,side
+le pied,foot,leg,base,step,walk,shoe
+l'œil,eye,sight,look,vision,face,see
+l'oreille,ear,hearing,sound,listen,side,head
+la bouche,mouth,lips,talk,eat,speak,voice
+la dent,tooth,mouth,bite,eat,smile,pain
+le cheveu,hair,head,strand,style,color,cut
+le visage,face,head,look,expression,side,front
+le corps,body,figure,form,shape,person,health
+l'esprit,mind,spirit,thought,idea,brain,soul
+l'idée,idea,thought,concept,plan,notion,view
+la pensée,thought,idea,mind,thinking,reflection,opinion
+le mot,word,term,phrase,saying,letter,speech
+la phrase,sentence,phrase,expression,word,statement,line
+la question,question,query,issue,problem,doubt,ask
+la réponse,answer,reply,solution,response,key,result
+le problème,problem,issue,difficulty,question,trouble,challenge
+la solution,solution,answer,fix,key,way,outcome
+la raison,reason,cause,logic,mind,sanity,why
+la cause,cause,reason,source,origin,root,factor
+l'effet,effect,result,impact,outcome,consequence,influence
+le résultat,result,outcome,effect,score,product,answer
+le changement,change,alteration,shift,modification,variation,swap
+la différence,difference,contrast,variation,distinction,disparity,gap
+la similitude,similarity,resemblance,likeness,parallel,analogy,sameness
+la beauté,beauty,loveliness,attractiveness,grace,prettiness,charm
+la laideur,ugliness,unattractiveness,hideousness,repulsiveness,awfulness,monstrosity
+la force,strength,power,might,force,energy,ability
+la faiblesse,weakness,frailty,feebleness,debility,vulnerability,flaw
+la joie,joy,happiness,delight,glee,pleasure,bliss
+la peine,sorrow,pain,grief,trouble,difficulty,effort
+la douleur,pain,ache,suffering,hurt,agony,discomfort
+le plaisir,pleasure,enjoyment,delight,fun,joy,satisfaction
+le besoin,need,requirement,necessity,want,demand,urge
+l'envie,desire,wish,urge,craving,longing,envy
+le désir,desire,wish,longing,craving,passion,urge
+la peur,fear,scare,dread,terror,anxiety,fright
+la colère,anger,rage,fury,wrath,irritation,resentment
+la tristesse,sadness,gloom,melancholy,sorrow,unhappiness,depression
+le bonheur,happiness,joy,bliss,contentment,delight,pleasure
+la liberté,freedom,liberty,independence,autonomy,release,choice
+l'égalité,equality,parity,equivalence,sameness,balance,fairness
+la justice,justice,fairness,righteousness,law,equity,morality
+la vérité,truth,fact,reality,accuracy,honesty,correctness
+le mensonge,lie,falsehood,deception,untruth,fib,story
+l'erreur,error,mistake,fault,inaccuracy,blunder,slip
+le succès,success,achievement,victory,accomplishment,triumph,win
+l'échec,failure,defeat,loss,setback,collapse,miss
+le début,beginning,start,commencement,onset,opening,introduction
+la fin,end,conclusion,finish,termination,close,ending
+le milieu,middle,center,midst,medium,average,environment
+le côté,side,edge,part,direction,aspect,team
+la direction,direction,way,guidance,management,instruction,heading
+le chemin,way,path,road,route,track,course
+la route,road,way,route,highway,path,street
+la rue,street,road,way,avenue,lane,alley
+la place,place,square,spot,position,seat,location
+l'espace,space,room,area,place,gap,distance
+le moment,moment,instant,time,point,occasion,minute
+l'heure,hour,time,o'clock,clock,period,moment
+la minute,minute,moment,small time,sixty seconds,brief,short
+la seconde,second,moment,brief time,unit,time,short
+le siècle,century,100 years,era,age,period,time
+l'histoire,history,story,past,tale,account,narrative
+la langue,language,tongue,speech,idiom,dialect,word
+la parole,word,speech,talk,utterance,statement,voice
+la voix,voice,sound,tone,speech,singing,opinion
+le son,sound,noise,tone,ring,call,audio
+le bruit,noise,sound,din,racket,disturbance,clamor
+le silence,silence,quiet,stillness,peace,hush,tranquility
+la lumière,light,brightness,illumination,daylight,gleam,beam
+l'ombre,shadow,shade,darkness,silhouette,ghost,trace
+la couleur,color,hue,shade,tint,pigment,appearance
+le rouge,red,color,scarlet,crimson,blood,passion
+le bleu,blue,color,azure,sky,ocean,sadness
+le vert,green,color,emerald,grass,nature,envy
+le jaune,yellow,color,gold,sun,lemon,caution
+le noir,black,color,dark,evil,night,absence
+le blanc,white,color,pure,snow,light,blank
+le gris,grey,color,gray,ash,dull,neutral
+le rose,pink,color,rose,flower,soft,romantic
+le brun,brown,color,tan,earth,wood,chocolate
+long,long,lengthy,extended,tall,prolonged,drawn-out
+court,short,brief,small,concise,curtailed,near
+large,wide,broad,large,spacious,ample,extensive
+étroit,narrow,thin,tight,limited,cramped,close
+haut,high,tall,lofty,upper,elevated,raised
+bas,low,short,base,down,lower,inferior
+profond,deep,profound,intense,far,abyssal,serious
+superficiel,superficial,shallow,surface,skin-deep,trivial,apparent
+rapide,fast,quick,rapid,speedy,swift,prompt
+lent,slow,lethargic,sluggish,delayed,tardy,gradual
+jeune,young,youthful,new,juvenile,immature,fresh
+ancien,ancient,old,former,previous,antique,bygone
+moderne,modern,contemporary,up-to-date,new,current,progressive
+futur,future,coming,upcoming,next,prospective,forthcoming
+passé,past,previous,former,bygone,elapsed,previous
+présent,present,current,now,gift,here,existing
+absent,absent,missing,away,not present,gone,unavailable
+riche,rich,wealthy,affluent,well-off,opulent,prosperous
+pauvre,poor,needy,impoverished,broke,indigent,meager
+fort,strong,powerful,mighty,robust,sturdy,forceful
+faible,weak,feeble,frail,fragile,delicate,ineffective
+intelligent,intelligent,smart,clever,bright,brainy,sharp
+stupide,stupid,dumb,foolish,silly,idiotic,unintelligent
+gentil,kind,nice,gentle,pleasant,friendly,good
+méchant,mean,naughty,wicked,evil,cruel,bad
+calme,calm,quiet,peaceful,tranquil,serene,still
+agité,agitated,restless,turbulent,upset,excited,nervous
+facile,easy,simple,straightforward,effortless,light,uncomplicated
+difficile,difficult,hard,tough,challenging,complicated,arduous
+possible,possible,feasible,likely,attainable,probable,doable
+impossible,impossible,unfeasible,unattainable,unthinkable,no way,absurd
+vrai,true,real,genuine,actual,correct,right
+faux,false,wrong,fake,untrue,incorrect,bogus
+utile,useful,helpful,beneficial,practical,handy,valuable
+inutile,useless,pointless,futile,worthless,ineffective,unhelpful
+important,important,significant,major,key,vital,crucial
+sans importance,unimportant,trivial,minor,insignificant,negligible,irrelevant
+intéressant,interesting,fascinating,engaging,intriguing,compelling,notable
+ennuyeux,boring,dull,tedious,tiresome,monotonous,uninteresting
+laid,ugly,unattractive,hideous,unsightly,repulsive,awful
+propre,clean,neat,tidy,pure,own,proper
+sale,dirty,filthy,grubby,messy,unclean,soiled
+plein,full,complete,filled,packed,crowded,whole
+vide,empty,vacant,blank,hollow,barren,unoccupied
+chaud,hot,warm,heated,spicy,burning,passionate
+froid,cold,cool,chilly,icy,frigid,unfriendly
+sec,dry,arid,parched,dehydrated,barren,wit
+humide,wet,moist,damp,humid,soggy,watery
+ouvert,open,unlocked,accessible,available,frank,overt
+fermé,closed,shut,locked,sealed,ended,concluded
+commencer,to start,to begin,to commence,to initiate,to launch,to open
+finir,to finish,to end,to complete,to conclude,to terminate,to stop
+continuer,to continue,to keep on,to proceed,to carry on,to persist,to go on
+arrêter,to stop,to halt,to cease,to quit,to arrest,to prevent
+attendre,to wait,to expect,to await,to anticipate,to hold on,to pause
+partir,to leave,to depart,to go,to set off,to exit,to start
+arriver,to arrive,to come,to happen,to occur,to reach,to succeed
+rester,to stay,to remain,to keep,to be,to live,to wait
+retourner,to return,to go back,to turn over,to flip,to come back,to give back
+entrer,to enter,to go in,to come in,to join,to insert,to begin
+sortir,to go out,to exit,to leave,to take out,to come out,to appear
+monter,to go up,to climb,to rise,to ascend,to increase,to mount
+descendre,to go down,to descend,to get off,to decrease,to lower,to fall
+ouvrir,to open,to unlock,to start,to unfold,to reveal,to inaugurate
+fermer,to close,to shut,to lock,to end,to conclude,to seal
+recevoir,to receive,to get,to accept,to welcome,to obtain,to host
+demander,to ask,to request,to inquire,to demand,to require,to beg
+répondre,to answer,to reply,to respond,to react,to correspond,to match
+penser,to think,to believe,to consider,to imagine,to suppose,to reflect
+croire,to believe,to think,to trust,to suppose,to credit,to accept
+comprendre,to understand,to comprehend,to grasp,to realize,to include,to cover
+apprendre,to learn,to teach,to hear,to find out,to memorize,to study
+oublier,to forget,to overlook,to neglect,to leave behind,to disregard,to miss
+se souvenir,to remember,to recall,to keep in mind,to memorize,to reminisce,to retain
+détester,to hate,to detest,to dislike,to loathe,to abhor,to despise
+préférer,to prefer,to like better,to favor,to choose,to opt for,to incline
+choisir,to choose,to select,to pick,to decide,to elect,to opt
+décider,to decide,to determine,to resolve,to settle,to make up mind,to conclude
+changer,to change,to alter,to modify,to switch,to exchange,to transform
+garder,to keep,to retain,to hold,to save,to preserve,to maintain
+perdre,to lose,to misplace,to waste,to forfeit,to fail,to drop
+trouver,to find,to discover,to locate,to come across,to realize,to think
+chercher,to look for,to search,to seek,to hunt,to try,to check
+sentir,to feel,to smell,to sense,to perceive,to detect,to notice
+goûter,to taste,to try,to sample,to savor,to experience,to enjoy
+toucher,to touch,to feel,to contact,to reach,to affect,to move
+bouger,to move,to shift,to stir,to budge,to change,to go
+marcher,to walk,to work,to function,to step,to go,to march
+courir,to run,to race,to hurry,to flow,to manage,to operate
+sauter,to jump,to leap,to skip,to hop,to bounce,to omit
+voler,to fly,to steal,to rob,to soar,to glide,to pilfer
+nager,to swim,to bathe,to float,to dive,to stroke,to cross
+danser,to dance,to move,to perform,to sway,to celebrate,to party
+chanter,to sing,to chant,to celebrate,to hum,to crow,to praise
+jouer,to play,to act,to gamble,to perform,to joke,to sport
+dessiner,to draw,to sketch,to design,to outline,to depict,to plan
+peindre,to paint,to depict,to portray,to coat,to color,to describe
+construire,to build,to construct,to make,to erect,to develop,to create
+détruire,to destroy,to demolish,to ruin,to wreck,to break,to annihilate
+réparer,to repair,to fix,to mend,to restore,to correct,to heal
+casser,to break,to smash,to snap,to burst,to fail,to spoil
+couper,to cut,to slice,to trim,to chop,to interrupt,to reduce
+coller,to stick,to glue,to paste,to cling,to attach,to post
+jeter,to throw,to cast,to discard,to toss,to reject,to waste
+attraper,to catch,to grab,to seize,to capture,to get,to understand
+lancer,to throw,to launch,to start,to cast,to pitch,to initiate
+pousser,to push,to shove,to urge,to promote,to grow,to encourage
+tirer,to pull,to draw,to shoot,to drag,to extract,to fire
+porter,to wear,to carry,to bear,to support,to bring,to endure
+enlever,to remove,to take off,to take away,to kidnap,to strip,to clear
+mettre,to put,to place,to set,to wear,to apply,to lay
+poser,to put,to place,to set,to ask,to lay,to pose
+lever,to lift,to raise,to get up,to rise,to hold up,to pick up
+baisser,to lower,to drop,to reduce,to decrease,to bend,to diminish
+tourner,to turn,to rotate,to spin,to twist,to change,to film
+suivre,to follow,to pursue,to obey,to track,to understand,to continue
+précéder,to precede,to go before,to lead,to anticipate,to forego,to introduce
+accompagner,to accompany,to go with,to escort,to attend,to complement,to match
+quitter,to leave,to quit,to abandon,to depart,to give up,to drop
+rejoindre,to join,to meet,to catch up,to reach,to reunite,to combine
+séparer,to separate,to divide,to part,to detach,to split,to isolate
+réunir,to reunite,to gather,to assemble,to join,to collect,to combine
+mélanger,to mix,to blend,to combine,to confuse,to mingle,to stir
+ajouter,to add,to include,to append,to contribute,to supplement,to attach
+multiplier,to multiply,to increase,to breed,to propagate,to enhance,to magnify
+diviser,to divide,to split,to share,to separate,to distribute,to classify
+calculer,to calculate,to compute,to figure,to reckon,to estimate,to count
+mesurer,to measure,to gauge,to assess,to weigh,to size,to evaluate
+compter,to count,to rely,to depend,to matter,to number,to reckon
+peser,to weigh,to consider,to ponder,to balance,to assess,to measure
+comparer,to compare,to contrast,to liken,to match,to equate,to parallel
+juger,to judge,to try,to deem,to consider,to estimate,to decide
+douter,to doubt,to question,to suspect,to hesitate,to mistrust,to waver
+espérer,to hope,to expect,to wish,to anticipate,to trust,to desire
+craindre,to fear,to dread,to be afraid,to worry,to apprehend,to suspect
+risquer,to risk,to venture,to chance,to endanger,to hazard,to gamble
+éviter,to avoid,to evade,to prevent,to shun,to dodge,to bypass
+rencontrer,to meet,to encounter,to run into,to face,to experience,to find
+saluer,to greet,to salute,to wave,to hail,to address,to welcome
+présenter,to present,to introduce,to show,to offer,to submit,to propose
+excuser,to excuse,to forgive,to pardon,to apologize,to justify,to exempt
+remercier,to thank,to appreciate,to be grateful,to acknowledge,to credit,to reward
+féliciter,to congratulate,to compliment,to praise,to applaud,to celebrate,to wish
+critiquer,to criticize,to review,to censure,to judge,to find fault,to comment
+louer,to praise,to rent,to hire,to commend,to laud,to extol
+blâmer,to blame,to criticize,to reproach,to accuse,to fault,to condemn
+soutenir,to support,to sustain,to back,to uphold,to maintain,to bear
+aider,to help,to assist,to aid,to support,to facilitate,to relieve
+protéger,to protect,to guard,to defend,to shield,to preserve,to safeguard
+attaquer,to attack,to assault,to criticize,to charge,to raid,to strike
+défendre,to defend,to protect,to uphold,to forbid,to prohibit,to advocate
+combattre,to fight,to combat,to battle,to struggle,to oppose,to resist
+partager,to share,to divide,to split,to participate,to distribute,to communicate
+apporter,to bring,to carry,to contribute,to add,to supply,to cause
+emporter,to take away,to carry off,to remove,to win,to prevail,to overcome
+ramener,to bring back,to take back,to reduce,to lead back,to restore,to recall
+rapporter,to report,to bring back,to relate,to yield,to return,to tell
+payer,to pay,to settle,to reward,to suffer,to yield,to compensate
+coûter,to cost,to be expensive,to require,to take,to cause,to entail
+valoir,to be worth,to deserve,to merit,to equal,to be valid,to hold
+dépenser,to spend,to expend,to consume,to waste,to use,to squander
+économiser,to save,to economize,to spare,to preserve,to conserve,to store
+investir,to invest,to commit,to devote,to spend,to put in,to stake
+emprunter,to borrow,to take,to copy,to mimic,to adopt,to assume
+prêter,to lend,to loan,to give,to attribute,to ascribe,to impart
+offrir,to offer,to give,to provide,to present,to propose,to volunteer
+accepter,to accept,to receive,to agree,to admit,to welcome,to approve
+refuser,to refuse,to reject,to decline,to deny,to turn down,to spurn
+permettre,to allow,to permit,to enable,to authorize,to let,to grant
+interdire,to forbid,to prohibit,to ban,to prevent,to disallow,to veto
+obliger,to oblige,to force,to compel,to require,to bind,to constrain
+forcer,to force,to compel,to break,to strain,to push,to drive
+encourager,to encourage,to urge,to promote,to inspire,to stimulate,to cheer
+décourager,to discourage,to dishearten,to deter,to depress,to dissuade,to dampen
+convaincre,to convince,to persuade,to win over,to satisfy,to assure,to prove
+persuader,to persuade,to convince,to induce,to coax,to urge,to influence
+suggérer,to suggest,to propose,to recommend,to imply,to hint,to advise
+conseiller,to advise,to counsel,to recommend,to suggest,to warn,to guide
+recommander,to recommend,to advise,to suggest,to commend,to endorse,to prescribe
+avertir,to warn,to alert,to notify,to caution,to inform,to advise
+informer,to inform,to notify,to tell,to advise,to enlighten,to acquaint
+expliquer,to explain,to clarify,to account for,to interpret,to elucidate,to describe
+décrire,to describe,to depict,to portray,to outline,to characterize,to relate
+raconter,to tell,to narrate,to relate,to recount,to describe,to report
+montrer,to show,to display,to demonstrate,to point out,to prove,to exhibit
+cacher,to hide,to conceal,to cover,to keep secret,to disguise,to shelter
+révéler,to reveal,to disclose,to uncover,to expose,to show,to betray
+découvrir,to discover,to find out,to uncover,to reveal,to detect,to invent
+inventer,to invent,to devise,to make up,to create,to fabricate,to concoct
+imaginer,to imagine,to suppose,to fancy,to visualize,to conceive,to think
+rêver,to dream,to daydream,to imagine,to wish,to hope,to fantasize
+réfléchir,to reflect,to think,to ponder,to consider,to meditate,to contemplate
+méditer,to meditate,to ponder,to contemplate,to reflect,to muse,to think
+considérer,to consider,to regard,to think about,to examine,to deem,to view
+examiner,to examine,to inspect,to investigate,to study,to check,to review
+analyser,to analyze,to examine,to study,to break down,to dissect,to evaluate
+évaluer,to evaluate,to assess,to appraise,to estimate,to value,to judge
+estimer,to estimate,to value,to assess,to reckon,to appreciate,to prize
+contraster,to contrast,to differ,to stand out,to oppose,to compare,to highlight
+opposer,to oppose,to contrast,to set against,to resist,to object,to counter
+s'opposer,to oppose,to be against,to resist,to object,to counteract,to fight
+résister,to resist,to withstand,to oppose,to endure,to hold out,to defy
+céder,to yield,to give in,to surrender,to concede,to succumb,to give way
+abandonner,to abandon,to give up,to quit,to desert,to forsake,to relinquish
+laisser,to let,to leave,to allow,to permit,to abandon,to quit
+empêcher,to prevent,to stop,to hinder,to block,to impede,to avert
+fuir,to flee,to escape,to run away,to avoid,to shun,to leak
+échapper,to escape,to avoid,to elude,to slip away,to get away,to miss
+sauver,to save,to rescue,to preserve,to protect,to spare,to deliver
+vaincre,to defeat,to overcome,to conquer,to beat,to vanquish,to surmount
+triompher,to triumph,to prevail,to succeed,to win,to overcome,to exult
+célébrer,to celebrate,to commemorate,to observe,to honor,to praise,to rejoice
+fêter,to celebrate,to party,to feast,to mark,to rejoice,to honor
+le,the (masc),a,an,this,that,he
+la,the (fem),a,an,this,that,she
+les,the (plur),a,an,these,those,they
+un,a/an (masc),the,one,some,any,my
+une,a/an (fem),the,one,some,any,my
+des,some/any (plur),the,a,an,of the,from
+du,some/of the (masc),the,a,an,from,to the
+de la,some/of the (fem),the,a,an,from,to the
+de,of/from,to,with,by,for,at
+à,to/at/in,from,with,by,for,of
+et,and,or,but,so,then,also
+ou,or,and,but,where,when,why
+mais,but,and,or,so,then,because
+donc,so/therefore,but,and,or,then,because
+car,because,so,but,and,or,then
+parce que,because,so,but,and,or,since
+si,if/so,but,and,or,then,yes
+comme,like/as/because,so,but,and,or,than
+avec,with,without,to,from,by,for
+sans,without,with,to,from,by,for
+dans,in/inside,on,at,to,from,under
+sur,on/over,in,at,to,from,under
+sous,under,on,in,at,to,over
+entre,between/among,inside,outside,around,near,far
+devant,in front of,behind,next to,above,below,inside
+derrière,behind,in front of,next to,above,below,inside
+chez,at the home of,in,on,to,from,with
+vers,toward,from,at,in,on,by
+pendant,during,before,after,while,until,since
+avant,before,after,during,while,until,since
+après,after,before,during,while,until,since
+depuis,since/for,before,after,during,until,ago
+jusqu'à,until/up to,since,before,after,during,from
+ce,this/it,that,he,she,we,they
+cela,that/it,this,he,she,we,they
+ça,that/it (informal),this,he,she,we,they
+ici,here,there,where,now,then,everywhere
+là,there,here,where,now,then,everywhere
+là-bas,over there,here,there,where,now,then
+aussi,also/too,not,never,always,sometimes,often
+très,very,too,so,quite,rather,much
+plus,more,less,most,least,many,few
+moins,less,more,least,most,many,few
+trop,too much/too,enough,very,so,quite,little
+assez,enough/fairly,too much,very,so,little,much
+bien,well/good,bad,okay,fine,nice,great
+mal,badly/wrong,well,good,okay,fine,nice
+peu,little/few,much,many,a lot,enough,too much
+beaucoup,a lot/much/many,little,few,enough,too much,hardly
+toujours,always,never,sometimes,often,rarely,usually
+jamais,never,always,sometimes,often,rarely,usually
+souvent,often,rarely,never,always,sometimes,usually
+quelquefois,sometimes,never,always,often,rarely,usually
+déjà,already,yet,still,never,just,soon
+encore,still/yet/again,already,never,just,soon,again
+pas encore,not yet,already,still,never,just,soon
+tout,all/everything,nothing,something,anything,none,some
+tous,all (masc pl),none,some,each,every,both
+toutes,all (fem pl),none,some,each,every,both
+chaque,each/every,all,some,any,none,both
+sembler,to seem,to look,to appear,to be,to feel,to sound
+passer,to pass/to spend (time),to go,to walk,to happen,to cross,to miss
+servir,to serve,to help,to use,to work,to eat,to drink
+tenir,to hold/to keep,to have,to take,to give,to put,to stand
+connaître,to know (a person/thing),to meet,to recognize,to learn,to understand,to remember
+devoir,must/to have to,can,may,should,will,would
+falloir,to be necessary,to want,to need,to must,to have,to do
+pleuvoir,to rain,to snow,to storm,to pour,to drizzle,to fall
+pain,bread,food,meal,loaf,bun,cake
+lait,milk,drink,juice,water,coffee,tea
+café,coffee,tea,drink,milk,juice,espresso
+thé,tea,coffee,drink,milk,juice,herb
+vin,wine,beer,alcohol,drink,whiskey,champagne
+bière,beer,wine,alcohol,drink,whiskey,champagne
+fromage,cheese,butter,yogurt,milk,cream,bread
+beurre,butter,cheese,oil,cream,margarine,fat
+œuf,egg,chicken,bird,yolk,white,omelette
+viande,meat,beef,pork,chicken,fish,vegetable
+poisson,fish,meat,seafood,animal,chicken,bird
+poulet,chicken,meat,bird,turkey,duck,egg
+riz,rice,pasta,grain,wheat,bread,cereal
+pâtes,pasta,rice,noodles,spaghetti,macaroni,bread
+sel,salt,pepper,sugar,spice,seasoning,flavor
+sucre,sugar,salt,sweet,honey,candy,syrup
+poivre,pepper,salt,spice,seasoning,chili,powder
+air,air,wind,sky,oxygen,breath,gas
+feu,fire,flame,heat,light,smoke,burn
+terre,earth/ground/land,soil,world,planet,country,field
+ciel,sky/heaven,cloud,space,air,sun,star
+mer,sea,ocean,water,lake,river,beach
+fleur,flower,plant,rose,blossom,bud,garden
+arbre,tree,wood,plant,forest,branch,leaf
+feuille,leaf/paper,page,sheet,note,document,book
+porte,door,gate,entrance,exit,window,key
+fenêtre,window,door,glass,opening,view,frame
+table,table,desk,chair,counter,board,surface
+chaise,chair,seat,stool,bench,sofa,table
+lit,bed,sleep,mattress,couch,room,rest
+salle,room/hall,hall,room,space,area,building
+chambre,bedroom,room,hotel,house,apartment,home
+cuisine,kitchen/cooking,food,meal,restaurant,cook,chef
+salle de bain,bathroom,toilet,shower,restroom,washroom,lavatory
+toilettes,toilet/restroom,bathroom,lavatory,WC,loo,restroom
+campagne,countryside,country,rural area,field,farm,village
+monnaie,change/money,coin,cash,currency,bill,banknote
+tiède,lukewarm/tepid,hot,cold,warm,cool,chilly
+amer,bitter,sweet,sour,salty,spicy,tasty
+acide,sour/acid,sweet,bitter,salty,spicy,tart
+salé,salty,sweet,bitter,sour,spicy,tasty
+sucré,sweet,salty,bitter,sour,spicy,sugary
+épicé,spicy,sweet,salty,bitter,sour,hot
+mou,soft,hard,firm,tender,weak,flexible
+dur,hard,soft,easy,tough,difficult,solid
+tendre,tender,tough,hard,soft,rough,gentle
+cruel,cruel,kind,gentle,nice,mean,evil
+poli,polite,rude,kind,nice,friendly,gentle
+impoli,impolite/rude,polite,kind,nice,friendly,gentle
+drôle,funny,serious,sad,happy,strange,weird
+sérieux,serious,funny,silly,joking,playful,light
+étrange,strange,normal,usual,weird,odd,funny
+normal,normal,strange,weird,abnormal,usual,regular
+ordinaire,ordinary,extraordinary,special,common,usual,regular
+extraordinaire,extraordinary,ordinary,normal,common,usual,amazing
+commun,common,rare,unusual,ordinary,usual,shared
+rare,rare,common,usual,ordinary,frequent,scarce
+fréquent,frequent,rare,infrequent,common,usual,regular
+régulier,regular,irregular,random,occasional,frequent,common
+irrégulier,irregular,regular,random,occasional,frequent,common
+le devoir,to have to must,duty,test,obligation,need,should
+connaître,to know to be familiar with,to recognize,to understand,to meet,to realize,to learn
+tomber,to fall,to drop,to decrease,to fail,to land,to stumble
+rire,to laugh,to smile,to joke,to mock,to chuckle,to giggle
+pleurer,to cry,to weep,to mourn,to sob,to lament,to complain
+aider,to help,to assist,to aid,to support,to facilitate,to relieve
+demander,to ask for,to request,to inquire,to demand,to require,to beg
+répondre,to answer,to reply,to respond,to react,to correspond,to match
+croire,to believe,to think,to trust,to suppose,to credit,to accept
+devoir,to owe,to have to,to must,duty,test,obligation
+connaître,to know people places,to be familiar with,to recognize,to understand,to meet
+tomber,to fall,to drop,to decrease,to fail,to land
+rire,to laugh,to smile,to joke,to mock,to chuckle
+pleurer,to cry,to weep,to mourn,to sob,to lament
+la chaleur,heat,warmth,temperature,hot,fire,summer
+la neige,snow,winter,cold,ice,white,flake
+le pneu,tire,wheel,car,vehicle,rubber,flat
+apporter,to bring,to carry,to take,to provide,to contribute,to cause
+le département,department,region,section,area,division,office
+la limite,limit,boundary,edge,maximum,restriction,border
+limiter,to limit,to restrict,to bound,to confine,to reduce,to cap
+la puissance,power,strength,force,ability,energy,might
+la qualité,quality,standard,grade,property,characteristic,feature
+le public,public,audience,crowd,people,general,open
+le système,system,method,setup,network,structure,process
+présenter,to present,to introduce,to show,to offer,to submit,to propose
+dire,to say,to tell,to speak,to state,to declare,to mention
+falloir,to be necessary,to must,to need,to require,to have to,to take
+le téléphone,telephone,phone,mobile,call,device,ring
+la porte,door,entrance,gate,exit,way,opening
+la fenêtre,window,glass,pane,opening,view,light
+le lit,bed,sleep,rest,furniture,room,bedroom
+la table,table,desk,furniture,surface,board,meal
+la chaise,chair,seat,furniture,stool,bench,place
+le bureau,office,desk,study,workplace,study room,administration
+l'ordinateur,computer,PC,laptop,machine,device,technology
+le téléphone portable,mobile phone,cellphone,smartphone,device,call,mobile
+la clé,key,clue,solution,lock,door,secret
+le sac,bag,sack,purse,backpack,handbag,case
+la valise,suitcase,luggage,bag,travel,case,box
+le billet,ticket, note,bill,money,entry,pass
+le train,train,railway,locomotive,transport,station,track
+l'avion,airplane,plane,flight,aircraft,jet,sky
+le bateau,boat,ship,vessel,ferry,yacht,water
+la bicyclette,bicycle,bike,cycle,ride,wheel,pedal
+la moto,motorcycle,motorbike,bike,vehicle,ride,engine
+le bus,bus,coach,vehicle,transport,route,stop
+le métro,subway,metro,underground,train,transport,city
+le taxi,taxi,cab,ride,driver,car,transport
+l'hôpital,hospital,clinic,medical,health,doctor,emergency
+le médecin,doctor,physician,medic,practitioner,health,professional
+l'infirmière,nurse,caregiver,medical,assistant,health,hospital
+le pharmacien,pharmacist,chemist,druggist,medicine,store,health
+le professeur,teacher,professor,instructor,educator,lecturer,school
+l'étudiant,student,pupil,learner,scholar,university,college
+l'ami,friend,companion,pal,buddy,partner,acquaintance
+l'amie,female friend,girlfriend,companion,pal,buddy,partner
+le collègue,colleague,coworker,associate,partner,teammate,workmate
+le patron,boss,employer,chief,manager,head,leader
+le client,customer,client,guest,patron,buyer,consumer
+le vendeur,seller,salesman,vendor,shop assistant,clerk,merchant
+la vendeuse,female seller,saleswoman,vendor,shop assistant,clerk,merchant
+le prix,price,cost,value,rate,amount,charge
+le magasin,shop,store,market,supermarket,boutique,retail
+le supermarché,supermarket,hypermarket,grocery,store,shop,food
+le marché,market,fair,bazaar,trade,exchange,place
+le pain,bread,loaf,food,bakery,breakfast,meal
+le fromage,cheese,dairy,product,food,appetizer,plate
+la viande,meat,flesh,beef,pork,food,protein
+le poisson,fish,seafood,aquatic,food,meal,dish
+les légumes,vegetables,greens,produce,food,healthy,diet
+les fruits,fruits,produce,food,sweet,healthy,dessert
+le lait,milk,dairy,drink,white,product,breakfast
+le jus,juice,drink,beverage,fruit,liquid,fresh
+le vin,wine,drink,alcohol,red,white,beverage
+le café,coffee,drink,café,beverage,morning,cafe
+le thé,tea,drink,beverage,herbal,hot,infusion
+le chocolat,chocolate,candy,sweet,dessert,cocoa,bar
+le sucre,sugar,sweetener,white,powder,ingredient,sweet
+le sel,salt,seasoning,white,condiment,flavor,table
+le poivre,pepper,spice,black,condiment,seasoning,hot
+l'huile,oil,liquid,fat,cooking,olive,vegetable
+le beurre,butter,dairy,spread,fat,yellow,cooking
+l'œuf,egg,food,breakfast,protein,shell,chicken
+la pomme,apple,fruit,red,green,healthy,sweet
+la banane,banana,fruit,yellow,tropical,sweet,peel
+l'orange,orange,fruit,citrus,juice,color,sweet
+la tomate,tomato,vegetable,red,fruit,sauce,salad
+la carotte,carrot,vegetable,orange,root,healthy,raw
+la pomme de terre,potato,vegetable,tuber,starchy,fried,boiled
+le riz,rice,grain,food,side dish,white,staple
+les pâtes,pasta,noodles,food,Italian,carb,dish
+le pain, bread,loaf,food,bakery,breakfast,meal
+je dois,I have to,I must,I need to,he has to,we have to,she has to
+il faut,it is necessary,one must,we must,you must,they must,he must
+ça va bien,it's going well,I'm fine,all good,it's okay,I'm good,everything fine
+je m'appelle...,my name is...,I am called...,what is your name,he is called,we are called,they are called
+comment tu t'appelles,what is your name (informal),how are you,where are you from,what do you do,how old are you,who are you
+quel âge as-tu,how old are you (informal),what is your name,where do you live,how are you,what time is it,where are you from
+j'ai vingt ans,I am twenty,I am thirty,I am fifteen,he is twenty,we are twenty,she is twenty
+d'où viens-tu,where are you from (informal),where do you live,where are you going,how are you,what is this,who are you
+je viens de...,I come from...,I am from...,we come from...,they come from...,he comes from...,she comes from...
+j'habite à...,I live in...,I reside in...,we live in...,they live in...,he lives in...,she lives in...
+à quelle heure,at what time,what time is it,when,how long,where,why
+il est huit heures,it is eight o'clock,it is nine o'clock,it is seven o'clock,what time is it,it's late,it's early
+je travaille demain,I work tomorrow,I study tomorrow,we work tomorrow,they work tomorrow,she works tomorrow,he works tomorrow
+nous sommes allés,we went,we have gone,we will go,I went,they went,you went
+je suis allé,I went (masc),I have gone,I will go,he went,we went,she went
+elle est allée,she went,she has gone,she will go,he went,we went,they went
+nous avons mangé,we ate,we have eaten,we will eat,I ate,they ate,you ate
+tu as vu,you saw (informal),you have seen,you will see,I saw,he saw,we saw
+je pense que...,I think that...,I believe that...,I know that...,he thinks that...,we think that...,she thinks that...
+c'est bon,it's good,it's delicious,it's okay,it's fine,it's nice,it's great
+c'est trop cher,it's too expensive,it's expensive,it's cheap,it's good,it's bad,it's okay
+je n'aime pas,I don't like,I dislike,I hate,we don't like,they don't like,she doesn't like
+j'adore...,I love...,I adore...,I really like...,we love...,they love...,he loves...
+tu veux quoi,what do you want (informal),what would you like,what do you need,how are you,where are you,who are you
+je veux de l'eau,I want water,I would like water,we want water,they want water,he wants water,she wants water
+on y va,let's go,shall we go,we go,I go,they go,you go
+allons-y,let's go,come on,shall we,wait a minute,stop,go there
+attends une minute,wait a minute,just a second,hold on,one moment,wait please,stop
+excuse-moi,excuse me (informal),sorry,pardon me,thank you,please,hello
+pardon,sorry,excuse me,pardon me,thank you,please,hello
+merci beaucoup,thank you very much,thanks a lot,many thanks,you're welcome,please,excuse me
+de rien,you're welcome,no problem,not at all,thank you,please,sorry
+bon appétit,enjoy your meal,have a good meal,good appetite,thank you,please,hello
+à la vôtre,cheers,to your health,good appetite,thank you,hello,goodbye
+à bientôt,see you soon,see you later,goodbye,hello,thank you,see you tomorrow
+à demain,see you tomorrow,see you soon,goodbye,hello,thank you,see you later
+bonne nuit,good night,sleep well,good evening,good morning,goodbye,hello
+bonne journée,have a good day,good morning,have a nice day,good evening,thank you,hello
+je ne sais pas,I don't know,I have no idea,we don't know,they don't know,he doesn't know,she doesn't know
+je ne comprends pas,I don't understand,I can't understand,we don't understand,they don't understand,he doesn't understand,she doesn't understand
+parlez plus lentement,speak more slowly (formal),speak slower,repeat please,what did you say,I don't understand,excuse me
+répétez s'il vous plaît,repeat please (formal),say it again,speak slowly,what is this,I don't know,thank you
+qu'est-ce que c'est,what is this,what is that,what is it,who is this,where is it,how much is it
+qui est-ce,who is this,who is that,what is this,where is he,how is he,when is he
+où sont les toilettes,where are the toilets,where is the bathroom,where is the station,where is the hotel,where is the restaurant,where is the shop
+je cherche...,I'm looking for...,I need...,I want...,he is looking for...,we are looking for...,they are looking for...
+la gare,the station,the train station,the airport,the hotel,the restaurant,the shop
+l'aéroport,the airport,the station,the hotel,the restaurant,the shop,the museum
+l'hôtel,the hotel,the station,the airport,the restaurant,the shop,the museum
+le restaurant,the restaurant,the station,the airport,the hotel,the shop,the museum
+le magasin,the shop,the store,the station,the airport,the hotel,the restaurant
+le supermarché,the supermarket,the shop,the market,the station,the restaurant,the hotel
+le marché,the market,the supermarket,the shop,the station,the restaurant,the hotel
+le pain,bread,the water,the milk,the cheese,the meat,the fruit
+le fromage,cheese,bread,the milk,the water,the meat,the fruit
+la viande,meat,cheese,bread,the fish,the vegetables,the fruit
+le poisson,fish,meat,cheese,bread,the vegetables,the fruit
+les légumes,vegetables,fruit,meat,fish,cheese,bread
+les fruits,fruit,vegetables,meat,fish,cheese,bread
+le lait,milk,water,juice,coffee,tea,wine
+le jus,juice,milk,water,coffee,tea,wine
+le vin,wine,juice,milk,water,coffee,tea
+le café,coffee,wine,juice,milk,water,tea
+le thé,tea,coffee,wine,juice,milk,water
+l'eau,water,tea,coffee,wine,juice,milk
+joli,pretty,nice,beautiful,ugly,good,bad
+sympathique,nice,friendly,kind,pleasant,mean,bad
+fatigué,tired,exhausted,energetic,happy,sad,good
+content,happy,pleased,glad,sad,tired,angry
+énervé,annoyed,angry,irritated,calm,happy,sad
+calme,calm,quiet,peaceful,tranquil,agitated,nervous
+rapide,fast,quick,speedy,slow,good,bad
+lent,slow,lethargic,sluggish,fast,quick,good
+facile,easy,simple,straightforward,difficult,hard,complicated
+difficile,difficult,hard,tough,easy,simple,good
+je dois partir,I have to leave,I must go,I need to go,we have to leave,they have to leave,she has to leave
+il faut que je...,I need to...,I have to...,we need to...,they need to...,he needs to...,she needs to...
+ça va ?,how are you?,how's it going?,are you okay?,I'm fine,it's good,what's up
+ça va bien,I'm fine,it's going well,all good,I'm okay,it's great,everything fine
+je suis content,I am happy (masc),I am glad,I am pleased,she is happy,we are happy,they are happy
+elle est contente,she is happy (fem),he is happy,I am happy,we are happy,they are happy,you are happy
+il fait beau,it's nice weather,it's beautiful,it's sunny,it's bad weather,it's raining,it's cold
+il pleut,it's raining,it's snowing,it's sunny,it's windy,it's cloudy,it's hot
+quel temps fait-il,what's the weather like,how is the weather,it's nice,it's bad,what time is it,where are you
+aujourd'hui il fait chaud,today it's hot,today it's cold,today it's nice,today it's raining,today it's sunny,today it's windy
+hier il faisait froid,yesterday it was cold,yesterday it was hot,yesterday it was nice,yesterday it rained,yesterday it snowed,yesterday it was sunny
+demain il va pleuvoir,tomorrow it will rain,tomorrow it will be sunny,tomorrow it will be hot,tomorrow it will be cold,tomorrow it will snow,tomorrow it will be windy
+je vais au travail,I go to work,I am going to work,we go to work,they go to work,she goes to work,he goes to work
+nous allons à l'école,we go to school,we are going to school,I go to school,they go to school,you go to school,she goes to school
+je joue au foot,I play football,I play soccer,I watch football,he plays football,we play football,she plays football
+tu joues au tennis,you play tennis (informal),I play tennis,he plays tennis,we play tennis,they play tennis,she plays tennis
+il regarde la télévision,he watches television,he watches TV,she watches TV,I watch TV,we watch TV,they watch TV
+elle lit un livre,she reads a book,he reads a book,I read a book,we read a book,they read a book,you read a book
+nous mangeons au restaurant,we eat at the restaurant,we eat together,we eat at home,I eat at the restaurant,they eat at the restaurant,she eats at the restaurant
+vous parlez français,you speak French (formal/plural),I speak French,he speaks French,we speak French,they speak French,she speaks French
+ils vont au cinéma,they go to the cinema (masc),we go to the cinema,you go to the cinema,I go to the cinema,she goes to the cinema,he goes to the cinema
+elles dansent bien,they dance well (fem),they sing well,they play well,we dance well,you dance well,he dances well
+où est la salle de bain,where is the bathroom,where is the toilet,where is the kitchen,where is the bedroom,where is the living room,where is the office
+combien ça coûte,how much does it cost,how much is it,what is the price,how expensive,how cheap,what is this
+je voudrais un café,I would like a coffee,I would like tea,I want water,he wants coffee,we want coffee,she wants coffee
+s'il te plaît,please (informal),thank you,excuse me,sorry,hello,goodbye
+réussir,to succeed,to achieve,to win,to pass,to manage,to accomplish
+s'ennuyer,to get bored,to feel bored,to tire,to lose interest,to yawn,to dull
+se fâcher,to get angry,to become mad,to lose temper,to quarrel,to argue,to rage
+s'inquiéter,to worry,to be anxious,to fret,to concern,to fear,to stress
+sourire,to smile,to grin,to beam,to look happy,to cheer,to express joy
+pleurer,to cry,to weep,to sob,to shed tears,to lament,to mourn
+rire aux éclats,to laugh loudly,to burst out laughing,to chuckle loudly,to roar with laughter,to giggle hard,to smile big
+réussir son examen,to pass the exam,to succeed in test,to do well on test,to fail the test,to win the game,to achieve the goal
+perdre patience,to lose patience,to get impatient,to become irritated,to wait too long,to become angry,to give up
+avoir faim,to be hungry,to feel hungry,to want food,to need to eat,to have appetite,to crave food
+avoir soif,to be thirsty,to feel thirsty,to need drink,to want water,to crave liquid,to feel dry
+avoir sommeil,to be sleepy,to feel tired,to need sleep,to want to rest,to be drowsy,to yawn
+avoir froid,to be cold,to feel cold,to shiver,to need warmth,to freeze,to chill
+avoir chaud,to be hot,to feel hot,to sweat,to need cool,to overheat,to burn
+avoir peur,to be afraid,to feel scared,to fear,to dread,to be frightened,to panic
+avoir raison,to be right,to be correct,to have truth,to know better,to win argument,to prove point
+avoir tort,to be wrong,to make mistake,to err,to be incorrect,to lose argument,to misunderstand
+se lever tôt,to get up early,to rise early,to wake early,to start day early,to leave bed early,to begin morning
+se coucher tard,to go to bed late,to sleep late,to stay up late,to retire late,to turn in late,to rest late
+prendre le petit déjeuner,to have breakfast,to eat morning meal,to take breakfast,to breakfast,to start day with food,to morning eat
+faire du sport,to do sports,to play sport,to exercise,to train,to work out,to move body
+faire du vélo,to ride a bike,to cycle,to bike,to pedal,to go cycling,to use bicycle
+faire une promenade,to take a walk,to go for a walk,to stroll,to wander,to amble,to saunter
+faire les courses,to do the shopping,to go shopping,to buy groceries,to shop for food,to run errands,to purchase items
+lire le journal,to read the newspaper,to check news,to see headlines,to read paper,to follow current events,to scan news
+regarder un film,to watch a movie,to see a film,to view movie,to enjoy cinema,to watch screen,to follow story
+écouter de la musique,to listen to music,to hear songs,to play music,to enjoy tunes,to have soundtrack,to tune in
+danser sur une chanson,to dance to a song,to move to music,to groove,to sway to beat,to enjoy rhythm,to party dance
+chanter sous la douche,to sing in the shower,to hum while washing,to vocalize in bath,to perform under water,to make noise while cleaning,to enjoy voice
+se brosser les dents,to brush teeth,to clean teeth,to use toothbrush,to maintain oral hygiene,to freshen mouth,to care for smile
+se laver les mains,to wash hands,to clean hands,to use soap,to sanitize,to rinse,to prepare hygiene
+prendre une douche,to take a shower,to wash body,to have shower,to clean self,to refresh with water,to bathe quickly
+prendre un bain,to take a bath,to soak in tub,to relax in water,to bathe slowly,to enjoy warm water,to unwind
+se coiffer,to do hair,to style hair,to comb,to brush hair,to arrange hairstyle,to fix look
+se maquiller,to put on makeup,to apply cosmetics,to beautify face,to use makeup,to enhance appearance,to paint face
+s'habiller,to get dressed,to put on clothes,to wear outfit,to clothe self,to choose clothes,to prepare look
+se déshabiller,to undress,to take off clothes,to remove outfit,to strip,to disrobe,to prepare for bed
+ranger sa chambre,to tidy room,to clean bedroom,to organize space,to put away things,to sort belongings,to make neat
+laver la vaisselle,to wash dishes,to do dishes,to clean plates,to rinse utensils,to handle kitchenware,to clear table
+préparer le dîner,to prepare dinner,to cook evening meal,to make supper,to fix food,to create meal,to plan dinner
+inviter des amis,to invite friends,to ask friends over,to host people,to call guests,to welcome company,to gather people
+organiser une fête,to organize a party,to plan celebration,to throw party,to arrange event,to host gathering,to set up fun
+voyager en train,to travel by train,to go by rail,to ride train,to journey on tracks,to take locomotive,to move by railway
+visiter un musée,to visit a museum,to see exhibition,to explore gallery,to view art,to discover history,to walk through collection
+marcher dans la ville,to walk in the city,to stroll through town,to explore streets,to wander urban area,to move on foot,to discover city
+découvrir un nouveau lieu,to discover a new place,to find new spot,to explore unknown,to come across location,to uncover site,to find hidden
+apprendre une langue,to learn a language,to study language,to practice words,to master tongue,to acquire speech,to improve communication
+lire un roman,to read a novel,to enjoy book,to follow story,to dive into fiction,to turn pages,to engage literature
+écouter un podcast,to listen to a podcast,to hear audio show,to follow episode,to enjoy talk,to absorb content,to tune in discussion
+regarder les étoiles,to watch the stars,to gaze at sky,to observe night,to admire cosmos,to look upward,to enjoy celestial
+compter les moutons,to count sheep,to try fall asleep,to use trick for sleep,to imagine animals,to relax mind,to prepare rest
+rêver de voyage,to dream of travel,to imagine journey,to fantasize trip,to wish for adventure,to picture far places,to hope exploration
+se sentir bien,to feel good,to feel fine,to be okay,to feel positive,to enjoy mood,to have good day
+se sentir mal,to feel bad,to feel ill,to be unwell,to have bad mood,to suffer discomfort,to experience negative
+avoir de la chance,to be lucky,to have fortune,to get good break,to win odds,to benefit from chance,to succeed unexpectedly
+perdre son temps,to waste time,to lose minutes,to spend uselessly,to idle away,to fritter hours,to do nothing useful
+gagner du temps,to save time,to gain minutes,to use efficiently,to speed up,to optimize,to hurry process
+faire attention,to pay attention,to be careful,to watch out,to take care,to notice,to focus
+oublier quelque chose,to forget something,to leave behind,to miss item,to overlook,to not remember,to lose track
+se rappeler un nom,to remember a name,to recall person,to think of title,to bring back memory,to keep in mind,to not forget
+poser une question,to ask a question,to inquire,to pose query,to seek information,to wonder,to request answer
+donner une réponse,to give an answer,to reply,to respond,to provide solution,to explain,to clarify
+expliquer une idée,to explain an idea,to clarify thought,to describe concept,to share notion,to detail plan,to make clear
+comprendre le problème,to understand the problem,to grasp issue,to see difficulty,to realize challenge,to get situation,to figure out
+résoudre un puzzle,to solve a puzzle,to figure out riddle,to crack code,to find solution,to complete challenge,to succeed task
+créer un dessin,to create a drawing,to make sketch,to produce illustration,to design picture,to form image,to craft art
+composer une chanson,to compose a song,to write music,to create melody,to make tune,to invent lyrics,to build track
+construire une maison,to build a house,to construct home,to erect building,to develop structure,to make dwelling,to assemble place
+détruire un mur,to destroy a wall,to break barrier,to demolish partition,to tear down,to knock over,to ruin structure
+réparer une voiture,to repair a car,to fix vehicle,to mend automobile,to service engine,to restore transport,to heal machine
+casser un verre,to break a glass,to smash cup,to shatter item,to crack object,to destroy container,to split material
+couper un fruit,to cut a fruit,to slice produce,to chop food,to divide item,to prepare meal,to section edible
+coller une photo,to stick a photo,to glue picture,to attach image,to paste visual,to fix memory,to mount print
+jeter un papier,to throw paper,to discard sheet,to toss waste,to get rid of trash,to eliminate document,to dispose item
+attraper un ballon,to catch a ball,to grab sphere,to seize object,to hold plaything,to receive throw,to secure item
+lancer une pierre,to throw a stone,to cast rock,to hurl object,to pitch item,to project material,to send flying
+pousser une porte,to push a door,to shove entrance,to press panel,to open by force,to move barrier,to advance access
+tirer une corde,to pull a rope,to draw line,to tug string,to extract cable,to drag material,to haul item
+porter un sac,to carry a bag,to hold luggage,to bear load,to transport item,to bring container,to support weight
+enlever une veste,to remove a jacket,to take off coat,to strip layer,to discard clothing,to clear garment,to shed outerwear
+mettre un chapeau,to put on a hat,to wear headwear,to don cap,to apply covering,to place accessory,to cover head
+poser une question,to ask a question,to pose query,to inquire,to seek info,to wonder aloud,to request answer
+lever la main,to raise hand,to lift arm,to put up palm,to signal,to indicate,to show presence
+baisser la tête,to lower head,to bow,to drop chin,to look down,to bend neck,to submit
+tourner la page,to turn the page,to flip sheet,to change chapter,to move forward,to advance story,to continue reading
+suivre un chemin,to follow a path,to walk route,to track way,to pursue trail,to go along,to continue course
+précéder quelqu'un,to go before someone,to lead person,to walk ahead,to anticipate arrival,to introduce,to guide first
+accompagner un ami,to accompany a friend,to go with buddy,to escort companion,to attend person,to join together,to walk alongside
+quitter la maison,to leave the house,to exit home,to depart dwelling,to go out,to set off,to abandon place
+rejoindre un groupe,to join a group,to meet team,to catch up with others,to reach crowd,to unite with,to combine forces
+séparer deux amis,to separate two friends,to divide companions,to part people,to detach pair,to split duo,to isolate individuals
+réunir la famille,to reunite the family,to gather relatives,to assemble kin,to bring together,to collect loved ones,to combine household
+mélanger les couleurs,to mix colors,to blend hues,to combine shades,to stir pigments,to create new tone,to merge tones
+ajouter du sel,to add salt,to include seasoning,to put condiment,to supplement flavor,to enhance taste,to attach spice
+multiplier les efforts,to multiply efforts,to increase attempts,to enhance work,to boost tries,to amplify energy,to magnify attempts
+diviser le gâteau,to divide the cake,to split dessert,to share sweet,to cut portion,to distribute treat,to separate piece
+calculer le total,to calculate the total,to compute sum,to figure amount,to reckon whole,to estimate full,to count everything
+mesurer la distance,to measure the distance,to gauge length,to assess span,to weigh gap,to size interval,to evaluate separation
+compter les étoiles,to count the stars,to number celestial,to tally lights,to reckon sky,to depend on cosmos,to matter heavenly
+peser les fruits,to weigh the fruits,to balance produce,to ponder options,to assess weight,to measure edible,to evaluate food
+comparer deux livres,to compare two books,to contrast novels,to liken stories,to match volumes,to equate texts,to parallel works
+juger une situation,to judge a situation,to try circumstance,to deem condition,to consider context,to estimate scene,to decide case
+douter de tout,to doubt everything,to question all,to suspect whole,to hesitate fully,to mistrust complete,to waver totally
+espérer le meilleur,to hope for the best,to expect positive,to wish good,to anticipate fine,to trust excellent,to desire top
+craindre le pire,to fear the worst,to dread bad,to be afraid terrible,to worry awful,to apprehend horrible,to suspect negative
+risquer sa vie,to risk one's life,to venture existence,to chance being,to endanger self,to hazard person,to gamble body
+éviter un danger,to avoid a danger,to evade risk,to prevent threat,to shun peril,to dodge hazard,to bypass trouble
+rencontrer un inconnu,to meet a stranger,to encounter unknown,to run into new,to face unfamiliar,to experience fresh,to find novel
+saluer un voisin,to greet a neighbor,to salute local,to wave to resident,to hail nearby,to address close,to welcome adjacent
+présenter son projet,to present one's project,to introduce plan,to show idea,to offer concept,to submit proposal,to propose scheme
+excuser son retard,to excuse one's lateness,to forgive delay,to pardon tardiness,to apologize for late,to justify slowness,to exempt slowness
+remercier pour l'aide,to thank for the help,to appreciate assistance,to be grateful support,to acknowledge aid,to credit help,to reward favor
+féliciter pour la victoire,to congratulate on the victory,to compliment win,to praise success,to applaud triumph,to celebrate achievement,to wish good
+critiquer un film,to criticize a movie,to review cinema,to censure picture,to judge film,to find fault screen,to comment production
+louer une voiture,to rent a car,to hire vehicle,to commend automobile,to laud transport,to extol auto,to praise machine
+blâmer le retard,to blame the delay,to criticize lateness,to reproach tardiness,to accuse slowness,to fault delay,to condemn wait
+soutenir une idée,to support an idea,to sustain thought,to back concept,to uphold notion,to maintain plan,to bear proposal
+protéger un secret,to protect a secret,to guard mystery,to defend hidden,to shield confidential,to preserve private,to safeguard undisclosed
+attaquer un problème,to attack a problem,to assault issue,to criticize difficulty,to charge challenge,to raid trouble,to strike obstacle
+défendre son opinion,to defend one's opinion,to protect view,to uphold belief,to forbid contrary,to prohibit opposite,to advocate stance
+combattre l'injustice,to fight injustice,to combat unfairness,to battle inequality,to struggle wrong,to oppose wrong,to resist bad
+partager un repas,to share a meal,to divide food,to split dinner,to participate eating,to distribute lunch,to communicate table
+apporter un cadeau,to bring a gift,to carry present,to contribute offering,to add surprise,to supply token,to cause joy
+emporter un souvenir,to take away a memory,to carry off recollection,to remove reminder,to win keepsake,to prevail memento,to overcome past
+ramener un ami,to bring back a friend,to take back companion,to reduce buddy,to lead companion,to restore pal,to recall mate
+rapporter une nouvelle,to report news,to bring back information,to relate update,to yield story,to return tale,to tell event
+payer une facture,to pay a bill,to settle invoice,to reward account,to suffer charge,to yield cost,to compensate debt
+coûter cher,to cost a lot,to be expensive,to require much,to take high,to cause high,to entail big
+valoir la peine,to be worth it,to deserve effort,to merit trouble,to equal value,to be valid work,to hold meaning
+dépenser de l'argent,to spend money,to expend cash,to consume wealth,to waste fortune,to use funds,to squander resources
+économiser de l'énergie,to save energy,to economize power,to spare strength,to preserve force,to conserve vitality,to store vigor
+investir dans l'avenir,to invest in the future,to commit to tomorrow,to devote to next,to spend on ahead,to put in coming,to stake prospective
+emprunter un livre,to borrow a book,to take volume,to copy text,to mimic story,to adopt tale,to assume narrative
+prêter attention,to lend attention,to loan focus,to give mind,to attribute care,to ascribe notice,to impart concentration
+offrir un cadeau,to offer a gift,to give present,to provide surprise,to present token,to propose item,to volunteer joy
+accepter une invitation,to accept an invitation,to receive invite,to agree to call,to admit request,to welcome proposal,to approve offer
+refuser une offre,to refuse an offer,to reject proposal,to decline suggestion,to deny chance,to turn down opportunity,to spurn possibility
+permettre l'entrée,to allow entry,to permit access,to enable entrance,to authorize admission,to let in,to grant passage
+interdire l'accès,to forbid access,to prohibit entry,to ban entrance,to prevent admission,to disallow passage,to veto way
+obliger quelqu'un,to oblige someone,to force person,to compel individual,to require human,to bind being,to constrain soul
+forcer une serrure,to force a lock,to compel mechanism,to break closure,to strain fastener,to push barrier,to drive open
+encourager un enfant,to encourage a child,to urge kid,to promote youth,to inspire young,to stimulate little,to cheer small
+décourager un projet,to discourage a project,to dishearten plan,to deter scheme,to depress idea,to dissuade concept,to dampen proposal
+convaincre un ami,to convince a friend,to persuade buddy,to win over pal,to satisfy companion,to assure mate,to prove mate
+persuader le public,to persuade the public,to convince audience,to induce crowd,to coax people,to urge group,to influence mass
+suggérer une idée,to suggest an idea,to propose thought,to recommend notion,to imply concept,to hint plan,to advise scheme
+conseiller un ami,to advise a friend,to counsel buddy,to recommend pal,to suggest companion,to warn mate,to guide associate
+recommander un livre,to recommend a book,to advise volume,to suggest text,to commend novel,to endorse story,to prescribe tale
+avertir d'un danger,to warn of a danger,to alert risk,to notify threat,to caution peril,to inform hazard,to advise trouble
+informer les gens,to inform people,to notify folks,to tell persons,to advise humans,to enlighten individuals,to acquaint beings
+expliquer une règle,to explain a rule,to clarify regulation,to account for law,to interpret norm,to elucidate principle,to describe guideline
+décrire un paysage,to describe a landscape,to depict scenery,to portray view,to outline scene,to characterize sight,to relate panorama
+raconter une histoire,to tell a story,to narrate tale,to relate account,to recount event,to describe adventure,to report incident
+montrer le chemin,to show the way,to display path,to demonstrate route,to point out direction,to prove course,to exhibit track
+cacher un secret,to hide a secret,to conceal mystery,to cover hidden,to keep confidential,to disguise private,to shelter undisclosed
+révéler la vérité,to reveal the truth,to disclose fact,to uncover reality,to expose accuracy,to show honesty,to betray correctness
+découvrir un trésor,to discover a treasure,to find out wealth,to uncover riches,to reveal fortune,to detect value,to invent gem
+inventer une machine,to invent a machine,to devise device,to make up tool,to create apparatus,to fabricate mechanism,to concoct engine
+imaginer un monde,to imagine a world,to suppose realm,to fancy universe,to visualize planet,to conceive domain,to think sphere
+rêver d'avenir,to dream of future,to daydream tomorrow,to imagine ahead,to wish prospective,to hope coming,to fantasize next
+réfléchir avant d'agir,to reflect before acting,to think prior move,to ponder prior deed,to consider before do,to meditate prior action,to contemplate prior step
+méditer en silence,to meditate in silence,to ponder quietly,to contemplate still,to reflect hush,to muse calm,to think peaceful
+considérer toutes options,to consider all options,to regard every choice,to think about all,to examine each,to deem every,to view all
+examiner un document,to examine a document,to inspect paper,to investigate file,to study record,to check text,to review writing
+analyser les données,to analyze data,to examine information,to study facts,to break down numbers,to dissect stats,to evaluate figures
+évaluer les risques,to evaluate risks,to assess dangers,to appraise perils,to estimate threats,to value hazards,to judge dangers
+estimer la valeur,to estimate the value,to value worth,to assess price,to reckon cost,to appreciate amount,to prize total
+contraster deux styles,to contrast two styles,to differ manners,to stand out ways,to oppose fashions,to compare modes,to highlight trends
+opposer deux idées,to oppose two ideas,to contrast thoughts,to set against notions,to resist concepts,to object plans,to counter proposals
+s'opposer à un projet,to oppose a project,to be against plan,to resist scheme,to object idea,to counteract proposal,to fight concept
+résister à la tentation,to resist temptation,to withstand lure,to oppose seduction,to endure attraction,to hold out pull,to defy draw
+céder à la pression,to yield to pressure,to give in stress,to surrender force,to concede push,to succumb weight,to give way load
+abandonner un rêve,to abandon a dream,to give up hope,to quit vision,to desert fantasy,to forsake illusion,to relinquish wish
+laisser une chance,to let a chance,to leave opportunity,to allow possibility,to permit luck,to abandon fortune,to quit probability
+empêcher un accident,to prevent an accident,to stop mishap,to hinder crash,to block incident,to impede event,to avert disaster
+fuir la réalité,to flee reality,to escape truth,to run away fact,to avoid actual,to shun genuine,to leak real
+échapper à un piège,to escape a trap,to avoid snare,to elude net,to slip away ambush,to get away lure,to miss bait
+sauver une vie,to save a life,to rescue being,to preserve existence,to protect soul,to spare person,to deliver individual
+vaincre ses peurs,to defeat one's fears,to overcome anxieties,to conquer dreads,to beat worries,to vanquish scares,to surmount frights
+triompher des obstacles,to triumph over obstacles,to prevail barriers,to succeed hurdles,to win difficulties,to overcome challenges,to exult blocks
+célébrer une victoire,to celebrate a victory,to commemorate win,to observe triumph,to honor success,to praise achievement,to rejoice conquest
+fêter un anniversaire,to celebrate a birthday,to party anniversary,to feast milestone,to mark year,to rejoice date,to honor birth
