@@ -561,25 +561,52 @@
     }
 
     // ===== FILE LOAD =====
-    els.csvFile.addEventListener('change', async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const text = await file.text();
-      allWords = parseCSV(text);
-      if (allWords.length === 0) { alert('❌ No valid words'); return; }
-      
-      // Сброс прогресса
-      progress = {};
-      stats = { totalCorrect: 0, sessionErrors: 0 };
-      history = [];
-      dictionarySaved = false;  // 🔥 Новый словарь — флаг сброс
-      
-      saveData();  // 🔥 Сохраняем словарь + прогресс
-      els.fileSection.classList.add('hidden');
-      els.quizSection.classList.remove('hidden');
-      updateStats();
-      nextWord();
-    });
+    // ===== FILE LOAD — исправленная версия =====
+els.csvFile.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const text = await file.text();
+  allWords = parseCSV(text);
+  
+  if (allWords.length === 0) { 
+    alert('❌ No valid words'); 
+    return; 
+  }
+  
+  console.log(`📚 CSV parsed: ${allWords.length} words`);
+  
+  // 🔥 Сброс прогресса
+  progress = {};
+  stats = { totalCorrect: 0, sessionErrors: 0 };
+  history = [];
+  
+  // 🔥 ПРИНУДИТЕЛЬНО сохраняем словарь + прогресс
+  const data = {
+    dictionary: allWords,  // ← Всегда добавляем при новой загрузке
+    progress,
+    stats: { totalCorrect: stats.totalCorrect },
+    history,
+    poolSize,
+    sessionStarted: false,
+    savedAt: Date.now()
+  };
+  
+  try {
+    localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
+    dictionarySaved = true;  // Помечаем для будущих сохранений
+    console.log(`💾 Dictionary saved: ${allWords.length} words`);
+  } catch (err) {
+    console.error('❌ Save failed:', err);
+    alert('⚠️ Failed to save. Try smaller dictionary.');
+    return;
+  }
+  
+  els.fileSection.classList.add('hidden');
+  els.quizSection.classList.remove('hidden');
+  updateStats();
+  nextWord();
+});
 
     // ===== POOL SIZE =====
     els.applyPoolBtn.onclick = () => {
