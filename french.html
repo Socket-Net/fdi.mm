@@ -98,22 +98,7 @@
       color: #94a3b8;
       margin-bottom: 0.5rem;
     }
-    #dictionarySection button {
-  padding: 0.75rem 1rem;
-  font-size: 0.9rem;
-}
-
-#dictionarySection button:hover {
-  transform: translateY(-1px);
-}
-
-/* 🔥 Адаптив для мобильных */
-@media (max-width: 480px) {
-  #dictionarySection button {
-    font-size: 0.85rem;
-    padding: 0.6rem 0.8rem;
-  }
-}
+    
     .word-progress .bar {
       display: inline-block;
       width: 100px;
@@ -358,31 +343,14 @@
       </div>
     </div>
 
-<!-- 🔥 Выбор словаря -->
-<div id="dictionarySection" class="hidden">
-  <div style="text-align:center;margin:1rem 0">
-    <h3 style="margin-bottom:1rem">📚 Choose a dictionary</h3>
-    
-    <!-- Готовые словари -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:1rem">
-      <button class="secondary-btn" id="btnEn">🇬🇧 English</button>
-      <button class="secondary-btn" id="btnRu">🇷🇺 Russian</button>
-      <button class="secondary-btn" id="btnDe">🇩🇪 German</button>
-      <button class="secondary-btn" id="btnCustom">📁 Custom CSV</button>
-    </div>
-    
-    <!-- Загрузка своего файла (скрыта по умолчанию) -->
-    <div id="customUpload" class="hidden">
-      <label for="csvFile" style="display:inline-block;padding:0.5rem 1rem;background:rgba(107,114,128,0.5);border-radius:0.5rem;cursor:pointer;font-size:0.9rem">
-        📤 Upload your words.csv
-      </label>
-      <input type="file" id="csvFile" accept=".csv" style="display:none">
-      <p style="font-size:0.8rem;color:#94a3b8;margin-top:0.5rem">
+    <!-- Загрузка нового CSV -->
+    <div class="file-input" id="fileSection">
+      <label for="csvFile">📁 Load words.csv</label>
+      <input type="file" id="csvFile" accept=".csv">
+      <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;">
         Format: french,correct,wrong1,wrong2,wrong3,wrong4
       </p>
     </div>
-  </div>
-</div>
 
     <!-- Тест -->
     <div id="quizSection" class="hidden">
@@ -424,13 +392,13 @@
     </div>
   </div>
 
-<script>
+  <script>
     // ===== CONFIG =====
     const CONFIG = {
       POINTS_TO_LEARN: 5,
       MIN_POINTS: -3,
       DEFAULT_POOL_SIZE: 75,
-      STORAGE_KEY: 'vocabTrainer_v9'
+      STORAGE_KEY: 'vocabTrainer_v8'
     };
 
     // ===== STATE =====
@@ -442,7 +410,7 @@
     let answered = false;
     let reviewMode = false;
     let poolSize = CONFIG.DEFAULT_POOL_SIZE;
-    let dictionarySaved = false;
+    let dictionarySaved = false;  // 🔥 Флаг: сохранён ли словарь
 
     // ===== DOM =====
     const els = {
@@ -451,7 +419,6 @@
       quizSection: document.getElementById('quizSection'),
       historySection: document.getElementById('historySection'),
       summarySection: document.getElementById('summarySection'),
-      dictionarySection: document.getElementById('dictionarySection'),
       csvFile: document.getElementById('csvFile'),
       poolSizeInput: document.getElementById('poolSizeInput'),
       applyPoolBtn: document.getElementById('applyPoolBtn'),
@@ -476,26 +443,8 @@
       historyList: document.getElementById('historyList')
     };
 
-    // ===== 🔥 ПРОВЕРКА localStorage (ОБЯЗАТЕЛЬНО!) =====
-    function isLocalStorageAvailable() {
-      try {
-        const test = '__test__';
-        localStorage.setItem(test, test);
-        localStorage.removeItem(test);
-        return true;
-      } catch (e) {
-        console.error('❌ localStorage not available:', e);
-        return false;
-      }
-    }
-
     // ===== AUTO-SAVE =====
     function saveData() {
-      if (!isLocalStorageAvailable()) {
-        console.warn('⚠️ Cannot save: localStorage unavailable');
-        return;
-      }
-      
       try {
         const hasProgress = Object.values(progress).some(p => p.points > 0);
         
@@ -508,19 +457,61 @@
           savedAt: Date.now()
         };
         
+        // 🔥 Сохраняем словарь, если он есть и ещё не сохранён
         if (allWords.length > 0 && !dictionarySaved) {
           data.dictionary = allWords;
-          dictionarySaved = true;
-          console.log(`💾 Dictionary saved (${allWords.length} words)`);
+          dictionarySaved = true;  // 🔥 Помечаем, что словарь сохранён
         }
         
         localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
-      } catch (e) { 
-        console.warn('Save failed:', e); 
-      }
+      } catch (e) { console.warn('Save failed:', e); }
     }
 
-    // ===== CSV PARSER =====
+    // ===== INIT =====
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+      
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          
+          // Загружаем всё
+          progress = data.progress || {};
+          stats.totalCorrect = data.stats?.totalCorrect ?? 0;
+          history = data.history || [];
+          poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
+          els.poolSizeInput.value = poolSize;
+          
+          // 🔥 Проверяем и загружаем словарь
+          if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
+            allWords = data.dictionary;
+            dictionarySaved = true;  // 🔥 Помечаем, что словарь уже в памяти
+            
+            // Если сессия начата — сразу тест
+            if (data.sessionStarted || Object.values(progress).some(p => p.points > 0)) {
+              els.fileSection.classList.add('hidden');
+              els.choiceSection.classList.add('hidden');
+              els.quizSection.classList.remove('hidden');
+              updateStats();
+              nextWord();
+            } else {
+              showChoiceScreen();
+            }
+          } else {
+            els.fileSection.classList.remove('hidden');
+          }
+        } catch (e) {
+          console.warn('Load failed:', e);
+          els.fileSection.classList.remove('hidden');
+        }
+      } else {
+        els.fileSection.classList.remove('hidden');
+      }
+      
+      console.log('🇫🇷 French Vocab Trainer v8 — dictionary persistence fixed');
+    });
+
+    // ===== CSV =====
     function parseCSV(text) {
       const lines = text.trim().split('\n').filter(l => l.trim() && !l.startsWith('#'));
       const words = [];
@@ -531,109 +522,12 @@
       return words;
     }
 
-    // ===== ЗАГРУЗКА ГОТОВОГО СЛОВАРЯ =====
-    async function loadPresetDictionary(filename) {
-      try {
-        els.word.textContent = '📥 Loading...';
-        
-        // 🔥 Получаем базовый путь (для GitHub Pages и локального сервера)
-        const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-        const url = basePath + filename;
-        
-        console.log(`🔍 Fetching: ${url}`);
-        
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const text = await response.text();
-        allWords = parseCSV(text);
-        
-        if (allWords.length === 0) {
-          throw new Error('No valid words found');
-        }
-        
-        console.log(`✅ Loaded ${allWords.length} words from ${filename}`);
-        
-        // Сброс и сохранение
-        progress = {};
-        stats = { totalCorrect: 0, sessionErrors: 0 };
-        history = [];
-        dictionarySaved = false;
-        
-        const data = {
-          dictionary: allWords,
-          progress,
-          stats: { totalCorrect: stats.totalCorrect },
-          history,
-          poolSize,
-          sessionStarted: false,
-          savedAt: Date.now()
-        };
-        
-        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
-        dictionarySaved = true;
-        
-        // Запуск теста
-        els.dictionarySection?.classList.add('hidden');
-        els.quizSection?.classList.remove('hidden');
-        updateStats();
-        nextWord();
-        
-      } catch (err) {
-        console.error(`❌ Failed to load ${filename}:`, err);
-        alert(`⚠️ Could not load "${filename}":\n${err.message}\n\nTip: Use a local server (python -m http.server) or deploy to GitHub Pages.`);
-      }
-    }
-
-    // ===== ПОКАЗАТЬ ЗАГРУЗКУ СВОЕГО ФАЙЛА =====
-    function showCustomUpload() {
-      document.getElementById('customUpload')?.classList.remove('hidden');
-    }
-
-    // ===== ЗАПУСК С СЛОВАМИ (универсальная функция) =====
-    function startWithWords(words) {
-      if (words.length === 0) { alert('❌ No valid words'); return; }
-      
-      allWords = words;
-      progress = {};
-      stats = { totalCorrect: 0, sessionErrors: 0 };
-      history = [];
-      dictionarySaved = false;
-      
-      const data = {
-        dictionary: allWords,
-        progress,
-        stats: { totalCorrect: stats.totalCorrect },
-        history,
-        poolSize,
-        sessionStarted: false,
-        savedAt: Date.now()
-      };
-      
-      try {
-        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
-        dictionarySaved = true;
-      } catch (e) {
-        console.error('❌ Save failed:', e);
-        alert('⚠️ Failed to save progress');
-        return;
-      }
-      
-      els.dictionarySection?.classList.add('hidden');
-      els.fileSection?.classList.add('hidden');
-      els.quizSection?.classList.remove('hidden');
-      updateStats();
-      nextWord();
-    }
-
     // ===== SHOW CHOICE SCREEN =====
     function showChoiceScreen() {
       els.savedWordCount.textContent = allWords.length;
-      els.choiceSection?.classList.remove('hidden');
-      els.fileSection?.classList.add('hidden');
-      els.quizSection?.classList.add('hidden');
+      els.choiceSection.classList.remove('hidden');
+      els.fileSection.classList.add('hidden');
+      els.quizSection.classList.add('hidden');
     }
 
     // ===== LOAD NEW DICTIONARY =====
@@ -643,13 +537,12 @@
       stats = { totalCorrect: 0, sessionErrors: 0 };
       history = [];
       reviewMode = false;
-      dictionarySaved = false;
+      dictionarySaved = false;  // 🔥 Сбрасываем флаг
       localStorage.removeItem(CONFIG.STORAGE_KEY);
       
-      els.choiceSection?.classList.add('hidden');
-      els.dictionarySection?.classList.add('hidden');
-      els.fileSection?.classList.remove('hidden');
-      els.quizSection?.classList.add('hidden');
+      els.choiceSection.classList.add('hidden');
+      els.fileSection.classList.remove('hidden');
+      els.quizSection.classList.add('hidden');
       updateStats();
     }
 
@@ -661,36 +554,73 @@
         return;
       }
       
-      els.choiceSection?.classList.add('hidden');
-      els.dictionarySection?.classList.add('hidden');
-      els.quizSection?.classList.remove('hidden');
+      els.choiceSection.classList.add('hidden');
+      els.quizSection.classList.remove('hidden');
       updateStats();
       nextWord();
     }
 
+    // ===== FILE LOAD =====
+    // ===== FILE LOAD — исправленная версия =====
+els.csvFile.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const text = await file.text();
+  allWords = parseCSV(text);
+  
+  if (allWords.length === 0) { 
+    alert('❌ No valid words'); 
+    return; 
+  }
+  
+  console.log(`📚 CSV parsed: ${allWords.length} words`);
+  
+  // 🔥 Сброс прогресса
+  progress = {};
+  stats = { totalCorrect: 0, sessionErrors: 0 };
+  history = [];
+  
+  // 🔥 ПРИНУДИТЕЛЬНО сохраняем словарь + прогресс
+  const data = {
+    dictionary: allWords,  // ← Всегда добавляем при новой загрузке
+    progress,
+    stats: { totalCorrect: stats.totalCorrect },
+    history,
+    poolSize,
+    sessionStarted: false,
+    savedAt: Date.now()
+  };
+  
+  try {
+    localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
+    dictionarySaved = true;  // Помечаем для будущих сохранений
+    console.log(`💾 Dictionary saved: ${allWords.length} words`);
+  } catch (err) {
+    console.error('❌ Save failed:', err);
+    alert('⚠️ Failed to save. Try smaller dictionary.');
+    return;
+  }
+  
+  els.fileSection.classList.add('hidden');
+  els.quizSection.classList.remove('hidden');
+  updateStats();
+  nextWord();
+});
+
     // ===== POOL SIZE =====
-    els.applyPoolBtn?.addEventListener('click', () => {
+    els.applyPoolBtn.onclick = () => {
       const val = parseInt(els.poolSizeInput.value);
       if (val >= 20 && val <= 200) {
         poolSize = val;
         saveData();
         alert(`✅ Pool: ${poolSize}`);
       } else { alert('⚠️ 20-200'); }
-    });
+    };
 
     // ===== CHOICE BUTTONS =====
-    els.continueBtn?.addEventListener('click', continueWithSaved);
-    els.loadNewBtn?.addEventListener('click', loadNewDictionary);
-
-    // ===== FILE LOAD (свой CSV) =====
-    els.csvFile?.addEventListener('change', async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      
-      const text = await file.text();
-      const words = parseCSV(text);
-      startWithWords(words);
-    });
+    els.continueBtn.onclick = continueWithSaved;
+    els.loadNewBtn.onclick = loadNewDictionary;
 
     // ===== POOL =====
     function getActivePool() {
@@ -789,7 +719,7 @@
       history.unshift({ word: key, correct: isCorrect, timestamp: Date.now() });
       if (history.length > 50) history.pop();
       progress[key].lastSeen = Date.now();
-      saveData();
+      saveData();  // 🔥 Просто saveData(), словарь не перезапишется
       
       els.wordProgress.innerHTML = `${getWordProgressText(key)} ${getWordProgressBar(key)}`;
       updateStats();
@@ -810,8 +740,8 @@
 
     // ===== HISTORY =====
     function showHistory() {
-      els.quizSection?.classList.add('hidden');
-      els.historySection?.classList.remove('hidden');
+      els.quizSection.classList.add('hidden');
+      els.historySection.classList.remove('hidden');
       els.historyList.innerHTML = history.slice(0,20).map(h => 
         `<div class="history-item ${h.correct?'correct':'wrong'}" style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2);display:flex;justify-content:space-between">
           <span>${h.word}</span><span>${h.correct?'✅':'❌'} ${new Date(h.timestamp).toLocaleTimeString()}</span>
@@ -821,97 +751,28 @@
 
     // ===== FINISH =====
     function showSummary() {
-      els.quizSection?.classList.add('hidden');
-      els.summarySection?.classList.remove('hidden');
+      els.quizSection.classList.add('hidden');
+      els.summarySection.classList.remove('hidden');
     }
 
     // ===== EVENTS =====
-    els.nextBtn?.addEventListener('click', nextWord);
-    els.reviewBtn?.addEventListener('click', () => { reviewMode = true; nextWord(); });
-    els.historyBtn?.addEventListener('click', showHistory);
-    els.finishBtn?.addEventListener('click', showSummary);
-    els.backToQuizBtn?.addEventListener('click', () => { 
-      els.historySection?.classList.add('hidden'); 
-      els.quizSection?.classList.remove('hidden'); 
-    });
-    els.closeBtn?.addEventListener('click', () => { saveData(); window.close(); });
+    els.nextBtn.onclick = nextWord;
+    els.reviewBtn.onclick = () => { reviewMode = true; nextWord(); };
+    els.historyBtn.onclick = showHistory;
+    els.finishBtn.onclick = showSummary;
+    els.backToQuizBtn.onclick = () => { els.historySection.classList.add('hidden'); els.quizSection.classList.remove('hidden'); };
+    els.closeBtn.onclick = () => { saveData(); window.close(); };
     
-    // ===== KEYBOARD =====
+    // Keyboard
     document.addEventListener('keydown', (e) => {
-      if (!answered && els.quizSection && !els.quizSection.classList.contains('hidden')) {
+      if (!answered && !els.quizSection.classList.contains('hidden')) {
         if (e.key >= '1' && e.key <= '6') {
           const opts = els.options.querySelectorAll('.option');
           if (opts[e.key-1]) opts[e.key-1].click();
         }
       }
-      if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
+      if (answered && e.key === 'Enter' && !els.nextBtn.disabled) nextWord();
     });
-
-    // ===== INIT =====
-    window.addEventListener('DOMContentLoaded', () => {
-      console.log('🔍 === INIT START ===');
-      
-      // 🔥 Проверка localStorage
-      if (!isLocalStorageAvailable()) {
-        alert('⚠️ localStorage is blocked. Please enable cookies/storage for this site.');
-        els.dictionarySection?.classList.remove('hidden');
-        return;
-      }
-      
-      const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
-      console.log('🔍 Saved ', saved ? 'FOUND (' + saved.length + ' chars)' : 'NOT FOUND');
-      
-      if (saved) {
-        try {
-          const data = JSON.parse(saved);
-          
-          progress = data.progress || {};
-          stats.totalCorrect = data.stats?.totalCorrect ?? 0;
-          history = data.history || [];
-          poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
-          if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
-          
-          if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
-            console.log(`📚 Dictionary loaded: ${data.dictionary.length} words`);
-            allWords = data.dictionary;
-            dictionarySaved = true;
-            
-            const hasAnyProgress = data.sessionStarted || Object.values(progress).some(p => p.points > 0);
-            
-            if (hasAnyProgress) {
-              console.log('🚀 Loading quiz...');
-              els.dictionarySection?.classList.add('hidden');
-              els.fileSection?.classList.add('hidden');
-              els.quizSection?.classList.remove('hidden');
-              updateStats();
-              nextWord();
-            } else {
-              console.log('🤔 No progress yet → showing dictionary choice');
-              els.fileSection?.classList.add('hidden');
-              els.quizSection?.classList.add('hidden');
-              els.dictionarySection?.classList.remove('hidden');
-            }
-          } else {
-            console.log('📭 No dictionary in saved data');
-            els.fileSection?.classList.add('hidden');
-            els.quizSection?.classList.add('hidden');
-            els.dictionarySection?.classList.remove('hidden');
-          }
-        } catch (e) {
-          console.error('❌ Failed to parse saved ', e);
-          els.fileSection?.classList.add('hidden');
-          els.quizSection?.classList.add('hidden');
-          els.dictionarySection?.classList.remove('hidden');
-        }
-      } else {
-        console.log('📭 No saved data found');
-        els.fileSection?.classList.add('hidden');
-        els.quizSection?.classList.add('hidden');
-        els.dictionarySection?.classList.remove('hidden');
-      }
-      
-      console.log('🔍 === INIT END ===');
-    });
-</script>
+  </script>
 </body>
 </html>
