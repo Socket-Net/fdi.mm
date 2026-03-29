@@ -1,0 +1,415 @@
+le pouls, Puls, Herz, Schlag, Frequenz, Fluss, ziehen
+l'entraînement, Training, Ausbildung, Übung, Praxis, Sitzung, Trainer
+la fréquence cardiaque, Herzfrequenz, Pulsschlag, Herzrhythmus, Herzschlag, Cardio, Frequenz
+l'endurance, Ausdauer, Stamina, Dauer, Kraft, Stärke, aushalten
+la récupération, Erholung, Ruhe, Heilung, Reparatur, erholen, Operation
+je, ich, du, er, sie, wir, sie
+tu, du (informell), ich, er, sie, wir, sie
+il, er, es, sie, du, wir, ihm
+elle, sie, es, er, du, wir, ihr
+nous, wir, uns, sie, du, ich, er
+vous, Sie (formell/mehrz.), wir, sie, ich, er, uns
+ils, sie (männlich), er, sie, wir, du, uns
+elles, sie (weiblich), er, sie, wir, du, uns
+on, man, wir, sie, du, er, sie, es
+être, sein, haben, machen, gehen, sehen, wissen
+avoir, haben, sein, machen, wollen, können, gehen
+aller, gehen, kommen, laufen, gehen, sehen, machen
+faire, machen, machen, gehen, sein, haben, sagen, sehen
+dire, sagen, erzählen, fragen, machen, machen, sagen
+pouvoir, können, wollen, wissen, haben, gehen, machen
+vouloir, wollen, können, wissen, gefallen, lieben, brauchen
+savoir, wissen, können, denken, glauben, verstehen, lernen
+voir, sehen, schauen, beobachten, wissen, finden, verstehen
+venir, kommen, gehen, ankommen, zurückkommen, weggehen, eintreten
+prendre, nehmen, bekommen, bringen, machen, machen, geben
+donner, geben, nehmen, bringen, machen, machen, sagen
+parler, sprechen, reden, sprechen, erzählen, fragen, anrufen
+aimer, gefallen, lieben, wollen, wissen, sehen, haben
+manger, essen, trinken, nehmen, haben, verbrauchen, genießen
+boire, trinken, essen, nehmen, haben, verbrauchen, genießen
+dormir, schlafen, ruhen, liegen, bleiben, gehen, aufwachen
+travailler, arbeiten, machen, machen, lernen, gehen, leben
+étudier, studieren, lernen, lesen, arbeiten, wissen, sehen
+lire, lesen, sehen, schreiben, lernen, studieren, sprechen
+écrire, schreiben, lesen, sprechen, erzählen, lernen, studieren
+écouter, zuhören, hören, sprechen, reden, sprechen, erzählen
+regarder, schauen, blicken, sehen, zuhören, finden, wissen
+acheter, kaufen, verkaufen, nehmen, bekommen, haben, geben
+vendre, verkaufen, kaufen, nehmen, geben, haben, finden
+la maison, Haus, Haus, Gebäude, Zimmer, Ort, Familie
+le temps, Zeit, Wetter, Stunde, Tag, Moment, Periode
+le jour, Tag, Zeit, Nacht, Woche, Sonne, Licht
+l'année, Jahr, Zeit, Tag, Monat, Periode, Alter
+l'homme, Mann, Frau, Mensch, Kind, Freund, Erwachsener
+la femme, Frau, Mann, Mensch, Kind, Freund, Erwachsener
+l'enfant, Kind, Kleinkind, Junge, Mädchen, Erwachsener, Freund
+l'ami, Freund, bester Freund, Begleiter, Kumpel, Partner, Familie
+l'eau, Wasser, Fluss, Meer, Flüssigkeit, Getränk, Getränk
+la nourriture, Essen, Mahlzeit, Gericht, Teller, Frühstück, Abendessen
+la voiture, Auto, Transport, LKW, Fahrrad, Zug, Bus
+le livre, Buch, Roman, Geschichte, Seite, Kapitel, lesen
+le chien, Hund, Haustier, Tier, Katze, Pferd, Freund
+le chat, Katze, Haustier, Tier, Hund, Pferd, Freund
+le travail, Arbeit, Arbeit, Beschäftigung, Karriere, Büro, Aufgabe
+l'école, Schule, Universität, Klasse, Unterricht, Lehrer, Schüler
+grand, groß, groß, großartig, hoch, klein, gut
+petit, klein, klein, groß, jung, alt, kurz
+bon, gut, schlecht, gut, gut, ausgezeichnet, großartig
+nouveau, neu, alt, modern, frisch, jung, kürzlich
+vieux, alt, neu, antik, klassisch, gebraucht, alt
+beau, schön, schön, schön, hässlich, gut, ausgezeichnet
+mauvais, schlecht, gut, schrecklich, widerlich, gut, falsch
+heureux, glücklich, traurig, freudig, freudig, zufrieden, aufgeregt
+triste, traurig, glücklich, niedergeschlagen, unglücklich, melancholisch, deprimiert
+merci, danke, danke, bitte, bitte, Entschuldigung, hallo
+bonjour, hallo, hallo, guten Morgen, guten Tag, auf Wiedersehen, danke
+au revoir, auf Wiedersehen, tschüss, bis bald, hallo, gute Nacht, danke
+s'il vous plaît, bitte, danke, Entschuldigung, Entschuldigung, hallo, auf Wiedersehen
+oui, ja, nein, vielleicht, gut, natürlich, möglich
+non, nein, ja, vielleicht, gut, nicht, natürlich
+où, wo, wann, warum, wie, wer, was
+quand, wann, wo, warum, wie, wer, was
+pourquoi, warum, wo, wann, wie, wer, was
+comment, wie, wo, wann, warum, wer, was
+qui, wer, wo, wann, warum, wie, was
+quoi, was, wo, wann, warum, wie, wer
+il y a, es gibt, es gibt, es ist, er hat, ich habe, wir haben
+je suis, ich bin, er ist, sie ist, wir sind, du bist, sie sind
+tu es, du bist, ich bin, er ist, sie ist, wir sind, sie sind
+il est, er ist, sie ist, es ist, du bist, wir sind, sie sind
+je vais, ich gehe, ich gehe, ich komme, ich will, ich kann, sie geht
+je pense, ich denke, ich glaube, ich weiß, ich sage, ich gehe, er denkt
+elle fait, sie macht, sie macht, er macht, ich mache, wir machen, sie geht
+je fais, ich mache, ich mache, ich gehe, ich bin, ich denke, ich habe
+nous avons, wir haben, wir sind, wir machen, wir gehen, wir wollen, wir denken
+vous êtes, Sie sind, Sie haben, Sie machen, Sie gehen, Sie wollen, Sie denken
+je veux, ich will, ich kann, ich brauche, mir gefällt, ich liebe, ich weiß
+je sais, ich weiß, ich denke, ich glaube, ich verstehe, ich lerne, ich sehe
+tu as, du hast, du bist, du machst, du gehst, du willst, du denkst
+maintenant, jetzt, später, bald, dann, heute, gestern
+plus tard, später, jetzt, bald, dann, heute, gestern
+la famille, Familie, Freund, Haus, Eltern, Kinder, Haus
+le monde, Welt, Erde, Planet, Land, Ort, Universum
+la vie, Leben, Tod, Existenz, Tag, Zeit, Welt
+la chose, Sache, Objekt, Gegenstand, Dinge, Stück, bisschen
+la partie, Teil, Stück, Ganzes, Abschnitt, bisschen, Anteil
+l'endroit, Ort, Punkt, Lage, Stelle, Bereich, Position
+la personne, Person, Mann, Frau, Kind, Individuum, jemand
+l'amour, Liebe, gefallen, Zuneigung, Leidenschaft, Freundschaft, Hass
+l'argent, Geld, Bargeld, Reichtum, Münze, Schein, Vermögen
+la ville, Stadt, Städtchen, Dorf, Ort, Hauptstadt, Bereich
+le pays, Land, Nation, Staat, Erde, Region, Königreich
+le soleil, Sonne, Stern, Licht, Tag, Hitze, Mond
+la lune, Mond, Sonne, Stern, Nacht, Licht, Dunkelheit
+la nuit, Nacht, Tag, Abend, Dunkelheit, Zeit, Schlaf
+le matin, Morgen, Tag, Abend, Nacht, Morgendämmerung, Sonnenaufgang
+le soir, Abend, Nacht, Morgen, Tag, Dämmerung, Sonnenuntergang
+la semaine, Woche, Tag, Monat, Jahr, Zeit, Periode
+le mois, Monat, Woche, Tag, Jahr, Zeit, Periode
+l'an, Jahr, Alter, Zeit, Tag, Monat, Periode
+l'amie, Freundin, Freund, Begleiter, Kumpel, Freundin, Partner
+le frère, Bruder, Schwester, Familie, Sohn, Vater, Onkel
+la sœur, Schwester, Bruder, Familie, Tochter, Mutter, Tante
+le père, Vater, Mutter, Elternteil, Papa, Sohn, Bruder
+la mère, Mutter, Vater, Elternteil, Mama, Tochter, Schwester
+le fils, Sohn, Junge, Kind, Tochter, Vater, Bruder
+la fille, Tochter, Mädchen, Kind, Sohn, Mutter, Schwester
+le cœur, Herz, Kern, Zentrum, Liebe, Schlag, Gefühl
+la tête, Kopf, Verstand, Gehirn, Oberteil, Anführer, Gesicht
+la main, Hand, Hand, Handfläche, Finger, Hilfe, Seite
+le pied, Fuß, Bein, Grundlage, Schritt, gehen, Schuh
+l'œil, Auge, Sehkraft, Blick, Sicht, Gesicht, sehen
+l'oreille, Ohr, Gehör, Klang, hören, Seite, Kopf
+la bouche, Mund, Lippen, Gespräch, essen, sprechen, Stimme
+la dent, Zahn, Mund, Biss, essen, Lächeln, Schmerz
+le cheveu, Haar, Kopf, Strähne, Stil, Farbe, Haarschnitt
+le visage, Gesicht, Kopf, Blick, Ausdruck, Seite, Vorderseite
+le corps, Körper, Figur, Form, Form, Mensch, Gesundheit
+l'esprit, Geist, Seele, Gedanke, Idee, Gehirn, Seele
+l'idée, Idee, Gedanke, Konzept, Plan, Begriff, Ansicht
+la pensée, Gedanke, Idee, Verstand, Denken, Überlegung, Meinung
+le mot, Wort, Begriff, Satz, Sprichwort, Buchstabe, Rede
+la phrase, Satz, Phrase, Ausdruck, Wort, Aussage, Zeile
+la question, Frage, Anfrage, Problem, Problem, Zweifel, fragen
+la réponse, Antwort, Antwort, Lösung, Antwort, Schlüssel, Ergebnis
+le problème, Problem, Problem, Schwierigkeit, Frage, Unannehmlichkeit, Herausforderung
+la solution, Lösung, Antwort, Fix, Schlüssel, Weg, Ergebnis
+la raison, Grund, Grund, Logik, Verstand, gesunder Menschenverstand, warum
+la cause, Ursache, Grund, Quelle, Herkunft, Wurzel, Faktor
+l'effet, Effekt, Ergebnis, Einfluss, Ergebnis, Folge, Einfluss
+le résultat, Ergebnis, Ergebnis, Effekt, Ergebnis, Produkt, Antwort
+le changement, Veränderung, Veränderung, Verschiebung, Modifikation, Variation, Wechsel
+la différence, Unterschied, Kontrast, Variation, Unterschied, Lücke, Lücke
+la similitude, Ähnlichkeit, Ähnlichkeit, Ähnlichkeit, Parallele, Analogie, Gleichheit
+la beauté, Schönheit, Reiz, Attraktivität, Anmut, Schönheit, Zauber
+la laideur, Hässlichkeit, Unattraktivität, Schrecklichkeit, Abstoßung, Schrecklichkeit, Monstrosität
+la force, Kraft, Stärke, Macht, Kraft, Energie, Fähigkeit
+la faiblesse, Schwäche, Zerbrechlichkeit, Schwäche, Gebrechlichkeit, Verletzlichkeit, Mangel
+la joie, Freude, Glück, Entzücken, Fröhlichkeit, Vergnügen, Seligkeit
+la peine, Leid, Schmerz, Kummer, Unannehmlichkeit, Schwierigkeit, Anstrengung
+la douleur, Schmerz, Schmerz, Leiden, Schmerz, Qual, Unbehagen
+le plaisir, Vergnügen, Genuss, Entzücken, Fröhlichkeit, Freude, Befriedigung
+le besoin, Bedürfnis, Anforderung, Notwendigkeit, Wunsch, Anforderung, Drang
+l'envie, Lust, Wunsch, Drang, Sehnsucht, Neid, Neid
+le désir, Wunsch, Wunsch, Sehnsucht, starkes Verlangen, Leidenschaft, Drang
+la peur, Angst, Schreck, Horror, Terror, Sorge, Schreck
+la colère, Wut, Zorn, Wut, Zorn, Reizung, Kränkung
+la tristesse, Traurigkeit, Düsterkeit, Melancholie, Kummer, Unglück, Depression
+le bonheur, Glück, Freude, Seligkeit, Zufriedenheit, Entzücken, Vergnügen
+la liberté, Freiheit, Freiheit, Unabhängigkeit, Autonomie, Befreiung, Wahl
+l'égalité, Gleichheit, Parität, Gleichwertigkeit, Gleichheit, Balance, Gerechtigkeit
+la justice, Gerechtigkeit, Gerechtigkeit, Rechtschaffenheit, Gesetz, Gleichheit, Moral
+la vérité, Wahrheit, Fakt, Realität, Genauigkeit, Ehrlichkeit, Richtigkeit
+le mensonge, Lüge, Lüge, Betrug, Unwahrheit, Erfindung, Geschichte
+l'erreur, Fehler, Fehler, Schuld, Ungenauigkeit, Fehlgriff, Missgeschick
+le succès, Erfolg, Leistung, Sieg, Leistung, Triumph, Gewinn
+l'échec, Misserfolg, Niederlage, Verlust, Misserfolg, Zusammenbruch, Fehlschlag
+le début, Anfang, Beginn, Anfang, Anfang, Eröffnung, Einleitung
+la fin, Ende, Schluss, Beendigung, Abschluss, Schließung, Beendigung
+le milieu, Mitte, Zentrum, Mitte, mittlerer, mittlerer, Umgebung
+le côté, Seite, Rand, Teil, Richtung, Aspekt, Team
+la direction, Richtung, Weg, Führung, Leitung, Anweisung, Überschrift
+le chemin, Weg, Pfad, Straße, Route, Strecke, Kurs
+la route, Straße, Weg, Route, Autobahn, Pfad, Straße
+la rue, Straße, Weg, Pfad, Avenue, Gasse, Allee
+la place, Platz, Platz, Punkt, Position, Sitz, Lage
+l'espace, Raum, Zimmer, Bereich, Platz, Abstand, Entfernung
+le moment, Moment, Augenblick, Zeit, Punkt, Gelegenheit, Minute
+l'heure, Stunde, Zeit, Uhr, Periode, Moment
+la minute, Minute, Moment, kurze Zeit, sechzig Sekunden, kurz, kurz
+la seconde, Sekunde, Moment, kurze Zeit, Einheit, Zeit, kurz
+le siècle, Jahrhundert, 100 Jahre, Ära, Zeitalter, Periode, Zeit
+l'histoire, Geschichte, Erzählung, Vergangenheit, Märchen, Bericht, Erzählung
+la langue, Sprache, Zunge, Rede, Idiom, Dialekt, Wort
+la parole, Wort, Rede, Gespräch, Aussage, Behauptung, Stimme
+la voix, Stimme, Klang, Ton, Rede, Gesang, Meinung
+le son, Klang, Geräusch, Ton, Klingeln, Ruf, Audio
+le bruit, Lärm, Geräusch, Krach, Krach, Störung, Tumult
+le silence, Stille, Stille, Ruhe, Frieden, Stille, Gelassenheit
+la lumière, Licht, Helligkeit, Beleuchtung, Tageslicht, Glanz, Strahl
+l'ombre, Schatten, Schatten, Dunkelheit, Silhouette, Geist, Spur
+la couleur, Farbe, Schattierung, Schatten, Farbton, Pigment, Aussehen
+le rouge, rot, Farbe, scharlachrot, purpur, Blut, Leidenschaft
+le bleu, blau, Farbe, azur, Himmel, Ozean, Traurigkeit
+le vert, grün, Farbe, smaragdgrün, Gras, Natur, Neid
+le jaune, gelb, Farbe, golden, Sonne, Zitrone, Vorsicht
+le noir, schwarz, Farbe, dunkel, Böse, Nacht, Abwesenheit
+le blanc, weiß, Farbe, rein, Schnee, Licht, leer
+le gris, grau, Farbe, grau, Asche, matt, neutral
+le rose, rosa, Farbe, Rose, Blume, weich, romantisch
+le brun, braun, Farbe, Bräune, Erde, Holz, Schokolade
+long, lang, lang, langanhaltend, hoch, langwierig, gedehnt
+court, kurz, kurz, klein, gedrängt, verkürzt, nah
+large, breit, breit, groß, geräumig, weit, weit
+étroit, eng, dünn, eng, begrenzt, eng, nah
+haut, hoch, hoch, hoch, oberer, erhaben, angehoben
+bas, niedrig, kurz, Basis, unten, unterer, niedriger
+profond, tief, tief, intensiv, fern, bodenlos, ernst
+superficiel, oberflächlich, flach, Oberfläche, oberflächlich, trivial, offensichtlich
+rapide, schnell, schnell, schnell, schnell, stürmisch, schnell
+lent, langsam, träge, langsam, verzögert, langsam, allmählich
+jeune, jung, jung, neu, jugendlich, unreif, frisch
+ancien, alt, alt, ehemalig, vorherig, antik, vergangen
+moderne, modern, modern, modern, neu, aktuell, progressiv
+futur, Zukunft, kommend, bevorstehend, nächster, zukunftsweisend, bevorstehend
+passé, Vergangenheit, vorherig, ehemalig, vergangen, abgelaufen, vorherig
+présent, Gegenwart, aktuell, jetzt, Geschenk, hier, existierend
+absent, abwesend, abwesend, abwesend, nicht anwesend, gegangen, nicht verfügbar
+riche, reich, reich, wohlhabend, vermögend, luxuriös, blühend
+pauvre, arm, bedürftig, verarmt, ruiniert, arm, kärglich
+fort, stark, mächtig, mächtig, kräftig, stabil, kraftvoll
+faible, schwach, schwach, schwächlich, zerbrechlich, zart, ineffektiv
+intelligent, intelligent, klug, klug, hell, scharfsinnig, scharf
+stupide, dumm, stumpf, dumm, dumm, idiotisch, unintelligent
+gentil, nett, gut, zart, angenehm, freundlich, gut
+méchant, böse, unartig, böse, böse, grausam, schlecht
+calme, ruhig, leise, friedlich, ruhig, gelassen, leise
+agité, aufgeregt, unruhig, stürmisch, aufgewühlt, aufgeregt, nervös
+facile, leicht, einfach, direkt, mühelos, leicht, unkompliziert
+difficile, schwierig, schwer, schwierig, kompliziert, kompliziert, schwer
+possible, möglich, machbar, wahrscheinlich, erreichbar, wahrscheinlich, ausführbar
+impossible, unmöglich, undurchführbar, unerreichbar, undenkbar, unmöglich, absurd
+vrai, wahr, real, echt, tatsächlich, richtig, richtig
+faux, falsch, falsch, gefälscht, Unwahrheit, falsch, gefälscht
+utile, nützlich, hilfreich, nützlich, praktisch, bequem, wertvoll
+inutile, nutzlos, sinnlos, vergeblich, wertlos, ineffektiv, nutzlos
+important, wichtig, bedeutend, hauptsächlich, entscheidend, lebenswichtig, entscheidend
+sans importance, unwichtig, trivial, klein, unbedeutend, geringschätzig, irrelevant
+intéressant, interessant, fesselnd, fesselnd, faszinierend, überzeugend, bemerkenswert
+ennuyeux, langweilig, stumpf, ermüdend, ermüdend, monoton, uninteressant
+laid, hässlich, unattraktiv, schrecklich, unscheinbar, abstoßend, schrecklich
+propre, sauber, ordentlich, gepflegt, sauber, eigen, richtig
+sale, schmutzig, schmutzig, schmutzig, schmutzig, unrein, verschmutzt
+plein, voll, voll, gefüllt, gepackt, überfüllt, ganz
+vide, leer, leer, leer, leer, unfruchtbar, unbesetzt
+chaud, heiß, warm, erhitzt, scharf, brennend, leidenschaftlich
+froid, kalt, kühl, kalt, eisig, kalt, unfreundlich
+sec, trocken, trocken, ausgetrocknet, dehydriert, unfruchtbar, witzig
+humide, nass, feucht, feucht, feucht, nass, wässrig
+ouvert, offen, offen, zugänglich, zugänglich, offenherzig, offensichtlich
+fermé, geschlossen, geschlossen, geschlossen, versiegelt, beendet, abgeschlossen
+commencer, beginnen, beginnen, beginnen, initiieren, starten, öffnen
+finir, beenden, beenden, abschließen, schließen, abschließen, stoppen
+continuer, fortsetzen, fortsetzen, fortsetzen, fortsetzen, fortsetzen, weitergehen
+arrêter, stoppen, stoppen, beenden, aufhören, verhaften, verhindern
+attendre, warten, erwarten, warten, vorfreuen, halten, Pause
+partir, weggehen, abreisen, gehen, aufbrechen, hinausgehen, beginnen
+arriver, ankommen, kommen, geschehen, geschehen, erreichen, schaffen
+rester, bleiben, bleiben, halten, sein, leben, warten
+retourner, zurückkehren, zurückkehren, umdrehen, umdrehen, zurückkehren, zurückgeben
+entrer, eintreten, eintreten, eintreten, beitreten, einfügen, beginnen
+sortir, hinausgehen, hinausgehen, weggehen, hinaustragen, hinausgehen, erscheinen
+monter, hochgehen, klettern, hochgehen, aufsteigen, zunehmen, montieren
+descendre, hinuntergehen, hinuntergehen, aussteigen, abnehmen, senken, fallen
+ouvrir, öffnen, öffnen, beginnen, entfalten, enthüllen, öffnen
+fermer, schließen, schließen, schließen, beenden, schließen, versiegeln
+recevoir, erhalten, bekommen, annehmen, begrüßen, erhalten, Gäste empfangen
+demander, fragen, bitten, fragen, fordern, fordern, flehen
+répondre, antworten, antworten, antworten, reagieren, entsprechen, entsprechen
+penser, denken, glauben, betrachten, vorstellen, annehmen, überlegen
+croire, glauben, denken, vertrauen, annehmen, anerkennen, annehmen
+comprendre, verstehen, verstehen, begreifen, erkennen, einschließen, abdecken
+apprendre, lernen, lehren, hören, erfahren, merken, lernen
+oublier, vergessen, verpassen, vernachlässigen, zurücklassen, ignorieren, auslassen
+se souvenir, sich erinnern, sich erinnern, im Kopf behalten, merken, sich erinnern, bewahren
+détester, hassen, hassen, nicht mögen, verachten, sich ekeln, verachten
+préférer, bevorzugen, lieber mögen, bevorzugen, wählen, wählen, neigen
+choisir, wählen, auswählen, wählen, entscheiden, wählen, auswählen
+décider, entscheiden, bestimmen, lösen, regeln, entscheiden, schließen
+changer, ändern, verändern, modifizieren, umschalten, tauschen, umwandeln
+garder, behalten, bewahren, halten, retten, bewahren, aufrechterhalten
+perdre, verlieren, verlieren, ausgeben, verlieren, scheitern, fallen
+trouver, finden, entdecken, finden, treffen, erkennen, denken
+chercher, suchen, suchen, suchen, jagen, versuchen, prüfen
+sentir, fühlen, riechen, spüren, wahrnehmen, entdecken, bemerken
+goûter, probieren, probieren, probieren, schmecken, erleben, genießen
+toucher, berühren, fühlen, kontaktieren, erreichen, beeinflussen, rühren
+bouger, bewegen, verschieben, rühren, sich bewegen, ändern, gehen
+marcher, gehen, laufen, funktionieren, schreiten, gehen, marschieren
+courir, laufen, rennen, eilen, fließen, steuern, arbeiten
+sauter, springen, springen, überspringen, springen, abprallen, auslassen
+voler, fliegen, stehlen, rauben, schweben, gleiten, stehlen
+nager, schwimmen, baden, schwimmen, tauchen, rudern, überqueren
+danser, tanzen, bewegen, aufführen, schaukeln, feiern, Party
+chanter, singen, singen, feiern, summen, schreien, loben
+jouer, spielen, handeln, Glücksspiel spielen, aufführen, scherzen, Sport
+dessiner, zeichnen, skizzieren, entwerfen, umreißen, darstellen, planen
+peindre, malen, darstellen, porträtieren, bedecken, färben, beschreiben
+construire, bauen, bauen, machen, errichten, entwickeln, schaffen
+détruire, zerstören, zerstören, zerstören, brechen, brechen, zerstören
+réparer, reparieren, reparieren, reparieren, wiederherstellen, korrigieren, heilen
+casser, brechen, zerbrechen, brechen, explodieren, scheitern, verderben
+couper, schneiden, schneiden, kürzen, hacken, unterbrechen, reduzieren
+coller, kleben, kleben, einfügen, kleben, befestigen, veröffentlichen
+jeter, werfen, werfen, wegwerfen, werfen, ablehnen, ausgeben
+attraper, fangen, greifen, ergreifen, ergreifen, bekommen, verstehen
+lancer, werfen, starten, beginnen, werfen, werfen, initiieren
+pousser, schieben, schieben, antreiben, fördern, wachsen, ermutigen
+tirer, ziehen, zeichnen, schießen, ziehen, extrahieren, schießen
+porter, tragen, tragen, tragen, unterstützen, bringen, aushalten
+enlever, entfernen, ausziehen, wegnehmen, entführen, ausziehen, reinigen
+mettre, legen, platzieren, einstellen, tragen, anwenden, legen
+poser, legen, platzieren, einstellen, fragen, legen, Pose
+lever, heben, heben, aufstehen, aufsteigen, unterstützen, heben
+baisser, senken, senken, reduzieren, reduzieren, beugen, reduzieren
+tourner, drehen, drehen, drehen, drehen, ändern, drehen
+suivre, folgen, verfolgen, gehorchen, verfolgen, verstehen, fortsetzen
+précéder, vorausgehen, vorangehen, führen, vorwegnehmen, vorausgehen, einführen
+accompagner, begleiten, mitgehen, begleiten, besuchen, ergänzen, entsprechen
+quitter, verlassen, verlassen, verlassen, abreisen, aufgeben, verlassen
+rejoindre, beitreten, treffen, einholen, erreichen, wiedervereinen, vereinen
+séparer, trennen, trennen, trennen, abtrennen, trennen, isolieren
+réunir, wiedervereinigen, sammeln, sammeln, beitreten, sammeln, vereinen
+mélanger, mischen, mischen, vereinen, verwirren, mischen, rühren
+ajouter, hinzufügen, einschließen, beitreten, einbringen, ergänzen, anfügen
+multiplier, multiplizieren, vergrößern, vermehren, vermehren, verstärken, vergrößern
+diviser, teilen, trennen, teilen, abtrennen, verteilen, klassifizieren
+calculer, berechnen, berechnen, zählen, berechnen, schätzen, zählen
+mesurer, messen, messen, schätzen, wiegen, messen, schätzen
+compter, zählen, sich verlassen, abhängen, zählen, nummerieren, berechnen
+peser, wiegen, betrachten, überlegen, balancieren, schätzen, messen
+comparer, vergleichen, kontrastieren, vergleichen, entsprechen, gleichsetzen, parallelisieren
+juger, urteilen, urteilen, halten, betrachten, bewerten, entscheiden
+douter, zweifeln, befragen, verdächtigen, zögern, nicht vertrauen, zögern
+espérer, hoffen, erwarten, wünschen, vorfreuen, vertrauen, wünschen
+craindre, fürchten, sich entsetzen, fürchten, sich sorgen, befürchten, verdächtigen
+risquer, riskieren, riskieren, riskieren, gefährden, riskieren, spielen
+éviter, vermeiden, ausweichen, verhindern, vermeiden, ausweichen, umgehen
+rencontrer, treffen, treffen, stoßen, begegnen, erleben, finden
+saluer, grüßen, salutieren, winken, grüßen, ansprechen, grüßen
+présenter, vorstellen, vorstellen, zeigen, anbieten, vorstellen, anbieten
+excuser, entschuldigen, verzeihen, verzeihen, sich entschuldigen, rechtfertigen, befreien
+remercier, danken, schätzen, dankbar sein, anerkennen, gutschreiben, auszeichnen
+féliciter, gratulieren, Kompliment, loben, applaudieren, feiern, wünschen
+critiquer, kritisieren, rezensieren, verurteilen, urteilen, Fehler finden, kommentieren
+louer, loben, mieten, einstellen, loben, preisen, preisen
+blâmer, tadeln, kritisieren, vorwerfen, beschuldigen, tadeln, verurteilen
+soutenir, unterstützen, unterstützen, unterstützen, unterstützen, unterstützen, tragen
+aider, helfen, helfen, helfen, unterstützen, erleichtern, erleichtern
+protéger, schützen, schützen, schützen, schützen, bewahren, schützen
+attaquer, angreifen, angreifen, kritisieren, beschuldigen, angreifen, schlagen
+défendre, verteidigen, verteidigen, unterstützen, verbieten, verbieten, verteidigen
+combattre, kämpfen, kämpfen, kämpfen, kämpfen, widerstehen, widerstehen
+partager, teilen, teilen, teilen, teilnehmen, verteilen, kommunizieren
+apporter, bringen, tragen, einbringen, hinzufügen, liefern, verursachen
+emporter, wegtragen, wegtragen, entfernen, gewinnen, überwiegen, überwinden
+ramener, zurückbringen, zurücktragen, reduzieren, zurückbringen, wiederherstellen, erinnern
+rapporter, berichten, zurückbringen, erzählen, bringen, zurückbringen, erzählen
+payer, zahlen, bezahlen, belohnen, leiden, bringen, ausgleichen
+coûter, kosten, teuer sein, erfordern, nehmen, verursachen, nach sich ziehen
+valoir, wert sein, verdienen, verdienen, gleichkommen, gültig sein, halten
+dépenser, ausgeben, verbrauchen, verbrauchen, ausgeben, verwenden, verschwenden
+économiser, sparen, sparen, sparen, bewahren, bewahren, aufbewahren
+investir, investieren, anlegen, widmen, ausgeben, investieren, setzen
+emprunter, leihen, nehmen, kopieren, imitieren, annehmen, annehmen
+prêter, leihen, geben, zuschreiben, zuschreiben, übertragen
+offrir, anbieten, geben, bereitstellen, vorstellen, anbieten, freiwillig
+accepter, annehmen, bekommen, zustimmen, anerkennen, begrüßen, billigen
+refuser, ablehnen, ablehnen, ablehnen, verneinen, ablehnen, ablehnen
+permettre, erlauben, erlauben, ermöglichen, autorisieren, erlauben, geben
+interdire, verbieten, verbieten, verbieten, verhindern, verbieten, Veto
+obliger, verpflichten, zwingen, zwingen, fordern, binden, einschränken
+forcer, zwingen, zwingen, brechen, anstrengen, schieben, treiben
+encourager, ermutigen, antreiben, fördern, inspirieren, stimulieren, ermutigen
+décourager, entmutigen, enttäuschen, abschrecken, unterdrücken, abraten, dämpfen
+convaincre, überzeugen, überreden, überzeugen, zufriedenstellen, versichern, beweisen
+persuader, überreden, überzeugen, antreiben, überreden, antreiben, beeinflussen
+suggérer, vorschlagen, vorschlagen, empfehlen, andeuten, andeuten, raten
+conseiller, raten, beraten, empfehlen, vorschlagen, warnen, leiten
+recommander, empfehlen, raten, vorschlagen, loben, unterstützen, verschreiben
+avertir, warnen, warnen, benachrichtigen, warnen, informieren, raten
+informer, informieren, benachrichtigen, sagen, raten, aufklären, bekannt machen
+expliquer, erklären, klären, erklären, interpretieren, erläutern, beschreiben
+décrire, beschreiben, darstellen, porträtieren, umreißen, charakterisieren, erzählen
+raconter, erzählen, erzählen, erzählen, nacherzählen, beschreiben, berichten
+montrer, zeigen, anzeigen, demonstrieren, hinweisen, beweisen, ausstellen
+cacher, verstecken, verbergen, bedecken, geheim halten, maskieren, bedecken
+révéler, enthüllen, offenbaren, enthüllen, ausstellen, zeigen, verraten
+découvrir, entdecken, erfahren, enthüllen, enthüllen, entdecken, erfinden
+inventer, erfinden, ausdenken, ausdenken, schaffen, fabrizieren, ausdenken
+imaginer, vorstellen, annehmen, fantasieren, visualisieren, ausdenken, denken
+rêver, träumen, träumen, vorstellen, wünschen, hoffen, fantasieren
+réfléchir, nachdenken, denken, nachdenken, betrachten, meditieren, betrachten
+méditer, meditieren, nachdenken, betrachten, nachdenken, nachdenken, denken
+considérer, betrachten, betrachten, denken über, studieren, halten, schauen
+examiner, untersuchen, betrachten, erforschen, studieren, prüfen, rezensieren
+analyser, analysieren, studieren, studieren, zerlegen, zergliedern, bewerten
+évaluer, bewerten, bewerten, bewerten, bewerten, bewerten, urteilen
+estimer, schätzen, schätzen, schätzen, berechnen, schätzen, schätzen
+contraster, kontrastieren, sich unterscheiden, hervorstechen, gegenüberstellen, vergleichen, betonen
+opposer, gegenüberstellen, kontrastieren, gegenüberstellen, widerstehen, widersprechen, entgegenwirken
+s'opposer, sich widersetzen, dagegen sein, widerstehen, widersprechen, entgegenwirken, kämpfen
+résister, widerstehen, aushalten, widerstehen, aushalten, halten, widerstehen
+céder, nachgeben, aufgeben, aufgeben, nachgeben, nachgeben, nachgeben
+abandonner, verlassen, aufgeben, aufgeben, verlassen, verlassen, aufgeben
+laisser, lassen, lassen, lassen, lassen, verlassen, aufgeben
+empêcher, verhindern, stoppen, behindern, blockieren, stören, verhindern
+fuir, fliehen, fliehen, fliehen, vermeiden, vermeiden, fließen
+échapper, entkommen, vermeiden, vermeiden, entkommen, entkommen, auslassen
+sauver, retten, retten, bewahren, schützen, schonen, befreien
+vaincre, besiegen, überwinden, erobern, besiegen, bezwingen, überwinden
+triompher, triumphieren, überwiegen, Erfolg haben, besiegen, überwinden, jubeln
+célébrer, feiern, feiern, beobachten, ehren, loben, sich freuen
+fêter, feiern, Party, schmausen, feiern, sich freuen, ehren
+
