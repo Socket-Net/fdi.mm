@@ -944,7 +944,6 @@ rendez-vous,appointment,date,meeting,rendezvous,engagement,appointment
 obscurité,darkness,dark,obscurity,shadow,gloom,blackness
 danse,dance,dancing,choreography,ballet,movement,rhythm
 le beurre,butter,dairy,spread,fat,yellow,cooking
-le fromage,cheese,dairy,product,food,appetizer,plate
 le lait,milk,dairy,drink,white,product,breakfast
 papa,dad,daddy,father,pop,papa,pa
 présent,present,current,now,gift,here,existing
@@ -1012,7 +1011,6 @@ devoir,must/to have to,can,may,should,will,would
 tranquillité,tranquility,calm,peace,quiet,serenity,stillness
 le taxi,taxi,cab,ride,driver,car,transport
 au revoir,goodbye,bye,see you,hello,good night,thanks
-fromage,cheese,butter,yogurt,milk,cream,bread
 donc,so/therefore,but,and,or,then,because
 si,if/so,but,and,or,then,yes
 entreprise,company,business,firm,enterprise,corporation,venture
@@ -1023,6 +1021,7 @@ large,wide,broad,large,spacious,ample,extensive
 la lumière,light,brightness,illumination,daylight,gleam,beam
 court,short,brief,small,concise,curtailed,near
 le fromage,cheese,bread,the milk,the water,the meat,the fruit
+​le fromage blanc,curd,cheese,bread,leaven,ferment,barm
 le fils,son,boy,child,daughter,father,brother
 la limite,limit,boundary,edge,maximum,restriction,border
 rocher,rock,boulder,cliff,crag,stone,ledge
@@ -2189,7 +2188,6 @@ l'amoureux, lover, sweetheart, boyfriend, romantic, admirer
 l'humeur, mood, humor, temper, disposition, atmosphere
 la tempête, storm, tempest, gale, thunderstorm, uproar
 la page, page, sheet, webpage, leaf, side
-le fromage, cheese, dairy product, fromage, curd, blue cheese
 le prêtre, priest, clergyman, minister, padre, father
 le regret, regret, remorse, sorrow, disappointment, lament
 le contrat, contract, agreement, deal, pact, bond
