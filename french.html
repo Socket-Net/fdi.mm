@@ -415,7 +415,7 @@
     let answered = false;
     let reviewMode = false;
     let poolSize = CONFIG.DEFAULT_POOL_SIZE;
-    let dictionarySaved = false;
+    //let dictionarySaved = false;
 
     // ===== DOM =====
     const els = {
@@ -478,9 +478,9 @@
           sessionStarted: hasProgress,
           savedAt: Date.now()
         };
-        if (allWords.length > 0 && !dictionarySaved) {
+        if (allWords.length > 0) {
           data.dictionary = allWords;
-          dictionarySaved = true;
+          //dictionarySaved = true;
           console.log(`💾 Dictionary saved (${allWords.length} words)`);
         }
         localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
@@ -551,7 +551,7 @@ async function loadPresetDictionary(filename) {
     // Историю сохраняем (можно очистить, если нужно: history = [])
     
     allWords = newWords;
-    dictionarySaved = false;
+   // dictionarySaved = false;
     
     localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
       dictionary: allWords, 
@@ -559,10 +559,10 @@ async function loadPresetDictionary(filename) {
       stats, 
       history, 
       poolSize, 
-      sessionStarted: true, // 🔥 Важно: помечаем, что сессия уже начата
+      sessionStarted: true, // Важно: помечаем, что сессия уже начата
       savedAt: Date.now()
     }));
-    dictionarySaved = true;
+    //dictionarySaved = true;
     
     els.dictionarySection?.classList.add('hidden');
     els.quizSection?.classList.remove('hidden');
@@ -592,13 +592,13 @@ function startWithWords(words) {
   progress = filteredProgress;
   stats = { totalCorrect: stats.totalCorrect, sessionErrors: 0 }; // 🔥 Только ошибки сбросить
   // history можно оставить или очистить по желанию
-  dictionarySaved = false;
+ // dictionarySaved = false;
   
   try {
     localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
       dictionary: allWords, progress, stats, history, poolSize, sessionStarted: true, savedAt: Date.now()
     }));
-    dictionarySaved = true;
+   // dictionarySaved = true;
   } catch (e) { console.error('❌ Save failed:', e); alert('⚠️ Failed to save'); return; }
   
   els.dictionarySection?.classList.add('hidden');
@@ -618,7 +618,7 @@ function startWithWords(words) {
     // ===== LOAD NEW DICTIONARY =====
     function loadNewDictionary() {
       allWords = []; progress = {}; stats = { totalCorrect: 0, sessionErrors: 0 }; history = [];
-      reviewMode = false; dictionarySaved = false;
+      reviewMode = false; //dictionarySaved = false;
       localStorage.removeItem(CONFIG.STORAGE_KEY);
       els.choiceSection?.classList.add('hidden');
       els.dictionarySection?.classList.add('hidden');
@@ -639,8 +639,17 @@ function startWithWords(words) {
     // ===== POOL SIZE =====
     els.applyPoolBtn?.addEventListener('click', () => {
       const val = parseInt(els.poolSizeInput.value);
-      if (val >= 5 && val <= 200) { poolSize = val; saveData(); alert(`✅ Pool: ${poolSize}`); } 
-      else { alert('⚠️ 5-200'); }
+        if (val >= 5 && val <= 200) { 
+          poolSize = val; 
+          saveData(); 
+          alert(`✅ Pool: ${poolSize}`);
+          // Обновляем UI, если мы в режиме квиза
+          if (!els.quizSection.classList.contains('hidden')) {
+            updateStats();
+          }
+        } else { 
+          alert('⚠️ 5-200'); 
+        }
     });
 
     // ===== BUTTONS =====
@@ -792,7 +801,7 @@ function startWithWords(words) {
           poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE; if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
           if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
             console.log(`📚 Dictionary loaded: ${data.dictionary.length} words`);
-            allWords = data.dictionary; dictionarySaved = true;
+            allWords = data.dictionary; //dictionarySaved = true;
             const hasAnyProgress = data.sessionStarted || Object.values(progress).some(p => p.points > 0);
             if (hasAnyProgress) {
               console.log('🚀 Loading quiz...');
