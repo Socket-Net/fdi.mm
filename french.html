@@ -371,6 +371,7 @@
       <div class="feedback" id="feedback"></div>
       
       <div class="extra-controls">
+        <button class="danger-btn" id="clearCacheBtn">🗑️ Clear Cache</button>        
         <button class="secondary-btn" id="reviewBtn">🔄 Review</button>
         <button class="secondary-btn" id="historyBtn">📜 History</button>
         <button class="danger-btn" id="finishBtn">✅ Finish</button>
@@ -477,8 +478,9 @@
           sessionStarted: hasProgress,
           savedAt: Date.now()
         };
-        if (allWords.length > 0) {
+        if (allWords.length > 0 && !dictionarySaved) {
           data.dictionary = allWords;
+          dictionarySaved = true;
           console.log(`💾 Dictionary saved (${allWords.length} words)`);
         }
         localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
@@ -629,7 +631,14 @@ function startWithWords(words) {
     document.getElementById('btnEn')?.addEventListener('click', () => loadPresetDictionary('words_en.csv'));
     document.getElementById('btnRu')?.addEventListener('click', () => loadPresetDictionary('words_ru.csv'));
     document.getElementById('btnDe')?.addEventListener('click', () => loadPresetDictionary('words_de.csv'));
-
+      // Обработчик
+      document.getElementById('clearCacheBtn')?.addEventListener('click', () => {
+        if (confirm('⚠️ Clear all saved data? Progress will be lost.')) {
+          localStorage.removeItem(CONFIG.STORAGE_KEY);
+          alert('✅ Cache cleared. Reloading...');
+          location.reload();
+        }
+      });
     // 🔥 ОБРАБОТЧИК ЗАГРУЗКИ ФАЙЛА (через label)
     els.csvFile?.addEventListener('change', async (e) => {
       const file = e.target.files[0];
