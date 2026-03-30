@@ -510,7 +510,6 @@
     let activePool = []; 
     let freshWordCounter = 0;
     let recentWords = [];
-    const RECENT_HISTORY_SIZE = 15; 
 
     // ===== DOM =====
     const els = {
@@ -771,7 +770,7 @@ async function loadDictionary(dictName) {
         .filter(w => w);
     }
 
-        function getNextWordFromPool() {
+    function getNextWordFromPool() {
       if (reviewMode) {
         const favorites = getFavorites();
         if (favorites.length === 0) return null;
@@ -801,8 +800,9 @@ async function loadDictionary(dictName) {
       if (activePool.length === 0) return null;
       
       const availablePool = activePool.filter(key => !recentWords.includes(key));
-      const poolToUse = availablePool.length > 0 ? availablePool : activePool;
-      
+      const minAvailable = Math.max(3, Math.round(poolSize * 0.1));
+      const poolToUse = availablePool.length >= minAvailable ? availablePool : activePool;
+
       const wordKey = poolToUse[Math.floor(Math.random() * poolToUse.length)];
       addToRecent(wordKey); 
       return allWords.find(w => w.french === wordKey);
@@ -810,8 +810,8 @@ async function loadDictionary(dictName) {
 
 function addToRecent(wordKey) {
   recentWords.push(wordKey);
-  // Держим только последние N слов
-  if (recentWords.length > RECENT_HISTORY_SIZE) {
+  const maxSize = getRecentHistorySize();
+  if (recentWords.length > maxSize) {
     recentWords.shift();
   }
 }
@@ -1145,6 +1145,11 @@ async function checkDictionaryExists(dictName) {
         console.log('🔓 Exiting review mode');
         reviewMode = false;
       }
+    }
+
+    function getRecentHistorySize() {
+      const size = Math.round(poolSize * 0.9);
+      return Math.max(5, Math.min(100, size)); 
     }
 
         // ===== ANSWER =====
