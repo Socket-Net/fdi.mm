@@ -902,7 +902,7 @@ async function loadImageForCurrentWord() {
       els.wordImage.onerror = () => {
         console.error('❌ Image failed to load');
         els.wordImage.classList.add('hidden');
-        els.imageSource.textContent = '⚠️ Image failed to load';
+        els.imageSource.textContent = (showImages) ? '⚠️ Image failed to load' : '';
         els.imageToggleBtn.disabled = false;
       };
     } else {
