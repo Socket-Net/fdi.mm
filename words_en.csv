@@ -1616,7 +1616,7 @@ l'occasion, occasion, opportunity, event, bargain, chance
 la personnalité, personality, character, individual, celebrity, persona
 la fantaisie, fantasy, fancy, whim, imagination, notion
 la production, production, output, manufacturing, yield, show
-la cote, odds, rating, quotation, estimate, score
+la cote, side, rating, quotation, estimate, score
 la signature, signature, signing, autograph, mark, endorsement
 l'individu, individual, person, single, being, character
 le charme, charm, appeal, enchantment, attractiveness, spell
@@ -1787,12 +1787,12 @@ la région,region,area,district,zone,territory,province
 la solution,solution,answer,fix,key,way,outcome
 l'anniversaire,birthday,anniversary,celebration,commemoration,memorial,
 l'énervé,annoyed,angry,irritated,calm,happy,sad
-le mais,but,and,or,so,then,because
-l'ou,or,and,but,where,when,why
-le jamais,never,always,sometimes,often,rarely,usually
+mais,but,and,or,so,then,because
+ou,or,and,but,where,when,why
+jamais,never,always,sometimes,often,rarely,usually
 le changement,change,alteration,shift,modification,variation,swap
-l'encore,still/yet/again,already,never,just,soon,again
-le pas encore,not yet,already,still,never,just,soon
+encore,still/yet/again,already,never,just,soon,again
+pas encore,not yet,already,still,never,just,soon
 chaque,each/every,all,some,any,none,both
 l'an,year,age,time,day,month,period
 l'avant,before,after,during,while,until,since
@@ -2230,7 +2230,7 @@ la connexion, connection, link, junction, network, bond
 l'en bas, downstairs, below, beneath, at the bottom, lower level
 la chambre, bedroom, room, chamber, hall, compartment
 le professionnel, professional, expert, pro, specialist, practitioner
-la tour, tour, turn, tower, trick, rotation, trip
+la tour, turn, tour,tower, trick, rotation, trip
 le joueur, player, gamer, athlete, participant, performer
 l'argent, silver, money, currency, argentum, cash
 la pitié, pity, compassion, mercy, sympathy, regret
