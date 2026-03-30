@@ -850,6 +850,8 @@ function toggleImageVisibility() {
     els.imageToggleBtn.title = 'Hide image';
   } 
   else if (showImages && currentWord) {
+    currentImageUrl = null;
+    els.wordImage.src = '';
     loadImageForCurrentWord();
   }
   else {
@@ -876,7 +878,8 @@ async function loadImageForCurrentWord() {
   console.log('🖼️ Loading image for current word:', currentWord.french);
   els.imageSource.textContent = '🔍 Searching image...';
   els.imageToggleBtn.disabled = true;
-  
+  els.wordImage.classList.add('hidden');
+
   try {
     const imageData = await fetchWordImage(currentWord.french);
     
@@ -1100,6 +1103,8 @@ async function checkDictionaryExists(dictName) {
       
       currentWord = next;
       els.word.textContent = currentWord.french;
+      currentImageUrl = null;
+      els.wordImage.src = '';      
       els.favoriteBtn.style.display = 'block';
       els.imageToggleBtn.style.display = 'block';
       updateFavoriteButton();
