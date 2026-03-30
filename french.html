@@ -838,6 +838,8 @@
     let recentWords = [];
     let currentLanguage = '--/--';
 
+    let dictStats = {};
+
     // ===== DOM =====
     const els = {
       restoreDictsBtn: document.getElementById('restoreDictsBtn'),
@@ -878,6 +880,41 @@
       progressFill: document.getElementById('progressFill'),
       historyList: document.getElementById('historyList')
     };
+
+
+function getDictStats(dictName) {
+  if (!dictStats[dictName]) {
+    dictStats[dictName] = {
+      progress: {},
+      stats: { totalCorrect: 0, sessionErrors: 0, totalAnswered: 0 },
+      lastUsed: Date.now()
+    };
+  }
+  return dictStats[dictName];
+}
+
+function loadDictStats(dictName) {
+  const data = getDictStats(dictName);
+  progress = data.progress;
+  stats = data.stats;
+  currentDict = dictName;
+  data.lastUsed = Date.now();
+}
+
+function saveDictStats(dictName) {
+  const data = getDictStats(dictName);
+  data.progress = progress;
+  data.stats = stats;
+  data.lastUsed = Date.now();
+}
+
+function getDictProgress(dictName) {
+  const data = getDictStats(dictName);
+  const total = allWords.length; // Это нужно будет передавать или вычислять
+  const learned = Object.values(data.progress).filter(p => p.points >= CONFIG.POINTS_TO_LEARN).length;
+  return total > 0 ? Math.round((learned / total) * 100) : 0;
+}
+
 
     // ===== LANGUAGE FUNCTIONS =====
     function updateInterfaceLanguage() {
@@ -997,59 +1034,65 @@
       return words;
     }
 
-    // ===== DICTIONARY MANAGEMENT =====
-    async function loadDictionary(dictName) {
-      try {
-        console.log(`📚 Loading dictionary: ${dictName}`);
-        els.word.textContent = translations[currentLanguage].wordLoading;
-        
-        const basePath = window.location.pathname.endsWith('/') 
-          ? window.location.pathname 
-          : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-        
-        const url = basePath + dictName + '.csv';
-        console.log(`🔍 Fetching: ${url}`);
-        
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const text = await response.text();
-        const newWords = parseCSV(text);
-        
-        if (newWords.length === 0) throw new Error('No valid words');
-        
-        console.log(`✅ Loaded ${newWords.length} words`);
-        
-        const newWordKeys = new Set(newWords.map(w => w.french));
-        const filteredProgress = {};
-        for (const [key, value] of Object.entries(progress)) {
-          if (newWordKeys.has(key)) {
-            filteredProgress[key] = value;
-          }
-        }
-        progress = filteredProgress;
-        
-        allWords = newWords;
-        currentDict = dictName;
-        
-        els.dictNameInput.value = dictName;
-        
-        stats.sessionErrors = 0;
-        freshWordCounter = 0;
-        recentWords = [];
-        saveData();
-        
-        els.dictManagerSection?.classList.add('hidden');
-        els.quizSection?.classList.remove('hidden');
-        updateStats();
-        nextWord();
-        
-      } catch (err) {
-        console.error(`❌ Failed to load ${dictName}:`, err);
-        const t = translations[currentLanguage];
-        alert(t.dictLoadError + dictName + t.dictLoadError2 + err.message + t.dictLoadError3);
+
+// ===== DICTIONARY MANAGEMENT (UPDATED) =====
+async function loadDictionary(dictName) {
+  try {
+    console.log(`📚 Loading dictionary: ${dictName}`);
+    els.word.textContent = translations[currentLanguage].wordLoading;
+    
+    const basePath = window.location.pathname.endsWith('/') 
+      ? window.location.pathname 
+      : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    
+    const url = basePath + dictName + '.csv';
+    console.log(`🔍 Fetching: ${url}`);
+    
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    
+    const text = await response.text();
+    const newWords = parseCSV(text);
+    
+    if (newWords.length === 0) throw new Error('No valid words');
+    
+    console.log(`✅ Loaded ${newWords.length} words`);
+    
+    // Загружаем статистику для этого словаря
+    loadDictStats(dictName);
+    
+    const newWordKeys = new Set(newWords.map(w => w.french));
+    const filteredProgress = {};
+    for (const [key, value] of Object.entries(progress)) {
+      if (newWordKeys.has(key)) {
+        filteredProgress[key] = value;
       }
     }
+    progress = filteredProgress;
+    
+    allWords = newWords;
+    
+    els.dictNameInput.value = dictName;
+    
+    stats.sessionErrors = 0;
+    freshWordCounter = 0;
+    recentWords = [];
+    activePool = [];
+    
+    saveData();
+    
+    els.dictManagerSection?.classList.add('hidden');
+    els.quizSection?.classList.remove('hidden');
+    updateStats();
+    nextWord();
+    
+  } catch (err) {
+    console.error(`❌ Failed to load ${dictName}:`, err);
+    const t = translations[currentLanguage];
+    alert(t.dictLoadError + dictName + t.dictLoadError2 + err.message + t.dictLoadError3);
+  }
+}
+
 
     function startWithWords(words, dictName = 'custom') {
       if (words.length === 0) { 
@@ -1104,49 +1147,74 @@
       els.dictManagerSection?.classList.remove('hidden');
     }
 
-    async function renderDictList() {
-      // Filter dictionaries based on current language
-      let dictsToShow = filterDictionariesByLanguage(currentLanguage);
-      
-      if (window.location.hostname.includes('github.io')) {
-        const validDicts = [];
-        for (const dict of dictsToShow) {
-          const exists = await checkDictionaryExists(dict);
-          if (exists) {
-            validDicts.push(dict);
-          } else {
-            console.log(`🗑️ Auto-removed non-existent dictionary: ${dict}`);
-          }
-        }
-        if (validDicts.length !== dictsToShow.length) {
-          dictsToShow = validDicts;
-        }
-      }
 
-      els.dictList.innerHTML = dictsToShow.map(dict => {
-        const isActive = dict === currentDict;
-        const t = translations[currentLanguage];
-        return `
-          <div class="dict-item ${isActive ? 'active' : ''}" data-dict="${dict}">
-            <span style="flex:1;cursor:pointer" onclick="loadDictionary('${dict}')">
-              ${isActive ? '📖' : '📄'} ${dict}.csv
-              ${isActive ? '<span class="badge">' + (currentLanguage === 'ru' ? 'Активен' : currentLanguage === 'fr' ? 'Actif' : currentLanguage === 'ar' ? 'فعال' : 'Active') + '</span>' : ''}
-            </span>
-            <button class="secondary-btn" style="padding:0.25rem 0.5rem;font-size:0.75rem;margin-left:0.5rem" 
-                    onclick="event.stopPropagation(); hideDictionary('${dict}')"
-                    title="Hide this dictionary from list">🙈</button>
-          </div>
-        `;
-      }).join('');
 
-      const defaultDicts = CONFIG.AVAILABLE_DICTS;
-      const hasHidden = defaultDicts.some(dict => !availableDicts.includes(dict));
-      
-      const restoreBtn = document.getElementById('restoreDictsBtn');
-      if (restoreBtn) {
-        restoreBtn.style.display = hasHidden ? 'inline-block' : 'none';
+// ===== RENDER DICT LIST (UPDATED) =====
+async function renderDictList() {
+  let dictsToShow = filterDictionariesByLanguage(currentLanguage);
+  
+  if (window.location.hostname.includes('github.io')) {
+    const validDicts = [];
+    for (const dict of dictsToShow) {
+      const exists = await checkDictionaryExists(dict);
+      if (exists) {
+        validDicts.push(dict);
+      } else {
+        console.log(`🗑️ Auto-removed non-existent dictionary: ${dict}`);
       }
     }
+    if (validDicts.length !== dictsToShow.length) {
+      dictsToShow = validDicts;
+    }
+  }
+
+  els.dictList.innerHTML = dictsToShow.map(dict => {
+    const isActive = dict === currentDict;
+    const t = translations[currentLanguage];
+    const dictProgress = getDictProgress(dict);
+    
+    return `
+      <div class="dict-item ${isActive ? 'active' : ''}" data-dict="${dict}">
+        <span style="flex:1;cursor:pointer" onclick="loadDictionary('${dict}')">
+          ${isActive ? '📖' : '📄'} ${dict}.csv
+          ${isActive ? '<span class="badge">' + (currentLanguage === 'ru' ? 'Активен' : currentLanguage === 'fr' ? 'Actif' : currentLanguage === 'ar' ? 'فعال' : 'Active') + '</span>' : ''}
+          <span style="margin-left:0.5rem;color:#94a3b8;font-size:0.75rem">${dictProgress}%</span>
+        </span>
+        <button class="secondary-btn" style="padding:0.25rem 0.5rem;font-size:0.75rem;margin-left:0.5rem" 
+                onclick="event.stopPropagation(); hideDictionary('${dict}')"
+                title="Hide this dictionary from list">🙈</button>
+      </div>
+    `;
+  }).join('');
+
+  const defaultDicts = CONFIG.AVAILABLE_DICTS;
+  const hasHidden = defaultDicts.some(dict => !availableDicts.includes(dict));
+  
+  const restoreBtn = document.getElementById('restoreDictsBtn');
+  if (restoreBtn) {
+    restoreBtn.style.display = hasHidden ? 'inline-block' : 'none';
+  }
+}
+
+// ===== SAVE/LOAD (UPDATED) =====
+function saveData() {
+  if (!isLocalStorageAvailable()) return;
+  try {
+    const data = {
+      dictStats, // ← Теперь храним статистику по словарям
+      currentDict,
+      availableDicts,
+      showImages,
+      poolSize,
+      savedAt: Date.now()
+    };
+    if (allWords.length > 0) {
+      data.dictionary = allWords;
+    }
+    localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
+    console.log('💾 Data saved');
+  } catch (e) { console.warn('Save failed:', e); }
+}
 
     // ===== FAVORITES =====
     function toggleFavorite() {
@@ -1175,43 +1243,69 @@
         .filter(w => w);
     }
 
-    function getNextWordFromPool() {
-      if (reviewMode) {
-        const favorites = getFavorites();
-        if (favorites.length === 0) return null;
-        return favorites[Math.floor(Math.random() * favorites.length)];
-      }
-      
-      freshWordCounter++;
-      if (freshWordCounter % 5 === 0) {
-        const notLearned = allWords.filter(w => 
-          (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN &&
-          !activePool.includes(w.french) &&
-          !recentWords.includes(w.french)
-        );
-        
-        if (notLearned.length > 0) {
-          const fresh = notLearned[Math.floor(Math.random() * notLearned.length)];
-          addToRecent(fresh.french);
-          console.log(`🌱 Fresh word inserted: ${fresh.french}`);
-          return fresh;
-        }
-      }
-      
-      if (activePool.length === 0) {
-        refillActivePool();
-      }
-      
-      if (activePool.length === 0) return null;
-      
-      const availablePool = activePool.filter(key => !recentWords.includes(key));
-      const minAvailable = Math.max(3, Math.round(poolSize * 0.1));
-      const poolToUse = availablePool.length >= minAvailable ? availablePool : activePool;
 
-      const wordKey = poolToUse[Math.floor(Math.random() * poolToUse.length)];
-      addToRecent(wordKey); 
-      return allWords.find(w => w.french === wordKey);
+// ===== NEXT WORD (FIXED) =====
+function getNextWordFromPool() {
+  if (reviewMode) {
+    const favorites = getFavorites();
+    if (favorites.length === 0) return null;
+    return favorites[Math.floor(Math.random() * favorites.length)];
+  }
+  
+  // Каждое 5-е слово - новое из словаря
+  freshWordCounter++;
+  if (freshWordCounter % 5 === 0) {
+    const notLearned = allWords.filter(w => 
+      (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN &&
+      !activePool.includes(w.french) &&
+      !recentWords.includes(w.french)
+    );
+    
+    if (notLearned.length > 0) {
+      const fresh = notLearned[Math.floor(Math.random() * notLearned.length)];
+      addToRecent(fresh.french);
+      console.log(`🌱 Fresh word inserted: ${fresh.french} (counter: ${freshWordCounter})`);
+      return fresh;
     }
+  }
+  
+  // Заполняем пул если пуст
+  if (activePool.length === 0) {
+    console.log('⚠️ Pool empty, refilling...');
+    refillActivePool();
+  }
+  
+  if (activePool.length === 0) {
+    console.log('❌ No words available in pool!');
+    return null;
+  }
+  
+  // ФИКС: Берем слова НЕ из recentWords, если они есть
+  const availablePool = activePool.filter(key => !recentWords.includes(key));
+  
+  console.log(`📊 Pool stats: active=${activePool.length}, available=${availablePool.length}, recent=${recentWords.length}, recentSize=${getRecentHistorySize()}`);
+  
+  let poolToUse;
+  if (availablePool.length > 0) {
+    // ЕСТЬ слова не в recentWords - используем ТОЛЬКО их
+    poolToUse = availablePool;
+    console.log(`✅ Using available pool (${availablePool.length} words)`);
+  } else {
+    // ВСЕ слова в recentWords - очищаем oldest и берем весь пул
+    console.log(`⚠️ All words in recentWords! Clearing oldest...`);
+    recentWords = []; // Очищаем историю
+    poolToUse = activePool;
+    console.log(`🔄 Using full pool (${activePool.length} words)`);
+  }
+
+  const wordKey = poolToUse[Math.floor(Math.random() * poolToUse.length)];
+  console.log(`🎯 Selected: ${wordKey}`);
+  
+  addToRecent(wordKey);
+  console.log(`📝 Recent words: ${recentWords.length}/${getRecentHistorySize()}`);
+  
+  return allWords.find(w => w.french === wordKey);
+}
 
     function addToRecent(wordKey) {
       recentWords.push(wordKey);
@@ -1221,25 +1315,31 @@
       }
     }
 
-    // ===== POOL MANAGEMENT =====
-    function refillActivePool() {
-      const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
-      
-      activePool = activePool.filter(wordKey => {
-        const word = allWords.find(w => w.french === wordKey);
-        return word && (progress[wordKey]?.points ?? 0) < CONFIG.POINTS_TO_LEARN;
-      });
-      
-      while (activePool.length < poolSize && notLearned.length > 0) {
-        const available = notLearned.filter(w => !activePool.includes(w.french));
-        if (available.length === 0) break;
-        
-        const randomWord = available[Math.floor(Math.random() * available.length)];
-        activePool.push(randomWord.french);
-      }
-      
-      console.log(`🔄 Pool refilled: ${activePool.length}/${poolSize} words`);
-    }
+
+
+// ===== POOL MANAGEMENT (FIXED) =====
+function refillActivePool() {
+  const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+  
+  // Удаляем выученные слова из пула
+  activePool = activePool.filter(wordKey => {
+    const word = allWords.find(w => w.french === wordKey);
+    return word && (progress[wordKey]?.points ?? 0) < CONFIG.POINTS_TO_LEARN;
+  });
+  
+  // Добавляем новые слова до размера пула
+  while (activePool.length < poolSize && notLearned.length > 0) {
+    const available = notLearned.filter(w => !activePool.includes(w.french));
+    if (available.length === 0) break;
+    
+    const randomWord = available[Math.floor(Math.random() * available.length)];
+    activePool.push(randomWord.french);
+  }
+  
+  console.log(`🔄 Pool refilled: ${activePool.length}/${poolSize} words`);
+  console.log(`📊 Pool words:`, activePool.slice(0, 10).join(', ') + (activePool.length > 10 ? `... (${activePool.length} total)` : ''));
+}
+
 
     // ===== IMAGE TOGGLE =====
     function toggleImageVisibility() {
@@ -1596,87 +1696,99 @@
       return Math.max(5, Math.min(100, size)); 
     }
 
-    // ===== ANSWER =====
-    function handleAnswer(selected, correct) {
-      if (answered) return;
-      answered = true;
-      
-      const opts = els.options.querySelectorAll('.option');
-      opts.forEach(opt => {
-        opt.style.pointerEvents = 'none';
-        if (opt.textContent === correct) opt.classList.add('correct');
-        if (opt.textContent === selected && selected !== correct) opt.classList.add('wrong');
-      });
-      
-      const isCorrect = selected === correct;
-      const key = currentWord.french;
-      
-      if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
-      
-      if (isCorrect) {
-        progress[key].points++;
-        stats.totalCorrect++;
-        els.feedback.innerHTML = reviewMode ? '✅ Still know it!' : '✅ +1';
-        els.feedback.className = 'feedback correct';
-      } else {
-        stats.sessionErrors++;
-        if (reviewMode) {
-          progress[key].points = 0;
-          els.feedback.innerHTML = `❌ Forgot! Reset<br><span class="correct-answer">${correct}</span>`;
-        } else {
-          progress[key].points = Math.max(CONFIG.MIN_POINTS, progress[key].points - 1);
-          els.feedback.innerHTML = `❌ -1<br><span class="correct-answer">${correct}</span>`;
-        }
-        els.feedback.className = 'feedback wrong';
-      }
-      
-      stats.totalAnswered++;
-      history.unshift({ word: key, correct: isCorrect, timestamp: Date.now() });
-      if (history.length > 50) history.pop();
-      
-      progress[key].lastSeen = Date.now();
-      saveData();
-      
-      const points = progress[key]?.points ?? 0;
-      
-      if (points >= CONFIG.POINTS_TO_LEARN) {
-        activePool = activePool.filter(w => w !== key);
-        console.log(`🎓 "${key}" learned! Removed from pool`);
-      }
 
-      if (activePool.length < poolSize * 0.5) {
-        refillActivePool();
-      }
-
-      els.wordProgress.innerHTML = `${getWordProgressText(key)} ${getWordProgressBar(key)}`;
-      updateStats();
-      els.nextBtn.disabled = false;
-      
-      if (reviewMode && progress[key]?.isFavorite) {
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'secondary-btn';
-        removeBtn.style.fontSize = '0.75rem';
-        removeBtn.style.padding = '0.25rem 0.25rem';
-        removeBtn.style.marginLeft = '0.5rem';
-        removeBtn.textContent = '❌ Remove';
-        removeBtn.title = 'Remove from favorites';
-        removeBtn.onclick = () => {
-          progress[key].isFavorite = false;
-          updateFavoriteButton();
-          updateStats();
-          saveData();
-          removeBtn.textContent = '✅ Removed';
-          removeBtn.disabled = true;
-          setTimeout(() => removeBtn.remove(), 1500);
-        };
-        
-        const wordHeader = document.querySelector('.word-header');
-        if (wordHeader && !wordHeader.querySelector('.remove-btn')) {
-          removeBtn.classList.add('remove-btn');
-          wordHeader.appendChild(removeBtn);
-        }
-      }
+// ===== ANSWER (UPDATED) =====
+function handleAnswer(selected, correct) {
+  if (answered) return;
+  answered = true;
+  
+  const opts = els.options.querySelectorAll('.option');
+  opts.forEach(opt => {
+    opt.style.pointerEvents = 'none';
+    if (opt.textContent === correct) opt.classList.add('correct');
+    if (opt.textContent === selected && selected !== correct) opt.classList.add('wrong');
+  });
+  
+  const isCorrect = selected === correct;
+  const key = currentWord.french;
+  
+  if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
+  
+  if (isCorrect) {
+    progress[key].points++;
+    stats.totalCorrect++;
+    els.feedback.innerHTML = reviewMode ? '✅ Still know it!' : '✅ +1';
+    els.feedback.className = 'feedback correct';
+    console.log(`✅ ${key}: ${progress[key].points}/${CONFIG.POINTS_TO_LEARN}`);
+  } else {
+    stats.sessionErrors++;
+    if (reviewMode) {
+      progress[key].points = 0;
+      els.feedback.innerHTML = `❌ Forgot! Reset<br><span class="correct-answer">${correct}</span>`;
+      console.log(`❌ ${key}: RESET to 0`);
+    } else {
+      progress[key].points = Math.max(CONFIG.MIN_POINTS, progress[key].points - 1);
+      els.feedback.innerHTML = `❌ -1<br><span class="correct-answer">${correct}</span>`;
+      console.log(`❌ ${key}: ${progress[key].points}/${CONFIG.POINTS_TO_LEARN}`);
     }
+    els.feedback.className = 'feedback wrong';
+  }
+  
+  stats.totalAnswered++;
+  history.unshift({ word: key, correct: isCorrect, timestamp: Date.now() });
+  if (history.length > 50) history.pop();
+  
+  progress[key].lastSeen = Date.now();
+  
+  // Сохраняем статистику для текущего словаря
+  saveDictStats(currentDict);
+  saveData();
+  
+  const points = progress[key]?.points ?? 0;
+  
+  // Удаляем из пула если выучили
+  if (points >= CONFIG.POINTS_TO_LEARN) {
+    const beforeLength = activePool.length;
+    activePool = activePool.filter(w => w !== key);
+    console.log(`🎓 "${key}" learned! Removed from pool (${beforeLength} → ${activePool.length})`);
+  }
+
+  // Перезаполняем пул если меньше 50%
+  if (activePool.length < poolSize * 0.5) {
+    console.log(`📉 Pool low (${activePool.length}/${poolSize}), refilling...`);
+    refillActivePool();
+  }
+
+  els.wordProgress.innerHTML = `${getWordProgressText(key)} ${getWordProgressBar(key)}`;
+  updateStats();
+  els.nextBtn.disabled = false;
+  
+  if (reviewMode && progress[key]?.isFavorite) {
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'secondary-btn';
+    removeBtn.style.fontSize = '0.75rem';
+    removeBtn.style.padding = '0.25rem 0.25rem';
+    removeBtn.style.marginLeft = '0.5rem';
+    removeBtn.textContent = '❌ Remove';
+    removeBtn.title = 'Remove from favorites';
+    removeBtn.onclick = () => {
+      progress[key].isFavorite = false;
+      updateFavoriteButton();
+      updateStats();
+      saveData();
+      removeBtn.textContent = '✅ Removed';
+      removeBtn.disabled = true;
+      setTimeout(() => removeBtn.remove(), 1500);
+    };
+    
+    const wordHeader = document.querySelector('.word-header');
+    if (wordHeader && !wordHeader.querySelector('.remove-btn')) {
+      removeBtn.classList.add('remove-btn');
+      wordHeader.appendChild(removeBtn);
+    }
+  }
+}
+
 
     // ===== STATS =====
     function updateStats() {
@@ -1787,6 +1899,11 @@
       const t = translations[currentLanguage];
       if (val >= 5 && val <= 200) {
         poolSize = val;
+        
+        // ✅ ПЕРЕСОЗДАЕМ ПУЛ заново с новым размером
+        activePool = [];
+        refillActivePool();
+        
         saveData();
         alert(t.poolSet + poolSize);
         if (!els.quizSection.classList.contains('hidden')) updateStats();
@@ -1911,106 +2028,163 @@
       if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
     });
           
-    // ===== INIT =====
-    window.addEventListener('DOMContentLoaded', async () => {
-      console.log('🔍 === INIT START ===');
+
+// ===== INIT (UPDATED) =====
+window.addEventListener('DOMContentLoaded', async () => {
+  console.log('🔍 === INIT START ===');
+  
+  if (!els.reviewBtn) {
+    console.error('❌ Review button not found!');
+  } else {
+    console.log('✅ Review button found');
+  }
+  
+  if (!isLocalStorageAvailable()) {
+    alert('⚠️ localStorage blocked');
+    els.dictManagerSection?.classList.remove('hidden');
+    return;
+  }
+  
+  // Load saved language
+  const savedLang = localStorage.getItem(CONFIG.STORAGE_KEY + '_language');
+  if (savedLang && translations[savedLang]) {
+    currentLanguage = savedLang;
+    els.languageSelect.value = savedLang;
+  }
+  
+  updateInterfaceLanguage();
+  
+  const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+  
+  // ===== MIGRATION LOGIC =====
+  if (saved) {
+    try {
+      const oldData = JSON.parse(saved);
       
-      if (!els.reviewBtn) {
-        console.error('❌ Review button not found!');
-      } else {
-        console.log('✅ Review button found');
-      }
-      
-      if (!isLocalStorageAvailable()) {
-        alert('⚠️ localStorage blocked');
-        els.dictManagerSection?.classList.remove('hidden');
+      // Проверяем нужна ли миграция (нет dictStats но есть старые данные)
+      if (!oldData.dictStats && (oldData.progress || oldData.dictionary)) {
+        console.log('🔄 Old format detected, starting migration...');
+        
+        // Определяем целевой словарь
+        let targetDict = oldData.currentDict || 'words_en';
+        
+        // Создаем структуру dictStats
+        dictStats = {};
+        dictStats[targetDict] = {
+          progress: oldData.progress || {},
+          stats: {
+            totalCorrect: oldData.stats?.totalCorrect || 0,
+            sessionErrors: oldData.stats?.sessionErrors || 0,
+            totalAnswered: oldData.stats?.totalAnswered || 0
+          },
+          lastUsed: Date.now()
+        };
+        
+        // Сохраняем новую структуру
+        const newData = {
+          dictStats: dictStats,
+          currentDict: targetDict,
+          availableDicts: oldData.availableDicts || [...CONFIG.AVAILABLE_DICTS],
+          showImages: oldData.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT,
+          poolSize: oldData.poolSize || CONFIG.DEFAULT_POOL_SIZE,
+          migrated: true,
+          migratedAt: Date.now()
+        };
+        
+        if (oldData.dictionary) {
+          newData.dictionary = oldData.dictionary;
+        }
+        
+        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(newData));
+        console.log('✅ Migration completed!');
+        console.log(`📊 Migrated ${Object.keys(dictStats[targetDict].progress).length} words to ${targetDict}`);
+        
+        // Перезагружаем чтобы применить новую структуру
+        setTimeout(() => location.reload(), 1000);
         return;
       }
+    } catch (e) {
+      console.error('❌ Migration check failed:', e);
+    }
+  }
+  
+  // ===== NORMAL LOAD =====
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
       
-      // Load saved language
-      const savedLang = localStorage.getItem(CONFIG.STORAGE_KEY + '_language');
-      if (savedLang && translations[savedLang]) {
-        currentLanguage = savedLang;
-        els.languageSelect.value = savedLang;
+      // Загружаем статистику по словарям
+      dictStats = data.dictStats || {};
+      
+      poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
+      currentDict = data.currentDict || 'words_en';
+      availableDicts = data.availableDicts || [...CONFIG.AVAILABLE_DICTS];
+      showImages = data.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT;
+      reviewMode = false;
+      
+      if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
+      if (els.dictNameInput) els.dictNameInput.value = currentDict;
+      
+      // Загружаем статистику текущего словаря
+      if (dictStats[currentDict]) {
+        loadDictStats(currentDict);
+        console.log(`📊 Loaded stats for ${currentDict}:`, stats);
       }
       
-      // Update interface language
-      updateInterfaceLanguage();
-      
-      const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
-      if (saved) {
-        try {
-          const data = JSON.parse(saved);
-          progress = data.progress || {};
-          stats.totalCorrect = data.stats?.totalCorrect ?? 0;
-          stats.sessionErrors = data.stats?.sessionErrors ?? 0;
-          stats.totalAnswered = data.stats?.totalAnswered ?? 0;
-          history = data.history || [];
-          poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
-          currentDict = data.currentDict || 'words_en';
-          availableDicts = data.availableDicts || [...CONFIG.AVAILABLE_DICTS];
-          showImages = data.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT;
-          reviewMode = false;
-          
-          if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
-          if (els.dictNameInput) els.dictNameInput.value = currentDict;
-          
-          const favCount = Object.values(progress).filter(p => p.isFavorite).length;
-          console.log(`⭐ Found ${favCount} favorite words`);
-          
-          if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
-            console.log(`📚 Dictionary loaded: ${data.dictionary.length} words`);
-            allWords = data.dictionary;
-            
-            activePool = [];
-            refillActivePool();
-            freshWordCounter = 0; 
-            recentWords = [];
-            els.quizSection?.classList.add('hidden');
-            els.dictManagerSection?.classList.remove('hidden');
-            
-            await renderDictList(); 
-            updateStats();
-            updateReviewButtonText();
-            
-            console.log('📋 Showing dictionary manager');
-
-            if (window.location.hostname.includes('github.io')) {
-              await detectGitHubDictionaries();
-              renderDictList();
-            }
-          } else {
-            els.quizSection?.classList.add('hidden');
-            els.dictManagerSection?.classList.remove('hidden');
-            await renderDictList();
-            updateReviewButtonText();
-            
-            if (window.location.hostname.includes('github.io')) {
-              await detectGitHubDictionaries();
-              renderDictList();
-            }
-          }
-        } catch (e) {
-          console.error('❌ Parse failed', e);
-          els.quizSection?.classList.add('hidden');
-          els.dictManagerSection?.classList.remove('hidden');
-          renderDictList();
-          updateReviewButtonText();
-        }
-      } else {
-        console.log('📭 No saved data');
+      if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
+        console.log(`📚 Dictionary loaded: ${data.dictionary.length} words`);
+        allWords = data.dictionary;
+        
+        activePool = [];
+        refillActivePool();
+        freshWordCounter = 0; 
+        recentWords = [];
         els.quizSection?.classList.add('hidden');
         els.dictManagerSection?.classList.remove('hidden');
-        renderDictList();
+        
+        await renderDictList(); 
+        updateStats();
         updateReviewButtonText();
+        
+        console.log('📋 Showing dictionary manager');
 
         if (window.location.hostname.includes('github.io')) {
           await detectGitHubDictionaries();
           renderDictList();
         }
+      } else {
+        els.quizSection?.classList.add('hidden');
+        els.dictManagerSection?.classList.remove('hidden');
+        await renderDictList();
+        updateReviewButtonText();
+        
+        if (window.location.hostname.includes('github.io')) {
+          await detectGitHubDictionaries();
+          renderDictList();
+        }
       }
-      console.log('🔍 === INIT END ===');
-    });
+    } catch (e) {
+      console.error('❌ Parse failed', e);
+      els.quizSection?.classList.add('hidden');
+      els.dictManagerSection?.classList.remove('hidden');
+      renderDictList();
+      updateReviewButtonText();
+    }
+  } else {
+    console.log('📭 No saved data');
+    els.quizSection?.classList.add('hidden');
+    els.dictManagerSection?.classList.remove('hidden');
+    renderDictList();
+    updateReviewButtonText();
+
+    if (window.location.hostname.includes('github.io')) {
+      await detectGitHubDictionaries();
+      renderDictList();
+    }
+  }
+  console.log('🔍 === INIT END ===');
+});
+
 
 </script>
 </body>
