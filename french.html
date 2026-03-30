@@ -931,12 +931,56 @@ function updateImageDisplay() {
   }
 }
 
-function resetHiddenDictionaries() {
-  if (confirm('⚠️ Reset dictionary list to defaults?\n\nAll custom dictionaries will be removed from the list (but progress will be kept).\n\nContinue?')) {
-    availableDicts = [...CONFIG.AVAILABLE_DICTS];
+async function resetHiddenDictionaries() {
+  if (confirm('Restore ALL dictionaries found in the folder?\n\nThis will add back any CSV files that exist on the server.')) {
+    
+    // 🔥 Если на GitHub Pages — запрашиваем список файлов через API
+    if (window.location.hostname.includes('github.io')) {
+      try {
+        const hostname = window.location.hostname;
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        const hostParts = hostname.split('.');
+        const username = hostParts[0];
+        const repo = pathParts[0] || username;
+        
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
+        const response = await fetch(apiUrl);
+        
+        if (response.ok) {
+          const files = await response.json();
+          const csvFiles = files
+            .filter(f => f.name.endsWith('.csv') && f.type === 'file')
+            .map(f => f.name.replace('.csv', ''));
+
+          csvFiles.forEach(dict => {
+            if (!availableDicts.includes(dict)) {
+              availableDicts.push(dict);
+            }
+          });
+          
+          console.log(`🔄 Restored ${csvFiles.length} dictionaries from server`);
+        }
+      } catch (e) {
+        console.warn('⚠️ Could not fetch dictionaries from GitHub:', e.message);
+      }
+    }
+    
+
+    CONFIG.AVAILABLE_DICTS.forEach(dict => {
+      if (!availableDicts.includes(dict)) {
+        availableDicts.push(dict);
+      }
+    });
+    
     saveData();
     renderDictList();
-    console.log('🔄 Dictionary list reset to defaults');
+
+    const restoredCount = availableDicts.length - CONFIG.AVAILABLE_DICTS.length;
+    if (restoredCount > 0) {
+      alert(`✅ Restored ${restoredCount} hidden dictionary${restoredCount > 1 ? 'ies' : ''}!`);
+    }
+    
+    console.log('🔄 Dictionary list restored');
   }
 }
 
