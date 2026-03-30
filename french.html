@@ -498,7 +498,7 @@
     let currentDict = 'words_en';
     let availableDicts = [...CONFIG.AVAILABLE_DICTS];
     let showImages = CONFIG.SHOW_IMAGES_BY_DEFAULT; // 🔥 Состояние показа картинок
-
+let currentImageUrl = null; 
     // ===== DOM =====
     const els = {
       dictManagerSection: document.getElementById('dictManagerSection'),
@@ -717,13 +717,63 @@ function toggleImageVisibility() {
   saveData();
 }
 
-function updateImageDisplay() {
-  // 🔥 ИСПРАВЛЕНИЕ 3: Проверяем есть ли загруженная картинка
-  const hasImage = els.wordImage.src && 
-                   els.wordImage.src !== window.location.href && 
-                   !els.wordImage.src.includes('undefined');
+
+async function loadImageForCurrentWord() {
+  if (!currentWord) return;
   
-  if (showImages && hasImage && !els.wordImage.classList.contains('hidden')) {
+  if (currentImageUrl && els.wordImage.src === currentImageUrl) {
+    if (showImages) {
+      els.wordImage.classList.remove('hidden');
+    }
+    els.imageToggleBtn.disabled = false;
+    return;
+  }
+  
+  console.log('🖼️ Loading image for current word:', currentWord.french);
+  els.imageSource.textContent = '🔍 Searching image...';
+  els.imageToggleBtn.disabled = true;
+  
+  try {
+    const imageData = await fetchWordImage(currentWord.french);
+    
+    if (imageData && imageData.url) {
+      console.log('✅ Image loaded:', imageData.url);
+      currentImageUrl = imageData.url; // 🔥 Сохраняем URL
+      els.wordImage.src = imageData.url;
+      els.imageSource.textContent = imageData.source;
+      
+      els.wordImage.onload = () => {
+        console.log('🖼️ Image displayed');
+        els.imageToggleBtn.disabled = false;
+        if (showImages) {
+          els.wordImage.classList.remove('hidden');
+          els.imageToggleBtn.textContent = '🙈';
+          els.imageToggleBtn.title = 'Hide image';
+        }
+      };
+      
+      els.wordImage.onerror = () => {
+        console.error('❌ Image failed to load');
+        els.wordImage.classList.add('hidden');
+        els.imageSource.textContent = '⚠️ Image failed to load';
+        els.imageToggleBtn.disabled = false;
+      };
+    } else {
+      console.warn('⚠️ No image available');
+      els.wordImage.classList.add('hidden');
+      els.imageSource.textContent = '🚫 No image available';
+      els.imageToggleBtn.disabled = false;
+    }
+  } catch (e) {
+    console.error('❌ Error loading image:', e);
+    els.wordImage.classList.add('hidden');
+    els.imageSource.textContent = '❌ Error loading image';
+    els.imageToggleBtn.disabled = false;
+  }
+}
+
+function updateImageDisplay() {
+  if (showImages && currentImageUrl) {
     els.wordImage.classList.remove('hidden');
     els.imageToggleBtn.textContent = '🙈';
     els.imageToggleBtn.title = 'Hide image';
@@ -734,18 +784,28 @@ function updateImageDisplay() {
   }
 }
 
+// ===== УЛУЧШЕННЫЙ ПОИСК КАРТИНОК - ПО ОПИСАНИЮ =====
 async function fetchWordImage(word) {
   try {
-    // 🔥 Берем только первое слово (убираем артикли le/la/les/un/une)
-    const cleanWord = word.trim()
-      .replace(/^(le|la|les|l'|un|une|du|de|des)\s+/i, '')
-      .split(/[,\s]/)[0]  // Берем первое слово до пробела или запятой
-      .toLowerCase();
+    // 🔥 Ищем слово в словаре чтобы получить описание (правильный ответ)
+    const wordData = allWords.find(w => w.french === word);
     
-    console.log(`🔍 Searching image for: "${cleanWord}" (from "${word}")`);
+    // Если нашли слово в словаре - используем описание (правильный ответ)
+    let searchTerm = word;
+    if (wordData && wordData.correct) {
+      searchTerm = wordData.correct;
+      console.log(`🔍 Using description for image: "${searchTerm}" (from "${word}")`);
+    } else {
+      // Если не нашли - берем первое слово без артикля
+      searchTerm = word.trim()
+        .replace(/^(le|la|les|l'|un|une|du|de|des)\s+/i, '')
+        .split(/[,\s]/)[0]
+        .toLowerCase();
+      console.log(`🔍 Using word itself: "${searchTerm}"`);
+    }
     
     // 🔥 Ищем только изображения (не видео!)
-    const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrlimit=1&prop=pageimages|info&pithumbsize=400&gsrsearch=${encodeURIComponent(cleanWord)}&format=json&origin=*`;
+    const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrlimit=1&prop=pageimages|info&pithumbsize=400&gsrsearch=${encodeURIComponent(searchTerm)}&format=json&origin=*`;
     
     console.log(`📡 Fetching: ${searchUrl}`);
     const response = await fetch(searchUrl);
@@ -778,7 +838,7 @@ async function fetchWordImage(word) {
       }
     }
     
-    console.warn(`⚠️ No image found for "${cleanWord}"`);
+    console.warn(`⚠️ No image found for "${searchTerm}"`);
     return null;
     
   } catch (e) {
@@ -885,49 +945,22 @@ async function nextWord() {
   els.imageToggleBtn.style.display = 'block';
   updateFavoriteButton();
   
-  // Загружаем картинку
+  // 🔥 Сбрасываем URL картинки для нового слова
+  currentImageUrl = null;
   els.wordImage.classList.add('hidden');
-  els.imageSource.textContent = '🔍 Searching image...';
-  els.imageToggleBtn.textContent = '🖼️';
-  els.imageToggleBtn.title = 'Show image';
-  els.imageToggleBtn.disabled = true;
   
-  try {
-    const imageData = await fetchWordImage(currentWord.french);
+  if (showImages) {
+    els.imageSource.textContent = '🔍 Searching image...';
+    els.imageToggleBtn.textContent = '🖼️';
+    els.imageToggleBtn.title = 'Show image';
+    els.imageToggleBtn.disabled = true;
     
-    if (imageData && imageData.url) {
-      console.log('✅ Image loaded:', imageData.url);
-      els.wordImage.src = imageData.url;
-      els.imageSource.textContent = imageData.source;
-      
-      els.wordImage.onload = () => {
-        console.log('🖼️ Image displayed');
-        els.imageToggleBtn.disabled = false;
-        if (showImages) {
-          els.wordImage.classList.remove('hidden');
-          els.imageToggleBtn.textContent = '🙈';
-          els.imageToggleBtn.title = 'Hide image';
-        } else {
-          els.wordImage.classList.add('hidden');
-        }
-      };
-      
-      els.wordImage.onerror = () => {
-        console.error('❌ Image failed to load');
-        els.wordImage.classList.add('hidden');
-        els.imageSource.textContent = '⚠️ Image failed to load';
-        els.imageToggleBtn.disabled = false;
-      };
-    } else {
-      console.warn('⚠️ No image available');
-      els.wordImage.classList.add('hidden');
-      els.imageSource.textContent = '🚫 No image available';
-      els.imageToggleBtn.disabled = false;
-    }
-  } catch (e) {
-    console.error('❌ Error loading image:', e);
-    els.wordImage.classList.add('hidden');
-    els.imageSource.textContent = '❌ Error loading image';
+    // 🔥 Загружаем картинку
+    await loadImageForCurrentWord();
+  } else {
+    els.imageSource.textContent = '🖼️ Images disabled';
+    els.imageToggleBtn.textContent = '🖼️';
+    els.imageToggleBtn.title = 'Show image';
     els.imageToggleBtn.disabled = false;
   }
   
@@ -944,9 +977,8 @@ async function nextWord() {
     els.options.appendChild(btn);
   });
 }
-
-
-
+    
+    
 function exitReviewMode() {
   if (reviewMode) {
     console.log('🔓 Exiting review mode');
@@ -1067,6 +1099,56 @@ function handleAnswer(selected, correct) {
       renderDictList();
     }
 
+
+// ===== АВТОМАТИЧЕСКОЕ ОБНАРУЖЕНИЕ СЛОВАРЕЙ НА GITHUB =====
+async function detectGitHubDictionaries() {
+  try {
+    console.log('🔍 Detecting dictionaries on GitHub...');
+    
+    // Получаем путь к репозиторию из URL
+    const pathParts = window.location.pathname.split('/').filter(p => p);
+    // Ожидаем структуру: /username/repo-name/...
+    if (pathParts.length < 2) {
+      console.warn('⚠️ Not a GitHub Pages URL');
+      return;
+    }
+    
+    const username = pathParts[0];
+    const repo = pathParts[1];
+    
+    // GitHub API для получения списка файлов
+    const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
+    console.log(`📡 Fetching: ${apiUrl}`);
+    
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error('GitHub API failed');
+    
+    const files = await response.json();
+    
+    // Фильтруем только CSV файлы
+    const csvFiles = files
+      .filter(f => f.name.endsWith('.csv') && f.type === 'file')
+      .map(f => f.name.replace('.csv', ''));
+    
+    console.log(`✅ Found ${csvFiles.length} dictionaries:`, csvFiles);
+    
+    // Добавляем найденные словари в список (без дубликатов)
+    csvFiles.forEach(dict => {
+      if (!availableDicts.includes(dict)) {
+        availableDicts.push(dict);
+      }
+    });
+    
+    // Сохраняем обновленный список
+    saveData();
+    
+  } catch (e) {
+    console.warn('⚠️ Could not auto-detect dictionaries:', e.message);
+    console.log('💡 Using hardcoded dictionaries only');
+  }
+}
+
+
     // ===== EVENTS =====
 els.applyPoolBtn?.addEventListener('click', () => {
   const val = parseInt(els.poolSizeInput.value);
@@ -1090,18 +1172,21 @@ els.loadDictBtn?.addEventListener('click', () => {
 });
 
 els.dictManagerBtn?.addEventListener('click', () => {
-  exitReviewMode(); // 🔥 Сброс review
+  exitReviewMode(); 
   showDictManager();
 });
 
 els.backToQuizFromDict?.addEventListener('click', () => {
   els.dictManagerSection?.classList.add('hidden');
   els.quizSection?.classList.remove('hidden');
+  if (allWords.length > 0 && !currentWord) {
+    nextWord();
+  }
 });
 
 
     els.favoriteBtn?.addEventListener('click', toggleFavorite);
-    els.imageToggleBtn?.addEventListener('click', toggleImageVisibility); // 🔥 Кнопка картинок
+    els.imageToggleBtn?.addEventListener('click', toggleImageVisibility); 
     els.nextBtn?.addEventListener('click', nextWord);
 
 
@@ -1194,11 +1279,9 @@ els.csvFile?.addEventListener('change', async (e) => {
 document.addEventListener('keydown', (e) => {
   if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
 });
-    fetchWordImage
+    
 // ===== INIT =====
-
-// ===== INIT =====
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   console.log('🔍 === INIT START ===');
   
   if (!els.reviewBtn) {
@@ -1226,7 +1309,7 @@ window.addEventListener('DOMContentLoaded', () => {
       currentDict = data.currentDict || 'words_en';
       availableDicts = data.availableDicts || [...CONFIG.AVAILABLE_DICTS];
       showImages = data.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT;
-      reviewMode = false; // 🔥 Сбрасываем review mode при загрузке
+      reviewMode = false;
       
       if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
       if (els.dictNameInput) els.dictNameInput.value = currentDict;
@@ -1240,27 +1323,50 @@ window.addEventListener('DOMContentLoaded', () => {
         
         els.quizSection?.classList.add('hidden');
         els.dictManagerSection?.classList.remove('hidden');
+        
+        // 🔥 Сначала рендерим список, потом пытаемся обнаружить новые словари
         renderDictList();
         updateStats();
-        updateReviewButtonText(); // 🔥 Обновляем текст кнопки
+        updateReviewButtonText();
         
         console.log('📋 Showing dictionary manager');
+        
+        // 🔥 Автообнаружение словарей на GitHub (асинхронно)
+        if (window.location.hostname.includes('github.io')) {
+          await detectGitHubDictionaries();
+          renderDictList(); // Перерисовываем список с новыми словарями
+        }
       } else {
         els.quizSection?.classList.add('hidden');
         els.dictManagerSection?.classList.remove('hidden');
+        renderDictList();
         updateReviewButtonText();
+        
+        // 🔥 Автообнаружение словарей на GitHub
+        if (window.location.hostname.includes('github.io')) {
+          await detectGitHubDictionaries();
+          renderDictList();
+        }
       }
     } catch (e) {
       console.error('❌ Parse failed', e);
       els.quizSection?.classList.add('hidden');
       els.dictManagerSection?.classList.remove('hidden');
+      renderDictList();
       updateReviewButtonText();
     }
   } else {
     console.log('📭 No saved data');
     els.quizSection?.classList.add('hidden');
     els.dictManagerSection?.classList.remove('hidden');
+    renderDictList();
     updateReviewButtonText();
+    
+    // 🔥 Автообнаружение словарей на GitHub
+    if (window.location.hostname.includes('github.io')) {
+      await detectGitHubDictionaries();
+      renderDictList();
+    }
   }
   console.log('🔍 === INIT END ===');
 });
