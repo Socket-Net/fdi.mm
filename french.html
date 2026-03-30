@@ -48,7 +48,7 @@
       flex-wrap: wrap;
     }
     
-    .settings input {
+    .settings input, .settings select {
       width: 50px;
       padding: 0.25rem 0.5rem;
       border: 1px solid rgba(75,85,99,0.5);
@@ -56,6 +56,11 @@
       background: rgba(17,24,39,0.8);
       color: #fff;
       text-align: center;
+    }
+    
+    .settings select {
+      width: auto;
+      min-width: 120px;
     }
     
     .dict-selector {
@@ -361,42 +366,53 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1>🇫🇷 French Vocab Trainer Pro</h1>
+      <h1 id="appTitle">🇫🇷 French Vocab Trainer Pro</h1>
       
       <div class="settings">
         <div>
-          <label>Pool:</label>
+          <label id="lblPool">Pool:</label>
           <input type="number" id="poolSizeInput" min="5" max="200" value="75">
           <button class="secondary-btn" id="applyPoolBtn" style="padding:0.25rem 0.25rem;font-size:0.8rem">OK</button>
         </div>
         
+        <div>
+          <label id="lblLanguage">Language:</label>
+          <select id="languageSelect">
+            <option value="--/--">--/--</option>
+            <option value="ru">Русский</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="ar">عربی (دری)</option>
+          </select>
+        </div>
+        
         <div class="dict-selector">
-          <label>Dictionary:</label>
+          <label id="lblDictionary">Dictionary:</label>
           <input type="text" id="dictNameInput" placeholder="words_en" value="words_en">
-          <button class="secondary-btn" id="loadDictBtn" style="padding:0.25rem 0.25rem;font-size:0.8rem">Load</button>
+          <button class="secondary-btn" id="loadDictBtn" style="padding:0.25rem 0.25rem;font-size:0.8rem" id="btnLoad">Load</button>
         </div>
       </div>
       
       <div class="stats">
         <div class="stat">
           <div class="stat-value" id="learnedCount">0</div>
-          <div>Learned</div>
+          <div id="statLearned">Learned</div>
         </div>
         <div class="stat">
           <div class="stat-value" id="totalCount">0</div>
-          <div>Dictionary</div>
+          <div id="statDictionary">Dictionary</div>
         </div>
         <div class="stat">
           <div class="stat-value" id="correctCount">0</div>
-          <div>Correct</div>
+          <div id="statCorrect">Correct</div>
         </div>
         <div class="stat">
           <div class="stat-value" id="errorCount" style="color:#fca5a5">0</div>
-          <div>Errors</div>
+          <div id="statErrors">Errors</div>
         </div>
         <div class="stat">
           <div class="stat-value" id="favoriteCount" style="color:#fbbf24">0</div>
-          <div>Favorites</div>
+          <div id="statFavorites">Favorites</div>
         </div>
       </div>
       <div class="progress-bar">
@@ -407,25 +423,25 @@
     <!-- Dictionary Management -->
     <div id="dictManagerSection" class="hidden">
       <div style="text-align:center;margin:1rem 0">
-        <h3 style="margin-bottom:1rem">📚 Available Dictionaries</h3>
+        <h3 style="margin-bottom:1rem" id="dictManagerTitle">📚 Available Dictionaries</h3>
         <div class="dict-list" id="dictList"></div>
         <div style="margin:1rem 0">
           <label style="display:inline-block;padding:0.75rem 1.5rem;background:rgba(107,114,128,0.5);border-radius:0.5rem;cursor:pointer;font-size:0.95rem">
-            📁 Load CSV
+            <span id="btnLoadCSV">📁 Load CSV</span>
             <input type="file" id="csvFile" accept=".csv" style="display:none">
           </label>
            
           <button class="secondary-btn" id="restoreDictsBtn" style="font-size:0.85rem; padding-left: 4px;padding-right: 4px;">
-            🔄 Show hidden
+            🔄 <span id="btnShowHidden">Show hidden</span>
           </button>
    
         </div>
 
-        <p style="font-size:0.8rem;color:#94a3b8;margin:0.5rem 0">
+        <p style="font-size:0.8rem;color:#94a3b8;margin:0.5rem 0" id="tipText">
           💡 Tip: Place CSV files in same folder as index.html<br>
           Or use GitHub Pages for online access
         </p>
-        <button class="secondary-btn" id="backToQuizFromDict">← Back to Quiz</button>
+        <button class="secondary-btn" id="backToQuizFromDict">← <span id="btnBackToQuiz">Back to Quiz</span></button>
       </div>
     </div>
 
@@ -452,37 +468,347 @@
       <div class="feedback" id="feedback"></div>
       
       <div class="extra-controls">
-        <button class="danger-btn" id="clearCacheBtn">🗑️</button>        
-        <button class="secondary-btn" id="dictManagerBtn" style="padding-left:6px;padding-right:6px">📚 Dictionaries</button>
-        <button class="secondary-btn" id="reviewBtn" style="padding-left:6px;padding-right:6px">🔄 Review</button>
-        <button class="secondary-btn" id="historyBtn" style="padding-left:6px;padding-right:6px">📜 History</button>
-        <button class="danger-btn" id="finishBtn">✅ Finish</button>
+        <button class="danger-btn" id="clearCacheBtn" title="Clear cache">🗑️</button>        
+        <button class="secondary-btn" id="dictManagerBtn" style="padding-left:6px;padding-right:6px">📚 <span id="btnDictionaries">Dictionaries</span></button>
+        <button class="secondary-btn" id="reviewBtn" style="padding-left:6px;padding-right:6px">🔄 <span id="btnReview">Review</span></button>
+        <button class="secondary-btn" id="historyBtn" style="padding-left:6px;padding-right:6px">📜 <span id="btnHistory">History</span></button>
+        <button class="danger-btn" id="finishBtn">✅ <span id="btnFinish">Finish</span></button>
       </div>
     </div>
 
     <!-- History -->
     <div id="historySection" class="hidden">
-      <h3 style="text-align:center;margin-bottom:1rem;">📜 Last 20</h3>
+      <h3 style="text-align:center;margin-bottom:1rem;">📜 <span id="historyTitle">Last 20</span></h3>
       <div class="history-list" id="historyList" style="max-height:200px;overflow-y:auto;text-align:left;font-size:0.85rem"></div>
       <div class="controls" style="display:flex;justify-content:center;margin-top:1rem">
-        <button class="secondary-btn" id="backToQuizBtn">← Back</button>
+        <button class="secondary-btn" id="backToQuizBtn">← <span id="btnBack">Back</span></button>
       </div>
     </div>
 
     <!-- Summary -->
     <div id="summarySection" class="hidden">
       <div style="text-align:center;padding:1rem">
-        <h2>🎉 Session Complete!</h2>
-        <p style="margin:1rem 0;color:#94a3b8">Progress saved. Choose another dictionary or continue later.</p>
+        <h2 id="summaryTitle">🎉 Session Complete!</h2>
+        <p style="margin:1rem 0;color:#94a3b8" id="summaryText">Progress saved. Choose another dictionary or continue later.</p>
         <div style="display:flex;gap:1rem;justify-content:center;margin-top:1rem">
-          <button id="backToMainBtn">📚 Choose Dictionary</button>
-          <button class="secondary-btn" id="closeBtn">✖ Close</button>
+          <button id="backToMainBtn">📚 <span id="btnChooseDict">Choose Dictionary</span></button>
+          <button class="secondary-btn" id="closeBtn">✖ <span id="btnClose">Close</span></button>
         </div>
       </div>
     </div>
   </div>
 
 <script>
+    // ===== TRANSLATIONS =====
+    const translations = {
+      '--/--': {
+        appTitle: '🇫🇷 French Vocab Trainer Pro',
+        lblPool: 'Pool:',
+        lblLanguage: 'Language:',
+        lblDictionary: 'Dictionary:',
+        btnLoad: 'Load',
+        statLearned: 'Learned',
+        statDictionary: 'Dictionary',
+        statCorrect: 'Correct',
+        statErrors: 'Errors',
+        statFavorites: 'Favorites',
+        dictManagerTitle: '📚 Available Dictionaries',
+        btnLoadCSV: '📁 Load CSV',
+        btnShowHidden: 'Show hidden',
+        tipText: '💡 Tip: Place CSV files in same folder as index.html<br>Or use GitHub Pages for online access',
+        btnBackToQuiz: 'Back to Quiz',
+        btnDictionaries: 'Dictionaries',
+        btnReview: 'Review',
+        btnHistory: 'History',
+        btnFinish: 'Finish',
+        historyTitle: 'Last 20',
+        btnBack: 'Back',
+        summaryTitle: '🎉 Session Complete!',
+        summaryText: 'Progress saved. Choose another dictionary or continue later.',
+        btnChooseDict: 'Choose Dictionary',
+        btnClose: 'Close',
+        wordLoading: 'Loading...',
+        btnNext: 'Next →',
+        btnExit: '🔙 Exit',
+        btnReset: '🔄 Reset',
+        reviewed: '✅ Reviewed!',
+        allLearned: '🎉 All learned!',
+        exitReview: 'Exit review',
+        greatJob: 'Great job!',
+        imagesDisabled: '🖼️ Images disabled',
+        searchingImage: '🔍 Searching image...',
+        imageFailed: '⚠️ Image failed to load',
+        noImage: '🚫 No image available',
+        errorLoadingImage: '❌ Error loading image',
+        reviewMode: '🔙 Back to Quiz',
+        reviewModeTitle: 'Exit review mode',
+        favoritesMode: '⭐ Favorites',
+        favoritesModeTitle: 'Review favorite words',
+        noFavorites: '⚠️ No favorite words yet!\n\n1. Click the ☆ button on words you want to review\n2. Then click 🔄 Review again',
+        poolSet: '✅ Pool: ',
+        poolInvalid: '⚠️ 5-200',
+        cacheCleared: '✅ Cache cleared. Reloading...',
+        cacheConfirm: '⚠️ Clear all saved data? Progress will be lost.',
+        fileError: '⚠️ Failed to read file.',
+        dictLoadError: '⚠️ Could not load "',
+        dictLoadError2: '.csv".\n\nError: ',
+        dictLoadError3: '\n\n💡 Make sure the file exists in the same folder.',
+        restoreConfirm: 'Restore ALL dictionaries found in the folder?\n\nThis will add back any CSV files that exist on the server.',
+        restoreSuccess: '✅ Restored ',
+        restoreSuccess2: ' hidden dictionary',
+        restoreSuccess3: 'ies!',
+        restoreSuccess4: 'y!',
+        hideConfirm: 'Hide "',
+        hideConfirm2: '.csv" from the list?\n\nYou can always add it back by loading the file or typing the name manually.',
+        closeConfirm: 'Close and return to dictionary selection?'
+      },
+      'ru': {
+        appTitle: '🇫🇷 Тренажер французской лексики',
+        lblPool: 'Пул:',
+        lblLanguage: 'Язык:',
+        lblDictionary: 'Словарь:',
+        btnLoad: 'Загрузить',
+        statLearned: 'Изучено',
+        statDictionary: 'Словарь',
+        statCorrect: 'Правильно',
+        statErrors: 'Ошибки',
+        statFavorites: 'Избранное',
+        dictManagerTitle: '📚 Доступные словари',
+        btnLoadCSV: '📁 Загрузить CSV',
+        btnShowHidden: 'Показать скрытые',
+        tipText: '💡 Совет: Поместите CSV файлы в ту же папку, что и index.html<br>Или используйте GitHub Pages для онлайн доступа',
+        btnBackToQuiz: 'Назад к тесту',
+        btnDictionaries: 'Словари',
+        btnReview: 'Повторение',
+        btnHistory: 'История',
+        btnFinish: 'Завершить',
+        historyTitle: 'Последние 20',
+        btnBack: 'Назад',
+        summaryTitle: '🎉 Сессия завершена!',
+        summaryText: 'Прогресс сохранен. Выберите другой словарь или продолжите позже.',
+        btnChooseDict: 'Выбрать словарь',
+        btnClose: 'Закрыть',
+        wordLoading: 'Загрузка...',
+        btnNext: 'Далее →',
+        btnExit: '🔙 Выход',
+        btnReset: '🔄 Сброс',
+        reviewed: '✅ Повторено!',
+        allLearned: '🎉 Все изучено!',
+        exitReview: 'Выйти из повторения',
+        greatJob: 'Отличная работа!',
+        imagesDisabled: '🖼️ Изображения отключены',
+        searchingImage: '🔍 Поиск изображения...',
+        imageFailed: '⚠️ Не удалось загрузить изображение',
+        noImage: '🚫 Изображение недоступно',
+        errorLoadingImage: '❌ Ошибка загрузки изображения',
+        reviewMode: '🔙 Назад к тесту',
+        reviewModeTitle: 'Выйти из режима повторения',
+        favoritesMode: '⭐ Избранное',
+        favoritesModeTitle: 'Повторить избранные слова',
+        noFavorites: '⚠️ Пока нет избранных слов!\n\n1. Нажмите кнопку ☆ на словах, которые хотите повторить\n2. Затем нажмите 🔄 Повторение',
+        poolSet: '✅ Пул: ',
+        poolInvalid: '⚠️ 5-200',
+        cacheCleared: '✅ Кэш очищен. Перезагрузка...',
+        cacheConfirm: '⚠️ Очистить все сохраненные данные? Прогресс будет потерян.',
+        fileError: '⚠️ Не удалось прочитать файл.',
+        dictLoadError: '⚠️ Не удалось загрузить "',
+        dictLoadError2: '.csv".\n\nОшибка: ',
+        dictLoadError3: '\n\n💡 Убедитесь, что файл существует в той же папке.',
+        restoreConfirm: 'Восстановить ВСЕ словари, найденные в папке?\n\nЭто добавит обратно все CSV файлы, которые существуют на сервере.',
+        restoreSuccess: '✅ Восстановлено ',
+        restoreSuccess2: ' скрытый словарь',
+        restoreSuccess3: 'ей!',
+        restoreSuccess4: '!',
+        hideConfirm: 'Скрыть "',
+        hideConfirm2: '.csv" из списка?\n\nВы всегда можете добавить его обратно, загрузив файл или введя имя вручную.',
+        closeConfirm: 'Закрыть и вернуться к выбору словаря?'
+      },
+      'en': {
+        appTitle: '🇫🇷 French Vocab Trainer Pro',
+        lblPool: 'Pool:',
+        lblLanguage: 'Language:',
+        lblDictionary: 'Dictionary:',
+        btnLoad: 'Load',
+        statLearned: 'Learned',
+        statDictionary: 'Dictionary',
+        statCorrect: 'Correct',
+        statErrors: 'Errors',
+        statFavorites: 'Favorites',
+        dictManagerTitle: '📚 Available Dictionaries',
+        btnLoadCSV: '📁 Load CSV',
+        btnShowHidden: 'Show hidden',
+        tipText: '💡 Tip: Place CSV files in same folder as index.html<br>Or use GitHub Pages for online access',
+        btnBackToQuiz: 'Back to Quiz',
+        btnDictionaries: 'Dictionaries',
+        btnReview: 'Review',
+        btnHistory: 'History',
+        btnFinish: 'Finish',
+        historyTitle: 'Last 20',
+        btnBack: 'Back',
+        summaryTitle: '🎉 Session Complete!',
+        summaryText: 'Progress saved. Choose another dictionary or continue later.',
+        btnChooseDict: 'Choose Dictionary',
+        btnClose: 'Close',
+        wordLoading: 'Loading...',
+        btnNext: 'Next →',
+        btnExit: '🔙 Exit',
+        btnReset: '🔄 Reset',
+        reviewed: '✅ Reviewed!',
+        allLearned: '🎉 All learned!',
+        exitReview: 'Exit review',
+        greatJob: 'Great job!',
+        imagesDisabled: '🖼️ Images disabled',
+        searchingImage: '🔍 Searching image...',
+        imageFailed: '⚠️ Image failed to load',
+        noImage: '🚫 No image available',
+        errorLoadingImage: '❌ Error loading image',
+        reviewMode: '🔙 Back to Quiz',
+        reviewModeTitle: 'Exit review mode',
+        favoritesMode: '⭐ Favorites',
+        favoritesModeTitle: 'Review favorite words',
+        noFavorites: '⚠️ No favorite words yet!\n\n1. Click the ☆ button on words you want to review\n2. Then click 🔄 Review again',
+        poolSet: '✅ Pool: ',
+        poolInvalid: '⚠️ 5-200',
+        cacheCleared: '✅ Cache cleared. Reloading...',
+        cacheConfirm: '⚠️ Clear all saved data? Progress will be lost.',
+        fileError: '⚠️ Failed to read file.',
+        dictLoadError: '⚠️ Could not load "',
+        dictLoadError2: '.csv".\n\nError: ',
+        dictLoadError3: '\n\n💡 Make sure the file exists in the same folder.',
+        restoreConfirm: 'Restore ALL dictionaries found in the folder?\n\nThis will add back any CSV files that exist on the server.',
+        restoreSuccess: '✅ Restored ',
+        restoreSuccess2: ' hidden dictionary',
+        restoreSuccess3: 'ies!',
+        restoreSuccess4: 'y!',
+        hideConfirm: 'Hide "',
+        hideConfirm2: '.csv" from the list?\n\nYou can always add it back by loading the file or typing the name manually.',
+        closeConfirm: 'Close and return to dictionary selection?'
+      },
+      'fr': {
+        appTitle: '🇫🇷 French Vocab Trainer Pro',
+        lblPool: 'Pool:',
+        lblLanguage: 'Langue:',
+        lblDictionary: 'Dictionnaire:',
+        btnLoad: 'Charger',
+        statLearned: 'Appris',
+        statDictionary: 'Dictionnaire',
+        statCorrect: 'Correct',
+        statErrors: 'Erreurs',
+        statFavorites: 'Favoris',
+        dictManagerTitle: '📚 Dictionnaires disponibles',
+        btnLoadCSV: '📁 Charger CSV',
+        btnShowHidden: 'Afficher cachés',
+        tipText: '💡 Astuce: Placez les fichiers CSV dans le même dossier que index.html<br>Ou utilisez GitHub Pages pour un accès en ligne',
+        btnBackToQuiz: 'Retour au Quiz',
+        btnDictionaries: 'Dictionnaires',
+        btnReview: 'Révision',
+        btnHistory: 'Historique',
+        btnFinish: 'Terminer',
+        historyTitle: '20 derniers',
+        btnBack: 'Retour',
+        summaryTitle: '🎉 Session terminée!',
+        summaryText: 'Progrès sauvegardé. Choisissez un autre dictionnaire ou continuez plus tard.',
+        btnChooseDict: 'Choisir Dictionnaire',
+        btnClose: 'Fermer',
+        wordLoading: 'Chargement...',
+        btnNext: 'Suivant →',
+        btnExit: '🔙 Quitter',
+        btnReset: '🔄 Réinitialiser',
+        reviewed: '✅ Révisé!',
+        allLearned: '🎉 Tout appris!',
+        exitReview: 'Quitter la révision',
+        greatJob: 'Bon travail!',
+        imagesDisabled: '🖼️ Images désactivées',
+        searchingImage: '🔍 Recherche image...',
+        imageFailed: '⚠️ Échec chargement image',
+        noImage: '🚫 Image non disponible',
+        errorLoadingImage: '❌ Erreur chargement image',
+        reviewMode: '🔙 Retour au Quiz',
+        reviewModeTitle: 'Quitter mode révision',
+        favoritesMode: '⭐ Favoris',
+        favoritesModeTitle: 'Réviser mots favoris',
+        noFavorites: '⚠️ Pas encore de mots favoris!\n\n1. Cliquez sur le bouton ☆ pour les mots à réviser\n2. Puis cliquez 🔄 Révision',
+        poolSet: '✅ Pool: ',
+        poolInvalid: '⚠️ 5-200',
+        cacheCleared: '✅ Cache effacé. Rechargement...',
+        cacheConfirm: '⚠️ Effacer toutes les données sauvegardées? Le progrès sera perdu.',
+        fileError: '⚠️ Échec lecture fichier.',
+        dictLoadError: '⚠️ Impossible de charger "',
+        dictLoadError2: '.csv".\n\nErreur: ',
+        dictLoadError3: '\n\n💡 Assurez-vous que le fichier existe dans le même dossier.',
+        restoreConfirm: 'Restaurer TOUS les dictionnaires trouvés dans le dossier?\n\nCela ajoutera tous les fichiers CSV existants sur le serveur.',
+        restoreSuccess: '✅ Restauré ',
+        restoreSuccess2: ' dictionnaire caché',
+        restoreSuccess3: 's!',
+        restoreSuccess4: '!',
+        hideConfirm: 'Cacher "',
+        hideConfirm2: '.csv" de la liste?\n\nVous pouvez toujours le rajouter en chargeant le fichier ou en tapant le nom manuellement.',
+        closeConfirm: 'Fermer et retourner à la sélection de dictionnaire?'
+      },
+      'ar': {
+        appTitle: '🇫🇷 مدرب مفردات فرانسیوی',
+        lblPool: 'مجموعه:',
+        lblLanguage: 'زبان:',
+        lblDictionary: 'لغتنامه:',
+        btnLoad: 'بارگذاری',
+        statLearned: 'آموخته شده',
+        statDictionary: 'لغتنامه',
+        statCorrect: 'صحیح',
+        statErrors: 'خطاها',
+        statFavorites: 'علاقه‌مندی‌ها',
+        dictManagerTitle: '📚 لغتنامه‌های موجود',
+        tipText: '💡 نکته: فایل‌های CSV را در همان پوشه index.html قرار دهید<br>یا از GitHub Pages برای دسترسی آنلاین استفاده کنید',
+        historyTitle: '۲۰ تای آخر',
+        btnBack: 'بازگشت',
+        summaryTitle: '🎉 جلسه کامل شد!',
+        summaryText: 'پیشرفت ذخیره شد. لغتنامه دیگری انتخاب کنید یا بعداً ادامه دهید.',
+        btnChooseDict: 'انتخاب لغتنامه',
+        btnClose: 'بستن',
+        wordLoading: 'در حال بارگذاری...',
+        btnNext: 'بعدی →',
+        btnExit: '🔙 خروج',
+        btnReset: '🔄 بازنشانی',
+        btnFinish: 'پایان',
+        btnReview: 'علاقه‌مندی‌ها',
+        btnBackToQuiz: 'بازگشت به آزمون',
+        btnDictionaries: 'لغتنامه‌ها',
+        btnHistory: 'تاریخچه',
+        btnLoadCSV: '📁 بارگذاری CSV',
+        btnShowHidden: 'نمایش پنهان‌ها',
+        btnHistory: 'تاریخچه',
+        reviewed: '✅ مرور شد!',
+        allLearned: '🎉 همه آموخته شد!',
+        exitReview: 'خروج از مرور',
+        greatJob: 'کار عالی!',
+        imagesDisabled: '🖼️ تصاویر غیرفعال',
+        searchingImage: '🔍 جستجوی تصویر...',
+        imageFailed: '⚠️ بارگذاری تصویر ناموفق',
+        noImage: '🚫 تصویر موجود نیست',
+        errorLoadingImage: '❌ خطا در بارگذاری تصویر',
+        reviewMode: '🔙 بازگشت به آزمون',
+        reviewModeTitle: 'خروج از حالت مرور',
+        favoritesMode: '⭐ علاقه‌مندی‌ها',
+        favoritesModeTitle: 'مرور کلمات علاقه‌مندی',
+        noFavorites: '⚠️ هنوز کلمه علاقه‌مندی ندارید!\n\n۱. روی دکمه ☆ برای کلماتی که می‌خواهید مرور کنید کلیک کنید\n۲. سپس روی 🔄 مرور کلیک کنید',
+        poolSet: '✅ مجموعه: ',
+        poolInvalid: '⚠️ ۵-۲۰۰',
+        cacheCleared: '✅ کش پاک شد. در حال بارگذاری مجدد...',
+        cacheConfirm: '⚠️ همه داده‌های ذخیره شده پاک شود؟ پیشرفت از بین خواهد رفت.',
+        fileError: '⚠️ خواندن فایل ناموفق.',
+        dictLoadError: '⚠️ بارگذاری "',
+        dictLoadError2: '.csv" ناموفق.\n\nخطا: ',
+        dictLoadError3: '\n\n💡 مطمئن شوید فایل در همان پوشه وجود دارد.',
+        restoreConfirm: 'همه لغتنامه‌های موجود در پوشه بازیابی شوند؟\n\nاین کار همه فایل‌های CSV موجود در سرور را اضافه می‌کند.',
+        restoreSuccess: '✅ بازیابی شد ',
+        restoreSuccess2: ' لغتنامه پنهان',
+        restoreSuccess3: '!',
+        restoreSuccess4: '!',
+        hideConfirm: 'پنهان کردن "',
+        hideConfirm2: '.csv" از لیست؟\n\nشما همیشه می‌توانید آن را با بارگذاری فایل یا تایپ دستی نام اضافه کنید.',
+        closeConfirm: 'بستن و بازگشت به انتخاب لغتنامه؟'
+      }
+    };
+
     // ===== CONFIG =====
     const CONFIG = {
       POINTS_TO_LEARN: 5,
@@ -510,6 +836,7 @@
     let activePool = []; 
     let freshWordCounter = 0;
     let recentWords = [];
+    let currentLanguage = '--/--';
 
     // ===== DOM =====
     const els = {
@@ -523,6 +850,7 @@
       applyPoolBtn: document.getElementById('applyPoolBtn'),
       dictNameInput: document.getElementById('dictNameInput'),
       loadDictBtn: document.getElementById('loadDictBtn'),
+      languageSelect: document.getElementById('languageSelect'),
       dictList: document.getElementById('dictList'),
       word: document.getElementById('word'),
       wordImage: document.getElementById('wordImage'),
@@ -550,6 +878,80 @@
       progressFill: document.getElementById('progressFill'),
       historyList: document.getElementById('historyList')
     };
+
+    // ===== LANGUAGE FUNCTIONS =====
+    function updateInterfaceLanguage() {
+      const t = translations[currentLanguage];
+      if (!t) return;
+      const setText = (id, text) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      };
+  const setInnerHtml = (id, html) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  };
+  
+      // Update all translatable elements
+      document.getElementById('appTitle').textContent = t.appTitle;
+      document.getElementById('lblPool').textContent = t.lblPool;
+      document.getElementById('lblLanguage').textContent = t.lblLanguage;
+      document.getElementById('lblDictionary').textContent = t.lblDictionary;
+      document.getElementById('loadDictBtn').textContent = t.btnLoad;
+      document.getElementById('statLearned').textContent = t.statLearned;
+      document.getElementById('statDictionary').textContent = t.statDictionary;
+      document.getElementById('statCorrect').textContent = t.statCorrect;
+      document.getElementById('statErrors').textContent = t.statErrors;
+      document.getElementById('statFavorites').textContent = t.statFavorites;
+      document.getElementById('dictManagerTitle').textContent = t.dictManagerTitle;
+      document.getElementById('btnLoadCSV').textContent = t.btnLoadCSV;
+      document.getElementById('btnShowHidden').textContent = t.btnShowHidden;
+      document.getElementById('tipText').innerHTML = t.tipText;
+      document.getElementById('backToQuizFromDict').innerHTML = '← ' + t.btnBackToQuiz;
+      document.getElementById('btnDictionaries').textContent = t.btnDictionaries;
+      if(document.getElementById('btnReview')){
+      document.getElementById('btnReview').textContent = t.btnReview;
+      }
+      document.getElementById('btnHistory').textContent = t.btnHistory;
+      document.getElementById('btnFinish').textContent = t.btnFinish;
+      document.getElementById('historyTitle').textContent = t.historyTitle;
+      document.getElementById('btnBack').textContent = t.btnBack;
+      document.getElementById('summaryTitle').textContent = t.summaryTitle;
+      document.getElementById('summaryText').textContent = t.summaryText;
+      document.getElementById('btnChooseDict').textContent = t.btnChooseDict;
+      document.getElementById('btnClose').textContent = t.btnClose;
+      // Update buttons that might be visible
+      if (els.nextBtn) els.nextBtn.textContent = t.btnNext;
+      
+      // Update review button text based on mode
+      updateReviewButtonText();
+      
+      // Re-render dictionary list if visible
+      if (!els.dictManagerSection.classList.contains('hidden')) {
+        renderDictList();
+      }
+    }
+
+    function filterDictionariesByLanguage(lang) {
+      if (lang === '--/--' || lang === 'fr') {
+        // Show all dictionaries
+        return availableDicts;
+      }
+      
+      const suffix = '_' + lang;
+      return availableDicts.filter(dict => dict.includes(suffix));
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem(CONFIG.STORAGE_KEY + '_language', lang);
+      updateInterfaceLanguage();
+      
+      // Filter dictionaries based on language
+      if (!els.dictManagerSection.classList.contains('hidden')) {
+        renderDictList();
+      }
+    }
 
     // ===== LOCAL STORAGE =====
     function isLocalStorageAvailable() {
@@ -596,62 +998,64 @@
     }
 
     // ===== DICTIONARY MANAGEMENT =====
-// ===== DICTIONARY MANAGEMENT =====
-async function loadDictionary(dictName) {
-  try {
-    console.log(`📚 Loading dictionary: ${dictName}`);
-    els.word.textContent = '📥 Loading...';
-    
-    const basePath = window.location.pathname.endsWith('/') 
-      ? window.location.pathname 
-      : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    
-    const url = basePath + dictName + '.csv';
-    console.log(`🔍 Fetching: ${url}`);
-    
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    
-    const text = await response.text();
-    const newWords = parseCSV(text);
-    
-    if (newWords.length === 0) throw new Error('No valid words');
-    
-    console.log(`✅ Loaded ${newWords.length} words`);
-    
-    const newWordKeys = new Set(newWords.map(w => w.french));
-    const filteredProgress = {};
-    for (const [key, value] of Object.entries(progress)) {
-      if (newWordKeys.has(key)) {
-        filteredProgress[key] = value;
+    async function loadDictionary(dictName) {
+      try {
+        console.log(`📚 Loading dictionary: ${dictName}`);
+        els.word.textContent = translations[currentLanguage].wordLoading;
+        
+        const basePath = window.location.pathname.endsWith('/') 
+          ? window.location.pathname 
+          : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+        
+        const url = basePath + dictName + '.csv';
+        console.log(`🔍 Fetching: ${url}`);
+        
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        
+        const text = await response.text();
+        const newWords = parseCSV(text);
+        
+        if (newWords.length === 0) throw new Error('No valid words');
+        
+        console.log(`✅ Loaded ${newWords.length} words`);
+        
+        const newWordKeys = new Set(newWords.map(w => w.french));
+        const filteredProgress = {};
+        for (const [key, value] of Object.entries(progress)) {
+          if (newWordKeys.has(key)) {
+            filteredProgress[key] = value;
+          }
+        }
+        progress = filteredProgress;
+        
+        allWords = newWords;
+        currentDict = dictName;
+        
+        els.dictNameInput.value = dictName;
+        
+        stats.sessionErrors = 0;
+        freshWordCounter = 0;
+        recentWords = [];
+        saveData();
+        
+        els.dictManagerSection?.classList.add('hidden');
+        els.quizSection?.classList.remove('hidden');
+        updateStats();
+        nextWord();
+        
+      } catch (err) {
+        console.error(`❌ Failed to load ${dictName}:`, err);
+        const t = translations[currentLanguage];
+        alert(t.dictLoadError + dictName + t.dictLoadError2 + err.message + t.dictLoadError3);
       }
     }
-    progress = filteredProgress;
-    
-    allWords = newWords;
-    currentDict = dictName;
-    
-    els.dictNameInput.value = dictName;
-    
-    stats.sessionErrors = 0;
-    freshWordCounter = 0;
-    recentWords = [];
-    saveData();
-    
-    els.dictManagerSection?.classList.add('hidden');
-    els.quizSection?.classList.remove('hidden');
-    updateStats();
-    nextWord();
-    
-  } catch (err) {
-    console.error(`❌ Failed to load ${dictName}:`, err);
-    alert(`⚠️ Could not load "${dictName}.csv".\n\nError: ${err.message}\n\n💡 Make sure the file exists in the same folder.`);
-  }
-}
-
 
     function startWithWords(words, dictName = 'custom') {
-      if (words.length === 0) { alert('❌ No valid words'); return; }
+      if (words.length === 0) { 
+        alert(translations[currentLanguage].fileError.replace('⚠️ ', '')); 
+        return; 
+      }
       
       const newWordKeys = new Set(words.map(w => w.french));
       const filteredProgress = {};
@@ -680,16 +1084,16 @@ async function loadDictionary(dictName) {
     }
 
     function hideDictionary(dictName) {
-      if (confirm(`Hide "${dictName}.csv" from the list?\n\nYou can always add it back by loading the file or typing the name manually.`)) {
+      const t = translations[currentLanguage];
+      if (confirm(t.hideConfirm + dictName + t.hideConfirm2)) {
         availableDicts = availableDicts.filter(d => d !== dictName);
         
-        // Если скрыли текущий словарь — сбрасываем активный
         if (currentDict === dictName) {
           currentDict = '';
         }
         
         saveData();
-        renderDictList(); // Перерисовываем список
+        renderDictList();
         console.log(`🙈 Hidden dictionary: ${dictName}`);
       }
     }
@@ -701,9 +1105,12 @@ async function loadDictionary(dictName) {
     }
 
     async function renderDictList() {
+      // Filter dictionaries based on current language
+      let dictsToShow = filterDictionariesByLanguage(currentLanguage);
+      
       if (window.location.hostname.includes('github.io')) {
         const validDicts = [];
-        for (const dict of availableDicts) {
+        for (const dict of dictsToShow) {
           const exists = await checkDictionaryExists(dict);
           if (exists) {
             validDicts.push(dict);
@@ -711,22 +1118,20 @@ async function loadDictionary(dictName) {
             console.log(`🗑️ Auto-removed non-existent dictionary: ${dict}`);
           }
         }
-        // Если список изменился — обновляем и сохраняем
-        if (validDicts.length !== availableDicts.length) {
-          availableDicts = validDicts;
-          saveData();
+        if (validDicts.length !== dictsToShow.length) {
+          dictsToShow = validDicts;
         }
       }
 
-      els.dictList.innerHTML = availableDicts.map(dict => {
+      els.dictList.innerHTML = dictsToShow.map(dict => {
         const isActive = dict === currentDict;
+        const t = translations[currentLanguage];
         return `
           <div class="dict-item ${isActive ? 'active' : ''}" data-dict="${dict}">
             <span style="flex:1;cursor:pointer" onclick="loadDictionary('${dict}')">
               ${isActive ? '📖' : '📄'} ${dict}.csv
-              ${isActive ? '<span class="badge">Active</span>' : ''}
+              ${isActive ? '<span class="badge">' + (currentLanguage === 'ru' ? 'Активен' : currentLanguage === 'fr' ? 'Actif' : currentLanguage === 'ar' ? 'فعال' : 'Active') + '</span>' : ''}
             </span>
-            <!-- Кнопка скрытия (event.stopPropagation чтобы не сработал клик по строке) -->
             <button class="secondary-btn" style="padding:0.25rem 0.5rem;font-size:0.75rem;margin-left:0.5rem" 
                     onclick="event.stopPropagation(); hideDictionary('${dict}')"
                     title="Hide this dictionary from list">🙈</button>
@@ -734,13 +1139,13 @@ async function loadDictionary(dictName) {
         `;
       }).join('');
 
-        const defaultDicts = CONFIG.AVAILABLE_DICTS;
-        const hasHidden = defaultDicts.some(dict => !availableDicts.includes(dict));
-        
-        const restoreBtn = document.getElementById('restoreDictsBtn');
-        if (restoreBtn) {
-          restoreBtn.style.display = hasHidden ? 'inline-block' : 'none';
-        }
+      const defaultDicts = CONFIG.AVAILABLE_DICTS;
+      const hasHidden = defaultDicts.some(dict => !availableDicts.includes(dict));
+      
+      const restoreBtn = document.getElementById('restoreDictsBtn');
+      if (restoreBtn) {
+        restoreBtn.style.display = hasHidden ? 'inline-block' : 'none';
+      }
     }
 
     // ===== FAVORITES =====
@@ -808,303 +1213,296 @@ async function loadDictionary(dictName) {
       return allWords.find(w => w.french === wordKey);
     }
 
-function addToRecent(wordKey) {
-  recentWords.push(wordKey);
-  const maxSize = getRecentHistorySize();
-  if (recentWords.length > maxSize) {
-    recentWords.shift();
-  }
-}
-
-// ===== POOL MANAGEMENT =====
-function refillActivePool() {
-  // Получаем все невыученные слова
-  const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
-  
-  // Удаляем из activePool слова, которые уже выучены или исчезли из словаря
-  activePool = activePool.filter(wordKey => {
-    const word = allWords.find(w => w.french === wordKey);
-    return word && (progress[wordKey]?.points ?? 0) < CONFIG.POINTS_TO_LEARN;
-  });
-  
-  // Добиваем пул до нужного размера
-  while (activePool.length < poolSize && notLearned.length > 0) {
-    // Берём случайное слово, которого ещё нет в пуле
-    const available = notLearned.filter(w => !activePool.includes(w.french));
-    if (available.length === 0) break;
-    
-    const randomWord = available[Math.floor(Math.random() * available.length)];
-    activePool.push(randomWord.french);
-  }
-  
-  console.log(`🔄 Pool refilled: ${activePool.length}/${poolSize} words`);
-}
-
-// ===== IMAGE TOGGLE =====
-function toggleImageVisibility() {
-  showImages = !showImages;
-  
-  if (showImages && currentImageUrl) {
-    els.wordImage.classList.remove('hidden');
-    els.imageToggleBtn.textContent = '🙈';
-    els.imageToggleBtn.title = 'Hide image';
-  } 
-  else if (showImages && currentWord) {
-    currentImageUrl = null;
-    els.wordImage.src = '';
-    loadImageForCurrentWord();
-  }
-  else {
-    els.wordImage.classList.add('hidden');
-    els.imageToggleBtn.textContent = '🖼️';
-    els.imageToggleBtn.title = 'Show image';
-  }
-  
-  saveData();
-}
-
-
-async function loadImageForCurrentWord() {
-  if (!currentWord) return;
-  
-  if (currentImageUrl && els.wordImage.src === currentImageUrl) {
-    if (showImages) {
-      els.wordImage.classList.remove('hidden');
+    function addToRecent(wordKey) {
+      recentWords.push(wordKey);
+      const maxSize = getRecentHistorySize();
+      if (recentWords.length > maxSize) {
+        recentWords.shift();
+      }
     }
-    els.imageToggleBtn.disabled = false;
-    return;
-  }
-  
-  console.log('🖼️ Loading image for current word:', currentWord.french);
-  els.imageSource.textContent = '🔍 Searching image...';
-  els.imageToggleBtn.disabled = true;
-  els.wordImage.classList.add('hidden');
 
-  try {
-    const imageData = await fetchWordImage(currentWord.french);
-    
-    if (imageData && imageData.url) {
-      console.log('✅ Image loaded:', imageData.url);
-      currentImageUrl = imageData.url;
-      els.wordImage.src = imageData.url;
-      els.imageSource.textContent = imageData.source;
+    // ===== POOL MANAGEMENT =====
+    function refillActivePool() {
+      const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
       
-      els.wordImage.onload = () => {
-        console.log('🖼️ Image displayed');
-        els.imageToggleBtn.disabled = false;
+      activePool = activePool.filter(wordKey => {
+        const word = allWords.find(w => w.french === wordKey);
+        return word && (progress[wordKey]?.points ?? 0) < CONFIG.POINTS_TO_LEARN;
+      });
+      
+      while (activePool.length < poolSize && notLearned.length > 0) {
+        const available = notLearned.filter(w => !activePool.includes(w.french));
+        if (available.length === 0) break;
+        
+        const randomWord = available[Math.floor(Math.random() * available.length)];
+        activePool.push(randomWord.french);
+      }
+      
+      console.log(`🔄 Pool refilled: ${activePool.length}/${poolSize} words`);
+    }
+
+    // ===== IMAGE TOGGLE =====
+    function toggleImageVisibility() {
+      showImages = !showImages;
+      
+      if (showImages && currentImageUrl) {
+        els.wordImage.classList.remove('hidden');
+        els.imageToggleBtn.textContent = '🙈';
+        els.imageToggleBtn.title = 'Hide image';
+      } 
+      else if (showImages && currentWord) {
+        currentImageUrl = null;
+        els.wordImage.src = '';
+        loadImageForCurrentWord();
+      }
+      else {
+        els.wordImage.classList.add('hidden');
+        els.imageToggleBtn.textContent = '🖼️';
+        els.imageToggleBtn.title = 'Show image';
+      }
+      
+      saveData();
+    }
+
+    async function loadImageForCurrentWord() {
+      if (!currentWord) return;
+      
+      if (currentImageUrl && els.wordImage.src === currentImageUrl) {
         if (showImages) {
           els.wordImage.classList.remove('hidden');
-          els.imageToggleBtn.textContent = '🙈';
-          els.imageToggleBtn.title = 'Hide image';
         }
-      };
-      
-      els.wordImage.onerror = () => {
-        console.error('❌ Image failed to load');
-        els.wordImage.classList.add('hidden');
-        els.imageSource.textContent = (showImages) ? '⚠️ Image failed to load' : '';
         els.imageToggleBtn.disabled = false;
-      };
-    } else {
-      console.warn('⚠️ No image available');
-      els.wordImage.classList.add('hidden');
-      els.imageSource.textContent = '🚫 No image available';
-      els.imageToggleBtn.disabled = false;
-    }
-  } catch (e) {
-    console.error('❌ Error loading image:', e);
-    els.wordImage.classList.add('hidden');
-    els.imageSource.textContent = '❌ Error loading image';
-    els.imageToggleBtn.disabled = false;
-  }
-}
-
-function updateImageDisplay() {
-  if (showImages && currentImageUrl) {
-    els.wordImage.classList.remove('hidden');
-    els.imageToggleBtn.textContent = '🙈';
-    els.imageToggleBtn.title = 'Hide image';
-  } else {
-    els.wordImage.classList.add('hidden');
-    els.imageToggleBtn.textContent = '🖼️';
-    els.imageToggleBtn.title = 'Show image';
-  }
-}
-
-async function resetHiddenDictionaries() {
-  if (confirm('Restore ALL dictionaries found in the folder?\n\nThis will add back any CSV files that exist on the server.')) {
-    
-    // 🔥 Если на GitHub Pages — запрашиваем список файлов через API
-    if (window.location.hostname.includes('github.io')) {
-      try {
-        const hostname = window.location.hostname;
-        const pathParts = window.location.pathname.split('/').filter(p => p);
-        const hostParts = hostname.split('.');
-        const username = hostParts[0];
-        const repo = pathParts[0] || username;
-        
-        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
-        const response = await fetch(apiUrl);
-        
-        if (response.ok) {
-          const files = await response.json();
-          const csvFiles = files
-            .filter(f => f.name.endsWith('.csv') && f.type === 'file')
-            .map(f => f.name.replace('.csv', ''));
-
-          csvFiles.forEach(dict => {
-            if (!availableDicts.includes(dict)) {
-              availableDicts.push(dict);
-            }
-          });
-          
-          console.log(`🔄 Restored ${csvFiles.length} dictionaries from server`);
-        }
-      } catch (e) {
-        console.warn('⚠️ Could not fetch dictionaries from GitHub:', e.message);
+        return;
       }
-    }
-    
-
-    CONFIG.AVAILABLE_DICTS.forEach(dict => {
-      if (!availableDicts.includes(dict)) {
-        availableDicts.push(dict);
-      }
-    });
-    
-    saveData();
-    renderDictList();
-
-    const restoredCount = availableDicts.length - CONFIG.AVAILABLE_DICTS.length;
-    if (restoredCount > 0) {
-      alert(`✅ Restored ${restoredCount} hidden dictionary${restoredCount > 1 ? 'ies' : ''}!`);
-    }
-    
-    console.log('🔄 Dictionary list restored');
-  }
-}
-
-// ===== УЛУЧШЕННЫЙ ПОИСК КАРТИНОК - ПО ОПИСАНИЮ =====
-async function fetchWordImage(word) {
-  try {
-    const wordData = allWords.find(w => w.french === word);
-    let searchTerm = word;
-    if (wordData && wordData.correct) {
-      searchTerm = wordData.correct;
-      console.log(`🔍 Using description for image: "${searchTerm}" (from "${word}")`);
-    } else {
-      // Если не нашли - берем первое слово без артикля
-      searchTerm = word.trim()
-        .replace(/^(le|la|les|l'|un|une|du|de|des)\s+/i, '')
-        .split(/[,\s]/)[0]
-        .toLowerCase();
-      console.log(`🔍 Using word itself: "${searchTerm}"`);
-    }
-    
-    const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrlimit=1&prop=pageimages|info&pithumbsize=400&gsrsearch=${encodeURIComponent(searchTerm)}&format=json&origin=*`;
-    
-    console.log(`📡 Fetching: ${searchUrl}`);
-    const response = await fetch(searchUrl);
-    
-    if (!response.ok) {
-      console.warn('❌ Wikimedia API failed');
-      throw new Error('API failed');
-    }
-    
-    const data = await response.json();
-    console.log('📦 Response:', data);
-    
-    if (data.query && data.query.pages) {
-      const pages = Object.values(data.query.pages);
-      const page = pages[0];
       
-      if (page && page.thumbnail && page.thumbnail.source) {
-        const imageUrl = page.thumbnail.source;
+      console.log('🖼️ Loading image for current word:', currentWord.french);
+      const t = translations[currentLanguage];
+      els.imageSource.textContent = t.searchingImage;
+      els.imageToggleBtn.disabled = true;
+      els.wordImage.classList.add('hidden');
+
+      try {
+        const imageData = await fetchWordImage(currentWord.french);
         
-        if (imageUrl.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) {
-          console.log('✅ Found image:', imageUrl);
-          return {
-            url: imageUrl,
-            source: '📚 Wikimedia Commons'
+        if (imageData && imageData.url) {
+          console.log('✅ Image loaded:', imageData.url);
+          currentImageUrl = imageData.url;
+          els.wordImage.src = imageData.url;
+          els.imageSource.textContent = imageData.source;
+          
+          els.wordImage.onload = () => {
+            console.log('🖼️ Image displayed');
+            els.imageToggleBtn.disabled = false;
+            if (showImages) {
+              els.wordImage.classList.remove('hidden');
+              els.imageToggleBtn.textContent = '🙈';
+              els.imageToggleBtn.title = 'Hide image';
+            }
+          };
+          
+          els.wordImage.onerror = () => {
+            console.error('❌ Image failed to load');
+            els.wordImage.classList.add('hidden');
+            els.imageSource.textContent = (showImages) ? t.imageFailed : '';
+            els.imageToggleBtn.disabled = false;
           };
         } else {
-          console.warn('⚠️ Not an image file:', imageUrl);
+          console.warn('⚠️ No image available');
+          els.wordImage.classList.add('hidden');
+          els.imageSource.textContent = t.noImage;
+          els.imageToggleBtn.disabled = false;
         }
+      } catch (e) {
+        console.error('❌ Error loading image:', e);
+        els.wordImage.classList.add('hidden');
+        els.imageSource.textContent = t.errorLoadingImage;
+        els.imageToggleBtn.disabled = false;
       }
     }
-    
-    console.warn(`⚠️ No image found for "${searchTerm}"`);
-    return null;
-    
-  } catch (e) {
-    console.error(`❌ Image fetch error:`, e);
-    return null;
-  }
-}
 
-function updateReviewButtonText() {
-  if (reviewMode) {
-    els.reviewBtn.textContent = '🔙 Back to Quiz';
-    els.reviewBtn.title = 'Exit review mode';
-  } else {
-    els.reviewBtn.textContent = '⭐ Favorites';
-    els.reviewBtn.title = 'Review favorite words';
-  }
-}
+    function updateImageDisplay() {
+      if (showImages && currentImageUrl) {
+        els.wordImage.classList.remove('hidden');
+        els.imageToggleBtn.textContent = '🙈';
+        els.imageToggleBtn.title = 'Hide image';
+      } else {
+        els.wordImage.classList.add('hidden');
+        els.imageToggleBtn.textContent = '🖼️';
+        els.imageToggleBtn.title = 'Show image';
+      }
+    }
 
-async function checkDictionaryExists(dictName) {
-  try {
-    const basePath = window.location.pathname.endsWith('/') 
-      ? window.location.pathname 
-      : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    
-    const url = basePath + dictName + '.csv';
-    // Делаем HEAD запрос — он легкий и быстрый, скачивает только заголовки
-    const response = await fetch(url, { method: 'HEAD' });
-    return response.ok;
-  } catch (e) {
-    return false;
-  }
-}
-
-
-      function getActivePool() {
-        if (reviewMode) {
-          const favorites = getFavorites();
-          if (favorites.length === 0) return [];
-          return favorites.sort(() => Math.random() - 0.5).slice(0, poolSize);
-        }
+    async function resetHiddenDictionaries() {
+      const t = translations[currentLanguage];
+      if (confirm(t.restoreConfirm)) {
         
-        const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
-        
-        if (stats.totalAnswered > 0 && stats.totalAnswered % CONFIG.FAVORITE_INTERVAL === 0) {
-          const favorites = getFavorites();
-          const unlearnedFavorites = favorites.filter(f => (progress[f.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
-          
-          if (unlearnedFavorites.length > 0) {
-            const favWord = unlearnedFavorites[Math.floor(Math.random() * unlearnedFavorites.length)];
-            console.log(`⭐ Inserting favorite: ${favWord.french}`);
-            const pool = [...notLearned].sort(() => Math.random() - 0.5).slice(0, poolSize - 1);
-            pool.unshift(favWord);
-            return pool;
+        if (window.location.hostname.includes('github.io')) {
+          try {
+            const hostname = window.location.hostname;
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            const hostParts = hostname.split('.');
+            const username = hostParts[0];
+            const repo = pathParts[0] || username;
+            
+            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
+            const response = await fetch(apiUrl);
+            
+            if (response.ok) {
+              const files = await response.json();
+              const csvFiles = files
+                .filter(f => f.name.endsWith('.csv') && f.type === 'file')
+                .map(f => f.name.replace('.csv', ''));
+
+              csvFiles.forEach(dict => {
+                if (!availableDicts.includes(dict)) {
+                  availableDicts.push(dict);
+                }
+              });
+              
+              console.log(`🔄 Restored ${csvFiles.length} dictionaries from server`);
+            }
+          } catch (e) {
+            console.warn('⚠️ Could not fetch dictionaries from GitHub:', e.message);
           }
         }
         
-        return [...notLearned].sort(() => Math.random() - 0.5).slice(0, poolSize);
+        CONFIG.AVAILABLE_DICTS.forEach(dict => {
+          if (!availableDicts.includes(dict)) {
+            availableDicts.push(dict);
+          }
+        });
+        
+        saveData();
+        renderDictList();
+
+        const restoredCount = availableDicts.length - CONFIG.AVAILABLE_DICTS.length;
+        if (restoredCount > 0) {
+          alert(t.restoreSuccess + restoredCount + t.restoreSuccess2 + (restoredCount > 1 ? t.restoreSuccess3 : t.restoreSuccess4));
+        }
+        
+        console.log('🔄 Dictionary list restored');
       }
+    }
+
+    // ===== IMAGE SEARCH =====
+    async function fetchWordImage(word) {
+      try {
+        const wordData = allWords.find(w => w.french === word);
+        let searchTerm = word;
+        if (wordData && wordData.correct) {
+          searchTerm = wordData.correct;
+          console.log(`🔍 Using description for image: "${searchTerm}" (from "${word}")`);
+        } else {
+          searchTerm = word.trim()
+            .replace(/^(le|la|les|l'|un|une|du|de|des)\s+/i, '')
+            .split(/[,\s]/)[0]
+            .toLowerCase();
+          console.log(`🔍 Using word itself: "${searchTerm}"`);
+        }
+        
+        const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrlimit=1&prop=pageimages|info&pithumbsize=400&gsrsearch=${encodeURIComponent(searchTerm)}&format=json&origin=*`;
+        
+        console.log(`📡 Fetching: ${searchUrl}`);
+        const response = await fetch(searchUrl);
+        
+        if (!response.ok) {
+          console.warn('❌ Wikimedia API failed');
+          throw new Error('API failed');
+        }
+        
+        const data = await response.json();
+        console.log('📦 Response:', data);
+        
+        if (data.query && data.query.pages) {
+          const pages = Object.values(data.query.pages);
+          const page = pages[0];
+          
+          if (page && page.thumbnail && page.thumbnail.source) {
+            const imageUrl = page.thumbnail.source;
+            
+            if (imageUrl.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) {
+              console.log('✅ Found image:', imageUrl);
+              return {
+                url: imageUrl,
+                source: '📚 Wikimedia Commons'
+              };
+            } else {
+              console.warn('⚠️ Not an image file:', imageUrl);
+            }
+          }
+        }
+        
+        console.warn(`⚠️ No image found for "${searchTerm}"`);
+        return null;
+        
+      } catch (e) {
+        console.error(`❌ Image fetch error:`, e);
+        return null;
+      }
+    }
+
+    function updateReviewButtonText() {
+      const t = translations[currentLanguage];
+      if (reviewMode) {
+        els.reviewBtn.textContent = t.reviewMode;
+        els.reviewBtn.title = t.reviewModeTitle;
+      } else {
+        els.reviewBtn.textContent = t.favoritesMode;
+        els.reviewBtn.title = t.favoritesModeTitle;
+      }
+    }
+
+    async function checkDictionaryExists(dictName) {
+      try {
+        const basePath = window.location.pathname.endsWith('/') 
+          ? window.location.pathname 
+          : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+        
+        const url = basePath + dictName + '.csv';
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function getActivePool() {
+      if (reviewMode) {
+        const favorites = getFavorites();
+        if (favorites.length === 0) return [];
+        return favorites.sort(() => Math.random() - 0.5).slice(0, poolSize);
+      }
+      
+      const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+      
+      if (stats.totalAnswered > 0 && stats.totalAnswered % CONFIG.FAVORITE_INTERVAL === 0) {
+        const favorites = getFavorites();
+        const unlearnedFavorites = favorites.filter(f => (progress[f.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+        
+        if (unlearnedFavorites.length > 0) {
+          const favWord = unlearnedFavorites[Math.floor(Math.random() * unlearnedFavorites.length)];
+          console.log(`⭐ Inserting favorite: ${favWord.french}`);
+          const pool = [...notLearned].sort(() => Math.random() - 0.5).slice(0, poolSize - 1);
+          pool.unshift(favWord);
+          return pool;
+        }
+      }
+      
+      return [...notLearned].sort(() => Math.random() - 0.5).slice(0, poolSize);
+    }
 
     function getWordProgressText(word) {
       const p = progress[word]?.points ?? 0;
       const isFav = progress[word]?.isFavorite || false;
+      const t = translations[currentLanguage];
       
       if (reviewMode) {
-        return isFav ? '⭐ Favorite' : '🔁 Review';
+        return isFav ? t.favoritesMode : t.reviewMode;
       }
-      if (p >= CONFIG.POINTS_TO_LEARN) return '🎉 Learned';
+      if (p >= CONFIG.POINTS_TO_LEARN) return t.allLearned.replace('🎉 ', '').replace('!', '');
       if (p >= 0) return `${p}/${CONFIG.POINTS_TO_LEARN} • ${CONFIG.POINTS_TO_LEARN - p} more`;
       return `${p}/${CONFIG.POINTS_TO_LEARN} • ${Math.abs(p)} wrong`;
     }
-
 
     function getWordProgressBar(word) {
       const p = progress[word]?.points ?? 0;
@@ -1120,27 +1518,30 @@ async function checkDictionaryExists(dictName) {
       els.nextBtn.disabled = true;
       els.options.innerHTML = '';
       
-      // Очищаем кнопку Remove из предыдущего слова
       const existingRemoveBtn = document.querySelector('.remove-btn');
       if (existingRemoveBtn) existingRemoveBtn.remove();
 
       const next = getNextWordFromPool();
+      const t = translations[currentLanguage];
       
       if (!next) {
-        els.word.textContent = reviewMode ? '✅ Reviewed!' : '🎉 All learned!';
+        els.word.textContent = reviewMode ? t.reviewed : t.allLearned;
         els.wordImage.classList.add('hidden');
         els.imageSource.textContent = '';
-        els.wordProgress.textContent = reviewMode ? 'Exit review' : 'Great job!';
+        els.wordProgress.textContent = reviewMode ? t.exitReview : t.greatJob;
         els.favoriteBtn.style.display = 'none';
         els.imageToggleBtn.style.display = 'none';
-        els.options.innerHTML = `<div class="option" style="cursor:default">${reviewMode ? '🔙 Exit' : '🔄 Reset'}</div>`;
+        els.options.innerHTML = `<div class="option" style="cursor:default">${reviewMode ? t.btnExit : t.btnReset}</div>`;
         els.options.firstChild.onclick = () => {
           if (reviewMode) { 
             reviewMode = false; 
             updateReviewButtonText();
             nextWord(); 
           }
-          else if (confirm('Reset all?')) { localStorage.removeItem(CONFIG.STORAGE_KEY); location.reload(); }
+          else if (confirm(t.cacheConfirm)) { 
+            localStorage.removeItem(CONFIG.STORAGE_KEY); 
+            location.reload(); 
+          }
         };
         return;
       }
@@ -1156,14 +1557,14 @@ async function checkDictionaryExists(dictName) {
       els.wordImage.classList.add('hidden');
       
       if (showImages) {
-        els.imageSource.textContent = '🔍 Searching image...';
+        els.imageSource.textContent = t.searchingImage;
         els.imageToggleBtn.textContent = '🖼️';
         els.imageToggleBtn.title = 'Show image';
         els.imageToggleBtn.disabled = true;
         
         await loadImageForCurrentWord();
       } else {
-        els.imageSource.textContent = '🖼️ Images disabled';
+        els.imageSource.textContent = t.imagesDisabled;
         els.imageToggleBtn.textContent = '🖼️';
         els.imageToggleBtn.title = 'Show image';
         els.imageToggleBtn.disabled = false;
@@ -1183,7 +1584,6 @@ async function checkDictionaryExists(dictName) {
       });
     }
         
-        
     function exitReviewMode() {
       if (reviewMode) {
         console.log('🔓 Exiting review mode');
@@ -1196,7 +1596,7 @@ async function checkDictionaryExists(dictName) {
       return Math.max(5, Math.min(100, size)); 
     }
 
-        // ===== ANSWER =====
+    // ===== ANSWER =====
     function handleAnswer(selected, correct) {
       if (answered) return;
       answered = true;
@@ -1240,7 +1640,6 @@ async function checkDictionaryExists(dictName) {
       const points = progress[key]?.points ?? 0;
       
       if (points >= CONFIG.POINTS_TO_LEARN) {
-        // ✅ Слово выучено — удаляем из пула, refill подтянет новое
         activePool = activePool.filter(w => w !== key);
         console.log(`🎓 "${key}" learned! Removed from pool`);
       }
@@ -1254,7 +1653,6 @@ async function checkDictionaryExists(dictName) {
       els.nextBtn.disabled = false;
       
       if (reviewMode && progress[key]?.isFavorite) {
-        // Создаем кнопку удаления рядом с ☆
         const removeBtn = document.createElement('button');
         removeBtn.className = 'secondary-btn';
         removeBtn.style.fontSize = '0.75rem';
@@ -1272,7 +1670,6 @@ async function checkDictionaryExists(dictName) {
           setTimeout(() => removeBtn.remove(), 1500);
         };
         
-        // Добавляем кнопку в заголовок рядом с ☆
         const wordHeader = document.querySelector('.word-header');
         if (wordHeader && !wordHeader.querySelector('.remove-btn')) {
           removeBtn.classList.add('remove-btn');
@@ -1280,7 +1677,6 @@ async function checkDictionaryExists(dictName) {
         }
       }
     }
-
 
     // ===== STATS =====
     function updateStats() {
@@ -1319,8 +1715,7 @@ async function checkDictionaryExists(dictName) {
       renderDictList();
     }
 
-
-    // ===== АВТОМАТИЧЕСКОЕ ОБНАРУЖЕНИЕ СЛОВАРЕЙ НА GITHUB =====
+    // ===== GITHUB DETECTION =====
     async function detectGitHubDictionaries() {
       try {
         console.log('🔍 Detecting dictionaries on GitHub...');
@@ -1328,24 +1723,19 @@ async function checkDictionaryExists(dictName) {
         const hostname = window.location.hostname;
         const pathParts = window.location.pathname.split('/').filter(p => p);
         
-        // Проверяем что это GitHub Pages
         if (!hostname.includes('github.io')) {
           console.log('💡 Not GitHub Pages, skipping auto-detection');
           return;
         }
         
-        // Определяем username и repo
         let username, repo;
         
-        // username.github.io/repo-name/...
         const hostParts = hostname.split('.');
         username = hostParts[0];
         
-        // Первый элемент path - это repo name
         if (pathParts.length > 0) {
           repo = pathParts[0];
         } else {
-          // Если path пустой - возможно это user page
           repo = username;
         }
         
@@ -1356,13 +1746,11 @@ async function checkDictionaryExists(dictName) {
         
         console.log(`📚 Looking for repo: ${username}/${repo}`);
         
-        // GitHub API
         const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
         console.log(`📡 Fetching: ${apiUrl}`);
         
         const response = await fetch(apiUrl);
         
-
         if (response.status === 404) {
           console.warn('⚠️ Repo not found or private. Auto-detection skipped.');
           console.log('💡 You can manually add dictionary names in the field above.');
@@ -1373,14 +1761,12 @@ async function checkDictionaryExists(dictName) {
         
         const files = await response.json();
         
-        // Фильтруем CSV файлы
         const csvFiles = files
           .filter(f => f.name.endsWith('.csv') && f.type === 'file')
           .map(f => f.name.replace('.csv', ''));
         
         console.log(`✅ Found ${csvFiles.length} dictionaries:`, csvFiles);
         
-        // Добавляем без дубликатов
         csvFiles.forEach(dict => {
           if (!availableDicts.includes(dict)) {
             availableDicts.push(dict);
@@ -1395,16 +1781,17 @@ async function checkDictionaryExists(dictName) {
       }
     }
 
-        // ===== EVENTS =====
+    // ===== EVENTS =====
     els.applyPoolBtn?.addEventListener('click', () => {
       const val = parseInt(els.poolSizeInput.value);
+      const t = translations[currentLanguage];
       if (val >= 5 && val <= 200) {
         poolSize = val;
         saveData();
-        alert(`✅ Pool: ${poolSize}`);
+        alert(t.poolSet + poolSize);
         if (!els.quizSection.classList.contains('hidden')) updateStats();
       } else {
-        alert('⚠️ 5-200');
+        alert(t.poolInvalid);
       }
     });
 
@@ -1416,6 +1803,10 @@ async function checkDictionaryExists(dictName) {
         exitReviewMode(); 
         loadDictionary(name);
       }
+    });
+
+    els.languageSelect?.addEventListener('change', (e) => {
+      setLanguage(e.target.value);
     });
 
     els.dictManagerBtn?.addEventListener('click', () => {
@@ -1431,15 +1822,13 @@ async function checkDictionaryExists(dictName) {
       }
     });
 
-
     els.favoriteBtn?.addEventListener('click', toggleFavorite);
     els.imageToggleBtn?.addEventListener('click', toggleImageVisibility); 
     els.nextBtn?.addEventListener('click', nextWord);
 
-
-    // ===== REVIEW BUTTON CLICK =====
     els.reviewBtn?.addEventListener('click', () => { 
       console.log('🔄 Review button clicked');
+      const t = translations[currentLanguage];
       
       if (reviewMode) {
         console.log('🔓 Exiting review mode');
@@ -1452,7 +1841,7 @@ async function checkDictionaryExists(dictName) {
         
         if (favorites.length === 0) {
           console.warn('⚠️ No favorites!');
-          alert('⚠️ No favorite words yet!\n\n1. Click the ☆ button on words you want to review\n2. Then click 🔄 Review again');
+          alert(t.noFavorites);
           return;
         }
         
@@ -1462,7 +1851,6 @@ async function checkDictionaryExists(dictName) {
         nextWord();
       }
     });
-
 
     els.historyBtn?.addEventListener('click', () => {
       exitReviewMode();
@@ -1484,25 +1872,24 @@ async function checkDictionaryExists(dictName) {
       goToMainScreen();
     });
 
-
     els.closeBtn?.addEventListener('click', () => { 
-      if (confirm('Close and return to dictionary selection?')) {
+      const t = translations[currentLanguage];
+      if (confirm(t.closeConfirm)) {
         exitReviewMode();
         saveData();
         goToMainScreen();
       }
     });
 
-        
     els.clearCacheBtn?.addEventListener('click', () => {
-      if (confirm('⚠️ Clear all saved data? Progress will be lost.')) {
+      const t = translations[currentLanguage];
+      if (confirm(t.cacheConfirm)) {
         exitReviewMode();
         localStorage.removeItem(CONFIG.STORAGE_KEY);
-        alert('✅ Cache cleared. Reloading...');
+        alert(t.cacheCleared);
         location.reload();
       }
     });
-
 
     els.csvFile?.addEventListener('change', async (e) => {
       const file = e.target.files[0];
@@ -1515,7 +1902,7 @@ async function checkDictionaryExists(dictName) {
         startWithWords(words, dictName);
       } catch (err) {
         console.error('❌ Failed to parse CSV:', err);
-        alert('⚠️ Failed to read file.');
+        alert(translations[currentLanguage].fileError);
       }
       e.target.value = '';
     });
@@ -1524,96 +1911,106 @@ async function checkDictionaryExists(dictName) {
       if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
     });
           
-  // ===== INIT =====
-  window.addEventListener('DOMContentLoaded', async () => {
-    console.log('🔍 === INIT START ===');
-    
-    if (!els.reviewBtn) {
-      console.error('❌ Review button not found!');
-    } else {
-      console.log('✅ Review button found');
-    }
-    
-    if (!isLocalStorageAvailable()) {
-      alert('⚠️ localStorage blocked');
-      els.dictManagerSection?.classList.remove('hidden');
-      return;
-    }
-    
-    const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        progress = data.progress || {};
-        stats.totalCorrect = data.stats?.totalCorrect ?? 0;
-        stats.sessionErrors = data.stats?.sessionErrors ?? 0;
-        stats.totalAnswered = data.stats?.totalAnswered ?? 0;
-        history = data.history || [];
-        poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
-        currentDict = data.currentDict || 'words_en';
-        availableDicts = data.availableDicts || [...CONFIG.AVAILABLE_DICTS];
-        showImages = data.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT;
-        reviewMode = false;
-        
-        if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
-        if (els.dictNameInput) els.dictNameInput.value = currentDict;
-        
-        const favCount = Object.values(progress).filter(p => p.isFavorite).length;
-        console.log(`⭐ Found ${favCount} favorite words`);
-        
-        if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
-          console.log(`📚 Dictionary loaded: ${data.dictionary.length} words`);
-          allWords = data.dictionary;
+    // ===== INIT =====
+    window.addEventListener('DOMContentLoaded', async () => {
+      console.log('🔍 === INIT START ===');
+      
+      if (!els.reviewBtn) {
+        console.error('❌ Review button not found!');
+      } else {
+        console.log('✅ Review button found');
+      }
+      
+      if (!isLocalStorageAvailable()) {
+        alert('⚠️ localStorage blocked');
+        els.dictManagerSection?.classList.remove('hidden');
+        return;
+      }
+      
+      // Load saved language
+      const savedLang = localStorage.getItem(CONFIG.STORAGE_KEY + '_language');
+      if (savedLang && translations[savedLang]) {
+        currentLanguage = savedLang;
+        els.languageSelect.value = savedLang;
+      }
+      
+      // Update interface language
+      updateInterfaceLanguage();
+      
+      const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          progress = data.progress || {};
+          stats.totalCorrect = data.stats?.totalCorrect ?? 0;
+          stats.sessionErrors = data.stats?.sessionErrors ?? 0;
+          stats.totalAnswered = data.stats?.totalAnswered ?? 0;
+          history = data.history || [];
+          poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
+          currentDict = data.currentDict || 'words_en';
+          availableDicts = data.availableDicts || [...CONFIG.AVAILABLE_DICTS];
+          showImages = data.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT;
+          reviewMode = false;
           
-          activePool = [];
-          refillActivePool();
-          freshWordCounter = 0; 
-          recentWords = [];
-          els.quizSection?.classList.add('hidden');
-          els.dictManagerSection?.classList.remove('hidden');
+          if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
+          if (els.dictNameInput) els.dictNameInput.value = currentDict;
           
-          await renderDictList(); 
-          updateStats();
-          updateReviewButtonText();
+          const favCount = Object.values(progress).filter(p => p.isFavorite).length;
+          console.log(`⭐ Found ${favCount} favorite words`);
           
-          console.log('📋 Showing dictionary manager');
+          if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
+            console.log(`📚 Dictionary loaded: ${data.dictionary.length} words`);
+            allWords = data.dictionary;
+            
+            activePool = [];
+            refillActivePool();
+            freshWordCounter = 0; 
+            recentWords = [];
+            els.quizSection?.classList.add('hidden');
+            els.dictManagerSection?.classList.remove('hidden');
+            
+            await renderDictList(); 
+            updateStats();
+            updateReviewButtonText();
+            
+            console.log('📋 Showing dictionary manager');
 
-          if (window.location.hostname.includes('github.io')) {
-            await detectGitHubDictionaries();
-            renderDictList(); // Перерисовываем список с новыми словарями
+            if (window.location.hostname.includes('github.io')) {
+              await detectGitHubDictionaries();
+              renderDictList();
+            }
+          } else {
+            els.quizSection?.classList.add('hidden');
+            els.dictManagerSection?.classList.remove('hidden');
+            await renderDictList();
+            updateReviewButtonText();
+            
+            if (window.location.hostname.includes('github.io')) {
+              await detectGitHubDictionaries();
+              renderDictList();
+            }
           }
-        } else {
+        } catch (e) {
+          console.error('❌ Parse failed', e);
           els.quizSection?.classList.add('hidden');
           els.dictManagerSection?.classList.remove('hidden');
-          await renderDictList();
+          renderDictList();
           updateReviewButtonText();
-          
-          if (window.location.hostname.includes('github.io')) {
-            await detectGitHubDictionaries();
-            renderDictList();
-          }
         }
-      } catch (e) {
-        console.error('❌ Parse failed', e);
+      } else {
+        console.log('📭 No saved data');
         els.quizSection?.classList.add('hidden');
         els.dictManagerSection?.classList.remove('hidden');
         renderDictList();
         updateReviewButtonText();
+
+        if (window.location.hostname.includes('github.io')) {
+          await detectGitHubDictionaries();
+          renderDictList();
+        }
       }
-    } else {
-      console.log('📭 No saved data');
-      els.quizSection?.classList.add('hidden');
-      els.dictManagerSection?.classList.remove('hidden');
-      renderDictList();
-      updateReviewButtonText();
-      
-      if (window.location.hostname.includes('github.io')) {
-        await detectGitHubDictionaries();
-        renderDictList();
-      }
-    }
-    console.log('🔍 === INIT END ===');
-  });
+      console.log('🔍 === INIT END ===');
+    });
 
 </script>
 </body>
