@@ -399,6 +399,9 @@ opposer,to oppose,to contrast,to set against,to resist,to object,to counter
 construire une maison,to build a house,to construct home,to erect building,to develop structure,to make dwelling,to assemble place
 construire,to build,to construct,to make,to erect,to develop,to create
 peser,to weigh,to consider,to ponder,to balance,to assess,to measure
+environ,approximately,until,while,for,before,beyond
+en raison de,because of,why,what,for what,cause,
+près de,near,about,for,pound of,while of,until
 cacher un secret,to hide a secret,to conceal mystery,to cover hidden,to keep confidential,to disguise private,to shelter undisclosed
 cacher,to hide,to conceal,to cover,to keep secret,to disguise,to shelter
 calculer le total,to calculate the total,to compute sum,to figure amount,to reckon whole,to estimate full,to count everything
@@ -1795,7 +1798,7 @@ encore,still/yet/again,already,never,just,soon,again
 pas encore,not yet,already,still,never,just,soon
 chaque,each/every,all,some,any,none,both
 l'an,year,age,time,day,month,period
-l'avant,before,after,during,while,until,since
+avant,before,after,during,while,until,since
 l'affaire,matter,affair,business,deal,issue,concern
 le gouvernement,government,administration,regime,authority,ruling,rule
 l'acte,act,action,deed,document,certificate,law
