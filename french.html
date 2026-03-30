@@ -477,9 +477,8 @@
           sessionStarted: hasProgress,
           savedAt: Date.now()
         };
-        if (allWords.length > 0 && !dictionarySaved) {
+        if (allWords.length > 0) {
           data.dictionary = allWords;
-          dictionarySaved = true;
           console.log(`💾 Dictionary saved (${allWords.length} words)`);
         }
         localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
