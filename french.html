@@ -1121,32 +1121,87 @@ function getDictProgress(dictName) {
       } catch (e) { console.warn('Save failed:', e); }
     }
 
-    // ===== CSV PARSER =====
+
 function parseCSV(text) {
   isCardMode = false;
-  const lines = text.trim().split('\n').filter(l => l.trim() && !l.startsWith('#'));
+  
+  const rawLines = text.trim().split('\n');
+  const firstLine = rawLines[0]?.trim().toLowerCase() || '';
+  
+  // Определяем режим: #card или наличие >> во второй колонке
+  isCardMode = firstLine.startsWith('#card') || 
+               (firstLine.split(',')[1]?.trim() === '>>');
+  
   const words = [];
+  const startIndex = (firstLine.trim().toLowerCase() === '#card') ? 1 : 0;
   
-  // Проверка маркера режима в первой строке
-  const firstLine = text.trim().split('\n')[0]?.toLowerCase() || '';
-  isCardMode = firstLine.startsWith('#card') || firstLine.startsWith('>>');
-  
-  for (let i = (isCardMode || firstLine.startsWith('#')) ? 1 : 0; i < lines.length; i++) {
-    const parts = lines[i].split(',').map(p => p.trim());
+  for (let i = startIndex; i < rawLines.length; i++) {
+    const line = rawLines[i].trim();
+    if (!line || line.startsWith('#')) continue;
     
+    const parts = line.split(',').map(p => p.trim());
     if (parts.length < 2) continue;
     
-    // Карточки: French, >>, Ex1, Ex2, Ex3, Ex4, Ex5, >>, Correct, Wrong1-4
-    if (isCardMode && parts[1] === '>>' && parts.length >= 13) {
+    // === НОВЫЙ РЕЖИМ КАРТОЧЕК (без второго >>) ===
+    if (isCardMode && parts[1] !== '>>') {
+      // parts[0] = French word
+      // parts[1] = Russian translation (correct)
+      // parts[2] = Correct French sentence (to show at bottom)
+      // parts[3..10] = Examples to shuffle
+      
+      const french = parts[0];
+      const correctTranslation = parts[1];  // Русский перевод
+      const correctSentence = parts[2] || '';  // Правильный французский (показывать внизу)
+      const examples = parts.slice(3).filter(e => e);  // Остальные примеры
+      
       words.push({
-        french: parts[0],
-        examples: [parts[2], parts[3], parts[4], parts[5], parts[6]].filter(e => e && e !== '>>'),
-        correct: parts[8],
-        wrong: [parts[9], parts[10], parts[11], parts[12]].filter(w => w),
+        french: french,
+        correct: correctTranslation,  // Русский перевод
+        correctSentence: correctSentence,  // Французский правильный ответ
+        examples: examples,
+        wrong: [],  // Не используется в этом режиме
         isCard: true
       });
     }
-    // Старый формат: French, Correct, Wrong1-4
+    // === СТАРЫЙ РЕЖИМ С >> ===
+    else if (isCardMode && parts[1] === '>>') {
+      const secondMarkerIdx = parts.indexOf('>>', 2);
+      
+      if (secondMarkerIdx === -1) {
+        if (parts.length >= 6) {
+          words.push({
+            french: parts[0],
+            correct: parts[2],
+            wrong: parts.slice(3, 7),
+            examples: [],
+            isCard: true
+          });
+        }
+        continue;
+      }
+      
+      const examples = parts.slice(2, secondMarkerIdx).filter(e => e && e !== '>>');
+      const afterMarker = parts.slice(secondMarkerIdx + 1).filter(p => p);
+      
+      let correct = '';
+      let wrong = [];
+      
+      if (afterMarker.length > 0) {
+        correct = afterMarker[0];
+        wrong = afterMarker.slice(1, 5);
+      } else if (examples.length > 0) {
+        correct = examples[0];
+      }
+      
+      words.push({
+        french: parts[0],
+        examples: examples,
+        correct: correct,
+        wrong: wrong,
+        isCard: true
+      });
+    }
+    // === СТАРЫЙ ФОРМАТ (без карточек) ===
     else if (!isCardMode && parts.length >= 6) {
       words.push({
         french: parts[0],
@@ -1157,6 +1212,8 @@ function parseCSV(text) {
       });
     }
   }
+  
+  console.log(`✅ parseCSV: ${words.length} words parsed, isCardMode=${isCardMode}`);
   return words;
 }
 
@@ -1168,10 +1225,7 @@ async function loadDictionary(dictName) {
     freshWordCounter = 0;
   reviewMode = false; 
     console.log(`📚 Loading dictionary: ${dictName}`);
-    els.word.textContent = translations[currentLanguage].wordLoading;
-
-    
-
+    els.word.textContent = translations[currentLanguage].wordLoading; 
 
     const basePath = window.location.pathname.endsWith('/') 
       ? window.location.pathname 
@@ -1265,7 +1319,7 @@ function parseCSVFallback(text) {
   return words;
 }
 
-    function startWithWords(words, dictName = 'custom') {
+function startWithWords(words, dictName = 'custom') {
       if (words.length === 0) { 
         alert(translations[currentLanguage].fileError.replace('⚠️ ', '')); 
         return; 
@@ -1297,6 +1351,8 @@ function parseCSVFallback(text) {
       updateStats();
       nextWord();
     }
+
+
 
     function hideDictionary(dictName) {
       const t = translations[currentLanguage];
@@ -1885,43 +1941,71 @@ async function nextWord() {
 
   els.wordProgress.innerHTML = `${getWordProgressText(currentWord.french)} ${getWordProgressBar(currentWord.french)}`;
 
+
   // === РЕЖИМ КАРТОЧЕК ===
-  if (isCardMode || currentWord.isCard) {
-    els.nextBtn.disabled = false;
-    els.nextBtn.textContent = '>> Выучил';
-    els.options.style.display = 'none';
+// === РЕЖИМ КАРТОЧЕК ===
+if (isCardMode || currentWord.isCard) {
+  els.nextBtn.disabled = false;
+  els.nextBtn.textContent = '>> Выучил';
+  els.options.style.display = 'none';
+  
+  // Удаляем старые элементы карточек
+  document.querySelectorAll('.card-examples, .card-translations, .card-translation').forEach(el => el.remove());
+  
+  // 1. РУССКИЙ ПЕРЕВОД — СРАЗУ ПОД ГЛАГОЛОМ
+  if (currentWord.correct) {
+    const translationBox = document.createElement('div');
+    translationBox.className = 'card-translation';
+    translationBox.style.cssText = 'margin:0.5rem 0;padding:0.75rem 1rem;background:rgba(34,197,94,0.15);border-radius:0.5rem;text-align:center;font-size:1.2rem;color:#86efac;font-weight:500;';
+    translationBox.textContent = currentWord.correct;  // Русский перевод
+    // Вставляем сразу после wordProgress
+    document.getElementById('wordProgress').parentNode.insertBefore(translationBox, document.getElementById('wordProgress').nextSibling);
+  }
+  
+  // 2. ПРИМЕРЫ (перемешанные) — ПОСЛЕ ПЕРЕВОДА
+  if (currentWord.examples?.length > 0) {
+    const shuffledExamples = [...currentWord.examples].sort(() => Math.random() - 0.5);
     
-    // Удаляем старые карточки если есть
-    document.querySelectorAll('.card-examples, .card-translations').forEach(el => el.remove());
+    const exBox = document.createElement('div');
+    exBox.className = 'card-examples';
+    exBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(59,130,246,0.1);border-radius:0.5rem;text-align:left;';
+    exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">Примеры:</div>` +
+      shuffledExamples.map((ex, i) => `<div style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2)">${i+1}. ${ex}</div>`).join('');
     
-    // Примеры
-    if (currentWord.examples?.length > 0) {
-      const exBox = document.createElement('div');
-      exBox.className = 'card-examples';
-      exBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(59,130,246,0.1);border-radius:0.5rem;text-align:left;';
-      exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">Примеры:</div>` +
-        currentWord.examples.map((ex, i) => `<div style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2)">${i+1}. ${ex}</div>`).join('');
+    // Вставляем после русского перевода
+    const translationBox = document.querySelector('.card-translation');
+    if (translationBox) {
+      translationBox.parentNode.insertBefore(exBox, translationBox.nextSibling);
+    } else {
       document.getElementById('wordProgress').parentNode.insertBefore(exBox, document.getElementById('wordProgress').nextSibling);
     }
-    
-    // Переводы
+  }
+  
+  // 3. ПРАВИЛЬНЫЙ ФРАНЦУЗСКИЙ ОТВЕТ — В САМОМ НИЗУ (зелёным)
+  if (currentWord.correctSentence) {
     const trBox = document.createElement('div');
     trBox.className = 'card-translations';
     trBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(34,197,94,0.1);border-radius:0.5rem;text-align:left;';
-    trBox.innerHTML = `<div style="font-weight:bold;color:#86efac;margin-bottom:0.5rem">✓ Правильно:</div>
-      <div style="padding:0.5rem;background:rgba(34,197,94,0.2);border-radius:0.25rem;font-size:1.1rem">${currentWord.correct}</div>`;
+    trBox.innerHTML = `
+      <div style="font-weight:bold;color:#86efac;margin-bottom:0.5rem">✓ Правильный ответ:</div>
+      <div style="padding:0.5rem;background:rgba(34,197,94,0.2);border-radius:0.25rem;font-size:1.1rem;color:#86efac;font-weight:600">
+        ${currentWord.correctSentence}
+      </div>`;
     
-    if (currentWord.wrong?.length > 0) {
-      trBox.innerHTML += `<div style="font-weight:bold;color:#fca5a5;margin:0.5rem 0 0.25rem">✗ Неправильно:</div>
-        <div style="display:flex;flex-wrap:wrap;gap:0.5rem">${currentWord.wrong.map(w => 
-          `<span style="padding:0.25rem 0.75rem;background:rgba(239,68,68,0.2);border-radius:1rem;font-size:0.85rem">${w}</span>`).join('')}</div>`;
-    }
-    
+    // Вставляем в самый низ, после примеров
     const exBox = document.querySelector('.card-examples');
-    if (exBox) exBox.parentNode.insertBefore(trBox, exBox.nextSibling);
-    else document.getElementById('wordProgress').parentNode.insertBefore(trBox, document.getElementById('wordProgress').nextSibling);
-    
-  } 
+    if (exBox) {
+      exBox.parentNode.insertBefore(trBox, exBox.nextSibling);
+    } else {
+      const translationBox = document.querySelector('.card-translation');
+      if (translationBox) {
+        translationBox.parentNode.insertBefore(trBox, translationBox.nextSibling);
+      } else {
+        document.getElementById('wordProgress').parentNode.insertBefore(trBox, document.getElementById('wordProgress').nextSibling);
+      }
+    }
+  }
+}
   // === РЕЖИМ ТЕСТА (старый) ===
   else {
     els.nextBtn.disabled = true;
