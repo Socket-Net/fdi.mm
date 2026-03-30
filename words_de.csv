@@ -1,415 +1,904 @@
-le pouls, Puls, Herz, Schlag, Frequenz, Fluss, ziehen
-l'entraînement, Training, Ausbildung, Übung, Praxis, Sitzung, Trainer
-la fréquence cardiaque, Herzfrequenz, Pulsschlag, Herzrhythmus, Herzschlag, Cardio, Frequenz
-l'endurance, Ausdauer, Stamina, Dauer, Kraft, Stärke, aushalten
-la récupération, Erholung, Ruhe, Heilung, Reparatur, erholen, Operation
-je, ich, du, er, sie, wir, sie
-tu, du (informell), ich, er, sie, wir, sie
-il, er, es, sie, du, wir, ihm
-elle, sie, es, er, du, wir, ihr
-nous, wir, uns, sie, du, ich, er
-vous, Sie (formell/mehrz.), wir, sie, ich, er, uns
-ils, sie (männlich), er, sie, wir, du, uns
-elles, sie (weiblich), er, sie, wir, du, uns
-on, man, wir, sie, du, er, sie, es
-être, sein, haben, machen, gehen, sehen, wissen
-avoir, haben, sein, machen, wollen, können, gehen
-aller, gehen, kommen, laufen, gehen, sehen, machen
-faire, machen, machen, gehen, sein, haben, sagen, sehen
-dire, sagen, erzählen, fragen, machen, machen, sagen
-pouvoir, können, wollen, wissen, haben, gehen, machen
-vouloir, wollen, können, wissen, gefallen, lieben, brauchen
-savoir, wissen, können, denken, glauben, verstehen, lernen
-voir, sehen, schauen, beobachten, wissen, finden, verstehen
-venir, kommen, gehen, ankommen, zurückkommen, weggehen, eintreten
-prendre, nehmen, bekommen, bringen, machen, machen, geben
-donner, geben, nehmen, bringen, machen, machen, sagen
-parler, sprechen, reden, sprechen, erzählen, fragen, anrufen
-aimer, gefallen, lieben, wollen, wissen, sehen, haben
-manger, essen, trinken, nehmen, haben, verbrauchen, genießen
-boire, trinken, essen, nehmen, haben, verbrauchen, genießen
-dormir, schlafen, ruhen, liegen, bleiben, gehen, aufwachen
-travailler, arbeiten, machen, machen, lernen, gehen, leben
-étudier, studieren, lernen, lesen, arbeiten, wissen, sehen
-lire, lesen, sehen, schreiben, lernen, studieren, sprechen
-écrire, schreiben, lesen, sprechen, erzählen, lernen, studieren
-écouter, zuhören, hören, sprechen, reden, sprechen, erzählen
-regarder, schauen, blicken, sehen, zuhören, finden, wissen
-acheter, kaufen, verkaufen, nehmen, bekommen, haben, geben
-vendre, verkaufen, kaufen, nehmen, geben, haben, finden
-la maison, Haus, Haus, Gebäude, Zimmer, Ort, Familie
-le temps, Zeit, Wetter, Stunde, Tag, Moment, Periode
-le jour, Tag, Zeit, Nacht, Woche, Sonne, Licht
-l'année, Jahr, Zeit, Tag, Monat, Periode, Alter
-l'homme, Mann, Frau, Mensch, Kind, Freund, Erwachsener
-la femme, Frau, Mann, Mensch, Kind, Freund, Erwachsener
-l'enfant, Kind, Kleinkind, Junge, Mädchen, Erwachsener, Freund
-l'ami, Freund, bester Freund, Begleiter, Kumpel, Partner, Familie
-l'eau, Wasser, Fluss, Meer, Flüssigkeit, Getränk, Getränk
-la nourriture, Essen, Mahlzeit, Gericht, Teller, Frühstück, Abendessen
-la voiture, Auto, Transport, LKW, Fahrrad, Zug, Bus
-le livre, Buch, Roman, Geschichte, Seite, Kapitel, lesen
-le chien, Hund, Haustier, Tier, Katze, Pferd, Freund
-le chat, Katze, Haustier, Tier, Hund, Pferd, Freund
-le travail, Arbeit, Arbeit, Beschäftigung, Karriere, Büro, Aufgabe
-l'école, Schule, Universität, Klasse, Unterricht, Lehrer, Schüler
-grand, groß, groß, großartig, hoch, klein, gut
-petit, klein, klein, groß, jung, alt, kurz
-bon, gut, schlecht, gut, gut, ausgezeichnet, großartig
-nouveau, neu, alt, modern, frisch, jung, kürzlich
-vieux, alt, neu, antik, klassisch, gebraucht, alt
-beau, schön, schön, schön, hässlich, gut, ausgezeichnet
-mauvais, schlecht, gut, schrecklich, widerlich, gut, falsch
-heureux, glücklich, traurig, freudig, freudig, zufrieden, aufgeregt
-triste, traurig, glücklich, niedergeschlagen, unglücklich, melancholisch, deprimiert
-merci, danke, danke, bitte, bitte, Entschuldigung, hallo
-bonjour, hallo, hallo, guten Morgen, guten Tag, auf Wiedersehen, danke
-au revoir, auf Wiedersehen, tschüss, bis bald, hallo, gute Nacht, danke
-s'il vous plaît, bitte, danke, Entschuldigung, Entschuldigung, hallo, auf Wiedersehen
-oui, ja, nein, vielleicht, gut, natürlich, möglich
-non, nein, ja, vielleicht, gut, nicht, natürlich
-où, wo, wann, warum, wie, wer, was
-quand, wann, wo, warum, wie, wer, was
-pourquoi, warum, wo, wann, wie, wer, was
-comment, wie, wo, wann, warum, wer, was
-qui, wer, wo, wann, warum, wie, was
-quoi, was, wo, wann, warum, wie, wer
-il y a, es gibt, es gibt, es ist, er hat, ich habe, wir haben
-je suis, ich bin, er ist, sie ist, wir sind, du bist, sie sind
-tu es, du bist, ich bin, er ist, sie ist, wir sind, sie sind
-il est, er ist, sie ist, es ist, du bist, wir sind, sie sind
-je vais, ich gehe, ich gehe, ich komme, ich will, ich kann, sie geht
-je pense, ich denke, ich glaube, ich weiß, ich sage, ich gehe, er denkt
-elle fait, sie macht, sie macht, er macht, ich mache, wir machen, sie geht
-je fais, ich mache, ich mache, ich gehe, ich bin, ich denke, ich habe
-nous avons, wir haben, wir sind, wir machen, wir gehen, wir wollen, wir denken
-vous êtes, Sie sind, Sie haben, Sie machen, Sie gehen, Sie wollen, Sie denken
-je veux, ich will, ich kann, ich brauche, mir gefällt, ich liebe, ich weiß
-je sais, ich weiß, ich denke, ich glaube, ich verstehe, ich lerne, ich sehe
-tu as, du hast, du bist, du machst, du gehst, du willst, du denkst
-maintenant, jetzt, später, bald, dann, heute, gestern
-plus tard, später, jetzt, bald, dann, heute, gestern
-la famille, Familie, Freund, Haus, Eltern, Kinder, Haus
-le monde, Welt, Erde, Planet, Land, Ort, Universum
-la vie, Leben, Tod, Existenz, Tag, Zeit, Welt
-la chose, Sache, Objekt, Gegenstand, Dinge, Stück, bisschen
-la partie, Teil, Stück, Ganzes, Abschnitt, bisschen, Anteil
-l'endroit, Ort, Punkt, Lage, Stelle, Bereich, Position
-la personne, Person, Mann, Frau, Kind, Individuum, jemand
-l'amour, Liebe, gefallen, Zuneigung, Leidenschaft, Freundschaft, Hass
-l'argent, Geld, Bargeld, Reichtum, Münze, Schein, Vermögen
-la ville, Stadt, Städtchen, Dorf, Ort, Hauptstadt, Bereich
-le pays, Land, Nation, Staat, Erde, Region, Königreich
-le soleil, Sonne, Stern, Licht, Tag, Hitze, Mond
-la lune, Mond, Sonne, Stern, Nacht, Licht, Dunkelheit
-la nuit, Nacht, Tag, Abend, Dunkelheit, Zeit, Schlaf
-le matin, Morgen, Tag, Abend, Nacht, Morgendämmerung, Sonnenaufgang
-le soir, Abend, Nacht, Morgen, Tag, Dämmerung, Sonnenuntergang
-la semaine, Woche, Tag, Monat, Jahr, Zeit, Periode
-le mois, Monat, Woche, Tag, Jahr, Zeit, Periode
-l'an, Jahr, Alter, Zeit, Tag, Monat, Periode
-l'amie, Freundin, Freund, Begleiter, Kumpel, Freundin, Partner
-le frère, Bruder, Schwester, Familie, Sohn, Vater, Onkel
-la sœur, Schwester, Bruder, Familie, Tochter, Mutter, Tante
-le père, Vater, Mutter, Elternteil, Papa, Sohn, Bruder
-la mère, Mutter, Vater, Elternteil, Mama, Tochter, Schwester
-le fils, Sohn, Junge, Kind, Tochter, Vater, Bruder
-la fille, Tochter, Mädchen, Kind, Sohn, Mutter, Schwester
-le cœur, Herz, Kern, Zentrum, Liebe, Schlag, Gefühl
-la tête, Kopf, Verstand, Gehirn, Oberteil, Anführer, Gesicht
-la main, Hand, Hand, Handfläche, Finger, Hilfe, Seite
-le pied, Fuß, Bein, Grundlage, Schritt, gehen, Schuh
-l'œil, Auge, Sehkraft, Blick, Sicht, Gesicht, sehen
-l'oreille, Ohr, Gehör, Klang, hören, Seite, Kopf
-la bouche, Mund, Lippen, Gespräch, essen, sprechen, Stimme
-la dent, Zahn, Mund, Biss, essen, Lächeln, Schmerz
-le cheveu, Haar, Kopf, Strähne, Stil, Farbe, Haarschnitt
-le visage, Gesicht, Kopf, Blick, Ausdruck, Seite, Vorderseite
-le corps, Körper, Figur, Form, Form, Mensch, Gesundheit
-l'esprit, Geist, Seele, Gedanke, Idee, Gehirn, Seele
-l'idée, Idee, Gedanke, Konzept, Plan, Begriff, Ansicht
-la pensée, Gedanke, Idee, Verstand, Denken, Überlegung, Meinung
-le mot, Wort, Begriff, Satz, Sprichwort, Buchstabe, Rede
-la phrase, Satz, Phrase, Ausdruck, Wort, Aussage, Zeile
-la question, Frage, Anfrage, Problem, Problem, Zweifel, fragen
-la réponse, Antwort, Antwort, Lösung, Antwort, Schlüssel, Ergebnis
-le problème, Problem, Problem, Schwierigkeit, Frage, Unannehmlichkeit, Herausforderung
-la solution, Lösung, Antwort, Fix, Schlüssel, Weg, Ergebnis
-la raison, Grund, Grund, Logik, Verstand, gesunder Menschenverstand, warum
-la cause, Ursache, Grund, Quelle, Herkunft, Wurzel, Faktor
-l'effet, Effekt, Ergebnis, Einfluss, Ergebnis, Folge, Einfluss
-le résultat, Ergebnis, Ergebnis, Effekt, Ergebnis, Produkt, Antwort
-le changement, Veränderung, Veränderung, Verschiebung, Modifikation, Variation, Wechsel
-la différence, Unterschied, Kontrast, Variation, Unterschied, Lücke, Lücke
-la similitude, Ähnlichkeit, Ähnlichkeit, Ähnlichkeit, Parallele, Analogie, Gleichheit
-la beauté, Schönheit, Reiz, Attraktivität, Anmut, Schönheit, Zauber
-la laideur, Hässlichkeit, Unattraktivität, Schrecklichkeit, Abstoßung, Schrecklichkeit, Monstrosität
-la force, Kraft, Stärke, Macht, Kraft, Energie, Fähigkeit
-la faiblesse, Schwäche, Zerbrechlichkeit, Schwäche, Gebrechlichkeit, Verletzlichkeit, Mangel
-la joie, Freude, Glück, Entzücken, Fröhlichkeit, Vergnügen, Seligkeit
-la peine, Leid, Schmerz, Kummer, Unannehmlichkeit, Schwierigkeit, Anstrengung
-la douleur, Schmerz, Schmerz, Leiden, Schmerz, Qual, Unbehagen
-le plaisir, Vergnügen, Genuss, Entzücken, Fröhlichkeit, Freude, Befriedigung
-le besoin, Bedürfnis, Anforderung, Notwendigkeit, Wunsch, Anforderung, Drang
-l'envie, Lust, Wunsch, Drang, Sehnsucht, Neid, Neid
-le désir, Wunsch, Wunsch, Sehnsucht, starkes Verlangen, Leidenschaft, Drang
-la peur, Angst, Schreck, Horror, Terror, Sorge, Schreck
-la colère, Wut, Zorn, Wut, Zorn, Reizung, Kränkung
-la tristesse, Traurigkeit, Düsterkeit, Melancholie, Kummer, Unglück, Depression
-le bonheur, Glück, Freude, Seligkeit, Zufriedenheit, Entzücken, Vergnügen
-la liberté, Freiheit, Freiheit, Unabhängigkeit, Autonomie, Befreiung, Wahl
-l'égalité, Gleichheit, Parität, Gleichwertigkeit, Gleichheit, Balance, Gerechtigkeit
-la justice, Gerechtigkeit, Gerechtigkeit, Rechtschaffenheit, Gesetz, Gleichheit, Moral
-la vérité, Wahrheit, Fakt, Realität, Genauigkeit, Ehrlichkeit, Richtigkeit
-le mensonge, Lüge, Lüge, Betrug, Unwahrheit, Erfindung, Geschichte
-l'erreur, Fehler, Fehler, Schuld, Ungenauigkeit, Fehlgriff, Missgeschick
-le succès, Erfolg, Leistung, Sieg, Leistung, Triumph, Gewinn
-l'échec, Misserfolg, Niederlage, Verlust, Misserfolg, Zusammenbruch, Fehlschlag
-le début, Anfang, Beginn, Anfang, Anfang, Eröffnung, Einleitung
-la fin, Ende, Schluss, Beendigung, Abschluss, Schließung, Beendigung
-le milieu, Mitte, Zentrum, Mitte, mittlerer, mittlerer, Umgebung
-le côté, Seite, Rand, Teil, Richtung, Aspekt, Team
-la direction, Richtung, Weg, Führung, Leitung, Anweisung, Überschrift
-le chemin, Weg, Pfad, Straße, Route, Strecke, Kurs
-la route, Straße, Weg, Route, Autobahn, Pfad, Straße
-la rue, Straße, Weg, Pfad, Avenue, Gasse, Allee
-la place, Platz, Platz, Punkt, Position, Sitz, Lage
-l'espace, Raum, Zimmer, Bereich, Platz, Abstand, Entfernung
-le moment, Moment, Augenblick, Zeit, Punkt, Gelegenheit, Minute
-l'heure, Stunde, Zeit, Uhr, Periode, Moment
-la minute, Minute, Moment, kurze Zeit, sechzig Sekunden, kurz, kurz
-la seconde, Sekunde, Moment, kurze Zeit, Einheit, Zeit, kurz
-le siècle, Jahrhundert, 100 Jahre, Ära, Zeitalter, Periode, Zeit
-l'histoire, Geschichte, Erzählung, Vergangenheit, Märchen, Bericht, Erzählung
-la langue, Sprache, Zunge, Rede, Idiom, Dialekt, Wort
-la parole, Wort, Rede, Gespräch, Aussage, Behauptung, Stimme
-la voix, Stimme, Klang, Ton, Rede, Gesang, Meinung
-le son, Klang, Geräusch, Ton, Klingeln, Ruf, Audio
-le bruit, Lärm, Geräusch, Krach, Krach, Störung, Tumult
-le silence, Stille, Stille, Ruhe, Frieden, Stille, Gelassenheit
-la lumière, Licht, Helligkeit, Beleuchtung, Tageslicht, Glanz, Strahl
-l'ombre, Schatten, Schatten, Dunkelheit, Silhouette, Geist, Spur
-la couleur, Farbe, Schattierung, Schatten, Farbton, Pigment, Aussehen
-le rouge, rot, Farbe, scharlachrot, purpur, Blut, Leidenschaft
-le bleu, blau, Farbe, azur, Himmel, Ozean, Traurigkeit
-le vert, grün, Farbe, smaragdgrün, Gras, Natur, Neid
-le jaune, gelb, Farbe, golden, Sonne, Zitrone, Vorsicht
-le noir, schwarz, Farbe, dunkel, Böse, Nacht, Abwesenheit
-le blanc, weiß, Farbe, rein, Schnee, Licht, leer
-le gris, grau, Farbe, grau, Asche, matt, neutral
-le rose, rosa, Farbe, Rose, Blume, weich, romantisch
-le brun, braun, Farbe, Bräune, Erde, Holz, Schokolade
-long, lang, lang, langanhaltend, hoch, langwierig, gedehnt
-court, kurz, kurz, klein, gedrängt, verkürzt, nah
-large, breit, breit, groß, geräumig, weit, weit
-étroit, eng, dünn, eng, begrenzt, eng, nah
-haut, hoch, hoch, hoch, oberer, erhaben, angehoben
-bas, niedrig, kurz, Basis, unten, unterer, niedriger
-profond, tief, tief, intensiv, fern, bodenlos, ernst
-superficiel, oberflächlich, flach, Oberfläche, oberflächlich, trivial, offensichtlich
-rapide, schnell, schnell, schnell, schnell, stürmisch, schnell
-lent, langsam, träge, langsam, verzögert, langsam, allmählich
-jeune, jung, jung, neu, jugendlich, unreif, frisch
-ancien, alt, alt, ehemalig, vorherig, antik, vergangen
-moderne, modern, modern, modern, neu, aktuell, progressiv
-futur, Zukunft, kommend, bevorstehend, nächster, zukunftsweisend, bevorstehend
-passé, Vergangenheit, vorherig, ehemalig, vergangen, abgelaufen, vorherig
-présent, Gegenwart, aktuell, jetzt, Geschenk, hier, existierend
-absent, abwesend, abwesend, abwesend, nicht anwesend, gegangen, nicht verfügbar
-riche, reich, reich, wohlhabend, vermögend, luxuriös, blühend
-pauvre, arm, bedürftig, verarmt, ruiniert, arm, kärglich
-fort, stark, mächtig, mächtig, kräftig, stabil, kraftvoll
-faible, schwach, schwach, schwächlich, zerbrechlich, zart, ineffektiv
-intelligent, intelligent, klug, klug, hell, scharfsinnig, scharf
-stupide, dumm, stumpf, dumm, dumm, idiotisch, unintelligent
-gentil, nett, gut, zart, angenehm, freundlich, gut
-méchant, böse, unartig, böse, böse, grausam, schlecht
-calme, ruhig, leise, friedlich, ruhig, gelassen, leise
-agité, aufgeregt, unruhig, stürmisch, aufgewühlt, aufgeregt, nervös
-facile, leicht, einfach, direkt, mühelos, leicht, unkompliziert
-difficile, schwierig, schwer, schwierig, kompliziert, kompliziert, schwer
-possible, möglich, machbar, wahrscheinlich, erreichbar, wahrscheinlich, ausführbar
-impossible, unmöglich, undurchführbar, unerreichbar, undenkbar, unmöglich, absurd
-vrai, wahr, real, echt, tatsächlich, richtig, richtig
-faux, falsch, falsch, gefälscht, Unwahrheit, falsch, gefälscht
-utile, nützlich, hilfreich, nützlich, praktisch, bequem, wertvoll
-inutile, nutzlos, sinnlos, vergeblich, wertlos, ineffektiv, nutzlos
-important, wichtig, bedeutend, hauptsächlich, entscheidend, lebenswichtig, entscheidend
-sans importance, unwichtig, trivial, klein, unbedeutend, geringschätzig, irrelevant
-intéressant, interessant, fesselnd, fesselnd, faszinierend, überzeugend, bemerkenswert
-ennuyeux, langweilig, stumpf, ermüdend, ermüdend, monoton, uninteressant
-laid, hässlich, unattraktiv, schrecklich, unscheinbar, abstoßend, schrecklich
-propre, sauber, ordentlich, gepflegt, sauber, eigen, richtig
-sale, schmutzig, schmutzig, schmutzig, schmutzig, unrein, verschmutzt
-plein, voll, voll, gefüllt, gepackt, überfüllt, ganz
-vide, leer, leer, leer, leer, unfruchtbar, unbesetzt
-chaud, heiß, warm, erhitzt, scharf, brennend, leidenschaftlich
-froid, kalt, kühl, kalt, eisig, kalt, unfreundlich
-sec, trocken, trocken, ausgetrocknet, dehydriert, unfruchtbar, witzig
-humide, nass, feucht, feucht, feucht, nass, wässrig
-ouvert, offen, offen, zugänglich, zugänglich, offenherzig, offensichtlich
-fermé, geschlossen, geschlossen, geschlossen, versiegelt, beendet, abgeschlossen
-commencer, beginnen, beginnen, beginnen, initiieren, starten, öffnen
-finir, beenden, beenden, abschließen, schließen, abschließen, stoppen
-continuer, fortsetzen, fortsetzen, fortsetzen, fortsetzen, fortsetzen, weitergehen
-arrêter, stoppen, stoppen, beenden, aufhören, verhaften, verhindern
-attendre, warten, erwarten, warten, vorfreuen, halten, Pause
-partir, weggehen, abreisen, gehen, aufbrechen, hinausgehen, beginnen
-arriver, ankommen, kommen, geschehen, geschehen, erreichen, schaffen
-rester, bleiben, bleiben, halten, sein, leben, warten
-retourner, zurückkehren, zurückkehren, umdrehen, umdrehen, zurückkehren, zurückgeben
-entrer, eintreten, eintreten, eintreten, beitreten, einfügen, beginnen
-sortir, hinausgehen, hinausgehen, weggehen, hinaustragen, hinausgehen, erscheinen
-monter, hochgehen, klettern, hochgehen, aufsteigen, zunehmen, montieren
-descendre, hinuntergehen, hinuntergehen, aussteigen, abnehmen, senken, fallen
-ouvrir, öffnen, öffnen, beginnen, entfalten, enthüllen, öffnen
-fermer, schließen, schließen, schließen, beenden, schließen, versiegeln
-recevoir, erhalten, bekommen, annehmen, begrüßen, erhalten, Gäste empfangen
-demander, fragen, bitten, fragen, fordern, fordern, flehen
-répondre, antworten, antworten, antworten, reagieren, entsprechen, entsprechen
-penser, denken, glauben, betrachten, vorstellen, annehmen, überlegen
-croire, glauben, denken, vertrauen, annehmen, anerkennen, annehmen
-comprendre, verstehen, verstehen, begreifen, erkennen, einschließen, abdecken
-apprendre, lernen, lehren, hören, erfahren, merken, lernen
-oublier, vergessen, verpassen, vernachlässigen, zurücklassen, ignorieren, auslassen
-se souvenir, sich erinnern, sich erinnern, im Kopf behalten, merken, sich erinnern, bewahren
-détester, hassen, hassen, nicht mögen, verachten, sich ekeln, verachten
-préférer, bevorzugen, lieber mögen, bevorzugen, wählen, wählen, neigen
-choisir, wählen, auswählen, wählen, entscheiden, wählen, auswählen
-décider, entscheiden, bestimmen, lösen, regeln, entscheiden, schließen
-changer, ändern, verändern, modifizieren, umschalten, tauschen, umwandeln
-garder, behalten, bewahren, halten, retten, bewahren, aufrechterhalten
-perdre, verlieren, verlieren, ausgeben, verlieren, scheitern, fallen
-trouver, finden, entdecken, finden, treffen, erkennen, denken
-chercher, suchen, suchen, suchen, jagen, versuchen, prüfen
-sentir, fühlen, riechen, spüren, wahrnehmen, entdecken, bemerken
-goûter, probieren, probieren, probieren, schmecken, erleben, genießen
-toucher, berühren, fühlen, kontaktieren, erreichen, beeinflussen, rühren
-bouger, bewegen, verschieben, rühren, sich bewegen, ändern, gehen
-marcher, gehen, laufen, funktionieren, schreiten, gehen, marschieren
-courir, laufen, rennen, eilen, fließen, steuern, arbeiten
-sauter, springen, springen, überspringen, springen, abprallen, auslassen
-voler, fliegen, stehlen, rauben, schweben, gleiten, stehlen
-nager, schwimmen, baden, schwimmen, tauchen, rudern, überqueren
-danser, tanzen, bewegen, aufführen, schaukeln, feiern, Party
-chanter, singen, singen, feiern, summen, schreien, loben
-jouer, spielen, handeln, Glücksspiel spielen, aufführen, scherzen, Sport
-dessiner, zeichnen, skizzieren, entwerfen, umreißen, darstellen, planen
-peindre, malen, darstellen, porträtieren, bedecken, färben, beschreiben
-construire, bauen, bauen, machen, errichten, entwickeln, schaffen
-détruire, zerstören, zerstören, zerstören, brechen, brechen, zerstören
-réparer, reparieren, reparieren, reparieren, wiederherstellen, korrigieren, heilen
-casser, brechen, zerbrechen, brechen, explodieren, scheitern, verderben
-couper, schneiden, schneiden, kürzen, hacken, unterbrechen, reduzieren
-coller, kleben, kleben, einfügen, kleben, befestigen, veröffentlichen
-jeter, werfen, werfen, wegwerfen, werfen, ablehnen, ausgeben
-attraper, fangen, greifen, ergreifen, ergreifen, bekommen, verstehen
-lancer, werfen, starten, beginnen, werfen, werfen, initiieren
-pousser, schieben, schieben, antreiben, fördern, wachsen, ermutigen
-tirer, ziehen, zeichnen, schießen, ziehen, extrahieren, schießen
-porter, tragen, tragen, tragen, unterstützen, bringen, aushalten
-enlever, entfernen, ausziehen, wegnehmen, entführen, ausziehen, reinigen
-mettre, legen, platzieren, einstellen, tragen, anwenden, legen
-poser, legen, platzieren, einstellen, fragen, legen, Pose
-lever, heben, heben, aufstehen, aufsteigen, unterstützen, heben
-baisser, senken, senken, reduzieren, reduzieren, beugen, reduzieren
-tourner, drehen, drehen, drehen, drehen, ändern, drehen
-suivre, folgen, verfolgen, gehorchen, verfolgen, verstehen, fortsetzen
-précéder, vorausgehen, vorangehen, führen, vorwegnehmen, vorausgehen, einführen
-accompagner, begleiten, mitgehen, begleiten, besuchen, ergänzen, entsprechen
-quitter, verlassen, verlassen, verlassen, abreisen, aufgeben, verlassen
-rejoindre, beitreten, treffen, einholen, erreichen, wiedervereinen, vereinen
-séparer, trennen, trennen, trennen, abtrennen, trennen, isolieren
-réunir, wiedervereinigen, sammeln, sammeln, beitreten, sammeln, vereinen
-mélanger, mischen, mischen, vereinen, verwirren, mischen, rühren
-ajouter, hinzufügen, einschließen, beitreten, einbringen, ergänzen, anfügen
-multiplier, multiplizieren, vergrößern, vermehren, vermehren, verstärken, vergrößern
-diviser, teilen, trennen, teilen, abtrennen, verteilen, klassifizieren
-calculer, berechnen, berechnen, zählen, berechnen, schätzen, zählen
-mesurer, messen, messen, schätzen, wiegen, messen, schätzen
-compter, zählen, sich verlassen, abhängen, zählen, nummerieren, berechnen
-peser, wiegen, betrachten, überlegen, balancieren, schätzen, messen
-comparer, vergleichen, kontrastieren, vergleichen, entsprechen, gleichsetzen, parallelisieren
-juger, urteilen, urteilen, halten, betrachten, bewerten, entscheiden
-douter, zweifeln, befragen, verdächtigen, zögern, nicht vertrauen, zögern
-espérer, hoffen, erwarten, wünschen, vorfreuen, vertrauen, wünschen
-craindre, fürchten, sich entsetzen, fürchten, sich sorgen, befürchten, verdächtigen
-risquer, riskieren, riskieren, riskieren, gefährden, riskieren, spielen
-éviter, vermeiden, ausweichen, verhindern, vermeiden, ausweichen, umgehen
-rencontrer, treffen, treffen, stoßen, begegnen, erleben, finden
-saluer, grüßen, salutieren, winken, grüßen, ansprechen, grüßen
-présenter, vorstellen, vorstellen, zeigen, anbieten, vorstellen, anbieten
-excuser, entschuldigen, verzeihen, verzeihen, sich entschuldigen, rechtfertigen, befreien
-remercier, danken, schätzen, dankbar sein, anerkennen, gutschreiben, auszeichnen
-féliciter, gratulieren, Kompliment, loben, applaudieren, feiern, wünschen
-critiquer, kritisieren, rezensieren, verurteilen, urteilen, Fehler finden, kommentieren
-louer, loben, mieten, einstellen, loben, preisen, preisen
-blâmer, tadeln, kritisieren, vorwerfen, beschuldigen, tadeln, verurteilen
-soutenir, unterstützen, unterstützen, unterstützen, unterstützen, unterstützen, tragen
-aider, helfen, helfen, helfen, unterstützen, erleichtern, erleichtern
-protéger, schützen, schützen, schützen, schützen, bewahren, schützen
-attaquer, angreifen, angreifen, kritisieren, beschuldigen, angreifen, schlagen
-défendre, verteidigen, verteidigen, unterstützen, verbieten, verbieten, verteidigen
-combattre, kämpfen, kämpfen, kämpfen, kämpfen, widerstehen, widerstehen
-partager, teilen, teilen, teilen, teilnehmen, verteilen, kommunizieren
-apporter, bringen, tragen, einbringen, hinzufügen, liefern, verursachen
-emporter, wegtragen, wegtragen, entfernen, gewinnen, überwiegen, überwinden
-ramener, zurückbringen, zurücktragen, reduzieren, zurückbringen, wiederherstellen, erinnern
-rapporter, berichten, zurückbringen, erzählen, bringen, zurückbringen, erzählen
-payer, zahlen, bezahlen, belohnen, leiden, bringen, ausgleichen
-coûter, kosten, teuer sein, erfordern, nehmen, verursachen, nach sich ziehen
-valoir, wert sein, verdienen, verdienen, gleichkommen, gültig sein, halten
-dépenser, ausgeben, verbrauchen, verbrauchen, ausgeben, verwenden, verschwenden
-économiser, sparen, sparen, sparen, bewahren, bewahren, aufbewahren
-investir, investieren, anlegen, widmen, ausgeben, investieren, setzen
-emprunter, leihen, nehmen, kopieren, imitieren, annehmen, annehmen
-prêter, leihen, geben, zuschreiben, zuschreiben, übertragen
-offrir, anbieten, geben, bereitstellen, vorstellen, anbieten, freiwillig
-accepter, annehmen, bekommen, zustimmen, anerkennen, begrüßen, billigen
-refuser, ablehnen, ablehnen, ablehnen, verneinen, ablehnen, ablehnen
-permettre, erlauben, erlauben, ermöglichen, autorisieren, erlauben, geben
-interdire, verbieten, verbieten, verbieten, verhindern, verbieten, Veto
-obliger, verpflichten, zwingen, zwingen, fordern, binden, einschränken
-forcer, zwingen, zwingen, brechen, anstrengen, schieben, treiben
-encourager, ermutigen, antreiben, fördern, inspirieren, stimulieren, ermutigen
-décourager, entmutigen, enttäuschen, abschrecken, unterdrücken, abraten, dämpfen
-convaincre, überzeugen, überreden, überzeugen, zufriedenstellen, versichern, beweisen
-persuader, überreden, überzeugen, antreiben, überreden, antreiben, beeinflussen
-suggérer, vorschlagen, vorschlagen, empfehlen, andeuten, andeuten, raten
-conseiller, raten, beraten, empfehlen, vorschlagen, warnen, leiten
-recommander, empfehlen, raten, vorschlagen, loben, unterstützen, verschreiben
-avertir, warnen, warnen, benachrichtigen, warnen, informieren, raten
-informer, informieren, benachrichtigen, sagen, raten, aufklären, bekannt machen
-expliquer, erklären, klären, erklären, interpretieren, erläutern, beschreiben
-décrire, beschreiben, darstellen, porträtieren, umreißen, charakterisieren, erzählen
-raconter, erzählen, erzählen, erzählen, nacherzählen, beschreiben, berichten
-montrer, zeigen, anzeigen, demonstrieren, hinweisen, beweisen, ausstellen
-cacher, verstecken, verbergen, bedecken, geheim halten, maskieren, bedecken
-révéler, enthüllen, offenbaren, enthüllen, ausstellen, zeigen, verraten
-découvrir, entdecken, erfahren, enthüllen, enthüllen, entdecken, erfinden
-inventer, erfinden, ausdenken, ausdenken, schaffen, fabrizieren, ausdenken
-imaginer, vorstellen, annehmen, fantasieren, visualisieren, ausdenken, denken
-rêver, träumen, träumen, vorstellen, wünschen, hoffen, fantasieren
-réfléchir, nachdenken, denken, nachdenken, betrachten, meditieren, betrachten
-méditer, meditieren, nachdenken, betrachten, nachdenken, nachdenken, denken
-considérer, betrachten, betrachten, denken über, studieren, halten, schauen
-examiner, untersuchen, betrachten, erforschen, studieren, prüfen, rezensieren
-analyser, analysieren, studieren, studieren, zerlegen, zergliedern, bewerten
-évaluer, bewerten, bewerten, bewerten, bewerten, bewerten, urteilen
-estimer, schätzen, schätzen, schätzen, berechnen, schätzen, schätzen
-contraster, kontrastieren, sich unterscheiden, hervorstechen, gegenüberstellen, vergleichen, betonen
-opposer, gegenüberstellen, kontrastieren, gegenüberstellen, widerstehen, widersprechen, entgegenwirken
-s'opposer, sich widersetzen, dagegen sein, widerstehen, widersprechen, entgegenwirken, kämpfen
-résister, widerstehen, aushalten, widerstehen, aushalten, halten, widerstehen
-céder, nachgeben, aufgeben, aufgeben, nachgeben, nachgeben, nachgeben
-abandonner, verlassen, aufgeben, aufgeben, verlassen, verlassen, aufgeben
-laisser, lassen, lassen, lassen, lassen, verlassen, aufgeben
-empêcher, verhindern, stoppen, behindern, blockieren, stören, verhindern
-fuir, fliehen, fliehen, fliehen, vermeiden, vermeiden, fließen
-échapper, entkommen, vermeiden, vermeiden, entkommen, entkommen, auslassen
-sauver, retten, retten, bewahren, schützen, schonen, befreien
-vaincre, besiegen, überwinden, erobern, besiegen, bezwingen, überwinden
-triompher, triumphieren, überwiegen, Erfolg haben, besiegen, überwinden, jubeln
-célébrer, feiern, feiern, beobachten, ehren, loben, sich freuen
-fêter, feiern, Party, schmausen, feiern, sich freuen, ehren
-
+jeune,jung,jugendlich,neu,minderjährig,unreif,frisch
+tu as vu,du sahst,du hast gesehen,du wirst sehen,ich sah,er sah,wir sahen
+vous êtes,ihr seid,ihr habt,ihr tut,ihr geht,ihr wollt,ihr denkt
+tu as,du hast,du bist,du tust,du gehst,du willst,du denkst
+je,ich,du,er,sie,wir,ihnen
+déjà,schon,noch,immer,bisher,gerade,bald
+hier il faisait froid,gestern war es kalt,gestern war es heiß,gestern war es schön,gestern regnete es,gestern schneite es,gestern war es sonnig
+non,nein,ja,vielleicht,okay,nicht,sicher
+cour,Gericht,Hof,Innenhof,königlicher Hof,Rechtsgericht,Gehege
+faux,falsch,unrichtig,gefälscht,unwahr,inkorrekt,unecht
+valeur,Wert,Wertigkeit,Verdienst,Bedeutung,Wichtigkeit,Preis
+arbre,Baum,Holz,Pflanze,Wald,Ast,Blatt
+dame,Dame,Frau,Madame,Edeldame,Missus
+l'homme,Mann,Frau,Person,Kind,Freund,Erwachsener
+embrouiller,verwirren,verwechseln,verschmelzen,zusammenführen,verbinden
+Je me suis embrouillé,ich habe mich verwirrt,ich habe gestanden,ich habe mich geirrt,ich habe geschlossen,ich habe beschlossen,ich habe mich gefreut
+avec,mit,ohne,zu,von,durch,für
+sans,ohne,mit,zu,von,durch,für
+le désir,Wunsch,Sehnsucht,Verlangen,Begierde,Leidenschaft,Drang
+l'envie,Wunsch,Verlangen,Begierde,Sehnsucht,Neid
+la neige,Schnee,Winter,Kälte,Eis,weiß,Flocke
+le café,Kaffee,Wein,Saft,Milch,Wasser,Tee
+qui est-ce,wer ist das,wer ist jenes,was ist das,wo ist er,wie geht es ihm,wann ist er
+où est la salle de bain,wo ist das Badezimmer,wo ist die Toilette,wo ist die Küche,wo ist das Schlafzimmer,wo ist das Wohnzimmer,wo ist das Büro
+où sont les toilettes,wo sind die Toiletten,wo ist das Badezimmer,wo ist der Bahnhof,wo ist das Hotel,wo ist das Restaurant,wo ist das Geschäft
+d'où viens-tu,woher kommst du,wo wohnst du,wo gehst du hin,wie geht es dir,was ist das,wer bist du
+comment,wie,wo,wann,warum,wer,was
+pourquoi,warum,wo,wann,wie,wer,was
+quand,wann,wo,warum,wie,wer,was
+qui,wer,wo,wann,warum,wie,was
+quoi,was,wo,wann,warum,wie,wer
+où,wo,wann,warum,wie,wer,was
+le pneu,Reifen,Rad,Auto,Fahrzeug,Gummi,Platten
+tu veux quoi,was willst du,was möchtest du,was brauchst du,wie geht es dir,wo bist du,wer bist du
+à quelle heure,um wie viel Uhr,wie spät ist es,wann,wie lange,wo,warum
+quel âge as-tu,wie alt bist du,was ist dein Name,wo wohnst du,wie geht es dir,wie spät ist es,woher kommst du
+qu'est-ce que c'est,was ist das,was ist jenes,was ist es,wer ist das,wo ist es,wie viel kostet es
+mal,schlecht/falsch,gut,okay,in Ordnung,fein,schön
+le mois,Monat,Woche,Tag,Jahr,Zeit,Periode
+le mariage,Ehe,Hochzeit,Ehebündnis,Vereinigung,Ehegatte,Zeremonie
+le temps,Zeit,Wetter,Stunde,Tag,Moment,Periode
+l'usure,Verschleiß,Abnutzung,Erosion,Verschlechterung,Entwertung,Abrieb
+riche,reich,wohlhabend,begütert,vermögend,opulent,prosperierend
+nous sommes allés,wir gingen,wir sind gegangen,wir werden gehen,ich ging,sie gingen,ihr gingt
+nous avons mangé,wir aßen,wir haben gegessen,wir werden essen,ich aß,sie aßen,ihr aßt
+ils vont au cinéma,sie gehen ins Kino,wir gehen ins Kino,ihr geht ins Kino,ich gehe ins Kino,sie geht ins Kino,er geht ins Kino
+nous mangeons au restaurant,wir essen im Restaurant,wir essen zusammen,wir essen zu Hause,ich esse im Restaurant,sie essen im Restaurant,sie isst im Restaurant
+nous allons à l'école,wir gehen zur Schule,wir gehen zur Schule,ich gehe zur Schule,sie gehen zur Schule,ihr geht zur Schule,sie geht zur Schule
+nous avons,wir haben,wir sind,wir tun,wir gehen,wir wollen,wir denken
+vous,ihr (formell/Plural),wir,sie,ich,er,uns
+la direction,Richtung,Weg,Führung,Management,Anweisung,Richtung
+la route,Straße,Weg,Route,Autobahn,Pfad,Straße
+la chaleur,Wärme,Wärme,Temperatur,heiß,Feuer,Sommer
+chaud,heiß,warm,erhitzt,würzig,brennend,leidenschaftlich
+guerre,Krieg,Kriegsführung,Konflikt,Schlacht,Feindseligkeiten,Streit
+réveil,Wecker,Erwachen,Erwachen,Alarm,Wecken,Erregung
+pari,Wette,Einsatz,Wette,Glücksspiel,Quote,Spekulation
+rêve,Traum,Vision,Fantasie,Albtraum,Aspiration,Ideal
+navire,Schiff,Fahrzeug,Boot,Liner,Dampfer
+la voiture,Auto,Fahrzeug,LKW,Fahrrad,Zug,Bus
+les fruits,Obst,Gemüse,Fleisch,Fisch,Käse,Brot
+la carotte,Karotte,Gemüse,Orange,Wurzel,gesund,roh
+la pomme de terre,Kartoffel,Gemüse,Knolle,stärkehaltig,gebraten,gekocht
+la tomate,Tomate,Gemüse,rot,Obst,Sauce,Salat
+coffre-fort,Safe,Tresor,Geldschrank,sicherer Kasten,Schließfach,Schatzkammer
+vide,leer,vakant,leer,hohl,unfruchtbar,unbesetzt
+américain,amerikanisch,US-Bürger,Yankee,US,aus den Staaten,amerikanische Person
+nous,wir,uns,sie,ihr,ich,er
+ouvert,offen,entriegelt,zugänglich,verfügbar,offen,offenkundig
+l'école,Schule,Universität,Klasse,Lektion,Lehrer,Schüler
+impossible,unmöglich,undurchführbar,unerreichbar,undenkbar,auf keinen Fall,absurd
+oncle,Onkel,Onkel,Verwandter,Ehemann der Tante,Bruder des Vaters
+la laideur,Hässlichkeit,Unattraktivität,Abstoßung,Abstoßlichkeit,Schrecklichkeit,Monstrosität
+laid,hässlich,unattraktiv,abstoßend,unschön,widerlich,schrecklich
+tour,Tour,Wende,Runde,Trick,Drehung,Rotation
+confiance,Vertrauen,Vertrauen,Glaube,Glaube,Zuversicht,Versicherung
+sans importance,unwichtig,trivial,geringfügig,unbedeutend,vernachlässigbar,irrelevant
+le trajet,Reise,Trip,Route,Reise,Durchfahrt,Pendeln
+la paix,Frieden,Ruhe,Kalm,Harmonie,Einvernehmen,Serenität
+l'entraînement,Training,Training,Übung,Praxis,Sitzung,Trainer
+la ville,Stadt,Stadt,Dorf,Ort,Hauptstadt,Gebiet
+tendre,zart,zäh,hart,weich,rau,sanft
+assez,genug/zimlich,zu viel,sehr,so,wenig,viel
+très,sehr,zu,so,zimlich,eher,viel
+la langue,Sprache,Zunge,Rede,Idiom,Dialekt,Wort
+demain il va pleuvoir,morgen wird es regnen,morgen wird es sonnig sein,morgen wird es heiß sein,morgen wird es kalt sein,morgen wird es schneien,morgen wird es windig sein
+salle de bain,Badezimmer,Toilette,Dusche,Waschraum,Waschraum,Toilette
+aujourd'hui il fait chaud,heute ist es heiß,heute ist es kalt,heute ist es schön,heute regnet es,heute ist es sonnig,heute ist es windig
+à la vôtre,Prost,auf Ihre Gesundheit,guten Appetit,danke,hallo,auf Wiedersehen
+composer une chanson,ein Lied komponieren,Musik schreiben,Melodie schaffen,Tune machen,Texte erfinden,Track bauen
+marcher,gehen,funktionieren,funktionieren,schritt,gehen,marschieren
+résister à la tentation,der Versuchung widerstehen,der Verlockung widerstehen,der Verführung widerstehen,der Anziehung widerstehen,dem Zug widerstehen,der Anziehung widerstehen
+résister,widerstehen,widerstehen,sich widersetzen,erdulden,aushalten,trotzen
+pleurer,weinen,weinen,trauern,schluchzen,beklagen,sich beschweren
+mettre un chapeau,einen Hut aufsetzen,Kopfbedeckung tragen,Mütze aufsetzen,Abdeckung aufsetzen,Accessoire platzieren,Kopf bedecken
+prendre une douche,duschen,Körper waschen,Dusche nehmen,sich reinigen,mit Wasser erfrischen,schnell baden
+falloir,nötig sein,wollen,brauchen,müssen,haben,tun
+pouvoir,können,wollen,wissen,haben,gehen,tun
+suivre un chemin,einem Pfad folgen,Route gehen,Weg verfolgen,Trail verfolgen,entlang gehen,Kurs fortsetzen
+risquer sa vie,sein Leben riskieren,Existenz wagen,Sein riskieren,sich gefährden,Person riskieren,Körper riskieren
+risquer,risikieren,wagen,chancieren,gefährden,risikieren,spielen
+estimer la valeur,den Wert schätzen,Wert schätzen,Preis bewerten,Kosten einschätzen,Betrag schätzen,Gesamtwert schätzen
+estimer,schätzen,werten,bewerten,einschätzen,schätzen,schätzen
+encourager un enfant,ein Kind ermutigen,Kind drängen,Jugend fördern,junge inspirieren,Kleinen stimulieren,Kleinen anfeuern
+encourager,ermutigen,drängen,fördern,inspirieren,stimulieren,anfeuern
+ouvrir,öffnen,entriegeln,starten,entfalten,enthüllen,einweihen
+compter les moutons,Schafe zählen,einschlafen versuchen,Trick zum Einschlafen verwenden,Tiere vorstellen,Geist entspannen,Ruhe vorbereiten
+juger une situation,eine Situation beurteilen,Umstand versuchen,Bedingung einschätzen,Kontext berücksichtigen,Szene schätzen,Fall entscheiden
+goûter,kosten,versuchen,kosten,kosten,erleben,genießen
+juger,beurteilen,versuchen,einschätzen,berücksichtigen,schätzen,entscheiden
+réfléchir avant d'agir,nachdenken bevor man handelt,vor dem Handeln nachdenken,vor der Tat nachdenken,vor dem Tun nachdenken,vor der Aktion nachdenken,vor dem Schritt nachdenken
+croire,glauben,denken,vertrauen,annehmen,kreditieren,akzeptieren
+réfléchir,nachdenken,denken,überlegen,berücksichtigen,grübeln,reflektieren
+dire,sagen,erzählen,fragen,tun,machen,sprechen
+dire,sagen,erzählen,sprechen,erklären,verkünden,erwähnen
+apprendre,lernen,lehren,hören,herausfinden,ein
+le fromage,Käse,Brot, die Milch,das Wasser,das Fleisch,das Obst
+le fromage blanc,Quark,Käse,Brot,Sauerteig,Hefe,Gärung
+le fils,Sohn,Junge,Kind,Tochter,Vater,Bruder
+la limite,Grenze,Begrenzung,Rand,Maximum,Einschränkung,Grenzwert
+rocher,Felsen,Brocken,Klippe,Stein,Grat,Vorsprung
+stand,Stand,Bude,Kiosk,Post,Plattform,Platz
+couverture,Decke,Abdeckung,Schutz,Schicht,Hülle,Lage
+morceau,Stück,Brocken,Fragment,Teil,Portion,Rest
+la bicyclette,Fahrrad,Rad,Velo,Zweirad,Schrittmacher,Radfahrzeug
+boisson,Getränk,Trank,Flüssigkeit,Erfrischung,Gebräu,Trunk
+l'ami,Freund,Bester Freund,Begleiter,Kamerad,Partner,Familie
+devant,vorne,hinten,neben,oben,unten,drinnen
+après,nach,vor,während,bis,seit,als
+depuis,seit/vor,nach,während,bis,seit,als
+pendant,während,vor,nach,seit,bis,als
+vin,Wein,Bier,Alkohol,Getränk,Whisky,Champagner
+viande,Fleisch,Rindfleisch,Schweinefleisch,Huhn,Fisch,Gemüse
+rythme,Rhythmus,Takt,Tempo,Kadenz,Puls,Maß
+combat,Kampf,Gefecht,Schlacht,Konflikt,Streit,Kriegführung
+toilettes,Toilette,Bad,Waschraum,WC,Loo,Abort
+groupe,Gruppe,Band,Team,Cluster,Set,Sammlung
+bien,gut/schlecht,bad,okay,fein,nice,großartig
+bon,gut,schlecht,nice,wohl,fein,großartig
+le public,Öffentlichkeit,Publikum,Menge,Volk,Allgemein,Offen
+attaque,Angriff,Assault,Offensive,Schlag,Ansturm,Aggression
+la main,Hand,Arm,Handfläche,Finger,Hilfe,Seite
+la compétition,Wettbewerb,Konkurrenz,Rivalität,Turnier,Match,Herausforderung
+la défense,Verteidigung,Schutz,Sicherheitsmaßnahme,Widerstand,Begründung,Fürsprache
+la bonté,Güte,Freundlichkeit,Wohlwollen,Tugend,Anstand,Großzügigkeit
+l'événement,Ereignis,Vorkommnis,Geschehen,Vorfall,Gelegenheit,Affäre
+la période,Periode,Ära,Phase,Intervall,Zeitspanne,Epoche
+la forme,Form,Gestalt,Figur,Erscheinung,Zustand,Format
+l'enfer,Hölle,Inferno,Unterwelt,Verdammnis,Qual,Abgrund
+le téléphone,Telefon,Handy,Mobiltelefon,Festnetz,Anruf,Gerät
+la demande,Anfrage,Antrag,Nachfrage,Ansuchung,Petition,Forderung
+la subvention,Zuschuss,Subvention,Förderung,Beihilfe,Zulage,Stiftung
+l'affaire,Affäre,Angelegenheit,Geschäft, Fall,Deal,Skandal
+la tombe,Grab,Grabstätte,Begräbnisplatz,Gruft,Ruhestätte,Sarg
+le géant,Riese,Koloss,Titan,Ungeheuer,Monster,große Person
+la plante,Pflanze,Vegetation,Flora,Setzling,Kraut,Strauch
+le site,Standort,Ort,Platz,Stelle,Website,Gebiet
+la déclaration,Erklärung,Ankündigung,Behauptung,Aussage,Testimonium
+la hausse,Anstieg,Erhöhung,Schub,Aufschwung,Wachstum,Boost
+la veste,Jacke,Mantel,Blazer,Windjacke,Oberbekleidung,Kleidungsstück
+la miséricorde,Barmherzigkeit,Mitleid,Erbarmen,Gnade,Vergebung,Verzeihung
+la prostituée,Hure,Prostituierte,Dirne,Stricherin,Sexarbeiterin,Straßenmädchen
+l'interrupteur,Schalter,Knopf,Hebel,Unterbrecher,Sicherung,Taster
+le repas,Mahlzeit,Essen,Abendessen,Mittagessen,Nahrung,Servierung
+la direction,Richtung,Weg,Führung,Management,Kurs,Anweisung
+les données,Daten,Informationen,Fakten,Statistiken,Aufzeichnungen,Zahlen
+la corne,Horn,Geweih,Trompete,Signalhorn,Vorsprung,Auswuchs
+l'avocat,Anwalt,Rechtsanwalt,Barrister,Solicitor,Berater,Verteidiger
+l'officiel,Beamter,Offizieller,Behörde,Formal,autorisierte Person
+le rat,Ratte,Nager,Informant,Denunziant,Verräter,Spitzel
+la pizza,Pizza,Kuchen,italienisches Gericht,Fladenbrot,Essen zum Mitnehmen
+le choc,Schock,Auswirkung,Kollision,Trauma,Überraschung,Schlag
+la soupe,Suppe,Brühe,Eintopf,Chowder,Klarbrühe,Kraftbrühe
+le courage,Mut,Tapferkeit,Valor,Kühnheit,Nervenstärke,Herz
+le jaune,Gelb,Gold,Zitrone,Kanarienvogel,Bernstein,Safran
+l'emplacement,Standort,Position,Ort,Stelle,Platz,Venue
+l'imbécile,Idiot,Depp,Narr,Moron,Blockhead,Dummkopf
+le chocolat,Schokolade,Kakao,Süßigkeit,Bonbon,Riegel,Dessert
+l'image,Bild,Foto,Abbildung,Darstellung,Eindruck,Abbild
+habituel,regelmäßig,üblich,gewohnt,normal,gewöhnlich,alltäglich
+le taxi,Taxi,Droschke,Mietwagen,Fahrdienst,Leihauto,Kabine
+la pisse,Pisse,Urin,Scheiße,Pinkel,Seiche,Urinierung
+la blessure,Wunde,Verletzung,Läsion,Schnitt,Trauma,Schmerz
+l'assiette,Teller,Geschirr,Untertasse,Platte,Abendessen,Tafel
+la télévision,Fernsehen,TV,Flimmerkiste,Bildschirm,Sendung,Übertragung
+le monstre,Monster,Freak,Kreatur,Ungeheuer,Seltsamer,Komiker
+la circulation,Verkehr,Fluss,Zirkulation,Bewegung,Währung,Verkehrsfluss
+l'aube,Morgendämmerung,Tagesanbruch,Sonnenaufgang,Morgenlicht,Aurora
+le poison,Gift,Toxin,Venen,Schadstoff,Fluch,Verderben
+le mystère,Mysterium,Rätsel,Enigma,Geheimnis,Puzzle
+l'indien,Inder,Native American,aus Indien,indigen,Indianer
+le bang,Knall,Explosion,lautes Geräusch,Crash,Bericht
+la maladie,Krankheit,Erkrankung,Leiden,Unwohlsein,Störung
+l'italien,Italiener,aus Italien,italienische Sprache,Italienisch
+le rôle,Rolle,Teil,Funktion,Charakter,Pflicht,Aufgabe
+les fesses,Hintern, Gesäß,Popo,Rücken,Hinterteil
+la victoire,Sieg,Gewinn,Triumph,Erfolg,Eroberung
+le piège,Falle,Schlinge,Hinterhalt,Stolperstein,Köder
+la nation,Nation,Land,Staat,Volk,Territorium
+le désir,Verlangen,Wunsch,Sehnsucht,Begierde,Leidenschaft
+minuit,Mitternacht,zwölf Uhr,tiefe Nacht,Hexe Stunde
+le jury,Geschworene,Panel,Richter,Schiedsrichter
+le rendez-vous,Termin,Date,Treffen,Rendezvous,Verabredung
+la nage,Schwimmen,Schwimmzug,Bad,Planschen
+le courrier,Post,Sendung,Korrespondenz,Briefe,Lieferung
+les vacances,Urlaub,Ferien,Auszeit,Pause,Freizeit,Sendung
+la source,Quelle,Ursprung,Brunnen,Quelle,Root,Lieferung
+l'usine,Fabrik,Werk,Mühle,Anlage,Manufaktur,Lieferung
+le palais,Palast,Schloss,königliche Residenz,Gerichtssaal,Halle
+la fissure,Riss,Spalte,Kluft,Bruch,Spalt,Können
+le talent,Talent,Gabe,Fähigkeit,Begabung,Können
+le quartier,Viertel,Bezirk,Gegend,Quartier,Ortsteil
+la menace,Bedrohung,Drohung,Gefahr,Warnung,Einschüchterung
+l'oreille,Ohr,Gehör,Aurikel,Läppchen,Hörorgan
+le miracle,Wunder,Marvel,Prodigy,Phänomen,Sensation
+la grand-mère,Großmutter,Oma,Omchen,Nana,Gran
+l'entreprise,Firma,Unternehmen,Geschäft,Betrieb,Korporation
+le gagnant,Gewinner,Sieger,Champion,Eroberer,erfolgreiche Person
+la licence,Lizenz,Genehmigung,Abschluss,Freiheit,Ermächtigung
+l'avantage,Vorteil,Nutzen,Kante,Überlegenheit,Perk
+le singe,Affe,Primaten,Imitator,Clown,Nachahmer
+le miroir,Spiegel,Schauglas,Reflektor,Reflexion,Speculum
+le bois,Holz,Timber,Wald,Gehölz,Schnittholz
+le syndikat,Gewerkschaft,Verband,Syndikat,Vereinigung,Assoziation
+le chrétien,Christ,Gläubiger,Nachfolger Christi,Gläubiger
+la violence,Gewalt,Kraft,Aggression,Brutalität,Intensität
+la protection,Schutz,Sicherheitsmaßnahme,Verteidigung,Schild,Sicherheit
+le crochet,Haken,Verschluss,Häkeln,Kurve,Jab
+l'enfoiré,Mutterficker,Bastard,Arschloch,Depp,Prick
+la préoccupation,Besorgnis,Sorge,Beunruhigung,Angst,Problem
+l'effet,Effekt,Ergebnis,Auswirkung,Folge,Resultat
+le studio,Studio,Werkstatt,Atelier,Aufnahmestudio,Apartment
+la charge,Ladung,Belastung,Aufladung,Verantwortung,Fracht
+le trésor,Schatz,Hort,Reichtum,Edelstein,Preis
+le sortilège,Zauberspruch,Verzauberung,Magie,Fluch,Charme
+le fer,Eisen,Metall,Bügeleisen,Kraft,Festigkeit
+le sauvetage,Rettung,Heil,Genesung,Befreiung,Einsparung
+le traitement,Behandlung,Verarbeitung,Therapie,Handling,Heilung
+le désert,Wüste,Ödland,Wildnis,trockenes Land
+le résultat,Ergebnis,Resultat,Folge,Punktzahl,Produkt
+le piano,Klavier,Instrument,Tastatur,Flügel
+l'amitié,Freundschaft,Kameradschaft,Band,Gefolgschaft,Zuneigung
+le bonbon,Bonbon,Süßigkeit,Konfekt,Lutscker,Leckerei
+la mariée,Braut,Neuvermählte,Zukünftige Frau,Brautperson
+la fleur,Blume,Blüte,Blossom,Flora,Blütenblatt
+l'os,Knochen,Skelett,Überreste,Gerüst,Rahmen
+la valeur,Wert,Wertigkeit,Verdienst,Bedeutung,Relevanz,Preis
+le junior,Junior,Jüngerer,Untergebener,Minderjähriger,Jugendlicher
+les restes,Überreste,Reste,Relikte,Überbleibsel,Rückstand
+le métal,Metall,Legierung,Element,Erz,Mineral
+le pourboire,Trinkgeld,Gratuity,Bakschisch,zusätzliche Zahlung
+le taux,Rate,Verhältnis,Prozentsatz,Geschwindigkeit,Niveau
+la performance,Leistung,Show,Ausführung,Erfolg,Effizienz
+le gouverneur,Gouverneur,Herrscher,Administrator,Führer
+le véhicule,Fahrzeug,Auto,Transport,Mittel,Fuhrwerk
+le toast,Toast,Brot,Rede,Salut,Prost
+la fierté,Stolz,Selbstwertgefühl,Würde,Arroganz,Zufriedenheit
+le champagne,Champagner,Sekt,Schaumwein,Feiergetränk
+l'étranger,Fremder,Ausländer,Alien,Außenseiter,Unbekannter
+l'uniforme,Uniform,Standard,konsistent,Outfit,Kleidung
+la larme,Träne,Tröpfchen,Tropfen,Riss,Spalt
+la présence,Präsenz,Anwesenheit,Existenz,Aura,Gesellschaft
+le cri,Schrei,Ruf,Schreien,Weinen,Schrei
+la poussière,Staub,Pulver,Schmutz,Partikel,Dreck
+le bord,Rand,Grenze,Rand,Kante,Seite
+la sorcière,Hexe,Zauberin,Hag,Verzauberin
+les médias,Medien,Presse,Medium,Massenmedien
+la réclamation,Anspruch,Beschwerde,Forderung,Behauptung,Antrag
+le riz,Reis,Getreide,Grundnahrungsmittel,Paddy
+l'œuf,Ei,Eizelle,Laich,Rogen
+le coup,Schlag,Stoß,Treffer,Schlag,Klopfen
+la distribution,Verteilung,Zuteilung,Verbreitung,Cast
+l'intelligence,Intelligenz,Verstand,Klugheit,Information,Spionage
+la vache,Kuh,Vieh,Rind,Melker
+la surface,Oberfläche,Fläche,Außen,Oben,Gesicht
+la cigarette,Zigarette,Rauch,Kippe
+le destin,Schicksal,Destiny,Fortune,Kismet,Verhängnis
+le score,Punktzahl,Ergebnis,Punkte,Stand,Bewertung
+la technologie,Technologie,Tech,Ingenieurwesen,Innovation
+le dragon,Drache,Biest,Schlange,Wyvern,Monster
+le pilote,Pilot,Flieger,Fahrer,Bediener,Flieger
+le péché,Sünde,Verfehlung,Übertretung,Laster,Fehler
+l'empereur,Kaiser,Herrscher,Souverän,Monarch
+le but,Ziel,Zweck,Objective,Absicht,Target
+la jeunesse,Jugend,junge Leute,Adoleszenz,frische
+le pot,Topf,Glas,Behälter,Cannabis,Kochtopf
+le loup,Wolf,Raubtier,einsamer Wolf,Biest
+le boom,Boom,Explosion,Wirtschaftsboom,lautes Geräusch
+la rangée,Reihe,Linie,Stufe,Datei,Serie
+la section,Abschnitt,Teil,Division,Segment,Abteilung
+la décharge,Deponie,Mülldeponie,Entladung,Abladung,Erleichterung
+le texte,Text,Schrift,Nachricht,Skript,Passage
+le prisonnier,Gefangener,Häftling,Gefangener,Detainee,Verurteilter
+le zéro,Null,Nichts,Nichts,Nil,Chiffre
+la roue,Rad,Reifen,Kreis,Rotation,Zyklus
+l'échange,Austausch,Handel,Tausch,Interchange,Barter
+la côte,Küste,Rippe,Abhang,Ufer,Hang
+le changement,Wechsel,Veränderung,Änderung,Modifikation,Switch
+la cure,Kur,Behandlung,Heilmittel,Heilung,Genesung
+le sacrifice,Opfer,Angebot,Verlust,Hingabe,Übergabe
+la bête,Biest,Tier,Brut,Kreatur,Narr
+la tarte,Kuchen,Torte,Tarte,Flan,Gebäck
+le matériau,Material,Substanz,Stoff,Gewebe,Materie
+la créature,Kreatur,Wesen,Tier,Monster,Entität
+la trace,Spur,Spur,Markierung,Überbleibsel,Andeutung
+le bouton,Knopf,Knopf,Knospe,Pickel,Schalter
+l'obscurité,Dunkelheit,Trübsal,Unklarheit,Schatten,Nacht
+l'ambulance,Krankenwagen,Notfahrzeug,Paramedic Van
+l'internet,Internet,Web,Netz,Online-Welt
+la gamme,Bereich,Skala,Vielzahl,Spektrum,Serie
+l'expert,Experte,Spezialist,Autorität,Pro,Meister
+le gel,Gefrieren,Frost,Gelee,Gel,Gefrierpunkt
+la vente,Verkauf,Verkauf,Auktion,Räumung,Transaktion
+le jus,Saft,Saft,Flüssigkeit,Extrakt,Kraft
+la solution,Lösung,Antwort,Auflösung,Mischung,Fix
+la tour,Turm,Wende,Tour,Trick,Rotation
+la masse,Masse,Bulk,Menge,Gewicht,Klumpen
+l'extraterrestre,Alien,Außerirdischer,Fremder,Außenseiter
+le programme,Programm,Plan,Software,Agenda
+l'escalier,Treppe,Treppe,Stufen,Treppenhaus
+le fruit,Frucht,Produkt,Ergebnis,Vorteil,Nachwuchs
+l'espion,Spion,Agent,Maulwurf,Informant,Operativer
+le senior,Senior,Älterer,Eldere,Veteran
+le garage,Garage,Carport,Werkstatt,Reparaturwerkstatt
+la colère,Wut,Zorn,Grimm,Wut,Ärger
+l'indice,Index,Anhaltspunkt,Hinweis,Zeichen,Indikation
+le magazine,Magazin,Zeitschrift,Journal,Lagerhaus
+la zone,Zone,Gebiet,Region,Sektor,Bezirk
+l'épaule,Schulter,Oberarm,Bürde,Verantwortung
+le progrès,Fortschritt,Entwicklung,Verbesserung,Verbesserung
+le serpent,Schlange,Serpent,Viper,Reptil
+l'effort,Anstrengung,Versuch,Bemühung,Kampf,Bemühung
+l'ascenseur,Aufzug,Lift,Hebezeug
+la phrase,Satz,Ausdruck,Klausel
+l'équipement,Ausrüstung,Gerät,Apparat,Werkzeuge,Kit
+l'attitude,Einstellung,Haltung,Mindset,Verhalten,Disposition
+le journal,Zeitung,Tagebuch,Journal,Log
+le mandat,Mandat,Auftrag,Begriff,Bestellung,Proxy
+le perdant,Verlierer,Misserfolg,besiegte Person,Underdog
+la série,Serie,Sequenz,Set,Kette,Nachfolge
+la vision,Vision,Sicht,Traum,Voraussicht,Erscheinung
+l'acteur,Schauspieler,Darsteller,Spieler,Täter,Teilnehmer
+la malédiction,Fluch,Verwünschung,Hex,Jinx,Eid
+l'ombre,Schatten,Schatten,Dunkelheit,Silhouette,Geist
+la passion,Leidenschaft,Eifer,Ardor,Emotion,Besessenheit
+la route,Route,Straße,Weg,Pfad,Autobahn
+le reporter,Reporter,Journalist,Korrespondent,Nachrichtensprecher
+l'explosion,Explosion,Knall,Ausbruch,Eruption,Detonation
+l'escouade,Trupp,Team,Einheit,Abteilung,Crew
+le royaume,Königreich,Reich,Monarchie,Domäne,Imperium
+l'écran,Bildschirm,Display,Schild,Vorhang,Monitor
+la mode,Mode,Art,Weise,Stil,Methode
+la vague,Welle,Schwall,Billow,Undulation,Trend
+l'escalade,Klettern,Eskalation,Skalierung,Aufstieg,Felsklettern
+le stylo,Stift,Füllfederhalter,Stylus,Schreibinstrument
+l'incident,Vorfall,Ereignis,Vorkommnis,Unfall,Episode
+le taureau,Stier,männliche Kuh,Stierzeichen,Börsenbulle
+la chaîne,Kette,Halskette,Serie,Netzwerk,Kanal
+le dispositif,Gerät,Mechanismus,Gadget,Apparat,System
+la dette,Schuld,Verpflichtung,Haftung,fällig,Rückstand
+la campagne,Kampagne,Landwirtschaft,Lauf,Bemühung
+l'étreinte,Umarmung,Umarmung,Griff,Halt,Kuscheln
+l'alcool,Alkohol,Schnaps,Spirituose,Booze,Ethanol
+la conférence,Konferenz,Vortrag,Treffen,Seminar,Talk
+l'éducation,Bildung,Erziehung,Ausbildung,Schulbildung,Lernen
+la politique,Politik,Politik,politische Linie,Kurs
+le viol,Vergewaltigung,Verletzung,Übergriff,Bruch
+la momie,Mumie,Mama,ägyptische Mumie,konservierte Leiche
+la frontière,Grenze,Grenze,Begrenzung,Grenze,Kante
+le fil,Draht,Faden,Schnur,Linie,Garn
+le prix,Preis,Auszeichnung,Preis,Kosten,Wert
+le cercle,Kreis,Ring,Gruppe,Zyklus,Gesellschaft
+l'objet,Objekt,Gegenstand,Ding,Zweck,Ziel
+le vol,Diebstahl,Flug,Fliegen,Raub,Stehlen
+le tonnerre,Donner,Brüllen,Grollen,Boom,Schlag
+la corde,Seil,Schnur,Saiten,Linie,Kabel
+le sel,Salz,Gewürz,Natriumchlorid,Witz
+la chair,Fleisch,Fleisch,Fruchtfleisch,Körper,fleischlich
+l'écrivain,Schriftsteller,Autor,Romancier,Schreiber,Penman
+les déchets,Müll,Abfall,Müll,Abfall,Abfall
+la récompense,Belohnung,Preis,Vergütung,Auszeichnung,Bonus
+la gloire,Ruhm,Berühmtheit,Ehre,Renommee,Pracht
+l'autorité,Autorität,Macht,Kontrolle,Experte,Beamter
+le domaine,Anwesen,Domäne,Feld,Gebiet,Reich
+la cour,Hof,Gericht,Hof,königlicher Hof,Einfriedung
+le réservoir,Tank,Reservoir,Behälter,Zisterne,Kraftstofftank
+la confiance,Vertrauen,Vertrauen,Glaube,Verlass,Versicherung
+le manque,Mangel,Knappheit,Defizit,Abwesenheit,Wunsch
+l'approche,Ansatz,Methode,Weise,Art,Vorschlag
+le poussin,Küken,Babyhuhn,junger Vogel,niedliche Person
+la poupée,Puppe,Marionette,Figur,Spielzeug,Mannequin
+le canard,Ente,Zeitung,falsches Gerücht,Drake
+le stock,Lager,Bestand,Aktien,Vorrat,Brühe
+la bibliothèque,Bibliothek,Bücherregal,Büchersammlung
+l'échec,Misserfolg,Niederlage,Rückschlag,Flop
+le mouvement,Bewegung,Bewegung,Shift,Kampagne,Geste
+l'arc,Bogen,Bogen,Kurve,Bogen,Regenbogen
+la queue,Schwanz,Linie,Warteschlange,Penis (Slang),Hintern
+le sénateur,Senator,Gesetzgeber,Legislator,Politiker
+le cauchemar,Albtraum,schlechter Traum,Horror,Terror
+le théâtre,Theater,Theater,Drama,Schauspielhaus,Bühne
+le sable,Sand,Kies,Strand,Wüste,Stundenglas
+la réputation,Ruf,Ruf,Ansehen,Name,Ruhm
+le glissement,Rutsch,Gleiten,Shift,Landslide,Fehler
+le rose,Rosa,Rosenblume,rötlich,Erröten
+la servante,Magd,Dienerin,Hausangestellte,Zofe
+l'agence,Agentur,Büro,Büro,Firma,Niederlassung
+l'enfance,Kindheit,Säuglingsalter,Jugend,frühe Jahre
+l'opposé,Gegenteil,Gegenteil,Umgekehrt,Gegner,Antithese
+la panique,Panik,Angst,Alarm,Hysterie,Terror
+la conception,Design,Konzeption,Idee,Schöpfung,Plan
+le chat,Katze,Feline,Kätzchen,Tomcat,Puss
+la tâche,Aufgabe,Job,Pflicht,Assignment,Chore
+le bavardage,Geplauder,Klatsch,Chat,Plauderei,Geschwätz
+la ceinture,Gürtel,Schärpe,Gürtel,Taillebund,Zone
+la garantie,Garantie,Garantie,Versicherung,Sicherheit,Bond
+le courant,Strom,Strom,Fluss,elektrischer Strom,Trend
+les ordures,Müll,Abfall,Müll,Abfall,Abfall
+la garde,Gewahrsam,Wache,Haltung,Schutz,Watch
+le démon,Dämon,Teufel,Fiend,böser Geist,Imp
+la coïncidence,Zufall,Chance,Unfall,Konkurrenz
+la tentative,Versuch,Versuch,Bemühung,Bemühung,Versuch
+la révolution,Revolution,Aufstand,Rotation,Umbruch,Zyklus
+l'accord,Abkommen,Abkommen,Harmonie,Deal,Pakt
+l'empire,Imperium,Reich,Domäne,Imperium,Macht
+le désastre,Katastrophe,Katastrophe,Unglück,Tragödie,Fiasco
+l'avance,Vorschuss,Fortschritt,Zahlung,Darlehen,Fortschritt
+la guitare,Gitarre,Axt,Saiteninstrument,akustisch,elektrisch
+le détail,Detail,Besonderheit,Artikel,feiner Punkt,Kleinigkeit
+le comportement,Verhalten,Verhalten,Benehmen,Einstellung,Art
+la livraison,Lieferung,Versorgung,Geburt,Übergabe
+la capacité,Fähigkeit,Kapazität,Fähigkeit,Volumen,Fähigkeit
+le district,Distrikt,Gebiet,Region,Zone,Ort
+la chaussure,Schuh,Schuhwerk,Stiefel,Turnschuh,Pumpe
+l'esclave,Sklave,Leibeigener,Serf,Knecht,Gefangener
+le lâche,Feigling,Schwächling,Feigling,Poltroon,Schurke
+le chasseur,Jäger,Verfolger,Kampfflugzeug,Verfolger,Sucher
+la culture,Kultur,Kultivierung,Zivilisation,Landwirtschaft,Bakterien
+l'explication,Erklärung,Klärung,Bericht,Interpretation
+le comité,Ausschuss,Vorstand,Kommission,Panel,Rat
+l'arrière-plan,Hintergrund,Hintergrund,Einstellung,Kontext,Geschichte
+l'identité,Identität,Individualität,Gleichheit,ID,Persönlichkeit
+le canal,Kanal,Kanal,Wasserweg,Duct,Medium
+la limite,Grenze,Grenze,Grenze,Einschränkung,Kante
+l'espèce,Art,Art,Sorte,Typ,Rasse
+la lutte,Kampf,Kampf,Ringen,Schlacht,Bemühung
+le masque,Maske,Verkleidung,Fassade,Abdeckung,Vortäuschung
+la fièvre,Fieber,Temperatur,Hitze,Aufregung,Wahnsinn
+le prêt,Darlehen,Verleih,Entlehnung,bereit,vorbereitet
+le sifflet,Pfeife,Pfeifen,Schiedsrichterpfeife,Ruf,Zischen
+la punition,Strafe,Strafe,Züchtigung,Disziplin,Korrektur
+la production,Produktion,Ausgabe,Herstellung,Show,Ausbeute
+le capital,Kapital,Fonds,Vermögenswerte,Stadt,Großbuchstabe
+le potentiel,Potenzial,Möglichkeit,Fähigkeit,latente,Versprechen
+le quartier,Viertel,Viertel,Bezirk,Gebiet,Abschnitt
+le bol,Schüssel,Becken,Gericht,Tasse,Servierung
+le musée,Museum,Galerie,Ausstellungshalle,Sammlung
+l'acclamation,Jubel,Applaus,Ovation,Beifall,Hurra
+le plat,Gericht,Teller,Gang,flach,Niveau
+le coup de feu,Schuss,Schuss,Feuern,Bericht,Entladung
+le placard,Schrank,Schrank,Garderobe,Presse,Schließfach
+la saleté,Schmutz,Dreck,Dreck,Boden,Unordnung
+la couronne,Krone,Kranz,Tiara,Krone,Königtum
+le gaillard,Kerl,Kerl,Bursche,Typ,kräftiger Mann
+le canapé,Sofa,Couch,Sessel,Divan,Chesterfield
+la demande,Nachfrage,Antrag,Bewerbung,Anfrage,Anspruch
+le transfert,Transfer,Bewegung,Beförderung,Shift,Zuweisung
+la jointure,Gelenk,Verbindung,Naht,Artikulation,Verbindung
+l'épisode,Episode,Teil,Kapitel,Vorfall,Ereignis
+le sous-sol,Keller,Keller,Untergrund,untere Ebene
+le romain,Römer,aus Rom,römische Zahl,antiker Römer
+l'article,Artikel,Gegenstand,Klausel,Produkt,Aufsatz
+le guide,Führer,Führer,Handbuch,Handbuch,Reiseführer
+le sandwich,Sandwich,gefülltes Brot,Snack,geschichtetes Essen
+le flash,Blitz,Blitz,Nachrichtenblitz,Scheinwerfer,plötzliches Licht
+le portefeuille,Geldbörse,Brieftasche,Portfolio,Geldbörse
+la qualité,Qualität,Standard,Note,Eigenschaft,Merkmal
+le concert,Konzert,Aufführung,Harmonie,Abkommen,Show
+le chanteur,Sänger,Vokalist,Crooner,Songster,Darsteller
+la voie,Spur,Weg,Pfad,Strecke,Route
+le baseball,Baseball,Ballspiel,amerikanischer Sport,Diamantspiel
+le titre,Titel,Überschrift,Schlagzeile,Rang,Eigentum
+le commissaire,Kommissar,Kommissar,Polizeichef,Beamter
+le pipi,Pipi,Urin,Pinkel,Seiche,Urinierung
+la charité,Wohltätigkeit,Wohlwollen,Almosen,Freundlichkeit,Barmherzigkeit
+le drame,Drama,Spiel,Tragödie,Krise,Melodram
+la cérémonie,Zeremonie,Ritual,Ritus,Förmlichkeit,Beobachtung
+le paquet,Paket,Paket,Bündel,Paket,Bündel
+l'éclat,Glanz,Brillanz,Ausbruch,Splitter,Funkeln
+le camarade,Kamerad,Begleiter,Kollege,Kumpel,Kumpel
+la chatte,Katze,weibliche Katze,vulgär für Vagina,Kätzchen
+l'approvisionnement,Versorgung,Bereitstellung,Vorrat,Versorgung,Fütterung
+le ton,Ton,Geräusch,Schatten,Art,Note
+le client,Kunde,Klient,Gast,Patron,Käufer
+la sueur,Schweiß,Transpiration,Mühe,Bemühung,Ausscheidung
+la possibilité,Möglichkeit,Chance,Gelegenheit,Potenzial,Machbarkeit
+le drapeau,Flagge,Banner,Standard,Farben,Flagge
+le plastique,Kunststoff,plastisch,synthetisches Material,Kreditkarte
+l'équipement,Ausrüstung,Ausrüstung,Kit,Outfit,Apparat
+la reddition,Kapitulation,Kapitulation,Übergabe,Unterwerfung
+l'impression,Eindruck,Druck,Gefühl,Marke,Meinung
+le soi,Selbst,sich selbst,Ego,Identität,Wesen
+le buste,Büste,Brust,Skulptur,Busen,Torso
+le serviteur,Diener,Attendant,Retainer,Handlanger,Sklave
+la salle de sport,Turnhalle,Turnhalle,Fitnesscenter,Trainingsraum
+l'assault,Angriff,Angriff,Angriff,Angriff,Überfall
+la piste,Spur,Spur,Pfad,Startbahn,Kurs
+la crise,Krise,Notfall,kritischer Punkt,Angriff,Anfall
+la collection,Sammlung,Sammlung,Set,Anthologie,Ansammlung
+le diamant,Diamant,Edelstein,Juwel,Baseballfeld,Brillant
+l'adulte,Erwachsener,Erwachsener,ausgereifte Person,ausgewachsen
+la bible,Bibel,heiliges Buch,Schrift,Autorität,Führer
+la ligue,Liga,Allianz,Vereinigung,Union,Konföderation
+l'orange,Orange,Frucht,Zitrusfrucht,Saft,Farbe
+l'imagination,Phantasie,Phantasie,Kreativität,Visualisierung,Erfindung
+le voisin,Nachbar,Nachbar,angrenzende Person,Mitbewohner
+l'explosion,Explosion,Knall,Ausbruch,Eruption,Detonation
+l'équilibre,Gleichgewicht,Gleichgewicht,Gleichgewicht,Stabilität,Gegengewicht
+le golf,Golf,Sport,Spiel,Links,Putting
+la défaite,Niederlage,Verlust,Schlag,Misserfolg,Niederlage
+le thème,Thema,Thema,Motiv,Thema,Melodie
+le confort,Komfort,Leichtigkeit,Trost,Luxus,Gemütlichkeit
+la réaction,Reaktion,Reaktion,Antwort,Gegenreaktion,chemische Reaktion
+la légende,Legende,Bildunterschrift,Mythos,Geschichte,Schlüssel
+l'herbe,Gras,Kraut,Unkraut,Rasen,Weide
+l'impression,Eindruck,Druck,Gefühl,Marke,Meinung,Prägung
+le virus,Virus,Bug,Infektion,Computervirus,Keim
+le lancement,Start,Start,Start,Einführung,Abheben
+la sirène,Sirene,Meerjungfrau,Alarm,Pfeife,Verführerin
+l'entrée,Eingang,Eingang,Eintritt,Einlass,Türöffnung
+la religion,Religion,Glaube,Glaube,Glaubensbekenntnis,Kult
+le beurre,Butter,Milchaufstrich,Fett,Fett
+le devoir,Hausaufgabe,Pflicht,Aufgabe,Übung,Verpflichtung
+le stress,Stress,Spannung,Druck,Belastung,Betonung
+la casquette,Mütze,Hut,Baseballcap,Kepi,Baskenmütze
+la chauve-souris,Fledermaus,fliegendes Säugetier,Keule,Schläger
+le mélange,Mix,Mischung,Mischung,Kombination,Medley
+la torture,Folter,Qual,Agonie,Grausamkeit,Verfolgung
+le pont,Deck,Brücke,Plattform,Boden
+le lapin,Kaninchen,Hase,Hase,Coney
+l'option,Option,Wahl,Alternative,Recht,Funktion
+l'accent,Akzent,Betonung,Aussprache,Betonung,Markierung
+la taxe,Steuer,Abgabe,Abgabe,Gebühr,Auflage
+la déchirure,Riss,Riss,Miete,Zerriss,Spalt
+le bourgeon,Knospe,Spross,Schießen,Keim,Blüte
+la thérapie,Therapie,Behandlung,Heilung,Heilung,Psychotherapie
+la vie,Lebensdauer,Leben,Existenz,Biographie,Vitalität
+le béguin,Schwarm,Verliebtheit,Phantasie,Liebling,Flamme
+le champion,Champion,Gewinner,Titelverteidiger,Sieger,Verteidiger
+le crâne,Schädel,Schädel,Kopf,Totenkopf,Knochen
+la version,Version,Ausgabe,Variante,Interpretation,Wiedergabe
+la maîtresse,Geliebte,Geliebte,Lehrerin,Direktorin,Besitzerin
+le carburant,Kraftstoff,Benzin,Benzin,Treibmittel
+le terme,Begriff,Wort,Periode,Ende,Bedingung
+le lien,Bindung,Link,Periode,Verbindung,Beziehung
+la plaine,Ebene,Flachland,Prärie,ebenes Land
+l'expérience,Experiment,Erfahrung,Versuch,Test,Hintergrund
+le moine,Mönch,Bruder,Bruder,Religiöser,Asket
+le lion,Löwe,große Katze,König der Bestien,Berühmtheit,Stern
+le gamin,Bursche,Kind,Junge,Gassenjunge,junge Person
+l'exercice,Übung,Praxis,Bohrung,Training,Training
+la bourse,Geldbörse,Stipendium,Börse,Tasche
+la grotte,Höhle,Höhle,Grotte,Höhle,Hohlraum
+le standard,Standard,Norm,Niveau,Kriterium,Flagge
+le tunnel,Tunnel,Unterführung,U-Bahn,Bau,Passage
+l'acier,Stahl,Metall,Kraft,Entschlossenheit,Klinge
+la division,Division,Spaltung,Abteilung,Sektion,mathematische Operation
+le mouton,Schaf,Hammelfleisch,Lamm,Anhänger,Herdentier
+le classique,Klassiker,klassisch,traditionell,Standard,zeitlos
+le neveu,Neffe,Brudersohn,Schwestersohn,Verwandter
+la sauce,Sauce,Soße,Dressing,Gewürz,Dip
+l'influence,Einfluss,Effekt,Macht,Macht,Auswirkung
+le réseau,Netzwerk,Netz,Web,System,Gitter
+le concours,Wettbewerb,Wettbewerb,Prüfung,Hilfe,Hilfe
+la cabane,Hütte,Hütte,Hütte,Cottage,Schuppen
+la jungle,Dschungel,Regenwald,Dickicht,Chaos,wilder Ort
+le vampire,Vampir,Blutsauger,Untoter,fledermausartige Kreatur
+la sortie,Ausgang,Ausgang,Ausflug,Freigabe,Abreise
+le crachat,Spucke,Spucke,Speichel,Erwartung
+la génération,Generation,Altersgruppe,Produktion,Kreation
+le cristal,Kristall,Glas,Edelstein,Quarz,klares Mineral
+le statut,Status,Ansehen,Position,Zustand,Rang
+le degré,Grad,Niveau,Ausmaß,Note,Temperatur
+le dollar,Dollar,Buck,Geld,Währung,Greenback
+la marque,Marke,Marke,Warenzeichen,Zeichen,Etikett
+le jouet,Spielzeug,Spielsache,Spiel,Bauble,Kleinigkeit
+l'égratignure,Kratzer,Schramme,Abrasion,Marke,Schaben
+la tribu,Stamm,Clan,Gruppe,Volk,Band
+le scénario,Drehbuch,Szenario,Drehbuch,Handlung,Umriss
+le nerf,Nerv,Kühnheit,Sehne,Faser,Mut
+le sceau,Siegel,Stempel,Signet,Emblem,Verschluss
+l'insecte,Bug,Insekt,Käfer,Schädling,kriechendes Tier
+la réponse,Antwort,Antwort,Antwort,Reaktion,Erwiderung
+la surveillance,Überwachung,Überwachung,Watch,Beobachtung
+le gain,Gewinn,Gewinn,Erhöhung,Vorteil,Gewinn
+la gâchette,Abzug,Fang,Hebel,Schalter,Freigabe
+la clinique,Klinik,medizinisches Zentrum,ambulante Einrichtung,Chirurgie
+la patience,Geduld,Nachsicht,Ausdauer,Toleranz,Kartenspiel
+le traître,Verräter,Verräter,Überläufer,Judas,Abtrünniger
+zut,verdammt,verdammt,verdammt,schießen,Explosion
+la grêle,Hagel,Hagelsturm,Schneeregen,Begrüßung,Sperrfeuer
+le port,Hafen,Hafen,Hafen,Seehafen,linke Seite (nautisch)
+le bœuf,Rindfleisch,Ochs,Vieh,Beschwerde,Grummeln
+la routine,Routine,Gewohnheit,täglicher Trott,Verfahren,Monotonie
+la tenue,Outfit,Kleidung,Uniform,Kleidung,Kleidung
+l'aveu,Geständnis,Geständnis,Anerkennung,Bekenntnis
+l'aisance,Leichtigkeit,Komfort,Leichtigkeit,Flüssigkeit,Wohlstand
+l'adjoint,Stellvertreter,Assistent,Hilfe,zweiter Befehlshaber
+le principal,Direktor,Direktor,hauptsächlich,Chef,primär
+l'enjeu,Einsatz,Wette,Interesse,Risiko,Problem
+l'industrie,Industrie,Herstellung,Sektor,Handel,Geschäft
+le costume,Kostüm,Anzug,Outfit,Kleidung,Kleidung
+l'argument,Argument,Debatte,Begründung,Streit,Fall
+le mouvement,Bewegung,Bewegung,Geste,Kampagne,Shift
+la construction,Konstruktion,Gebäude,Struktur,Montage,Erbauung
+la visée,Ziel,Zielsetzung,Intention,Visierung,Ziel
+le motif,Muster,Motiv,Grund,Design,Boden
+le clou,Nagel,Stift,Niete,Highlight,Star-Attraktion
+l'électricité,Elektrizität,Kraft,Strom,Energie,Verdrahtung
+le guerrier,Krieger,Kämpfer,Soldat,Kombattant,Held
+la fée,Fee,Sprite,Pixie,Verzauberin,Elf
+l'anniversaire,Jahrestag,Geburtstag,Gedenken,Feier
+la température,Temperatur,Fieber,Hitze,Klima,Grad
+la cabine,Kabine,Kabine,Kabine,Telefonzelle,Umkleidekabine
+l'animal de compagnie,Haustier,Begleittier,Haustier,Hund oder Katze
+le sport,Sport,Spiel,Leichtathletik,Zeitvertreib,Spaß
+la caution,Kaution,Sicherheit,Garantie,Bürgschaft,Einzahlung
+l'interruption,Unterbrechung,Unterbrechung,Unterbrechung,Unterbrechung,Pause
+l'air,Luft,Melodie,Melodie,Lied,Atmosphäre,Aussehen
+la prière,Gebet,Anfrage,Bitte,Flehen,Bittgesuch
+la conscience,Gewissen,Bewusstsein,Bewusstsein,moralischer Sinn
+le quartier général,Hauptquartier,HQ,Kommandozentrale,Basis
+le coq,Hahn,Hahn,männliches Huhn,Wasserhahn,Prahler
+la puce,Chip,Floh,Bug,Mikrochip,Markierung
+la culpabilité,Schuld,Schuld,Reue,Vorwurf,Fehler
+le frisson,Schauder,Schauder,Thriller,Schauder,Kribbeln
+la souris,Maus,Nager,Computermaus,schüchterne Person
+le revendeur,Händler,Verkäufer,Einzelhändler,Händler,Pusher
+la sauvegarde,Backup,Sicherheitsmaßnahme,Reserve,Sicherheitskopie
+le paradis,Paradies,Himmel,Eden,Glückseligkeit,Utopia
+l'évêque,Bischof,Prälat,Schachbischof,Kirchenbeamter
+le tronc,Stamm,Torso,Baumstamm,Brust,Körper
+la tradition,Tradition,Brauch,Erbgut,Praxis,Konvention
+la salade,Salat,Kopfsalat,Mess,Wirrwarr,Nonsens
+le complexe,Komplex,Verbindung,komplex,Gebäude,Minderwertigkeitskomplex
+la moyenne,Durchschnitt,Mittel,Medium,Norm,typisch
+la falaise,Klippe,Abgrund,Bluff,Crag,Steilhang
+le grec,Grieche,aus Griechenland,griechische Sprache,hellenisch
+le nom,Name,Name,Name von,Konto,Titel
+le punk,Punk,Ganove,Rebell,Musikgenre,zäh
+la bande,Streifen,Band,Bande,Band,Streifen
+le tuyau,Rohr,Rohr,Schlauch,Tipp,Leitung,Leitung
+l'échantillon,Probe,Exemplar,Beispiel,Test,Muster
+la blanchisserie,Wäscherei,Waschhaus,Reiniger,Waschen
+l'environnement,Umwelt,Umgebung,Einstellung,Milieu,Ökologie
+la cage,Käfig,Gehäuse,Gefängnis,Vogelkäfig,Aufzugsschacht
+le robot,Roboter,Automat,Maschine,Android,Bot
+l'habitude,Gewohnheit,Brauch,Routine,Praxis,Sucht
+l'emballage,Verpackung,Verpackung,Verpackung,Bündel,Abdeckung
+le ventre,Bauch,Magen,Abdomen,Darm,Wanst
+l'avantage,Vorteil,Vorteil,Perk,Kante,Gewinn
+l'évier,Spüle,Waschbecken,Abfluss,Becken
+le bip,Piep,Piep,Signal,Ton,Pager-Ton
+le motif,Motiv,Muster,Grund,Boden,Design
+le cirque,Zirkus,Arena,Chaos,Ring,Spektakel
+le territoire,Territorium,Land,Domäne,Gebiet,Region
+la fosse,Grube,Graben,Grab,Loch,Orchestergraben
+l'excuse,Entschuldigung,Entschuldigung,Vorwand,Begründung,Bitte
+l'examen,Prüfung,Prüfung,Test,Überprüfung,Inspektion
+le festival,Festival,Feier,Fête,Gala,Veranstaltung
+l'actrice,Schauspielerin,Schauspielerin,Darstellerin,Spielerin
+le service,Station,Service,Abteilung,Gefallen,Pflicht
+l'activité,Aktivität,Aktion,Beruf,Übung,Veranstaltung
+l'ouvrier,Arbeiter,Arbeiter,Arbeiter,Blue-Collar,Angestellter
+le policier,Polizist,Polizeibeamter,Cop,Rechtsmann,Konstabler
+l'abri,Unterschlupf,Zuflucht,Schuppen,Abdeckung,Schutz
+l'existence,Existenz,Wesen,Leben,Präsenz,Realität
+l'atmosphère,Atmosphäre,Luft,Stimmung,Umgebung,Ambiente
+le produit,Produkt,Produkt,Ergebnis,Ware,Artikel
+l'entre-temps,in der Zwischenzeit,in der Zwischenzeit,Zwischenzeit,Intervall
+la limite,Grenze,Grenze,Einschränkung,Kante,Maximum
+l'élection,Wahl,Abstimmung,Auswahl,Wahl,Umfrage
+les sous-vêtements,Unterwäsche,Unterwäsche,Wäsche,Slips
+le pouls,Puls,Herzschlag,Pochen,Rate,Schlag
+l'adieu,Abschied,Abschied,Trennung,Verabschiedung
+la gifle,Ohrfeige,Klaps,Schlag,Fessel,Kasten am Ohr
+la sonnette,Türklingel,Glocke,Klingel,Summer
+l'aventure,Abenteuer,Escapade,Erfahrung,Risiko,Geschichte
+le passeport,Reisepass,Reisedokument,Ausweis,Visuminhaber
+le marteau,Hammer,Schlegel,Gavel,Werkzeug,Schläger
+le capot,Haube,Haube,Abdeckung,Motorhaube,Mantel
+le jugement,Urteil,Urteil,Entscheidung,Meinung,Satz
+l'homicide,Tötung,Mord,Tötung,Totschlag,Erschlagung
+la patrouille,Patrouille,Runde,Wache,Watch,Trupp
+le flux,Fluss,Fluss,Strom,Strom,Gezeiten
+la clôture,Zaun,Gehäuse,Schließung,Einfriedung,Beendigung
+le midi,Mittag,Mittag,zwölf Uhr,Mittagszeit
+l'occasion,Gelegenheit,Gelegenheit,Veranstaltung,Schnäppchen,Chance
+la personnalité,Persönlichkeit,Charakter,Individuum,Berühmtheit,Persona
+la fantaisie,Phantasie,Herstellung,Laune,Marke,Vorstellung
+la production,Produktion,Ausgabe,Herstellung,Ausbeute,Show
+la cote,Seite,Bewertung,Kotierung,Schätzung,Punktzahl
+la signature,Unterschrift,Unterzeichnung,Autogramm,Marke,Befürwortung
+l'individu,Individuum,Person,Einzelnes,Wesen,Charakter
+le charme,Charme,Anziehungskraft,Verzauberung,Attraktivität,Zauberspruch
+le président,Vorsitzender,Präsident,Chef,Führer,Vorsitzender
+le cadre,Rahmen,Rahmen,Führungskraft,Einstellung,Grenze
+le soulagement,Erleichterung,Linderung,Trost,Erleichterung,Atempause
+le nuage,Wolke,Nebel,Dampf,Schwarm,Trübsal
+le cadavre,Leiche,Körper,Überreste,Kadaver,Kadaver
+l'organisation,Organisation,Organisation,Anordnung,Struktur,Körper
+l'hôte,Gast,Gast,Vermieter,Entertainer,Organismus
+le transport,Transport,Transport,Beförderung,Beförderung
+l'oxygène,Sauerstoff,O2,lebenswichtiges Gas,Luftelement
+le citoyen,Bürger,Staatsangehöriger,Bewohner,Untertan,Bewohner
+l'impact,Auswirkung,Effekt,Kollision,Einfluss,Eindruck
+l'offense,Straftat,Beleidigung,Beleidigung,Verbrechen,Verletzung
+le producteur,Produzent,Hersteller,Züchter,Hersteller,Schöpfer
+le kit,Kit,Set,Ausrüstung,Outfit,Paket
+la pub,Werbung,Hersteller,Bar,Pub
+l'escorte,Eskorte,Begleitung,Wache,Begleiter,Schutz
+l'invitation,Einladung,Einladung,Anfrage,Aufforderung,Karte
+le terroriste,Terrorist,Bomber,Extremist,Militanter,Aufständischer
+l'argile,Ton,Erde,Schlamm,Töpfermaterial,Boden
+la tragédie,Tragödie,Katastrophe,Drama,Katastrophe,Spiel
+les mathématiques,Mathe,Mathematik,Mathe,Arithmetik,Berechnung
+l'abri,Schuppen,Unterschlupf,Zuflucht,Lean-to,Hütte
+la procédure,Verfahren,Prozess,Methode,Routine,Protokoll
+le moniteur,Monitor,Bildschirm,Instruktor,Aufseher,Trainer
+la rotation,Drehung,Drehung,Wende,Revolution,Drehung
+le clown,Clown,Narr,Buffon,Komiker,Narr
+le collier,Halskette,Kragen,Kette,Perlen,Anhänger
+la boue,Schlamm,Schlamm,Schlamm,Dreck,Schlamm
+le profil,Profil,Umriss,Seitenansicht,Beschreibung,Form
+l'angle,Winkel,Ecke,Sichtweise,Perspektive,Maß
+le meuble,Möbel,Möbelstück,beweglich,Armatur
+les fiançailles,Verlobung,Verlobung,Hochzeitspläne,Versprechen
+le crétin,Moron,Idiot,Narr,Kretin,Imbezill
+le requin,Hai,Betrüger,Raubtier,Kredithai,Fisch
+l'humanité,Menschheit,Menschheit,Menschheit,Mitgefühl,Menschheit
+le coup,Hack,Schlag,Schnitt,Schlag,Scheibe
+le claquement,Schnappen,Klicken,Knacken,Klaps,Knall
+les ventes,Verkäufe,Verkauf,Umsatz,Einnahmen,Transaktionen
+l'écurie,Stall,Pferdestall,Team,Gruppe,Stand
+la mamie,Oma,Oma,Nana,Gran,Großmutter
+le poteau,Pol,Post,Pfosten,Säule,Mast
+le danseur,Tänzer,Darsteller,Balletttänzer,Beweger,Stepper
+le métrage,Filmmaterial,Länge,Yardage,Filmmaterial,Messung
+l'augmentation,Erhöhung,Anstieg,Erhöhung,Wachstum,Zuwachs
+l'étirement,Dehnung,Verlängerung,Verlängerung,Training,Spannung
+la romance,Romance,Liebesgeschichte,Romantik,Affäre,Ballade
+l'hélicoptère,Hubschrauber,Hubschrauber,Hubschrauber,Drehflugzeug
+le lancer,Wurf,Instanz,Start,Guss,Romantik
+l'exemple,Beispiel,Instanz,Beispiel,Fall,Beispiel
+le citron,Zitrone,Zitrusfrucht,sauere Frucht,gelb,Auto (Slang)
+le mal de tête,Kopfschmerzen,Migräne,Schmerz im Kopf,Ärgernis
+les déchets,Müll,Abfall,Zitrusfrucht,Romantik,Beispiel
+la séance,Sitzung,Sitzung,Treffen,Show,Séance
+l'épingle,Nadel,Nadel,Brosche,Haarnadel,Abzeichen
+la chambre,Kammer,Zimmer,Schlafzimmer,Haus,Fach
+la publicité,Werbung,Werbung,Werbung,Werbung,Promo
+le foie,Leber,Organ,Essen,Mut (bildlich)
+l'ingénieur,Ingenieur,Techniker,Designer,Bauer,Experte
+le souper,Abendessen,Abendessen,Abendessen,späte Mahlzeit
+l'alcool,Alkohol,Schnaps,Spirituose,Booze,Getränk
+la perceuse,Bohrer,Bohrmaschine,Bohrer,Klammer
+la ruelle,Gasse,Gasse,Hintergasse,Passage,enge Straße
+le saut,Hüpfen,Sprung,Sprung,Sprung,Skip
+la destruction,Zerstörung,Abriss,Ruin,Verwüstung,Vernichtung
+la camelote,Schrott,Müll,Müll,billige Waren,Tat
+la fusée,Rakete,Sprung,Feuerwerk,Raumfahrzeug,Leuchtfackel
+l'aîné,Ältester,Senior,ältere Person,Erstgeborener,Überlegener
+l'opéra,Oper,musikalisches Drama,Theater,Werk
+l'autoroute,Autobahn,Autobahn,Schnellstraße,Autobahn
+le combattant,Kämpfer,Kombattant,Krieger,Soldat,Boxer
+la coquille,Schale,Schale,Gehäuse,Patrone,Muschel
+l'alpha,Alpha,Anfang,Erster,dominant,griechischer Buchstabe
+la liberté,Freiheit,Freiheit,Freigabe,Autonomie,Recht
+le chirurgien,Chirurg,Arzt,Operateur,medizinischer Spezialist
+le clochard,Obdachloser,Obdachloser,Vagabund,Bettler,Obdachloser
+la veuve,Witwe,hinterbliebene Frau,überlebender Ehepartner
+le révérend,Ehrwürden,Geistlicher,Minister,Priester,Pastor
+l'insulte,Beleidigung,Affront,Missbrauch,Beleidigung,Straftat
+le commentaire,Kommentar,medizinischer,Bemerkung,Notiz,Beobachtung
+le savon,Seife,Waschmittel,Bar,Schaum,Reinigungsmittel
+la piqûre,Stich,Injektion,Stich,Punktion,Jab
+l'échelle,Skala,Leiter,Hierarchie,Proportion,Bereich
+le chagrin,Kummer,Bemerkung,Traurigkeit,Not,Leiden
+le genou,Knie,Gelenk,Schoß,Biegung,Artikulation
+la salope,Schlampe,Hure,Hure,promiskuitive Frau,Dirne
+l'album,Album,Platte,Buch,Sammlung,Fotoalbum
+l'accusé,Angeklagter,Angeklagter,Gefangener,beschuldigte Person
+la déesse,Göttin,Gottheit,göttliche Frau,Abbild,Schönheit
+la courbe,Kurve,Kurve,Wende,Bogen,Krümmung
+le maquillage,Make-up,Kosmetik,Verkleidung,Kriegsbemalung,Vorbereitung
+la loyauté,Treue,Treue,Treue,Treue,Hingabe
+la poudre,Pulver,Staub,Gesichtspuder,Schießpulver,Talkum
+le gène,Gen,genetische Einheit,Faktor,Vererbungselement
+le régime,Diät,Regime,Regierung,Regime,Geschwindigkeit
+le parent,Elternteil,Verwandter,Mutter oder Vater,Verwandter
+la confiture,Marmelade,Konfitüre,Gelee,Marmelade,Aufstrich
+le salaire,Gehalt,Lohn,Bezahlung,Verdienst,Vergütung
+le latin,Latein,lateinische Sprache,aus Latium,klassisch
+la population,Bevölkerung,Volk,Bewohner,Bevölkerung,Anzahl
+l'ambassadeur,Botschafter,Diplomat,Gesandter,Vertreter
+le casier,Fach,Fach,Taubenschlag,Schrank,Datensatz
+l'éloge,Lob,Lobrede,Empfehlung,Lob,Tribut
+le trauma,Trauma,Verletzung,Schock,Wunde,psychologischer Schaden
+le rivage,Ufer,Ufer,Küste,Strand,Meeresküste
+la richesse,Reichtum,Reichtum,Wohlstand,Opulenz,Fülle
+la lune de miel,Flitterwochen,Hochzeitsreise,Urlaub nach der Hochzeit
+la lame,Klinge,Messerschneide,Welle,Blatt,Streifen
+le whisky,Whisky,Scotch,Bourbon,Spirituose,Schnaps
+le noyau,Kern,Kern,Kernel,Grube,Zentrum
+l'aide,Hilfe,Hilfe,Unterstützung,Hilfe,Unterstützung
+la tente,Zelt,Markise,Pavillon,Baldachin,Unterschlupf
+la blonde,Blondine,blondhaarige Frau,helles Bier,Aschblond
+l'intention,Intention,Zweck,Ziel,Absicht,Plan
+l'abus,Missbrauch,Missbrauch,Misshandlung,Überschreitung,Verletzung
+la poésie,Poesie,Vers,Gedichte,Poesie,Literatur
+le jet,Jet,Strom,Spurt,Flugzeug,schwarzer Edelstein
+la résistance,Widerstand,Opposition,Ausdauer,Kraft,Widerstand
+la barbe,Bart,Gesichtsbehaarung,Schnurrbart,Ziegenbart,Bartstoppeln
+la stratégie,Strategie,Plan,Taktik,Ansatz,Schema
+la chèvre,Ziege,Kinn,Ziegenbock,Kind,kapriziöse Person
+le prix,Auszeichnung,Preis,Preis,Kosten,Wert
+le maïs,Mais,Mais,Süßmais,Getreide,Popcorn
+le professionnel,Profi,Profi,Experte,Spezialist
+le filet,Netz,Netz,Masche,Schlinge,Netzwerk
+le tatouage,Tätowierung,Tinte,Körperkunst,Markierung,Design
+l'attaque,Schlaganfall,Angriff,Übergriff,Anfall,Beginn
+le roman,Roman,Romance,Geschichte,Fiktion,Buch
+le chaos,Chaos,Unordnung,Verwirrung,Tumult,Pandämonium
+le collègue,Kollege,Mitarbeiter,Associate,Mitarbeiter,Partner
+le scientifique,Wissenschaftler,Forscher,Gelehrter,Experte
+le conte,Märchen,Geschichte,Märchen,Erzählung,Bericht
+l'entrepôt,Lagerhaus,Lagerhaus,Depot,Lager,Vorratsraum
+l'éléphant,Elefant,Pachyderm,großes Säugetier,Tier mit Rüssel
+l'otage,Geisel,Gefangener,Gefangener,Pfand,Detainee
+la branche,Zweig,Ast,Glied,Division,Arm
+l'objection,Einwand,Protest,Einwand,Ausnahme,Ablehnung
+le tour,Runde,Wende,Schaltung,Runde,Trick
+la possession,Besitz,Eigentum,Eigentum,Kontrolle,besessene Sache
+le robinet,Hahn,Wasserhahn,Spund,Ventil,Hahn
+le supérieur,Überlegener,höher,besser,Chef,oberer
+le menton,Kinn,Kiefer,Bartbereich,Punkt
+le soda,Soda,Erfrischungsgetränk,Pop,kohlensäurehaltiges Getränk
+la commission,Kommission,Ausschuss,Gebühr,Prozentsatz,Aufgabe
+le cinéma,Kino,Kinn,Pop,Filme
+le muscle,Muskel,Sehne,Kraft,Muskeln,Gewebe
+le poème,Gedicht,Vers,Poesie,Reim,Komposition
+l'appel,Berufung,Anruf,Vorladung,Bitte,Telefonanruf
+le steak,Steak,Rindfleischsteak,Fleischscheibe,Grill
+la survie,Überleben,Überleben,Ausdauer,Fortsetzung,Leben
+le profit,Gewinn,Gewinn,Vorteil,Vorteil,Verdienst
+le symbole,Symbol,Zeichen,Emblem,Token,Darstellung
+la folie,Wahnsinn,Torheit,Wahnsinn,Verrücktheit,Manie
+le développement,Entwicklung,Wachstum,Fortschritt,Evolution,Expansion
+la voile,Segel,Schleier,Abdeckung,Leinwand,Nebel
+la dent,Zahn,Zahnersatz,Fangzahn,Zinne,Zahnrad
+la critique,Kritik,Kritik,Kritik,Analyse,Kommentar
+le basketball,Basketball,Reifen,Hofspiel,Ballsport
+la gestion,Management,Verwaltung,Handling,Kontrolle
+le tube,Rohr,Rohr,Zylinder,U-Bahn,Reagenzglas
+le fusil de chasse,Schrotflinte,Jagdflinte,Streuflinte
+la fourrure,Pelz,Hofspiel,Mantel,Haar,Streuflinte
+le gin,Gin,Spirituose,Wacholderlikör,Falle,Schlinge,Getränk
+le filet,Netz,Netz,Masche,Schlinge,Netzwerk → le filet,Netz,Fischfilet,Masche,Schlinge,Netzwerk,Filter
+le tatouage,Tätowierung,Tinte,Körperkunst,Markierung,Design,Muster
+l'attaque,Schlaganfall,Angriff,Übergriff,Anfall,Beginn,Offensive
+le roman,Roman,Liebesgeschichte,Geschichte,Fiktion,Buch,Erzählung
+le chaos,Chaos,Unordnung,Verwirrung,Tumult,Pandämonium,Wirrwarr
+le collègue,Kollege,Mitarbeiter,Associate,Mitarbeiter,Partner → le collègue,Kollege,Mitarbeiter,Associate,Arbeitskollege,Partner,Kollegin
+le scientifique,Wissenschaftler,Forscher,Gelehrter,Experte,Naturwissenschaftler,Gelehrter → le scientifique,Wissenschaftler,Forscher,Gelehrter,Experte,Naturwissenschaftler,Studienleiter
+le conte,Märchen,Geschichte,Märchen,Erzählung,Bericht → le conte,Märchen,Geschichte,Sage,Erzählung,Bericht,Fabel
+l'entrepôt,Lagerhaus,Lagerhaus,Depot,Lager,Vorratsraum → l'entrepôt,Lagerhaus,Speicher,Depot,Lager,Vorratsraum,Warenhaus
+l'éléphant,Elefant,Pachyderm,großes Säugetier,Tier mit Rüssel,Riesentier,Grautier
+l'otage,Geisel,Gefangener,Gefangener,Pfand,Detainee → l'otage,Geisel,Gefangener,Pfand,Detainee,Druckmittel,Verhandlungsmasse
+la branche,Zweig,Ast,Glied,Division,Arm,Filiale
+l'objection,Einwand,Protest,Einwand,Ausnahme,Ablehnung → l'objection,Einwand,Protest,Bedenken,Ausnahme,Ablehnung,Widerspruch
+le tour,Runde,Wende,Schaltung,Runde,Trick → le tour,Runde,Wende,Schaltung,Tour,Trick,Kunststück
+la possession,Besitz,Eigentum,Eigentum,Kontrolle,besessene Sache → la possession,Besitz,Eigentum,Habe,Kontrolle,besessene Sache,Zugehörigkeit
+le robinet,Hahn,Wasserhahn,Spund,Ventil,Hahn → le robinet,Hahn,Wasserhahn,Spund,Ventil,Zapfhahn,Kran
+le supérieur,Überlegener,höher,besser,Chef,oberer,Vorgesetzter
+le menton,Kinn,Kiefer,Bartbereich,Punkt,Gesichtspartie,Kinnpartie
+le soda,Soda,Erfrischungsgetränk,Pop,kohlensäurehaltiges Getränk,Limonade,Brause
+la commission,Kommission,Ausschuss,Gebühr,Prozentsatz,Aufgabe,Provision
+le cinéma,Kino,Kino,Filme,Filme → le cinéma,Kino,Filmtheater,Filme,Motion Pictures,Kunst
+le muscle,Muskel,Sehne,Kraft,Muskeln,Gewebe,Muskulatur
+le poème,Gedicht,Vers,Poesie,Reim,Komposition,Dichtung
+l'appel,Berufung,Anruf,Vorladung,Bitte,Telefonanruf,Ruf
+le steak,Steak,Rindfleischsteak,Fleischscheibe,Grill,Fleischstück,Braten
+la survie,Überleben,Überleben,Ausdauer,Fortsetzung,Leben,Dasein
+le profit,Gewinn,Gewinn,Vorteil,Vorteil,Verdienst → le profit,Gewinn,Profit,Vorteil,Nutzen,Verdienst,Ertrag
+le symbole,Symbol,Zeichen,Emblem,Token,Darstellung,Sinnbild
+la folie,Wahnsinn,Torheit,Wahnsinn,Verrücktheit,Manie → la folie,Wahnsinn,Torheit,Irrsinn,Verrücktheit,Manie,Narretei
+le développement,Entwicklung,Wachstum,Fortschritt,Evolution,Expansion,Entfaltung
+la voile,Segel,Schleier,Abdeckung,Leinwand,Nebel,Segeltuch
+la dent,Zahn,Zahnersatz,Fangzahn,Zinne,Zahnrad,Zahnbein
+la critique,Kritik,Kritik,Kritik,Analyse,Kommentar → la critique,Kritik,Rezension,Kritik,Analyse,Kommentar,Bewertung
+le basketball,Basketball,Reifen,Hofspiel,Ballsport,Korbsport,Hallensport
+la gestion,Management,Verwaltung,Handling,Kontrolle,Führung,Verwaltung
+le tube,Rohr,Rohr,Zylinder,U-Bahn,Reagenzglas → le tube,Rohr,Schlauch,Zylinder,U-Bahn,Reagenzglas,Röhre
+le fusil de chasse,Schrotflinte,Jagdflinte,Streuflinte,Waffe,Gewehr,Jagdwaffe
