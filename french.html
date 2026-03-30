@@ -580,7 +580,9 @@
         restoreSuccess4: 'y!',
         hideConfirm: 'Hide "',
         hideConfirm2: '.csv" from the list?\n\nYou can always add it back by loading the file or typing the name manually.',
-        closeConfirm: 'Close and return to dictionary selection?'
+        closeConfirm: 'Close and return to dictionary selection?',
+        cardExamples: 'Examples:',
+        cardCorrectAnswer: '✓ Correct answer:',
       },
       'ru': {
         appTitle: '🇫🇷 Тренажер французской лексики',
@@ -641,7 +643,9 @@
         restoreSuccess4: '!',
         hideConfirm: 'Скрыть "',
         hideConfirm2: '.csv" из списка?\n\nВы всегда можете добавить его обратно, загрузив файл или введя имя вручную.',
-        closeConfirm: 'Закрыть и вернуться к выбору словаря?'
+        closeConfirm: 'Закрыть и вернуться к выбору словаря?',
+        cardExamples: 'Примеры:',
+        cardCorrectAnswer: '✓ Правильный ответ:',
       },
       'en': {
         appTitle: '🇫🇷 French Vocab Trainer Pro',
@@ -702,7 +706,9 @@
         restoreSuccess4: 'y!',
         hideConfirm: 'Hide "',
         hideConfirm2: '.csv" from the list?\n\nYou can always add it back by loading the file or typing the name manually.',
-        closeConfirm: 'Close and return to dictionary selection?'
+        closeConfirm: 'Close and return to dictionary selection?',
+        cardExamples: 'Examples:',
+        cardCorrectAnswer: '✓ Correct answer:',
       },
       'fr': {
         appTitle: '🇫🇷 French Vocab Trainer Pro',
@@ -763,7 +769,9 @@
         restoreSuccess4: '!',
         hideConfirm: 'Cacher "',
         hideConfirm2: '.csv" de la liste?\n\nVous pouvez toujours le rajouter en chargeant le fichier ou en tapant le nom manuellement.',
-        closeConfirm: 'Fermer et retourner à la sélection de dictionnaire?'
+        closeConfirm: 'Fermer et retourner à la sélection de dictionnaire?',
+        cardExamples: 'Exemples:',
+        cardCorrectAnswer: '✓ Réponse correcte:',
       },
       'ar': {
         appTitle: '🇫🇷 مدرب مفردات فرانسیوی',
@@ -825,7 +833,9 @@
         restoreSuccess4: '!',
         hideConfirm: 'پنهان کردن "',
         hideConfirm2: '.csv" از لیست؟\n\nشما همیشه می‌توانید آن را با بارگذاری فایل یا تایپ دستی نام اضافه کنید.',
-        closeConfirm: 'بستن و بازگشت به انتخاب لغتنامه؟'
+        closeConfirm: 'بستن و بازگشت به انتخاب لغتنامه؟',
+        cardExamples: 'أمثلة:',
+        cardCorrectAnswer: '✓ الإجابة الصحيحة:',
       },
       'de': {
           appTitle: '🇫🇷 Französisch Vokabeltrainer Pro',
@@ -886,7 +896,9 @@
           restoreSuccess4: '!',
           hideConfirm: '"',
           hideConfirm2: '.csv" aus der Liste verstecken?\n\nDu kannst es jederzeit wieder hinzufügen, indem du die Datei lädst oder den Namen manuell eingibst.',
-          closeConfirm: 'Schließen und zur Wörterbuchauswahl zurückkehren?'
+          closeConfirm: 'Schließen und zur Wörterbuchauswahl zurückkehren?',
+          cardExamples: 'Beispiele:',
+          cardCorrectAnswer: '✓ Richtige Antwort:',
         }
     };
 
@@ -1942,12 +1954,13 @@ async function nextWord() {
   els.wordProgress.innerHTML = `${getWordProgressText(currentWord.french)} ${getWordProgressBar(currentWord.french)}`;
 
 
-  // === РЕЖИМ КАРТОЧЕК ===
 // === РЕЖИМ КАРТОЧЕК ===
 if (isCardMode || currentWord.isCard) {
   els.nextBtn.disabled = false;
-  els.nextBtn.textContent = '>> Выучил';
+  els.nextBtn.textContent = '>>';
   els.options.style.display = 'none';
+  
+  const t = translations[currentLanguage];  // ← Получаем переводы
   
   // Удаляем старые элементы карточек
   document.querySelectorAll('.card-examples, .card-translations, .card-translation').forEach(el => el.remove());
@@ -1957,8 +1970,7 @@ if (isCardMode || currentWord.isCard) {
     const translationBox = document.createElement('div');
     translationBox.className = 'card-translation';
     translationBox.style.cssText = 'margin:0.5rem 0;padding:0.75rem 1rem;background:rgba(34,197,94,0.15);border-radius:0.5rem;text-align:center;font-size:1.2rem;color:#86efac;font-weight:500;';
-    translationBox.textContent = currentWord.correct;  // Русский перевод
-    // Вставляем сразу после wordProgress
+    translationBox.textContent = currentWord.correct;
     document.getElementById('wordProgress').parentNode.insertBefore(translationBox, document.getElementById('wordProgress').nextSibling);
   }
   
@@ -1969,10 +1981,10 @@ if (isCardMode || currentWord.isCard) {
     const exBox = document.createElement('div');
     exBox.className = 'card-examples';
     exBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(59,130,246,0.1);border-radius:0.5rem;text-align:left;';
-    exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">Примеры:</div>` +
+    // ← ИСПОЛЬЗУЕМ ПЕРЕВОД:
+    exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">${t.cardExamples}</div>` +
       shuffledExamples.map((ex, i) => `<div style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2)">${i+1}. ${ex}</div>`).join('');
     
-    // Вставляем после русского перевода
     const translationBox = document.querySelector('.card-translation');
     if (translationBox) {
       translationBox.parentNode.insertBefore(exBox, translationBox.nextSibling);
@@ -1981,18 +1993,18 @@ if (isCardMode || currentWord.isCard) {
     }
   }
   
-  // 3. ПРАВИЛЬНЫЙ ФРАНЦУЗСКИЙ ОТВЕТ — В САМОМ НИЗУ (зелёным)
+  // 3. ПРАВИЛЬНЫЙ ФРАНЦУЗСКИЙ ОТВЕТ — В САМОМ НИЗУ
   if (currentWord.correctSentence) {
     const trBox = document.createElement('div');
     trBox.className = 'card-translations';
     trBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(34,197,94,0.1);border-radius:0.5rem;text-align:left;';
+    // ← ИСПОЛЬЗУЕМ ПЕРЕВОД:
     trBox.innerHTML = `
-      <div style="font-weight:bold;color:#86efac;margin-bottom:0.5rem">✓ Правильный ответ:</div>
+      <div style="font-weight:bold;color:#86efac;margin-bottom:0.5rem">${t.cardCorrectAnswer}</div>
       <div style="padding:0.5rem;background:rgba(34,197,94,0.2);border-radius:0.25rem;font-size:1.1rem;color:#86efac;font-weight:600">
         ${currentWord.correctSentence}
       </div>`;
     
-    // Вставляем в самый низ, после примеров
     const exBox = document.querySelector('.card-examples');
     if (exBox) {
       exBox.parentNode.insertBefore(trBox, exBox.nextSibling);
