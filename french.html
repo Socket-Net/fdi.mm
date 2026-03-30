@@ -483,7 +483,7 @@
       STORAGE_KEY: 'vocabTrainer_v11',
       FAVORITE_INTERVAL: 20,
       AVAILABLE_DICTS: ['words_en', 'words_ru', 'words_de'],
-      SHOW_IMAGES_BY_DEFAULT: false // 🔥 По умолчанию скрыты
+      SHOW_IMAGES_BY_DEFAULT: false
     };
 
     // ===== STATE =====
@@ -497,8 +497,11 @@
     let poolSize = CONFIG.DEFAULT_POOL_SIZE;
     let currentDict = 'words_en';
     let availableDicts = [...CONFIG.AVAILABLE_DICTS];
-    let showImages = CONFIG.SHOW_IMAGES_BY_DEFAULT; // 🔥 Состояние показа картинок
-let currentImageUrl = null; 
+    let showImages = CONFIG.SHOW_IMAGES_BY_DEFAULT;
+    let currentImageUrl = null;
+    let activePool = []; 
+    let freshWordCounter = 0;
+
     // ===== DOM =====
     const els = {
       dictManagerSection: document.getElementById('dictManagerSection'),
@@ -526,7 +529,7 @@ let currentImageUrl = null;
       finishBtn: document.getElementById('finishBtn'),
       backToQuizBtn: document.getElementById('backToQuizBtn'),
       backToQuizFromDict: document.getElementById('backToQuizFromDict'),
-      backToMainBtn: document.getElementById('backToMainBtn'), // 🔥 Новая кнопка
+      backToMainBtn: document.getElementById('backToMainBtn'),
       closeBtn: document.getElementById('closeBtn'),
       clearCacheBtn: document.getElementById('clearCacheBtn'),
       learnedCount: document.getElementById('learnedCount'),
@@ -561,7 +564,7 @@ let currentImageUrl = null;
           poolSize,
           currentDict,
           availableDicts,
-          showImages, // 🔥 Сохраняем настройку картинок
+          showImages,
           savedAt: Date.now()
         };
         if (allWords.length > 0) {
@@ -618,11 +621,10 @@ async function loadDictionary(dictName) {
     allWords = newWords;
     currentDict = dictName;
     
-    // 🔥 ИСПРАВЛЕНИЕ 1: Обновляем поле с именем словаря
     els.dictNameInput.value = dictName;
     
     stats.sessionErrors = 0;
-    
+    freshWordCounter = 0;
     saveData();
     
     els.dictManagerSection?.classList.add('hidden');
@@ -652,7 +654,8 @@ async function loadDictionary(dictName) {
       progress = filteredProgress;
       currentDict = dictName;
       stats.sessionErrors = 0;
-      
+      freshWordCounter = 0;
+
       if (!availableDicts.includes(dictName)) {
         availableDicts.push(dictName);
       }
@@ -709,22 +712,73 @@ async function loadDictionary(dictName) {
         .map(([word, _]) => allWords.find(w => w.french === word))
         .filter(w => w);
     }
+function getNextWordFromPool() {
+  if (reviewMode) {
+    const favorites = getFavorites();
+    if (favorites.length === 0) return null;
+    return favorites[Math.floor(Math.random() * favorites.length)];
+  }
+
+  freshWordCounter++;
+  if (freshWordCounter % 5 === 0) {
+    const notLearned = allWords.filter(w => 
+      (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN &&
+      !activePool.includes(w.french) 
+    );
+    
+    if (notLearned.length > 0) {
+      const fresh = notLearned[Math.floor(Math.random() * notLearned.length)];
+      console.log(`🌱 Fresh word inserted: ${fresh.french}`);
+      return fresh;
+    }
+  }
+  
+  if (activePool.length === 0) {
+    refillActivePool();
+  }
+  
+  if (activePool.length === 0) return null;
+  
+  const wordKey = activePool[Math.floor(Math.random() * activePool.length)];
+  return allWords.find(w => w.french === wordKey);
+}
+
+// ===== POOL MANAGEMENT =====
+function refillActivePool() {
+  // Получаем все невыученные слова
+  const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+  
+  // Удаляем из activePool слова, которые уже выучены или исчезли из словаря
+  activePool = activePool.filter(wordKey => {
+    const word = allWords.find(w => w.french === wordKey);
+    return word && (progress[wordKey]?.points ?? 0) < CONFIG.POINTS_TO_LEARN;
+  });
+  
+  // Добиваем пул до нужного размера
+  while (activePool.length < poolSize && notLearned.length > 0) {
+    // Берём случайное слово, которого ещё нет в пуле
+    const available = notLearned.filter(w => !activePool.includes(w.french));
+    if (available.length === 0) break;
+    
+    const randomWord = available[Math.floor(Math.random() * available.length)];
+    activePool.push(randomWord.french);
+  }
+  
+  console.log(`🔄 Pool refilled: ${activePool.length}/${poolSize} words`);
+}
 
 // ===== IMAGE TOGGLE =====
 function toggleImageVisibility() {
   showImages = !showImages;
   
-  // 🔥 Если включили отображение И есть картинка - показываем
   if (showImages && currentImageUrl) {
     els.wordImage.classList.remove('hidden');
     els.imageToggleBtn.textContent = '🙈';
     els.imageToggleBtn.title = 'Hide image';
   } 
-  // 🔥 Если включили но картинки нет - загружаем
   else if (showImages && currentWord) {
     loadImageForCurrentWord();
   }
-  // 🔥 Если выключили - скрываем
   else {
     els.wordImage.classList.add('hidden');
     els.imageToggleBtn.textContent = '🖼️';
@@ -755,7 +809,7 @@ async function loadImageForCurrentWord() {
     
     if (imageData && imageData.url) {
       console.log('✅ Image loaded:', imageData.url);
-      currentImageUrl = imageData.url; // 🔥 Сохраняем URL
+      currentImageUrl = imageData.url;
       els.wordImage.src = imageData.url;
       els.imageSource.textContent = imageData.source;
       
@@ -804,10 +858,7 @@ function updateImageDisplay() {
 // ===== УЛУЧШЕННЫЙ ПОИСК КАРТИНОК - ПО ОПИСАНИЮ =====
 async function fetchWordImage(word) {
   try {
-    // 🔥 Ищем слово в словаре чтобы получить описание (правильный ответ)
     const wordData = allWords.find(w => w.french === word);
-    
-    // Если нашли слово в словаре - используем описание (правильный ответ)
     let searchTerm = word;
     if (wordData && wordData.correct) {
       searchTerm = wordData.correct;
@@ -821,7 +872,6 @@ async function fetchWordImage(word) {
       console.log(`🔍 Using word itself: "${searchTerm}"`);
     }
     
-    // 🔥 Ищем только изображения (не видео!)
     const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrlimit=1&prop=pageimages|info&pithumbsize=400&gsrsearch=${encodeURIComponent(searchTerm)}&format=json&origin=*`;
     
     console.log(`📡 Fetching: ${searchUrl}`);
@@ -842,7 +892,6 @@ async function fetchWordImage(word) {
       if (page && page.thumbnail && page.thumbnail.source) {
         const imageUrl = page.thumbnail.source;
         
-        // 🔥 Проверяем что это изображение (не видео)
         if (imageUrl.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) {
           console.log('✅ Found image:', imageUrl);
           return {
@@ -869,49 +918,48 @@ function updateReviewButtonText() {
     els.reviewBtn.textContent = '🔙 Back to Quiz';
     els.reviewBtn.title = 'Exit review mode';
   } else {
-    els.reviewBtn.textContent = '🔄 Review';
+    els.reviewBtn.textContent = '⭐ Favorites';
     els.reviewBtn.title = 'Review favorite words';
   }
 }
 
 
-function getActivePool() {
-  if (reviewMode) {
-    // 🔥 Показываем избранные слова (любые, не только выученные)
-    const favorites = getFavorites();
-    if (favorites.length === 0) return [];
-    return favorites.sort(() => Math.random() - 0.5).slice(0, poolSize);
-  }
-  
-  const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
-  
-  if (stats.totalAnswered > 0 && stats.totalAnswered % CONFIG.FAVORITE_INTERVAL === 0) {
-    const favorites = getFavorites();
-    const unlearnedFavorites = favorites.filter(f => (progress[f.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
-    
-    if (unlearnedFavorites.length > 0) {
-      const favWord = unlearnedFavorites[Math.floor(Math.random() * unlearnedFavorites.length)];
-      console.log(`⭐ Inserting favorite: ${favWord.french}`);
-      const pool = [...notLearned].sort(() => Math.random() - 0.5).slice(0, poolSize - 1);
-      pool.unshift(favWord);
-      return pool;
-    }
-  }
-  
-  return [...notLearned].sort(() => Math.random() - 0.5).slice(0, poolSize);
-}
+      function getActivePool() {
+        if (reviewMode) {
+          const favorites = getFavorites();
+          if (favorites.length === 0) return [];
+          return favorites.sort(() => Math.random() - 0.5).slice(0, poolSize);
+        }
+        
+        const notLearned = allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+        
+        if (stats.totalAnswered > 0 && stats.totalAnswered % CONFIG.FAVORITE_INTERVAL === 0) {
+          const favorites = getFavorites();
+          const unlearnedFavorites = favorites.filter(f => (progress[f.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+          
+          if (unlearnedFavorites.length > 0) {
+            const favWord = unlearnedFavorites[Math.floor(Math.random() * unlearnedFavorites.length)];
+            console.log(`⭐ Inserting favorite: ${favWord.french}`);
+            const pool = [...notLearned].sort(() => Math.random() - 0.5).slice(0, poolSize - 1);
+            pool.unshift(favWord);
+            return pool;
+          }
+        }
+        
+        return [...notLearned].sort(() => Math.random() - 0.5).slice(0, poolSize);
+      }
 
-function getWordProgressText(word) {
-  const p = progress[word]?.points ?? 0;
-  const isFav = progress[word]?.isFavorite || false;
-  
-  if (reviewMode) {
-    return isFav ? '⭐ Favorite' : '🔁 Review';
-  }
-  if (p >= CONFIG.POINTS_TO_LEARN) return '🎉 Learned';
-  if (p >= 0) return `${p}/${CONFIG.POINTS_TO_LEARN} • ${CONFIG.POINTS_TO_LEARN - p} more`;
-  return `${p}/${CONFIG.POINTS_TO_LEARN} • ${Math.abs(p)} wrong`;
-}
+    function getWordProgressText(word) {
+      const p = progress[word]?.points ?? 0;
+      const isFav = progress[word]?.isFavorite || false;
+      
+      if (reviewMode) {
+        return isFav ? '⭐ Favorite' : '🔁 Review';
+      }
+      if (p >= CONFIG.POINTS_TO_LEARN) return '🎉 Learned';
+      if (p >= 0) return `${p}/${CONFIG.POINTS_TO_LEARN} • ${CONFIG.POINTS_TO_LEARN - p} more`;
+      return `${p}/${CONFIG.POINTS_TO_LEARN} • ${Math.abs(p)} wrong`;
+    }
 
 
     function getWordProgressBar(word) {
@@ -921,161 +969,166 @@ function getWordProgressText(word) {
     }
 
     // ===== NEXT WORD =====
+    async function nextWord() {
+      answered = false;
+      els.feedback.textContent = '';
+      els.feedback.className = 'feedback';
+      els.nextBtn.disabled = true;
+      els.options.innerHTML = '';
+      
+      // Очищаем кнопку Remove из предыдущего слова
+      const existingRemoveBtn = document.querySelector('.remove-btn');
+      if (existingRemoveBtn) existingRemoveBtn.remove();
 
-
-// ===== NEXT WORD =====
-async function nextWord() {
-  answered = false;
-  els.feedback.textContent = '';
-  els.feedback.className = 'feedback';
-  els.nextBtn.disabled = true;
-  els.options.innerHTML = '';
-  
-  // Очищаем кнопку Remove из предыдущего слова
-  const existingRemoveBtn = document.querySelector('.remove-btn');
-  if (existingRemoveBtn) existingRemoveBtn.remove();
-  
-  const pool = getActivePool();
-  
-  if (pool.length === 0) {
-    els.word.textContent = reviewMode ? '✅ Reviewed!' : '🎉 All learned!';
-    els.wordImage.classList.add('hidden');
-    els.imageSource.textContent = '';
-    els.wordProgress.textContent = reviewMode ? 'Exit review' : 'Great job!';
-    els.favoriteBtn.style.display = 'none';
-    els.imageToggleBtn.style.display = 'none';
-    els.options.innerHTML = `<div class="option" style="cursor:default">${reviewMode ? '🔙 Exit' : '🔄 Reset'}</div>`;
-    els.options.firstChild.onclick = () => {
-      if (reviewMode) { 
-        reviewMode = false; 
-        updateReviewButtonText();
-        nextWord(); 
+      const next = getNextWordFromPool();
+      
+      if (!next) {
+        els.word.textContent = reviewMode ? '✅ Reviewed!' : '🎉 All learned!';
+        els.wordImage.classList.add('hidden');
+        els.imageSource.textContent = '';
+        els.wordProgress.textContent = reviewMode ? 'Exit review' : 'Great job!';
+        els.favoriteBtn.style.display = 'none';
+        els.imageToggleBtn.style.display = 'none';
+        els.options.innerHTML = `<div class="option" style="cursor:default">${reviewMode ? '🔙 Exit' : '🔄 Reset'}</div>`;
+        els.options.firstChild.onclick = () => {
+          if (reviewMode) { 
+            reviewMode = false; 
+            updateReviewButtonText();
+            nextWord(); 
+          }
+          else if (confirm('Reset all?')) { localStorage.removeItem(CONFIG.STORAGE_KEY); location.reload(); }
+        };
+        return;
       }
-      else if (confirm('Reset all?')) { localStorage.removeItem(CONFIG.STORAGE_KEY); location.reload(); }
-    };
-    return;
-  }
-  
-  currentWord = pool[Math.floor(Math.random() * pool.length)];
-  els.word.textContent = currentWord.french;
-  els.favoriteBtn.style.display = 'block';
-  els.imageToggleBtn.style.display = 'block';
-  updateFavoriteButton();
-  
-  // 🔥 Сбрасываем URL картинки для нового слова
-  currentImageUrl = null;
-  els.wordImage.classList.add('hidden');
-  
-  if (showImages) {
-    els.imageSource.textContent = '🔍 Searching image...';
-    els.imageToggleBtn.textContent = '🖼️';
-    els.imageToggleBtn.title = 'Show image';
-    els.imageToggleBtn.disabled = true;
-    
-    // 🔥 Загружаем картинку
-    await loadImageForCurrentWord();
-  } else {
-    els.imageSource.textContent = '🖼️ Images disabled';
-    els.imageToggleBtn.textContent = '🖼️';
-    els.imageToggleBtn.title = 'Show image';
-    els.imageToggleBtn.disabled = false;
-  }
-  
-  els.wordProgress.innerHTML = `${getWordProgressText(currentWord.french)} ${getWordProgressBar(currentWord.french)}`;
-  
-  const wrong = allWords.filter(w => w.french !== currentWord.french).map(w => w.correct).sort(() => Math.random() - 0.5).slice(0, 4);
-  const opts = [...wrong, currentWord.correct].sort(() => Math.random() - 0.5);
-  
-  opts.forEach(opt => {
-    const btn = document.createElement('div');
-    btn.className = 'option';
-    btn.textContent = opt;
-    btn.onclick = () => handleAnswer(opt, currentWord.correct);
-    els.options.appendChild(btn);
-  });
-}
-    
-    
-function exitReviewMode() {
-  if (reviewMode) {
-    console.log('🔓 Exiting review mode');
-    reviewMode = false;
-  }
-}
-
-    // ===== ANSWER =====
-function handleAnswer(selected, correct) {
-  if (answered) return;
-  answered = true;
-  
-  const opts = els.options.querySelectorAll('.option');
-  opts.forEach(opt => {
-    opt.style.pointerEvents = 'none';
-    if (opt.textContent === correct) opt.classList.add('correct');
-    if (opt.textContent === selected && selected !== correct) opt.classList.add('wrong');
-  });
-  
-  const isCorrect = selected === correct;
-  const key = currentWord.french;
-  
-  if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
-  
-  if (isCorrect) {
-    progress[key].points++;
-    stats.totalCorrect++;
-    els.feedback.innerHTML = reviewMode ? '✅ Still know it!' : '✅ +1';
-    els.feedback.className = 'feedback correct';
-  } else {
-    stats.sessionErrors++;
-    if (reviewMode) {
-      progress[key].points = 0;
-      els.feedback.innerHTML = `❌ Forgot! Reset<br><span class="correct-answer">${correct}</span>`;
-    } else {
-      progress[key].points = Math.max(CONFIG.MIN_POINTS, progress[key].points - 1);
-      els.feedback.innerHTML = `❌ -1<br><span class="correct-answer">${correct}</span>`;
-    }
-    els.feedback.className = 'feedback wrong';
-  }
-  
-  stats.totalAnswered++;
-  history.unshift({ word: key, correct: isCorrect, timestamp: Date.now() });
-  if (history.length > 50) history.pop();
-  
-  progress[key].lastSeen = Date.now();
-  saveData();
-  
-  els.wordProgress.innerHTML = `${getWordProgressText(key)} ${getWordProgressBar(key)}`;
-  updateStats();
-  els.nextBtn.disabled = false;
-  
-  // 🔥 ИСПРАВЛЕНИЕ: Кнопка Remove теперь компактная и в заголовке
-  if (reviewMode && progress[key]?.isFavorite) {
-    // Создаем кнопку удаления рядом с ☆
-    const removeBtn = document.createElement('button');
-    removeBtn.className = 'secondary-btn';
-    removeBtn.style.fontSize = '0.75rem';
-    removeBtn.style.padding = '0.25rem 0.5rem';
-    removeBtn.style.marginLeft = '0.5rem';
-    removeBtn.textContent = '❌ Remove';
-    removeBtn.title = 'Remove from favorites';
-    removeBtn.onclick = () => {
-      progress[key].isFavorite = false;
+      
+      currentWord = next;
+      els.word.textContent = currentWord.french;
+      els.favoriteBtn.style.display = 'block';
+      els.imageToggleBtn.style.display = 'block';
       updateFavoriteButton();
-      updateStats();
-      saveData();
-      removeBtn.textContent = '✅ Removed';
-      removeBtn.disabled = true;
-      setTimeout(() => removeBtn.remove(), 1500);
-    };
-    
-    // Добавляем кнопку в заголовок рядом с ☆
-    const wordHeader = document.querySelector('.word-header');
-    if (wordHeader && !wordHeader.querySelector('.remove-btn')) {
-      removeBtn.classList.add('remove-btn');
-      wordHeader.appendChild(removeBtn);
+      
+      els.wordImage.classList.add('hidden');
+      
+      if (showImages) {
+        els.imageSource.textContent = '🔍 Searching image...';
+        els.imageToggleBtn.textContent = '🖼️';
+        els.imageToggleBtn.title = 'Show image';
+        els.imageToggleBtn.disabled = true;
+        
+        await loadImageForCurrentWord();
+      } else {
+        els.imageSource.textContent = '🖼️ Images disabled';
+        els.imageToggleBtn.textContent = '🖼️';
+        els.imageToggleBtn.title = 'Show image';
+        els.imageToggleBtn.disabled = false;
+      }
+      
+      els.wordProgress.innerHTML = `${getWordProgressText(currentWord.french)} ${getWordProgressBar(currentWord.french)}`;
+      
+      const wrong = allWords.filter(w => w.french !== currentWord.french).map(w => w.correct).sort(() => Math.random() - 0.5).slice(0, 4);
+      const opts = [...wrong, currentWord.correct].sort(() => Math.random() - 0.5);
+      
+      opts.forEach(opt => {
+        const btn = document.createElement('div');
+        btn.className = 'option';
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(opt, currentWord.correct);
+        els.options.appendChild(btn);
+      });
     }
-  }
-}
+        
+        
+    function exitReviewMode() {
+      if (reviewMode) {
+        console.log('🔓 Exiting review mode');
+        reviewMode = false;
+      }
+    }
+
+        // ===== ANSWER =====
+    function handleAnswer(selected, correct) {
+      if (answered) return;
+      answered = true;
+      
+      const opts = els.options.querySelectorAll('.option');
+      opts.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+        if (opt.textContent === correct) opt.classList.add('correct');
+        if (opt.textContent === selected && selected !== correct) opt.classList.add('wrong');
+      });
+      
+      const isCorrect = selected === correct;
+      const key = currentWord.french;
+      
+      if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
+      
+      if (isCorrect) {
+        progress[key].points++;
+        stats.totalCorrect++;
+        els.feedback.innerHTML = reviewMode ? '✅ Still know it!' : '✅ +1';
+        els.feedback.className = 'feedback correct';
+      } else {
+        stats.sessionErrors++;
+        if (reviewMode) {
+          progress[key].points = 0;
+          els.feedback.innerHTML = `❌ Forgot! Reset<br><span class="correct-answer">${correct}</span>`;
+        } else {
+          progress[key].points = Math.max(CONFIG.MIN_POINTS, progress[key].points - 1);
+          els.feedback.innerHTML = `❌ -1<br><span class="correct-answer">${correct}</span>`;
+        }
+        els.feedback.className = 'feedback wrong';
+      }
+      
+      stats.totalAnswered++;
+      history.unshift({ word: key, correct: isCorrect, timestamp: Date.now() });
+      if (history.length > 50) history.pop();
+      
+      progress[key].lastSeen = Date.now();
+      saveData();
+      
+      const points = progress[key]?.points ?? 0;
+      
+      if (points >= CONFIG.POINTS_TO_LEARN) {
+        // ✅ Слово выучено — удаляем из пула, refill подтянет новое
+        activePool = activePool.filter(w => w !== key);
+        console.log(`🎓 "${key}" learned! Removed from pool`);
+      }
+
+      if (activePool.length < poolSize * 0.5) {
+        refillActivePool();
+      }
+
+      els.wordProgress.innerHTML = `${getWordProgressText(key)} ${getWordProgressBar(key)}`;
+      updateStats();
+      els.nextBtn.disabled = false;
+      
+      if (reviewMode && progress[key]?.isFavorite) {
+        // Создаем кнопку удаления рядом с ☆
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'secondary-btn';
+        removeBtn.style.fontSize = '0.75rem';
+        removeBtn.style.padding = '0.25rem 0.5rem';
+        removeBtn.style.marginLeft = '0.5rem';
+        removeBtn.textContent = '❌ Remove';
+        removeBtn.title = 'Remove from favorites';
+        removeBtn.onclick = () => {
+          progress[key].isFavorite = false;
+          updateFavoriteButton();
+          updateStats();
+          saveData();
+          removeBtn.textContent = '✅ Removed';
+          removeBtn.disabled = true;
+          setTimeout(() => removeBtn.remove(), 1500);
+        };
+        
+        // Добавляем кнопку в заголовок рядом с ☆
+        const wordHeader = document.querySelector('.word-header');
+        if (wordHeader && !wordHeader.querySelector('.remove-btn')) {
+          removeBtn.classList.add('remove-btn');
+          wordHeader.appendChild(removeBtn);
+        }
+      }
+    }
 
 
     // ===== STATS =====
@@ -1108,7 +1161,6 @@ function handleAnswer(selected, correct) {
       els.summarySection?.classList.remove('hidden');
     }
 
-    // 🔥 Возврат к главному экрану выбора словаря
     function goToMainScreen() {
       els.summarySection?.classList.add('hidden');
       els.quizSection?.classList.add('hidden');
@@ -1117,115 +1169,115 @@ function handleAnswer(selected, correct) {
     }
 
 
-// ===== АВТОМАТИЧЕСКОЕ ОБНАРУЖЕНИЕ СЛОВАРЕЙ НА GITHUB =====
-async function detectGitHubDictionaries() {
-  try {
-    console.log('🔍 Detecting dictionaries on GitHub...');
-    
-    const hostname = window.location.hostname;
-    const pathParts = window.location.pathname.split('/').filter(p => p);
-    
-    // Проверяем что это GitHub Pages
-    if (!hostname.includes('github.io')) {
-      console.log('💡 Not GitHub Pages, skipping auto-detection');
-      return;
+    // ===== АВТОМАТИЧЕСКОЕ ОБНАРУЖЕНИЕ СЛОВАРЕЙ НА GITHUB =====
+    async function detectGitHubDictionaries() {
+      try {
+        console.log('🔍 Detecting dictionaries on GitHub...');
+        
+        const hostname = window.location.hostname;
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        
+        // Проверяем что это GitHub Pages
+        if (!hostname.includes('github.io')) {
+          console.log('💡 Not GitHub Pages, skipping auto-detection');
+          return;
+        }
+        
+        // Определяем username и repo
+        let username, repo;
+        
+        // username.github.io/repo-name/...
+        const hostParts = hostname.split('.');
+        username = hostParts[0];
+        
+        // Первый элемент path - это repo name
+        if (pathParts.length > 0) {
+          repo = pathParts[0];
+        } else {
+          // Если path пустой - возможно это user page
+          repo = username;
+        }
+        
+        if (!username || !repo) {
+          console.warn('⚠️ Could not determine GitHub repo');
+          return;
+        }
+        
+        console.log(`📚 Looking for repo: ${username}/${repo}`);
+        
+        // GitHub API
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
+        console.log(`📡 Fetching: ${apiUrl}`);
+        
+        const response = await fetch(apiUrl);
+        
+
+        if (response.status === 404) {
+          console.warn('⚠️ Repo not found or private. Auto-detection skipped.');
+          console.log('💡 You can manually add dictionary names in the field above.');
+          return;
+        }
+        
+        if (!response.ok) throw new Error(`GitHub API failed: ${response.status}`);
+        
+        const files = await response.json();
+        
+        // Фильтруем CSV файлы
+        const csvFiles = files
+          .filter(f => f.name.endsWith('.csv') && f.type === 'file')
+          .map(f => f.name.replace('.csv', ''));
+        
+        console.log(`✅ Found ${csvFiles.length} dictionaries:`, csvFiles);
+        
+        // Добавляем без дубликатов
+        csvFiles.forEach(dict => {
+          if (!availableDicts.includes(dict)) {
+            availableDicts.push(dict);
+          }
+        });
+        
+        saveData();
+        
+      } catch (e) {
+        console.warn('⚠️ Could not auto-detect dictionaries:', e.message);
+        console.log('💡 Using hardcoded dictionaries only');
+      }
     }
-    
-    // Определяем username и repo
-    let username, repo;
-    
-    // username.github.io/repo-name/...
-    const hostParts = hostname.split('.');
-    username = hostParts[0];
-    
-    // Первый элемент path - это repo name
-    if (pathParts.length > 0) {
-      repo = pathParts[0];
-    } else {
-      // Если path пустой - возможно это user page
-      repo = username;
-    }
-    
-    if (!username || !repo) {
-      console.warn('⚠️ Could not determine GitHub repo');
-      return;
-    }
-    
-    console.log(`📚 Looking for repo: ${username}/${repo}`);
-    
-    // GitHub API
-    const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
-    console.log(`📡 Fetching: ${apiUrl}`);
-    
-    const response = await fetch(apiUrl);
-    
-    // 🔥 Обработка 404 - репозиторий не найден или приватный
-    if (response.status === 404) {
-      console.warn('⚠️ Repo not found or private. Auto-detection skipped.');
-      console.log('💡 You can manually add dictionary names in the field above.');
-      return;
-    }
-    
-    if (!response.ok) throw new Error(`GitHub API failed: ${response.status}`);
-    
-    const files = await response.json();
-    
-    // Фильтруем CSV файлы
-    const csvFiles = files
-      .filter(f => f.name.endsWith('.csv') && f.type === 'file')
-      .map(f => f.name.replace('.csv', ''));
-    
-    console.log(`✅ Found ${csvFiles.length} dictionaries:`, csvFiles);
-    
-    // Добавляем без дубликатов
-    csvFiles.forEach(dict => {
-      if (!availableDicts.includes(dict)) {
-        availableDicts.push(dict);
+
+        // ===== EVENTS =====
+    els.applyPoolBtn?.addEventListener('click', () => {
+      const val = parseInt(els.poolSizeInput.value);
+      if (val >= 5 && val <= 200) {
+        poolSize = val;
+        saveData();
+        alert(`✅ Pool: ${poolSize}`);
+        if (!els.quizSection.classList.contains('hidden')) updateStats();
+      } else {
+        alert('⚠️ 5-200');
       }
     });
-    
-    saveData();
-    
-  } catch (e) {
-    console.warn('⚠️ Could not auto-detect dictionaries:', e.message);
-    console.log('💡 Using hardcoded dictionaries only');
-  }
-}
-
-    // ===== EVENTS =====
-els.applyPoolBtn?.addEventListener('click', () => {
-  const val = parseInt(els.poolSizeInput.value);
-  if (val >= 5 && val <= 200) {
-    poolSize = val;
-    saveData();
-    alert(`✅ Pool: ${poolSize}`);
-    if (!els.quizSection.classList.contains('hidden')) updateStats();
-  } else {
-    alert('⚠️ 5-200');
-  }
-});
 
 
-els.loadDictBtn?.addEventListener('click', () => {
-  const name = els.dictNameInput.value.trim();
-  if (name) {
-    exitReviewMode(); // 🔥 Сброс review при загрузке словаря
-    loadDictionary(name);
-  }
-});
+    els.loadDictBtn?.addEventListener('click', () => {
+      const name = els.dictNameInput.value.trim();
+      if (name) {
+        exitReviewMode(); 
+        loadDictionary(name);
+      }
+    });
 
-els.dictManagerBtn?.addEventListener('click', () => {
-  exitReviewMode(); 
-  showDictManager();
-});
+    els.dictManagerBtn?.addEventListener('click', () => {
+      exitReviewMode(); 
+      showDictManager();
+    });
 
-els.backToQuizFromDict?.addEventListener('click', () => {
-  els.dictManagerSection?.classList.add('hidden');
-  els.quizSection?.classList.remove('hidden');
-  if (allWords.length > 0 && !currentWord) {
-    nextWord();
-  }
-});
+    els.backToQuizFromDict?.addEventListener('click', () => {
+      els.dictManagerSection?.classList.add('hidden');
+      els.quizSection?.classList.remove('hidden');
+      if (allWords.length > 0 && !currentWord) {
+        nextWord();
+      }
+    });
 
 
     els.favoriteBtn?.addEventListener('click', toggleFavorite);
@@ -1233,186 +1285,182 @@ els.backToQuizFromDict?.addEventListener('click', () => {
     els.nextBtn?.addEventListener('click', nextWord);
 
 
-// ===== REVIEW BUTTON CLICK =====
-els.reviewBtn?.addEventListener('click', () => { 
-  console.log('🔄 Review button clicked');
-  
-  if (reviewMode) {
-    // 🔥 Если уже в review mode → выходим
-    console.log('🔓 Exiting review mode');
-    reviewMode = false;
-    updateReviewButtonText();
-    nextWord();
-  } else {
-    // 🔥 Если не в review mode → входим
-    const favorites = getFavorites();
-    console.log('⭐ Favorites found:', favorites);
-    
-    if (favorites.length === 0) {
-      console.warn('⚠️ No favorites!');
-      alert('⚠️ No favorite words yet!\n\n1. Click the ☆ button on words you want to review\n2. Then click 🔄 Review again');
-      return;
-    }
-    
-    console.log('✅ Starting review mode with', favorites.length, 'words');
-    reviewMode = true;
-    updateReviewButtonText();
-    nextWord();
-  }
-});
+    // ===== REVIEW BUTTON CLICK =====
+    els.reviewBtn?.addEventListener('click', () => { 
+      console.log('🔄 Review button clicked');
+      
+      if (reviewMode) {
+        console.log('🔓 Exiting review mode');
+        reviewMode = false;
+        updateReviewButtonText();
+        nextWord();
+      } else {
+        const favorites = getFavorites();
+        console.log('⭐ Favorites found:', favorites);
+        
+        if (favorites.length === 0) {
+          console.warn('⚠️ No favorites!');
+          alert('⚠️ No favorite words yet!\n\n1. Click the ☆ button on words you want to review\n2. Then click 🔄 Review again');
+          return;
+        }
+        
+        console.log('✅ Starting review mode with', favorites.length, 'words');
+        reviewMode = true;
+        updateReviewButtonText();
+        nextWord();
+      }
+    });
 
 
-els.historyBtn?.addEventListener('click', () => {
-  exitReviewMode(); // 🔥 Сброс review
-  showHistory();
-});
+    els.historyBtn?.addEventListener('click', () => {
+      exitReviewMode();
+      showHistory();
+    });
 
-els.finishBtn?.addEventListener('click', () => {
-  exitReviewMode(); // 🔥 Сброс review
-  showSummary();
-});
+    els.finishBtn?.addEventListener('click', () => {
+      exitReviewMode();
+      showSummary();
+    });
 
     els.backToQuizBtn?.addEventListener('click', () => {
       els.historySection?.classList.add('hidden');
       els.quizSection?.classList.remove('hidden');
     });
     
-els.backToMainBtn?.addEventListener('click', () => {
-  exitReviewMode(); // 🔥 Сброс review
-  goToMainScreen();
-});
+    els.backToMainBtn?.addEventListener('click', () => {
+      exitReviewMode();
+      goToMainScreen();
+    });
 
 
-els.closeBtn?.addEventListener('click', () => { 
-  if (confirm('Close and return to dictionary selection?')) {
-    exitReviewMode(); // 🔥 Сброс review
-    saveData();
-    goToMainScreen();
-  }
-});
-
-    
-els.clearCacheBtn?.addEventListener('click', () => {
-  if (confirm('⚠️ Clear all saved data? Progress will be lost.')) {
-    exitReviewMode();
-    localStorage.removeItem(CONFIG.STORAGE_KEY);
-    alert('✅ Cache cleared. Reloading...');
-    location.reload();
-  }
-});
-
-
-
-els.csvFile?.addEventListener('change', async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  try {
-    const text = await file.text();
-    const words = parseCSV(text);
-    const dictName = file.name.replace('.csv', '');
-    exitReviewMode(); // 🔥 Сброс review
-    startWithWords(words, dictName);
-  } catch (err) {
-    console.error('❌ Failed to parse CSV:', err);
-    alert('⚠️ Failed to read file.');
-  }
-  e.target.value = '';
-});
-
-document.addEventListener('keydown', (e) => {
-  if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
-});
-    
-// ===== INIT =====
-window.addEventListener('DOMContentLoaded', async () => {
-  console.log('🔍 === INIT START ===');
-  
-  if (!els.reviewBtn) {
-    console.error('❌ Review button not found!');
-  } else {
-    console.log('✅ Review button found');
-  }
-  
-  if (!isLocalStorageAvailable()) {
-    alert('⚠️ localStorage blocked');
-    els.dictManagerSection?.classList.remove('hidden');
-    return;
-  }
-  
-  const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
-  if (saved) {
-    try {
-      const data = JSON.parse(saved);
-      progress = data.progress || {};
-      stats.totalCorrect = data.stats?.totalCorrect ?? 0;
-      stats.sessionErrors = data.stats?.sessionErrors ?? 0;
-      stats.totalAnswered = data.stats?.totalAnswered ?? 0;
-      history = data.history || [];
-      poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
-      currentDict = data.currentDict || 'words_en';
-      availableDicts = data.availableDicts || [...CONFIG.AVAILABLE_DICTS];
-      showImages = data.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT;
-      reviewMode = false;
-      
-      if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
-      if (els.dictNameInput) els.dictNameInput.value = currentDict;
-      
-      const favCount = Object.values(progress).filter(p => p.isFavorite).length;
-      console.log(`⭐ Found ${favCount} favorite words`);
-      
-      if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
-        console.log(`📚 Dictionary loaded: ${data.dictionary.length} words`);
-        allWords = data.dictionary;
-        
-        els.quizSection?.classList.add('hidden');
-        els.dictManagerSection?.classList.remove('hidden');
-        
-        // 🔥 Сначала рендерим список, потом пытаемся обнаружить новые словари
-        renderDictList();
-        updateStats();
-        updateReviewButtonText();
-        
-        console.log('📋 Showing dictionary manager');
-        
-        // 🔥 Автообнаружение словарей на GitHub (асинхронно)
-        if (window.location.hostname.includes('github.io')) {
-          await detectGitHubDictionaries();
-          renderDictList(); // Перерисовываем список с новыми словарями
-        }
-      } else {
-        els.quizSection?.classList.add('hidden');
-        els.dictManagerSection?.classList.remove('hidden');
-        renderDictList();
-        updateReviewButtonText();
-        
-        // 🔥 Автообнаружение словарей на GitHub
-        if (window.location.hostname.includes('github.io')) {
-          await detectGitHubDictionaries();
-          renderDictList();
-        }
+    els.closeBtn?.addEventListener('click', () => { 
+      if (confirm('Close and return to dictionary selection?')) {
+        exitReviewMode();
+        saveData();
+        goToMainScreen();
       }
-    } catch (e) {
-      console.error('❌ Parse failed', e);
+    });
+
+        
+    els.clearCacheBtn?.addEventListener('click', () => {
+      if (confirm('⚠️ Clear all saved data? Progress will be lost.')) {
+        exitReviewMode();
+        localStorage.removeItem(CONFIG.STORAGE_KEY);
+        alert('✅ Cache cleared. Reloading...');
+        location.reload();
+      }
+    });
+
+
+    els.csvFile?.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const words = parseCSV(text);
+        const dictName = file.name.replace('.csv', '');
+        exitReviewMode();
+        startWithWords(words, dictName);
+      } catch (err) {
+        console.error('❌ Failed to parse CSV:', err);
+        alert('⚠️ Failed to read file.');
+      }
+      e.target.value = '';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
+    });
+          
+  // ===== INIT =====
+  window.addEventListener('DOMContentLoaded', async () => {
+    console.log('🔍 === INIT START ===');
+    
+    if (!els.reviewBtn) {
+      console.error('❌ Review button not found!');
+    } else {
+      console.log('✅ Review button found');
+    }
+    
+    if (!isLocalStorageAvailable()) {
+      alert('⚠️ localStorage blocked');
+      els.dictManagerSection?.classList.remove('hidden');
+      return;
+    }
+    
+    const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        progress = data.progress || {};
+        stats.totalCorrect = data.stats?.totalCorrect ?? 0;
+        stats.sessionErrors = data.stats?.sessionErrors ?? 0;
+        stats.totalAnswered = data.stats?.totalAnswered ?? 0;
+        history = data.history || [];
+        poolSize = data.poolSize || CONFIG.DEFAULT_POOL_SIZE;
+        currentDict = data.currentDict || 'words_en';
+        availableDicts = data.availableDicts || [...CONFIG.AVAILABLE_DICTS];
+        showImages = data.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT;
+        reviewMode = false;
+        
+        if (els.poolSizeInput) els.poolSizeInput.value = poolSize;
+        if (els.dictNameInput) els.dictNameInput.value = currentDict;
+        
+        const favCount = Object.values(progress).filter(p => p.isFavorite).length;
+        console.log(`⭐ Found ${favCount} favorite words`);
+        
+        if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
+          console.log(`📚 Dictionary loaded: ${data.dictionary.length} words`);
+          allWords = data.dictionary;
+          
+          activePool = [];
+          refillActivePool();
+          freshWordCounter = 0; 
+          els.quizSection?.classList.add('hidden');
+          els.dictManagerSection?.classList.remove('hidden');
+          
+          renderDictList();
+          updateStats();
+          updateReviewButtonText();
+          
+          console.log('📋 Showing dictionary manager');
+
+          if (window.location.hostname.includes('github.io')) {
+            await detectGitHubDictionaries();
+            renderDictList(); // Перерисовываем список с новыми словарями
+          }
+        } else {
+          els.quizSection?.classList.add('hidden');
+          els.dictManagerSection?.classList.remove('hidden');
+          renderDictList();
+          updateReviewButtonText();
+          
+          if (window.location.hostname.includes('github.io')) {
+            await detectGitHubDictionaries();
+            renderDictList();
+          }
+        }
+      } catch (e) {
+        console.error('❌ Parse failed', e);
+        els.quizSection?.classList.add('hidden');
+        els.dictManagerSection?.classList.remove('hidden');
+        renderDictList();
+        updateReviewButtonText();
+      }
+    } else {
+      console.log('📭 No saved data');
       els.quizSection?.classList.add('hidden');
       els.dictManagerSection?.classList.remove('hidden');
       renderDictList();
       updateReviewButtonText();
+      
+      if (window.location.hostname.includes('github.io')) {
+        await detectGitHubDictionaries();
+        renderDictList();
+      }
     }
-  } else {
-    console.log('📭 No saved data');
-    els.quizSection?.classList.add('hidden');
-    els.dictManagerSection?.classList.remove('hidden');
-    renderDictList();
-    updateReviewButtonText();
-    
-    // 🔥 Автообнаружение словарей на GitHub
-    if (window.location.hostname.includes('github.io')) {
-      await detectGitHubDictionaries();
-      renderDictList();
-    }
-  }
-  console.log('🔍 === INIT END ===');
-});
+    console.log('🔍 === INIT END ===');
+  });
 
 </script>
 </body>
