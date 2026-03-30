@@ -773,9 +773,9 @@ function startWithWords(words) {
     
     // ===== KEYBOARD =====
     document.addEventListener('keydown', (e) => {
-      if (!answered && els.quizSection && !els.quizSection.classList.contains('hidden')) {
-        if (e.key >= '1' && e.key <= '6') { const opts = els.options.querySelectorAll('.option'); if (opts[e.key-1]) opts[e.key-1].click(); }
-      }
+     // if (!answered && els.quizSection && !els.quizSection.classList.contains('hidden')) {
+     //   if (e.key >= '1' && e.key <= '6') { const opts = els.options.querySelectorAll('.option'); if (opts[e.key-1]) opts[e.key-1].click(); }
+     // }
       if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
     });
 
