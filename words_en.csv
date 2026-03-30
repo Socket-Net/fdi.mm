@@ -7,7 +7,7 @@ déjà,already,yet,still,never,just,soon
 hier il faisait froid,yesterday it was cold,yesterday it was hot,yesterday it was nice,yesterday it rained,yesterday it snowed,yesterday it was sunny
 non,no,yes,maybe,okay,not,sure
 cour,court,yard,courtyard,royal court,law court,enclosure
-faux,FALSE,wrong,fake,untrue,incorrect,bogus
+faux,false,wrong,fake,untrue,incorrect,bogus
 valeur,value,worth,merit,importance,significance,price
 arbre,tree,wood,plant,forest,branch,leaf
 dame,lady,woman,madam,dame,gentlewoman,missus
@@ -19,10 +19,7 @@ sans,without,with,to,from,by,for
 le désir,desire,wish,longing,craving,passion,urge
 l'envie,desire,wish,urge,craving,longing,envy
 la neige,snow,winter,cold,ice,white,flake
-bière,beer,wine,alcohol,drink,whiskey,champagne
 le café,coffee,wine,juice,milk,water,tea
-air,air,wind,sky,oxygen,breath,gas
-victoire,victory,win,triumph,success,conquest,achievement
 qui est-ce,who is this,who is that,what is this,where is he,how is he,when is he
 où est la salle de bain,where is the bathroom,where is the toilet,where is the kitchen,where is the bedroom,where is the living room,where is the office
 où sont les toilettes,where are the toilets,where is the bathroom,where is the station,where is the hotel,where is the restaurant,where is the shop
@@ -40,9 +37,9 @@ quel âge as-tu,how old are you (informal),what is your name,where do you live,h
 qu'est-ce que c'est,what is this,what is that,what is it,who is this,where is it,how much is it
 mal,badly/wrong,well,good,okay,fine,nice
 le mois,month,week,day,year,time,period
-mariage,marriage,wedding,matrimony,union,spousal,ceremony
+le mariage,marriage,wedding,matrimony,union,spousal,ceremony
 le temps,time,weather,hour,day,moment,period
-usure,wear,wear and tear,erosion,deterioration,depreciation,attrition
+l'usure,wear,wear and tear,erosion,deterioration,depreciation,attrition
 riche,rich,wealthy,affluent,well-off,opulent,prosperous
 nous sommes allés,we went,we have gone,we will go,I went,they went,you went
 nous avons mangé,we ate,we have eaten,we will eat,I ate,they ate,you ate
@@ -78,8 +75,8 @@ laid,ugly,unattractive,hideous,unsightly,repulsive,awful
 tour,tour,turn,round,trick,spin,rotation
 confiance,confidence,trust,belief,faith,reliance,assurance
 sans importance,unimportant,trivial,minor,insignificant,negligible,irrelevant
-trajet,journey,trip,route,travel,passage,commute
-paix,peace,tranquility,calm,harmony,accord,serenity
+le trajet,journey,trip,route,travel,passage,commute
+la paix,peace,tranquility,calm,harmony,accord,serenity
 l'entraînement,workout,training,exercise,practice,session,trainer
 la ville,city,town,village,place,capital,area
 tendre,tender,tough,hard,soft,rough,gentle
@@ -647,21 +644,19 @@ les fruits,fruits,produce,food,sweet,healthy,dessert
 passé,past,previous,former,bygone,elapsed,previous
 fort,strong,powerful,mighty,robust,sturdy,forceful
 la force,strength,power,might,force,energy,ability
-situation,situation,position,condition,circumstance,location,status
-moitié,half,portion,part,section,share,moiety
+la situation,situation,position,condition,circumstance,location,status
+la moitié,half,portion,part,section,share,moiety
 impoli,impolite/rude,polite,kind,nice,friendly,gentle
 inutile,useless,pointless,futile,worthless,ineffective,unhelpful
-plomb,lead,plumb,sinker,weight,plumbing,metal
-promesse,promise,pledge,vow,commitment,assurance,guarantee
+le plomb,lead,plumb,sinker,weight,plumbing,metal
+la promesse,promise,pledge,vow,commitment,assurance,guarantee
 content,happy,pleased,glad,sad,tired,angry
-jeu,game,play,match,sport,contest,gambling
-fleur,flower,plant,rose,blossom,bud,garden
+le jeu,game,play,match,sport,contest,gambling
 l'avion,airplane,plane,flight,aircraft,jet,sky
 la partie,part,piece,whole,section,bit,share
 image,image,picture,photo,illustration,representation,depiction
 le médecin,doctor,physician,medic,practitioner,health,professional
 la phrase,sentence,phrase,expression,word,statement,line
-le téléphone,telephone,phone,mobile,call,device,ring
 le chat,cat,pet,animal,dog,horse,friend
 le chien,dog,pet,animal,cat,horse,friend
 sel,salt,pepper,sugar,spice,seasoning,flavor
@@ -1238,7 +1233,7 @@ l'espion, spy, agent, mole, informant, operative
 le senior, senior, older, elder, superior, veteran
 le garage, garage, carport, workshop, repair shop
 la colère, anger, rage, wrath, fury, ire
-l'indice, clue, index, hint, sign, indication
+l'indice, index, clue, hint, sign, indication
 le magazine, magazine, periodical, journal, storehouse
 la zone, zone, area, region, sector, district
 l'épaule, shoulder, upper arm, burden, responsibility
@@ -1301,7 +1296,6 @@ la cour, yard, court, courtyard, royal court, enclosure
 le réservoir, tank, reservoir, container, cistern, fuel tank
 la confiance, confidence, trust, faith, reliance, assurance
 le manque, lack, shortage, deficiency, absence, want
-la pomme, apple, fruit, apple (pomme de terre in context)
 l'approche, approach, method, way, manner, advance
 le poussin, chick, baby chicken, young bird, cute person
 la poupée, doll, puppet, figurine, toy, mannequin
