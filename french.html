@@ -710,10 +710,27 @@ async function loadDictionary(dictName) {
         .filter(w => w);
     }
 
-    // ===== IMAGE TOGGLE =====
+// ===== IMAGE TOGGLE =====
 function toggleImageVisibility() {
   showImages = !showImages;
-  updateImageDisplay();
+  
+  // 🔥 Если включили отображение И есть картинка - показываем
+  if (showImages && currentImageUrl) {
+    els.wordImage.classList.remove('hidden');
+    els.imageToggleBtn.textContent = '🙈';
+    els.imageToggleBtn.title = 'Hide image';
+  } 
+  // 🔥 Если включили но картинки нет - загружаем
+  else if (showImages && currentWord) {
+    loadImageForCurrentWord();
+  }
+  // 🔥 Если выключили - скрываем
+  else {
+    els.wordImage.classList.add('hidden');
+    els.imageToggleBtn.textContent = '🖼️';
+    els.imageToggleBtn.title = 'Show image';
+  }
+  
   saveData();
 }
 
@@ -1105,41 +1122,68 @@ async function detectGitHubDictionaries() {
   try {
     console.log('🔍 Detecting dictionaries on GitHub...');
     
-    // Получаем путь к репозиторию из URL
+    const hostname = window.location.hostname;
     const pathParts = window.location.pathname.split('/').filter(p => p);
-    // Ожидаем структуру: /username/repo-name/...
-    if (pathParts.length < 2) {
-      console.warn('⚠️ Not a GitHub Pages URL');
+    
+    // Проверяем что это GitHub Pages
+    if (!hostname.includes('github.io')) {
+      console.log('💡 Not GitHub Pages, skipping auto-detection');
       return;
     }
     
-    const username = pathParts[0];
-    const repo = pathParts[1];
+    // Определяем username и repo
+    let username, repo;
     
-    // GitHub API для получения списка файлов
+    // username.github.io/repo-name/...
+    const hostParts = hostname.split('.');
+    username = hostParts[0];
+    
+    // Первый элемент path - это repo name
+    if (pathParts.length > 0) {
+      repo = pathParts[0];
+    } else {
+      // Если path пустой - возможно это user page
+      repo = username;
+    }
+    
+    if (!username || !repo) {
+      console.warn('⚠️ Could not determine GitHub repo');
+      return;
+    }
+    
+    console.log(`📚 Looking for repo: ${username}/${repo}`);
+    
+    // GitHub API
     const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents`;
     console.log(`📡 Fetching: ${apiUrl}`);
     
     const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error('GitHub API failed');
+    
+    // 🔥 Обработка 404 - репозиторий не найден или приватный
+    if (response.status === 404) {
+      console.warn('⚠️ Repo not found or private. Auto-detection skipped.');
+      console.log('💡 You can manually add dictionary names in the field above.');
+      return;
+    }
+    
+    if (!response.ok) throw new Error(`GitHub API failed: ${response.status}`);
     
     const files = await response.json();
     
-    // Фильтруем только CSV файлы
+    // Фильтруем CSV файлы
     const csvFiles = files
       .filter(f => f.name.endsWith('.csv') && f.type === 'file')
       .map(f => f.name.replace('.csv', ''));
     
     console.log(`✅ Found ${csvFiles.length} dictionaries:`, csvFiles);
     
-    // Добавляем найденные словари в список (без дубликатов)
+    // Добавляем без дубликатов
     csvFiles.forEach(dict => {
       if (!availableDicts.includes(dict)) {
         availableDicts.push(dict);
       }
     });
     
-    // Сохраняем обновленный список
     saveData();
     
   } catch (e) {
@@ -1147,7 +1191,6 @@ async function detectGitHubDictionaries() {
     console.log('💡 Using hardcoded dictionaries only');
   }
 }
-
 
     // ===== EVENTS =====
 els.applyPoolBtn?.addEventListener('click', () => {
