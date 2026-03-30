@@ -497,56 +497,94 @@
       return words;
     }
 
-    // ===== ЗАГРУЗКА ГОТОВОГО СЛОВАРЯ =====
-    async function loadPresetDictionary(filename) {
-      try {
-        els.word.textContent = '📥 Loading...';
-        const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-        const url = basePath + filename;
-        console.log(`🔍 Fetching: ${url}`);
-        
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const text = await response.text();
-        allWords = parseCSV(text);
-        if (allWords.length === 0) throw new Error('No valid words');
-        
-        console.log(`✅ Loaded ${allWords.length} words`);
-        progress = {}; stats = { totalCorrect: 0, sessionErrors: 0 }; history = []; dictionarySaved = false;
-        
-        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
-          dictionary: allWords, progress, stats, history, poolSize, sessionStarted: false, savedAt: Date.now()
-        }));
-        dictionarySaved = true;
-        
-        els.dictionarySection?.classList.add('hidden');
-        els.quizSection?.classList.remove('hidden');
-        updateStats(); nextWord();
-      } catch (err) {
-        console.error(`❌ Failed to load ${filename}:`, err);
-        alert(`⚠️ Could not load "${filename}".\nTip: Use local server or GitHub Pages for fetch().`);
+// ===== ЗАГРУЗКА ГОТОВОГО СЛОВАРЯ =====
+async function loadPresetDictionary(filename) {
+  try {
+    els.word.textContent = '📥 Loading...';
+    const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    const url = basePath + filename;
+    console.log(`🔍 Fetching: ${url}`);
+    
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    
+    const text = await response.text();
+    const newWords = parseCSV(text);
+    if (newWords.length === 0) throw new Error('No valid words');
+    
+    console.log(`✅ Loaded ${newWords.length} words`);
+    
+    // 🔥 FIX: Сохраняем прогресс для слов, которые есть в новом словаре
+    const newWordKeys = new Set(newWords.map(w => w.french));
+    const filteredProgress = {};
+    for (const [key, value] of Object.entries(progress)) {
+      if (newWordKeys.has(key)) {
+        filteredProgress[key] = value;
       }
     }
+    progress = filteredProgress;
+    
+    // 🔥 FIX: Сохраняем totalCorrect, сбрасываем ТОЛЬКО sessionErrors
+    stats = { totalCorrect: stats.totalCorrect, sessionErrors: 0 };
+    
+    // Историю сохраняем (можно очистить, если нужно: history = [])
+    
+    allWords = newWords;
+    dictionarySaved = false;
+    
+    localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
+      dictionary: allWords, 
+      progress, 
+      stats, 
+      history, 
+      poolSize, 
+      sessionStarted: true, // 🔥 Важно: помечаем, что сессия уже начата
+      savedAt: Date.now()
+    }));
+    dictionarySaved = true;
+    
+    els.dictionarySection?.classList.add('hidden');
+    els.quizSection?.classList.remove('hidden');
+    updateStats(); 
+    nextWord();
+    
+  } catch (err) {
+    console.error(`❌ Failed to load ${filename}:`, err);
+    alert(`⚠️ Could not load "${filename}".\nTip: Use local server or GitHub Pages for fetch().`);
+  }
+}
 
     // ===== ЗАПУСК С СЛОВАМИ =====
-    function startWithWords(words) {
-      if (words.length === 0) { alert('❌ No valid words'); return; }
-      allWords = words;
-      progress = {}; stats = { totalCorrect: 0, sessionErrors: 0 }; history = []; dictionarySaved = false;
-      
-      try {
-        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
-          dictionary: allWords, progress, stats, history, poolSize, sessionStarted: false, savedAt: Date.now()
-        }));
-        dictionarySaved = true;
-      } catch (e) { console.error('❌ Save failed:', e); alert('⚠️ Failed to save'); return; }
-      
-      els.dictionarySection?.classList.add('hidden');
-      els.fileSection?.classList.add('hidden');
-      els.quizSection?.classList.remove('hidden');
-      updateStats(); nextWord();
+function startWithWords(words) {
+  if (words.length === 0) { alert('❌ No valid words'); return; }
+  
+  // 🔥 Сохраняем прогресс для пересекающихся слов
+  const newWordKeys = new Set(words.map(w => w.french));
+  const filteredProgress = {};
+  for (const [key, value] of Object.entries(progress)) {
+    if (newWordKeys.has(key)) {
+      filteredProgress[key] = value;
     }
+  }
+  
+  allWords = words;
+  progress = filteredProgress;
+  stats = { totalCorrect: stats.totalCorrect, sessionErrors: 0 }; // 🔥 Только ошибки сбросить
+  // history можно оставить или очистить по желанию
+  dictionarySaved = false;
+  
+  try {
+    localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
+      dictionary: allWords, progress, stats, history, poolSize, sessionStarted: true, savedAt: Date.now()
+    }));
+    dictionarySaved = true;
+  } catch (e) { console.error('❌ Save failed:', e); alert('⚠️ Failed to save'); return; }
+  
+  els.dictionarySection?.classList.add('hidden');
+  els.fileSection?.classList.add('hidden');
+  els.quizSection?.classList.remove('hidden');
+  updateStats(); nextWord();
+}
 
     // ===== SHOW CHOICE SCREEN =====
     function showChoiceScreen() {
@@ -580,8 +618,8 @@
     // ===== POOL SIZE =====
     els.applyPoolBtn?.addEventListener('click', () => {
       const val = parseInt(els.poolSizeInput.value);
-      if (val >= 20 && val <= 200) { poolSize = val; saveData(); alert(`✅ Pool: ${poolSize}`); } 
-      else { alert('⚠️ 20-200'); }
+      if (val >= 5 && val <= 200) { poolSize = val; saveData(); alert(`✅ Pool: ${poolSize}`); } 
+      else { alert('⚠️ 5-200'); }
     });
 
     // ===== BUTTONS =====
