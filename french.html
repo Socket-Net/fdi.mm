@@ -228,7 +228,26 @@
       min-height: 1.5rem;
       font-size: 1.1rem;
     }
-    
+    .card-examples, .card-translations {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: left;
+  animation: fadeIn 0.3s ease;
+}
+
+.card-examples {
+  background: rgba(59,130,246,0.1);
+}
+
+.card-translations {
+  background: rgba(34,197,94,0.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
     .feedback.correct { color: #86efac; }
     .feedback.wrong { color: #fca5a5; }
     
@@ -837,7 +856,7 @@
     let freshWordCounter = 0;
     let recentWords = [];
     let currentLanguage = '--/--';
-
+    let isCardMode = false;
     let dictStats = {};
 
     // ===== DOM =====
@@ -896,16 +915,33 @@ function getDictStats(dictName) {
 function loadDictStats(dictName) {
   const data = getDictStats(dictName);
   progress = data.progress;
-  stats = data.stats;
+  
+  stats = { 
+    totalCorrect: data.stats?.totalCorrect ?? 0,
+    sessionErrors: data.stats?.sessionErrors ?? 0,
+    totalAnswered: data.stats?.totalAnswered ?? 0
+  };
+  
   currentDict = dictName;
   data.lastUsed = Date.now();
+  
+ // console.log(`📊 Loaded stats for ${dictName}:`, stats);
 }
 
 function saveDictStats(dictName) {
   const data = getDictStats(dictName);
-  data.progress = progress;
-  data.stats = stats;
+  data.progress = { ...progress };
+  
+  data.stats = { 
+    totalCorrect: stats.totalCorrect,
+    sessionErrors: stats.sessionErrors,
+    totalAnswered: stats.totalAnswered
+  };
+  
   data.lastUsed = Date.now();
+  
+  // ← Лог для отладки:
+  console.log(`💾 Saved stats for ${dictName}:`, data.stats);
 }
 
 function getDictProgress(dictName) {
@@ -1024,23 +1060,57 @@ function getDictProgress(dictName) {
     }
 
     // ===== CSV PARSER =====
-    function parseCSV(text) {
-      const lines = text.trim().split('\n').filter(l => l.trim() && !l.startsWith('#'));
-      const words = [];
-      for (let i = 1; i < lines.length; i++) {
-        const parts = lines[i].split(',').map(p => p.trim());
-        if (parts.length >= 6) words.push({ french: parts[0], correct: parts[1], wrong: parts.slice(2, 6) });
-      }
-      return words;
+function parseCSV(text) {
+  isCardMode = false;
+  const lines = text.trim().split('\n').filter(l => l.trim() && !l.startsWith('#'));
+  const words = [];
+  
+  // Проверка маркера режима в первой строке
+  const firstLine = text.trim().split('\n')[0]?.toLowerCase() || '';
+  isCardMode = firstLine.startsWith('#card') || firstLine.startsWith('>>');
+  
+  for (let i = (isCardMode || firstLine.startsWith('#')) ? 1 : 0; i < lines.length; i++) {
+    const parts = lines[i].split(',').map(p => p.trim());
+    
+    if (parts.length < 2) continue;
+    
+    // Карточки: French, >>, Ex1, Ex2, Ex3, Ex4, Ex5, >>, Correct, Wrong1-4
+    if (isCardMode && parts[1] === '>>' && parts.length >= 13) {
+      words.push({
+        french: parts[0],
+        examples: [parts[2], parts[3], parts[4], parts[5], parts[6]].filter(e => e && e !== '>>'),
+        correct: parts[8],
+        wrong: [parts[9], parts[10], parts[11], parts[12]].filter(w => w),
+        isCard: true
+      });
     }
+    // Старый формат: French, Correct, Wrong1-4
+    else if (!isCardMode && parts.length >= 6) {
+      words.push({
+        french: parts[0],
+        correct: parts[1],
+        wrong: parts.slice(2, 6),
+        examples: [],
+        isCard: false
+      });
+    }
+  }
+  return words;
+}
 
 
 // ===== DICTIONARY MANAGEMENT (UPDATED) =====
 async function loadDictionary(dictName) {
   try {
+    recentWords = [];
+    freshWordCounter = 0;
+  reviewMode = false; 
     console.log(`📚 Loading dictionary: ${dictName}`);
     els.word.textContent = translations[currentLanguage].wordLoading;
+
     
+
+
     const basePath = window.location.pathname.endsWith('/') 
       ? window.location.pathname 
       : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
@@ -1054,23 +1124,36 @@ async function loadDictionary(dictName) {
     const text = await response.text();
     const newWords = parseCSV(text);
     
-    if (newWords.length === 0) throw new Error('No valid words');
-    
-    console.log(`✅ Loaded ${newWords.length} words`);
+    if (newWords.length === 0) {
+      console.warn('⚠️ parseCSV returned 0 words, trying fallback...');
+      const fallbackWords = parseCSVFallback(text);
+      if (fallbackWords.length > 0) {
+        console.log(`✅ Fallback parsed ${fallbackWords.length} words`);
+        allWords = fallbackWords;
+      } else {
+        throw new Error('No valid words found in CSV');
+      }
+    } else {
+      allWords = newWords;
+    }
+
+    console.log(`✅ Loaded ${allWords.length} words`); 
     
     // Загружаем статистику для этого словаря
     loadDictStats(dictName);
     
-    const newWordKeys = new Set(newWords.map(w => w.french));
-    const filteredProgress = {};
-    for (const [key, value] of Object.entries(progress)) {
-      if (newWordKeys.has(key)) {
-        filteredProgress[key] = value;
+    const newWordKeys = new Set(allWords.map(w => w.french));
+    for (const key of Object.keys(progress)) {
+      if (!newWordKeys.has(key)) {
+        delete progress[key];
       }
     }
-    progress = filteredProgress;
-    
-    allWords = newWords;
+        console.log(`🔍 Loaded stats for ${dictName}:`, {
+  totalCorrect: stats.totalCorrect,
+  sessionErrors: stats.sessionErrors,
+  progressKeys: Object.keys(progress).length
+});
+    //allWords = newWords;
     
     els.dictNameInput.value = dictName;
     
@@ -1084,8 +1167,16 @@ async function loadDictionary(dictName) {
     els.dictManagerSection?.classList.add('hidden');
     els.quizSection?.classList.remove('hidden');
     updateStats();
-    nextWord();
-    
+
+console.log(`📊 Dictionary loaded: ${allWords.length} words, isCardMode=${isCardMode}`);
+console.log(`📊 Progress entries: ${Object.keys(progress).length}`);
+console.log(`📊 First 3 words:`, allWords.slice(0, 3).map(w => w.french));
+
+if (allWords.length === 0) {
+  console.error('❌ CRITICAL: allWords is empty after parseCSV!');
+  console.log('📄 First 3 lines of CSV:', text.split('\n').slice(0, 3));
+}    
+    await nextWord();
   } catch (err) {
     console.error(`❌ Failed to load ${dictName}:`, err);
     const t = translations[currentLanguage];
@@ -1093,13 +1184,32 @@ async function loadDictionary(dictName) {
   }
 }
 
+function parseCSVFallback(text) {
+  const lines = text.trim().split('\n').filter(l => l.trim() && !l.startsWith('#'));
+  const words = [];
+  
+  for (let line of lines) {
+    const parts = line.split(',').map(p => p.trim());
+    if (parts.length >= 6 && parts[0] && parts[1]) {
+      words.push({
+        french: parts[0],
+        correct: parts[1],
+        wrong: parts.slice(2, 6),
+        examples: [],
+        isCard: false
+      });
+    }
+  }
+  return words;
+}
 
     function startWithWords(words, dictName = 'custom') {
       if (words.length === 0) { 
         alert(translations[currentLanguage].fileError.replace('⚠️ ', '')); 
         return; 
       }
-      
+        loadDictStats(dictName);
+
       const newWordKeys = new Set(words.map(w => w.french));
       const filteredProgress = {};
       for (const [key, value] of Object.entries(progress)) {
@@ -1196,12 +1306,26 @@ async function renderDictList() {
   }
 }
 
-// ===== SAVE/LOAD (UPDATED) =====
+// ===== SAVE/LOAD (FIXED - пер словари) =====
 function saveData() {
   if (!isLocalStorageAvailable()) return;
   try {
+    // ← Сначала сохраняем статистику ТЕКУЩЕГО словаря в dictStats
+    if (currentDict) {
+      const data = getDictStats(currentDict);
+      data.progress = { ...progress };
+      data.stats = { 
+        totalCorrect: stats.totalCorrect,
+        sessionErrors: stats.sessionErrors,
+        totalAnswered: stats.totalAnswered
+      };
+      data.lastUsed = Date.now();
+      console.log(`💾 Saved stats for ${currentDict}:`, data.stats);
+    }
+    
+    // ← Сохраняем ВСЮ структуру dictStats
     const data = {
-      dictStats, // ← Теперь храним статистику по словарям
+      dictStats,  // ← КЛЮЧЕВОЕ: храним ВСЕ словари с их статистикой
       currentDict,
       availableDicts,
       showImages,
@@ -1211,9 +1335,12 @@ function saveData() {
     if (allWords.length > 0) {
       data.dictionary = allWords;
     }
+    
     localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
-    console.log('💾 Data saved');
-  } catch (e) { console.warn('Save failed:', e); }
+    console.log('💾 Data saved to localStorage');
+  } catch (e) { 
+    console.warn('❌ Save failed:', e); 
+  }
 }
 
     // ===== FAVORITES =====
@@ -1246,8 +1373,22 @@ function saveData() {
 
 // ===== NEXT WORD (FIXED) =====
 function getNextWordFromPool() {
+if (allWords.length === 0) {
+  console.warn('⚠️ allWords is empty!');
+  return null;
+}  
+console.log('🔍 getNextWordFromPool debug:', {
+  reviewMode,
+  allWords: allWords.length,
+  progressKeys: Object.keys(progress).length,
+  activePool: activePool.length,
+  recentWords: recentWords.length,
+  notLearnedCount: allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN).length
+});
+
   if (reviewMode) {
     const favorites = getFavorites();
+    console.error('return before');
     if (favorites.length === 0) return null;
     return favorites[Math.floor(Math.random() * favorites.length)];
   }
@@ -1287,11 +1428,9 @@ function getNextWordFromPool() {
   
   let poolToUse;
   if (availablePool.length > 0) {
-    // ЕСТЬ слова не в recentWords - используем ТОЛЬКО их
     poolToUse = availablePool;
     console.log(`✅ Using available pool (${availablePool.length} words)`);
   } else {
-    // ВСЕ слова в recentWords - очищаем oldest и берем весь пул
     console.log(`⚠️ All words in recentWords! Clearing oldest...`);
     recentWords = []; // Очищаем историю
     poolToUse = activePool;
@@ -1302,9 +1441,23 @@ function getNextWordFromPool() {
   console.log(`🎯 Selected: ${wordKey}`);
   
   addToRecent(wordKey);
-  console.log(`📝 Recent words: ${recentWords.length}/${getRecentHistorySize()}`);
-  
-  return allWords.find(w => w.french === wordKey);
+  console.log(`📝 Recent words: ${recentWords.length}/${getRecentHistorySize()}`,wordKey);
+  const result = allWords.find(w => w.french === wordKey);
+
+  if (!result) {
+    //console.warn(`⚠️ Word "${wordKey}" not found in allWords! Forcing refill...`);
+    // Сбрасываем пул и пробуем найти любое невыученное слово
+    activePool = [];
+    recentWords = [];
+    refillActivePool();
+    
+    const fallback = allWords.find(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+    if (fallback) {
+      return fallback;
+    }
+    return null;
+  }
+  return result;
 }
 
     function addToRecent(wordKey) {
@@ -1336,8 +1489,8 @@ function refillActivePool() {
     activePool.push(randomWord.french);
   }
   
-  console.log(`🔄 Pool refilled: ${activePool.length}/${poolSize} words`);
-  console.log(`📊 Pool words:`, activePool.slice(0, 10).join(', ') + (activePool.length > 10 ? `... (${activePool.length} total)` : ''));
+  //console.log(`🔄 Pool refilled: ${activePool.length}/${poolSize} words`);
+  //console.log(`📊 Pool words:`, activePool.slice(0, 10).join(', ') + (activePool.length > 10 ? `... (${activePool.length} total)` : ''));
 }
 
 
@@ -1595,7 +1748,7 @@ function refillActivePool() {
       const p = progress[word]?.points ?? 0;
       const isFav = progress[word]?.isFavorite || false;
       const t = translations[currentLanguage];
-      
+      console.log('getWordProgressText',p,progress[word],word,CONFIG.POINTS_TO_LEARN);
       if (reviewMode) {
         return isFav ? t.favoritesMode : t.reviewMode;
       }
@@ -1610,80 +1763,122 @@ function refillActivePool() {
       return `<span class="bar"><span class="fill" style="width:${(clamped/CONFIG.POINTS_TO_LEARN)*100}%"></span></span>`;
     }
 
-    // ===== NEXT WORD =====
-    async function nextWord() {
-      answered = false;
-      els.feedback.textContent = '';
-      els.feedback.className = 'feedback';
-      els.nextBtn.disabled = true;
-      els.options.innerHTML = '';
-      
-      const existingRemoveBtn = document.querySelector('.remove-btn');
-      if (existingRemoveBtn) existingRemoveBtn.remove();
 
-      const next = getNextWordFromPool();
-      const t = translations[currentLanguage];
-      
-      if (!next) {
-        els.word.textContent = reviewMode ? t.reviewed : t.allLearned;
-        els.wordImage.classList.add('hidden');
-        els.imageSource.textContent = '';
-        els.wordProgress.textContent = reviewMode ? t.exitReview : t.greatJob;
-        els.favoriteBtn.style.display = 'none';
-        els.imageToggleBtn.style.display = 'none';
-        els.options.innerHTML = `<div class="option" style="cursor:default">${reviewMode ? t.btnExit : t.btnReset}</div>`;
-        els.options.firstChild.onclick = () => {
-          if (reviewMode) { 
-            reviewMode = false; 
-            updateReviewButtonText();
-            nextWord(); 
-          }
-          else if (confirm(t.cacheConfirm)) { 
-            localStorage.removeItem(CONFIG.STORAGE_KEY); 
-            location.reload(); 
-          }
-        };
-        return;
-      }
-      
-      currentWord = next;
-      els.word.textContent = currentWord.french;
-      currentImageUrl = null;
-      els.wordImage.src = '';      
-      els.favoriteBtn.style.display = 'block';
-      els.imageToggleBtn.style.display = 'block';
-      updateFavoriteButton();
-      
-      els.wordImage.classList.add('hidden');
-      
-      if (showImages) {
-        els.imageSource.textContent = t.searchingImage;
-        els.imageToggleBtn.textContent = '🖼️';
-        els.imageToggleBtn.title = 'Show image';
-        els.imageToggleBtn.disabled = true;
-        
-        await loadImageForCurrentWord();
-      } else {
-        els.imageSource.textContent = t.imagesDisabled;
-        els.imageToggleBtn.textContent = '🖼️';
-        els.imageToggleBtn.title = 'Show image';
-        els.imageToggleBtn.disabled = false;
-      }
-      
-      els.wordProgress.innerHTML = `${getWordProgressText(currentWord.french)} ${getWordProgressBar(currentWord.french)}`;
-      
-      const wrong = allWords.filter(w => w.french !== currentWord.french).map(w => w.correct).sort(() => Math.random() - 0.5).slice(0, 4);
-      const opts = [...wrong, currentWord.correct].sort(() => Math.random() - 0.5);
-      
-      opts.forEach(opt => {
-        const btn = document.createElement('div');
-        btn.className = 'option';
-        btn.textContent = opt;
-        btn.onclick = () => handleAnswer(opt, currentWord.correct);
-        els.options.appendChild(btn);
-      });
+async function nextWord() {
+  answered = false;
+  els.feedback.textContent = '';
+  els.feedback.className = 'feedback';
+  els.options.innerHTML = '';
+  
+  const existingRemoveBtn = document.querySelector('.remove-btn');
+  if (existingRemoveBtn) existingRemoveBtn.remove();
+
+  const next = getNextWordFromPool();
+  const t = translations[currentLanguage];
+  
+  if (!next) {
+      if (allWords.length === 0) {
+      els.word.textContent = '⚠️ No words';
+      els.wordProgress.textContent = 'Load CSV';
+      console.log('error pars !!!!!!! ');
+      return;
     }
-        
+
+    els.word.textContent = reviewMode ? t.reviewed : t.allLearned;
+    els.wordImage.classList.add('hidden');
+    els.imageSource.textContent = '';
+    els.wordProgress.textContent = reviewMode ? t.exitReview : t.greatJob;
+    els.favoriteBtn.style.display = 'none';
+    els.imageToggleBtn.style.display = 'none';
+    els.options.innerHTML = `<div class="option" style="cursor:default">${reviewMode ? t.btnExit : t.btnReset}</div>`;
+    els.options.firstChild.onclick = () => {
+      if (reviewMode) { reviewMode = false; updateReviewButtonText(); nextWord(); }
+      else if (confirm(t.cacheConfirm)) { localStorage.removeItem(CONFIG.STORAGE_KEY); location.reload(); }
+    };
+    console.error('!next');
+    return;
+  }
+  
+  currentWord = next;
+  els.word.textContent = currentWord.french;
+  currentImageUrl = null;
+  els.wordImage.src = '';      
+  els.favoriteBtn.style.display = 'block';
+  els.imageToggleBtn.style.display = 'block';
+  updateFavoriteButton();
+  els.wordImage.classList.add('hidden');
+  
+  if (showImages) {
+    els.imageSource.textContent = t.searchingImage;
+    els.imageToggleBtn.textContent = '🖼️';
+    els.imageToggleBtn.title = 'Show image';
+    els.imageToggleBtn.disabled = true;
+    await loadImageForCurrentWord();
+  } else {
+    els.imageSource.textContent = t.imagesDisabled;
+    els.imageToggleBtn.textContent = '🖼️';
+    els.imageToggleBtn.title = 'Show image';
+    els.imageToggleBtn.disabled = false;
+  }
+
+  els.wordProgress.innerHTML = `${getWordProgressText(currentWord.french)} ${getWordProgressBar(currentWord.french)}`;
+
+  // === РЕЖИМ КАРТОЧЕК ===
+  if (isCardMode || currentWord.isCard) {
+    els.nextBtn.disabled = false;
+    els.nextBtn.textContent = '>> Выучил';
+    els.options.style.display = 'none';
+    
+    // Удаляем старые карточки если есть
+    document.querySelectorAll('.card-examples, .card-translations').forEach(el => el.remove());
+    
+    // Примеры
+    if (currentWord.examples?.length > 0) {
+      const exBox = document.createElement('div');
+      exBox.className = 'card-examples';
+      exBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(59,130,246,0.1);border-radius:0.5rem;text-align:left;';
+      exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">Примеры:</div>` +
+        currentWord.examples.map((ex, i) => `<div style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2)">${i+1}. ${ex}</div>`).join('');
+      document.getElementById('wordProgress').parentNode.insertBefore(exBox, document.getElementById('wordProgress').nextSibling);
+    }
+    
+    // Переводы
+    const trBox = document.createElement('div');
+    trBox.className = 'card-translations';
+    trBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(34,197,94,0.1);border-radius:0.5rem;text-align:left;';
+    trBox.innerHTML = `<div style="font-weight:bold;color:#86efac;margin-bottom:0.5rem">✓ Правильно:</div>
+      <div style="padding:0.5rem;background:rgba(34,197,94,0.2);border-radius:0.25rem;font-size:1.1rem">${currentWord.correct}</div>`;
+    
+    if (currentWord.wrong?.length > 0) {
+      trBox.innerHTML += `<div style="font-weight:bold;color:#fca5a5;margin:0.5rem 0 0.25rem">✗ Неправильно:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem">${currentWord.wrong.map(w => 
+          `<span style="padding:0.25rem 0.75rem;background:rgba(239,68,68,0.2);border-radius:1rem;font-size:0.85rem">${w}</span>`).join('')}</div>`;
+    }
+    
+    const exBox = document.querySelector('.card-examples');
+    if (exBox) exBox.parentNode.insertBefore(trBox, exBox.nextSibling);
+    else document.getElementById('wordProgress').parentNode.insertBefore(trBox, document.getElementById('wordProgress').nextSibling);
+    
+  } 
+  // === РЕЖИМ ТЕСТА (старый) ===
+  else {
+    els.nextBtn.disabled = true;
+    els.nextBtn.textContent = t.btnNext || 'Next →';
+    els.options.style.display = 'grid';
+    
+    const wrong = allWords.filter(w => w.french !== currentWord.french).map(w => w.correct).sort(() => Math.random() - 0.5).slice(0, 4);
+    const opts = [...wrong, currentWord.correct].sort(() => Math.random() - 0.5);
+    
+    opts.forEach(opt => {
+      const btn = document.createElement('div');
+      btn.className = 'option';
+      btn.textContent = opt;
+      btn.onclick = () => handleAnswer(opt, currentWord.correct);
+      els.options.appendChild(btn);
+    });
+  }
+}
+
     function exitReviewMode() {
       if (reviewMode) {
         console.log('🔓 Exiting review mode');
@@ -1760,6 +1955,7 @@ function handleAnswer(selected, correct) {
   }
 
   els.wordProgress.innerHTML = `${getWordProgressText(key)} ${getWordProgressBar(key)}`;
+
   updateStats();
   els.nextBtn.disabled = false;
   
@@ -1791,18 +1987,18 @@ function handleAnswer(selected, correct) {
 
 
     // ===== STATS =====
-    function updateStats() {
-      const learned = Object.values(progress).filter(p => p.points >= CONFIG.POINTS_TO_LEARN).length;
-      const favorites = Object.values(progress).filter(p => p.isFavorite).length;
-      const percent = allWords.length > 0 ? (learned / allWords.length) * 100 : 0;
-      
-      els.learnedCount.textContent = learned;
-      els.totalCount.textContent = allWords.length;
-      els.correctCount.textContent = stats.totalCorrect;
-      els.errorCount.textContent = stats.sessionErrors;
-      els.favoriteCount.textContent = favorites;
-      els.progressFill.style.width = `${Math.min(percent, 100)}%`;
-    }
+function updateStats() {
+  const learned = Object.values(progress).filter(p => p.points >= CONFIG.POINTS_TO_LEARN).length;
+  const favorites = Object.values(progress).filter(p => p.isFavorite).length;
+  const percent = allWords.length > 0 ? (learned / allWords.length) * 100 : 0;
+  
+  els.learnedCount.textContent = learned;
+  els.totalCount.textContent = allWords.length;
+  els.correctCount.textContent = stats.totalCorrect;
+  els.errorCount.textContent = stats.sessionErrors;
+  els.favoriteCount.textContent = favorites;
+  els.progressFill.style.width = `${Math.min(percent, 100)}%`;
+}
 
     function showHistory() {
       els.quizSection?.classList.add('hidden');
@@ -1941,7 +2137,35 @@ function handleAnswer(selected, correct) {
 
     els.favoriteBtn?.addEventListener('click', toggleFavorite);
     els.imageToggleBtn?.addEventListener('click', toggleImageVisibility); 
-    els.nextBtn?.addEventListener('click', nextWord);
+els.nextBtn?.addEventListener('click', () => {
+  // В режиме карточек — сразу засчитываем как правильный ответ
+  if ((isCardMode || currentWord?.isCard) && currentWord) {
+    const key = currentWord.french;
+    if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
+    
+    progress[key].points++; // +1 балл за просмотр
+    stats.totalCorrect++;
+    
+    saveDictStats(currentDict);
+    saveData();
+    
+    const points = progress[key]?.points ?? 0;
+    
+    // Удаляем из пула если выучили (5 баллов)
+    if (points >= CONFIG.POINTS_TO_LEARN) {
+      const beforeLength = activePool.length;
+      activePool = activePool.filter(w => w !== key);
+      console.log(`🎓 "${key}" learned! (${beforeLength} → ${activePool.length})`);
+    }
+    
+    if (activePool.length < poolSize * 0.5) refillActivePool();
+    
+    updateStats();
+  }
+  
+  // Переход к следующему слову (универсально)
+  nextWord();
+});
 
     els.reviewBtn?.addEventListener('click', () => { 
       console.log('🔄 Review button clicked');
@@ -2033,12 +2257,6 @@ function handleAnswer(selected, correct) {
 window.addEventListener('DOMContentLoaded', async () => {
   console.log('🔍 === INIT START ===');
   
-  if (!els.reviewBtn) {
-    console.error('❌ Review button not found!');
-  } else {
-    console.log('✅ Review button found');
-  }
-  
   if (!isLocalStorageAvailable()) {
     alert('⚠️ localStorage blocked');
     els.dictManagerSection?.classList.remove('hidden');
@@ -2128,7 +2346,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       // Загружаем статистику текущего словаря
       if (dictStats[currentDict]) {
         loadDictStats(currentDict);
-        console.log(`📊 Loaded stats for ${currentDict}:`, stats);
+     //   console.log(`📊 Loaded stats for ${currentDict}:`, stats);
       }
       
       if (data.dictionary && Array.isArray(data.dictionary) && data.dictionary.length > 0) {
@@ -2145,8 +2363,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         await renderDictList(); 
         updateStats();
         updateReviewButtonText();
-        
-        console.log('📋 Showing dictionary manager');
 
         if (window.location.hostname.includes('github.io')) {
           await detectGitHubDictionaries();
