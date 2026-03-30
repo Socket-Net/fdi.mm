@@ -398,9 +398,10 @@
           <label id="lblLanguage">Language:</label>
           <select id="languageSelect">
             <option value="--/--">--/--</option>
-            <option value="ru">Русский</option>
+            <option value="fr">Français (tous)</option>
+            <option value="de">Deutsch</option>
             <option value="en">English</option>
-            <option value="fr">Français</option>
+            <option value="ru">Русский</option>                        
             <option value="ar">عربی (دری)</option>
           </select>
         </div>
@@ -825,7 +826,68 @@
         hideConfirm: 'پنهان کردن "',
         hideConfirm2: '.csv" از لیست؟\n\nشما همیشه می‌توانید آن را با بارگذاری فایل یا تایپ دستی نام اضافه کنید.',
         closeConfirm: 'بستن و بازگشت به انتخاب لغتنامه؟'
-      }
+      },
+      'de': {
+          appTitle: '🇫🇷 Französisch Vokabeltrainer Pro',
+          lblPool: 'Pool:',
+          lblLanguage: 'Sprache:',
+          lblDictionary: 'Wörterbuch:',
+          btnLoad: 'Laden',
+          statLearned: 'Gelernt',
+          statDictionary: 'Wörterbuch',
+          statCorrect: 'Richtig',
+          statErrors: 'Fehler',
+          statFavorites: 'Favoriten',
+          dictManagerTitle: '📚 Verfügbare Wörterbücher',
+          btnLoadCSV: '📁 CSV laden',
+          btnShowHidden: 'Versteckte anzeigen',
+          tipText: '💡 Tipp: CSV-Dateien im gleichen Ordner wie index.html ablegen<br>Oder GitHub Pages für Online-Zugriff nutzen',
+          btnBackToQuiz: '← Zurück zum Quiz',
+          btnDictionaries: 'Wörterbücher',
+          btnReview: 'Wiederholung',
+          btnHistory: 'Verlauf',
+          btnFinish: 'Beenden',
+          historyTitle: 'Letzte 20',
+          btnBack: 'Zurück',
+          summaryTitle: '🎉 Sitzung abgeschlossen!',
+          summaryText: 'Fortschritt gespeichert. Wähle ein anderes Wörterbuch oder mache später weiter.',
+          btnChooseDict: 'Wörterbuch wählen',
+          btnClose: 'Schließen',
+          wordLoading: 'Lädt...',
+          btnNext: 'Weiter →',
+          btnExit: '🔙 Beenden',
+          btnReset: '🔄 Zurücksetzen',
+          reviewed: '✅ Wiederholt!',
+          allLearned: '🎉 Alles gelernt!',
+          exitReview: 'Wiederholung beenden',
+          greatJob: 'Gut gemacht!',
+          imagesDisabled: '🖼️ Bilder deaktiviert',
+          searchingImage: '🔍 Bild wird gesucht...',
+          imageFailed: '⚠️ Bild konnte nicht geladen werden',
+          noImage: '🚫 Kein Bild verfügbar',
+          errorLoadingImage: '❌ Fehler beim Laden des Bildes',
+          reviewMode: '🔙 Zurück zum Quiz',
+          reviewModeTitle: 'Wiederholungsmodus beenden',
+          favoritesMode: '⭐ Favoriten',
+          favoritesModeTitle: 'Favoritenwörter wiederholen',
+          noFavorites: '⚠️ Noch keine Favoriten!\n\n1. Klicke auf ☆ bei Wörtern, die du wiederholen möchtest\n2. Dann klicke auf 🔄 Wiederholung',
+          poolSet: '✅ Pool: ',
+          poolInvalid: '⚠️ 5-200',
+          cacheCleared: '✅ Cache gelöscht. Wird neu geladen...',
+          cacheConfirm: '⚠️ Alle gespeicherten Daten löschen? Der Fortschritt geht verloren.',
+          fileError: '⚠️ Datei konnte nicht gelesen werden.',
+          dictLoadError: '⚠️ Konnte "',
+          dictLoadError2: '.csv" nicht laden.\n\nFehler: ',
+          dictLoadError3: '\n\n💡 Stelle sicher, dass die Datei im gleichen Ordner existiert.',
+          restoreConfirm: 'ALLE im Ordner gefundenen Wörterbücher wiederherstellen?\n\nDies fügt alle existierenden CSV-Dateien auf dem Server hinzu.',
+          restoreSuccess: '✅ Wiederhergestellt: ',
+          restoreSuccess2: ' verstecktes Wörterbuch',
+          restoreSuccess3: 'e!',
+          restoreSuccess4: '!',
+          hideConfirm: '"',
+          hideConfirm2: '.csv" aus der Liste verstecken?\n\nDu kannst es jederzeit wieder hinzufügen, indem du die Datei lädst oder den Namen manuell eingibst.',
+          closeConfirm: 'Schließen und zur Wörterbuchauswahl zurückkehren?'
+        }
     };
 
     // ===== CONFIG =====
@@ -1006,7 +1068,7 @@ function getDictProgress(dictName) {
     }
 
     function filterDictionariesByLanguage(lang) {
-      if (lang === '--/--' || lang === 'fr') {
+      if (lang === '--/--' || lang === 'fr' || lang === 'de') {
         // Show all dictionaries
         return availableDicts;
       }
