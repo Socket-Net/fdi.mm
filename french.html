@@ -501,17 +501,37 @@
 // ===== ЗАГРУЗКА ГОТОВОГО СЛОВАРЯ =====
 async function loadPresetDictionary(filename) {
   try {
-    els.word.textContent = '📥 Loading...';
-    const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    console.group(`🔄 Loading dictionary: ${filename}`);
+    console.log('📍 Current URL:', window.location.href);
+    console.log('📍 Pathname:', window.location.pathname);
+    
+    // 🔥 Надёжное определение базового пути
+    const basePath = window.location.pathname.endsWith('/') 
+      ? window.location.pathname 
+      : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    
     const url = basePath + filename;
-    console.log(`🔍 Fetching: ${url}`);
+    console.log(`🔍 Full fetch URL: ${url}`);
+    
+    els.word.textContent = `📥 Loading ${filename}...`;
     
     const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    console.log(`📡 Response status: ${response.status} ${response.statusText}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText} for ${url}`);
+    }
     
     const text = await response.text();
+    console.log(`📄 Received ${text.length} bytes`);
+    console.log(`📄 First 200 chars: ${text.substring(0, 200)}...`);
+    
     const newWords = parseCSV(text);
-    if (newWords.length === 0) throw new Error('No valid words');
+    console.log(`✅ Parsed ${newWords.length} valid words`);
+    
+    if (newWords.length === 0) {
+      throw new Error('No valid words parsed from CSV');
+    }
     
     console.log(`✅ Loaded ${newWords.length} words`);
     
