@@ -533,7 +533,6 @@ la place,place,square,spot,position,seat,location
 mari,husband,spouse,partner,bridegroom,consort,married man
 épouse,wife,spouse,partner,consort,bride,married woman
 l'endroit,place,spot,location,site,area,position
-l'esprit,mind,spirit,thought,idea,brain,soul
 le poivre,pepper,spice,black,condiment,seasoning,hot
 la parole,word,speech,talk,utterance,statement,voice
 parlez plus lentement,speak more slowly (formal),speak slower,repeat please,what did you say,I don't understand,excuse me
@@ -669,7 +668,7 @@ riz,rice,pasta,grain,wheat,bread,cereal
 passe,pass,passage,permit,ticket,through,approval
 l'égalité,equality,parity,equivalence,sameness,balance,fairness
 couple,couple,pair,duo,two,partners,duet
-la peine,sorrow,pain,grief,trouble,difficulty,effort
+la peine,pain,sorrow,grief,trouble,difficulty,effort
 feuille,leaf/paper,page,sheet,note,document,book
 pas,step,pace,footstep,stride,move,walk
 général,general,overall,chief,common,widespread,universal
@@ -863,7 +862,6 @@ mauvais,bad,good,terrible,awful,nice,wrong
 la tristesse,sadness,gloom,melancholy,sorrow,unhappiness,depression
 la fenêtre,window,glass,pane,opening,view,light
 la fille,daughter,girl,child,son,mother,sister
-présent,present,gift,current,now,here,attendance
 sexe,sex,gender,sexuality,intercourse,biology,kind
 porte,door,gate,entrance,exit,window,key
 sérieux,serious,funny,silly,joking,playful,light
@@ -1366,7 +1364,6 @@ le bol, bowl, basin, dish, cup, serving
 le musée, museum, gallery, exhibition hall, collection
 l'acclamation, cheer, applause, ovation, acclaim, hurrah
 le plat, dish, plate, course, flat, level
-le coup de feu, gunshot, shot, firing, report, discharge
 le placard, closet, cupboard, wardrobe, press, locker
 la saleté, dirt, filth, grime, soil, mess
 la couronne, crown, wreath, tiara, coronet, royalty
@@ -1650,7 +1647,6 @@ les fiançailles, engagement, betrothal, wedding plans, promise
 le crétin, moron, idiot, fool, cretin, imbecile
 le requin, shark, swindler, predator, loan shark, fish
 l'humanité, humanity, humankind, mankind, compassion, human race
-le coup, chop, blow, cut, strike, slice
 le claquement, snap, click, crack, slap, bang
 les ventes, sales, selling, turnover, revenue, transactions
 l'écurie, stable, horse stable, team, group, stall
@@ -1869,7 +1865,7 @@ la décision, decision, choice, resolution, determination, verdict, ruling
 la bière, beer, ale, lager, brew, pint, stout  
 la poussée, push, shove, thrust, pressure, force, nudge
 le sud, south, southern, south direction, south side, southward
-le cadeau, gift, present, offering, donation, surprise, token
+le cadeau, gift, present, pie, cake, surprise, cadence
 le verre, glass, drinking glass, tumbler, pane, crystal, goblet
 l'arbre, tree, plant, oak, pine, maple, woodland
 l'ours, bear, grizzly, polar bear, teddy bear, animal, beast
@@ -1898,7 +1894,6 @@ la tante, aunt, auntie, relative, mother's sister, father's sister
 l'expérience, experience, experiment, trial, knowledge, skill, background
 le paradis, heaven, paradise, Eden, bliss, utopia, afterlife
 la rivière, river, stream, waterway, brook, creek, flow
-le coup, knock, blow, hit, strike, punch, tap
 l'évasion, escape, breakout, getaway, flight, evasion, elopement
 l'adresse, address, location, residence, speech, direction
 le pied, foot, leg, base, step, paw, footing
@@ -1920,7 +1915,6 @@ la garde, guard, watch, keeper, protection, sentry, custody
 le risque, risk, danger, hazard, chance, peril, gamble
 l'avis, notice, opinion, advice, warning, announcement, view
 l'ennemi, enemy, foe, adversary, opponent, rival, antagonist
-le coup de pied, kick, boot, punt, thrust, strike with foot
 la course, race, running, errand, dash, sprint, competition
 le costume, suit, outfit, costume, attire, clothing, dress
 l'ajustement, fit, adjustment, fitting, adaptation, tailoring, alignment
