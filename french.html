@@ -501,6 +501,8 @@
     let currentImageUrl = null;
     let activePool = []; 
     let freshWordCounter = 0;
+    let recentWords = [];
+    const RECENT_HISTORY_SIZE = 15; 
 
     // ===== DOM =====
     const els = {
@@ -625,6 +627,7 @@ async function loadDictionary(dictName) {
     
     stats.sessionErrors = 0;
     freshWordCounter = 0;
+    recentWords = [];
     saveData();
     
     els.dictManagerSection?.classList.add('hidden');
@@ -655,7 +658,7 @@ async function loadDictionary(dictName) {
       currentDict = dictName;
       stats.sessionErrors = 0;
       freshWordCounter = 0;
-
+      recentWords = [];
       if (!availableDicts.includes(dictName)) {
         availableDicts.push(dictName);
       }
@@ -668,19 +671,57 @@ async function loadDictionary(dictName) {
       nextWord();
     }
 
+    function hideDictionary(dictName) {
+      if (confirm(`Hide "${dictName}.csv" from the list?\n\nYou can always add it back by loading the file or typing the name manually.`)) {
+        availableDicts = availableDicts.filter(d => d !== dictName);
+        
+        // Если скрыли текущий словарь — сбрасываем активный
+        if (currentDict === dictName) {
+          currentDict = '';
+        }
+        
+        saveData();
+        renderDictList(); // Перерисовываем список
+        console.log(`🙈 Hidden dictionary: ${dictName}`);
+      }
+    }
+
     function showDictManager() {
       renderDictList();
       els.quizSection?.classList.add('hidden');
       els.dictManagerSection?.classList.remove('hidden');
     }
 
-    function renderDictList() {
+    async function renderDictList() {
+      if (window.location.hostname.includes('github.io')) {
+        const validDicts = [];
+        for (const dict of availableDicts) {
+          const exists = await checkDictionaryExists(dict);
+          if (exists) {
+            validDicts.push(dict);
+          } else {
+            console.log(`🗑️ Auto-removed non-existent dictionary: ${dict}`);
+          }
+        }
+        // Если список изменился — обновляем и сохраняем
+        if (validDicts.length !== availableDicts.length) {
+          availableDicts = validDicts;
+          saveData();
+        }
+      }
+
       els.dictList.innerHTML = availableDicts.map(dict => {
         const isActive = dict === currentDict;
         return `
-          <div class="dict-item ${isActive ? 'active' : ''}" onclick="loadDictionary('${dict}')">
-            <span>${isActive ? '📖' : '📄'} ${dict}.csv</span>
-            ${isActive ? '<span class="badge">Active</span>' : ''}
+          <div class="dict-item ${isActive ? 'active' : ''}" data-dict="${dict}">
+            <span style="flex:1;cursor:pointer" onclick="loadDictionary('${dict}')">
+              ${isActive ? '📖' : '📄'} ${dict}.csv
+              ${isActive ? '<span class="badge">Active</span>' : ''}
+            </span>
+            <!-- Кнопка скрытия (event.stopPropagation чтобы не сработал клик по строке) -->
+            <button class="secondary-btn" style="padding:0.25rem 0.5rem;font-size:0.75rem;margin-left:0.5rem" 
+                    onclick="event.stopPropagation(); hideDictionary('${dict}')"
+                    title="Hide this dictionary from list">🙈</button>
           </div>
         `;
       }).join('');
@@ -712,35 +753,50 @@ async function loadDictionary(dictName) {
         .map(([word, _]) => allWords.find(w => w.french === word))
         .filter(w => w);
     }
-function getNextWordFromPool() {
-  if (reviewMode) {
-    const favorites = getFavorites();
-    if (favorites.length === 0) return null;
-    return favorites[Math.floor(Math.random() * favorites.length)];
-  }
 
-  freshWordCounter++;
-  if (freshWordCounter % 5 === 0) {
-    const notLearned = allWords.filter(w => 
-      (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN &&
-      !activePool.includes(w.french) 
-    );
-    
-    if (notLearned.length > 0) {
-      const fresh = notLearned[Math.floor(Math.random() * notLearned.length)];
-      console.log(`🌱 Fresh word inserted: ${fresh.french}`);
-      return fresh;
+        function getNextWordFromPool() {
+      if (reviewMode) {
+        const favorites = getFavorites();
+        if (favorites.length === 0) return null;
+        return favorites[Math.floor(Math.random() * favorites.length)];
+      }
+      
+      freshWordCounter++;
+      if (freshWordCounter % 5 === 0) {
+        const notLearned = allWords.filter(w => 
+          (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN &&
+          !activePool.includes(w.french) &&
+          !recentWords.includes(w.french)
+        );
+        
+        if (notLearned.length > 0) {
+          const fresh = notLearned[Math.floor(Math.random() * notLearned.length)];
+          addToRecent(fresh.french);
+          console.log(`🌱 Fresh word inserted: ${fresh.french}`);
+          return fresh;
+        }
+      }
+      
+      if (activePool.length === 0) {
+        refillActivePool();
+      }
+      
+      if (activePool.length === 0) return null;
+      
+      const availablePool = activePool.filter(key => !recentWords.includes(key));
+      const poolToUse = availablePool.length > 0 ? availablePool : activePool;
+      
+      const wordKey = poolToUse[Math.floor(Math.random() * poolToUse.length)];
+      addToRecent(wordKey); 
+      return allWords.find(w => w.french === wordKey);
     }
+
+function addToRecent(wordKey) {
+  recentWords.push(wordKey);
+  // Держим только последние N слов
+  if (recentWords.length > RECENT_HISTORY_SIZE) {
+    recentWords.shift();
   }
-  
-  if (activePool.length === 0) {
-    refillActivePool();
-  }
-  
-  if (activePool.length === 0) return null;
-  
-  const wordKey = activePool[Math.floor(Math.random() * activePool.length)];
-  return allWords.find(w => w.french === wordKey);
 }
 
 // ===== POOL MANAGEMENT =====
@@ -920,6 +976,21 @@ function updateReviewButtonText() {
   } else {
     els.reviewBtn.textContent = '⭐ Favorites';
     els.reviewBtn.title = 'Review favorite words';
+  }
+}
+
+async function checkDictionaryExists(dictName) {
+  try {
+    const basePath = window.location.pathname.endsWith('/') 
+      ? window.location.pathname 
+      : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    
+    const url = basePath + dictName + '.csv';
+    // Делаем HEAD запрос — он легкий и быстрый, скачивает только заголовки
+    const response = await fetch(url, { method: 'HEAD' });
+    return response.ok;
+  } catch (e) {
+    return false;
   }
 }
 
@@ -1416,10 +1487,11 @@ function updateReviewButtonText() {
           activePool = [];
           refillActivePool();
           freshWordCounter = 0; 
+          recentWords = [];
           els.quizSection?.classList.add('hidden');
           els.dictManagerSection?.classList.remove('hidden');
           
-          renderDictList();
+          await renderDictList(); 
           updateStats();
           updateReviewButtonText();
           
@@ -1432,7 +1504,7 @@ function updateReviewButtonText() {
         } else {
           els.quizSection?.classList.add('hidden');
           els.dictManagerSection?.classList.remove('hidden');
-          renderDictList();
+          await renderDictList();
           updateReviewButtonText();
           
           if (window.location.hostname.includes('github.io')) {
