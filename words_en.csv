@@ -39,7 +39,7 @@ mal,badly/wrong,well,good,okay,fine,nice
 le mois,month,week,day,year,time,period
 le mariage,marriage,wedding,matrimony,union,spousal,ceremony
 le temps,time,weather,hour,day,moment,period
-l'usure,wear,wear and tear,erosion,deterioration,depreciation,attrition
+l'usure,wear and tear,erosion,deterioration,depreciation,attrition
 riche,rich,wealthy,affluent,well-off,opulent,prosperous
 nous sommes allés,we went,we have gone,we will go,I went,they went,you went
 nous avons mangé,we ate,we have eaten,we will eat,I ate,they ate,you ate
@@ -1437,7 +1437,6 @@ le buste, bust, chest, sculpture, bosom, torso,
 le serviteur, servant, attendant, retainer, minion, slave,
 la salle de sport, gym, gymnasium, fitness center, workout room,,
 l'assaut, assault, attack, charge, onset, raid,
-la piste, trail, track, path, runway, course,
 la crise, crisis, emergency, critical point, attack, fit,
 la collection, collection, gathering, set, anthology, accumulation,
 le diamant, diamond, gem, jewel, baseball field, brilliant,
@@ -1805,7 +1804,7 @@ mais,but,and,or,so,then,because
 ou,or,and,but,where,when,why
 jamais,never,always,sometimes,often,rarely,usually
 le changement,change,alteration,shift,modification,variation,swap
-encore,still/yet/again,already,never,just,soon,again
+encore,still/yet/again,already,never,just,soon
 pas encore,not yet,already,still,never,just,soon
 chaque,each/every,all,some,any,none,both
 l'an,year,age,time,day,month,period
