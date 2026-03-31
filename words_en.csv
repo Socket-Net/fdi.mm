@@ -80,6 +80,7 @@ la paix,peace,tranquility,calm,harmony,accord,serenity
 l'entraînement,workout,training,exercise,practice,session,trainer
 la ville,city,town,village,place,capital,area
 tendre,tender,tough,hard,soft,rough,gentle
+Devoirs,homework,must,duty,have to,job,work
 assez,enough/fairly,too much,very,so,little,much
 très,very,too,so,quite,rather,much
 la langue,language,tongue,speech,idiom,dialect,word
@@ -173,7 +174,7 @@ sauver,to save,to rescue,to preserve,to protect,to spare,to deliver
 demander,to ask,to request,to inquire,to demand,to require,to beg
 donner une réponse,to give an answer,to reply,to respond,to provide solution,to explain,to clarify
 répondre,to answer,to reply,to respond,to react,to correspond,to match
-louer,to praise,to rent,to hire,to commend,to laud,to extol
+louer,to rent,to praise,to hire,to commend,to laud,to extol
 rester,to stay,to remain,to keep,to be,to live,to wait
 compter,to count,to rely,to depend,to matter,to number,to reckon
 refuser une offre,to refuse an offer,to reject proposal,to decline suggestion,to deny chance,to turn down opportunity,to spurn possibility
@@ -1301,7 +1302,6 @@ les déchets, trash, waste, garbage, rubbish, refuse,
 la récompense, award, prize, win, bonus,
 la gloire, glory, fame, honor, renown, splendor,
 l'autorité, authority, power, control, expert, official,
-le domaine, estate, domain, field, area, realm,
 la cour, yard, court, courtyard, royal court, enclosure,
 le réservoir, tank, reservoir, container, cistern, fuel tank,
 la confiance, trust,confidence, faith, reliance, assurance,
