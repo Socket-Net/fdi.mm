@@ -663,7 +663,6 @@ la situation,situation,position,condition,circumstance,location,status
 la moitié,half,portion,part,section,share,moiety
 impoli,impolite/rude,polite,kind,nice,friendly,gentle
 inutile,useless,pointless,futile,worthless,ineffective,unhelpful
-le plomb,lead,plumb,sinker,weight,plumbing,metal
 la promesse,promise,pledge,vow,commitment,assurance,guarantee
 content,happy,pleased,glad,sad,tired,angry
 le jeu,game,play,match,sport,contest,gambling
@@ -794,7 +793,7 @@ régulier,regular,irregular,random,occasional,frequent,common
 pause,break,intermission,hiatus,interval,recess,stop
 intérieur,inside,interior,inner,indoor,within,inward
 le moment,moment,instant,time,point,occasion,minute
-entre,between/among,inside,outside,around,near,far
+entre,enter,inside,outside,around,near,far
 bébé,baby,infant,toddler,newborn,child,babe
 coupure,cut,incision,slit,snip,clip,interruption
 derrière,behind,in front of,next to,above,below,inside
@@ -1301,7 +1300,7 @@ le sel, salt, seasoning, sodium chloride, wit,,
 la chair, flesh, meat, pulp, body, carnal,
 l'écrivain, writer, author, novelist, scribe, penman,
 les déchets, trash, waste, garbage, rubbish, refuse,
-la récompense, reward, prize, recompense, award, bonus,
+la récompense, award, prize, win, bonus,
 la gloire, glory, fame, honor, renown, splendor,
 l'autorité, authority, power, control, expert, official,
 le domaine, estate, domain, field, area, realm,
@@ -1418,7 +1417,6 @@ la cérémonie, ceremony, ritual, rite, formality, observance,
 le paquet, package, parcel, bundle, packet, bunch,
 l'éclat, shine, brilliance, burst, splinter, sparkle,
 le camarade, comrade, companion, fellow, mate, buddy,
-la chatte, pussy, female cat, vulgar for vagina, kitty,,
 l'approvisionnement, supply, provisioning, stock, provision, feeding,
 j'ai pu, I was able to, I could, I can, I will be able to, I have been able to, you were able to, he was able to, she was able to
 tu as pu, you were able to, you could, you can, you will be able to, you have been able to, he was able to, we were able to, they were able to
@@ -1549,7 +1547,7 @@ le costume, costume, suit, outfit, attire, dress,
 l'argument, argument, debate, reasoning, dispute, case,
 le mouvement, motion, movement, gesture, campaign, shift,
 la construction, construction, building, structure, assembly, erection,
-la visée, aim, targeting, intention, sighting, goal,
+la visée, aim, targeting, intention, sighting, visa,
 le clou, nail, spike, rivet, highlight, star attraction,
 l'électricité, electricity, power, current, energy, wiring,
 le guerrier, warrior, fighter, soldier, combatant, hero,
@@ -1583,7 +1581,6 @@ la falaise, cliff, precipice, bluff, crag, escarpment,
 le grec, greek, from Greece, Greek language, Hellenic,,
 le nom, behalf, name, behalf of, account, title,
 le punk, punk, hoodlum, rebel, music genre, tough,
-la bande, strip, band, gang, tape, stripe,
 le tuyau, pipe, tube, hose, tip, lead, conduit
 l'échantillon, sample, specimen, example, test, swatch,
 la blanchisserie, laundry, washhouse, cleaners, washing,,
@@ -1839,7 +1836,7 @@ la cellule, cell, unit, chamber, compartment, prison cell, battery cell
 le désordre, mess, disorder, chaos, clutter, disarray, confusion
 l'odeur, smell, scent, odor, aroma, fragrance, stench
 la mouche, fly, insect, bug, housefly, pest, dipteran
-le tueur, killer, murderer, assassin, slayer, executioner, butcher
+le tueur, killer, assassin, slayer, executioner, butcher
 la scène, scene, stage, setting, act, spectacle, incident
 la carte, card, map, ticket, menu, chart, playing card
 l'anglais, english, British, Anglo, English language, UK language, Brit
@@ -2049,7 +2046,7 @@ le pardon, pardon, forgiveness, excuse, mercy, apology, reprieve
 le lait, milk, dairy, cow's milk, liquid, white drink, calcium source
 la vitesse, speed, velocity, quickness, pace, rate, swiftness
 le dossier, file, folder, record, case, document, portfolio
-la bande, tape, band, strip, gang, ribbon, belt
+ruban, ribbon, band, strip, gang, rape, belt
 la pratique, practice, training, custom, habit, exercise, routine
 l'urgence, emergency, urgency, crisis, rush, priority, accident
 le pont, bridge, span, overpass, deck, connection, viaduct
