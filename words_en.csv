@@ -189,7 +189,7 @@ se souvenir,to remember,to recall,to keep in mind,to memorize,to reminisce,to re
 asseyez ici,sit down here,send ice,save cube,safe there,support us
 lever,to lift,to raise,to get up,to rise,to hold up,to pick up
 courir,to run,to race,to hurry,to flow,to manage,to operate
-quitter,to leave,to quit,to abandon,to depart,to give up,to drop
+quitter,to leave,exit,to send,quite,get rid off,to give up,to drop
 douter de tout,to doubt everything,to question all,to suspect whole,to hesitate fully,to mistrust complete,to waver totally
 douter,to doubt,to question,to suspect,to hesitate,to mistrust,to waver
 s'habiller,to get dressed,to put on clothes,to wear outfit,to clothe self,to choose clothes,to prepare look
@@ -211,7 +211,7 @@ poser,to put,to place,to set,to ask,to lay,to pose
 convaincre un ami,to convince a friend,to persuade buddy,to win over pal,to satisfy companion,to assure mate,to prove mate
 convaincre,to convince,to persuade,to win over,to satisfy,to assure,to prove
 permettre l'entrée,to allow entry,to permit access,to enable entrance,to authorize admission,to let in,to grant passage
-permettre,to allow,to permit,to enable,to authorize,to let,to grant
+permettre,to allow,to give,to enable,to authorize,to let,to grant
 fêter un anniversaire,to celebrate a birthday,to party anniversary,to feast milestone,to mark year,to rejoice date,to honor birth
 fêter,to celebrate,to party,to feast,to mark,to rejoice,to honor
 oublier,to forget,to overlook,to neglect,to leave behind,to disregard,to miss
@@ -381,7 +381,7 @@ décrire,to describe,to depict,to portray,to outline,to characterize,to relate
 peindre,to paint,to depict,to portray,to coat,to color,to describe
 partir,to leave,to depart,to go,to set off,to exit,to start
 diffuser,broadcast,show,transmit,spread,beam,transfer
-détruire,to destroy,to demolish,to ruin,to wreck,to break,to annihilate
+détruire,to destroy,to derive,to close,to wreck,to break,to annihilate
 rêver d'avenir,to dream of future,to daydream tomorrow,to imagine ahead,to wish prospective,to hope coming,to fantasize next
 rêver,to dream,to daydream,to imagine,to wish,to hope,to fantasize
 faire du vélo,to ride a bike,to cycle,to bike,to pedal,to go cycling,to use bicycle
@@ -922,7 +922,7 @@ test,test,exam,trial,check,assessment,evaluation
 preuve,proof,evidence,demonstration,testimony,verification,substantiation
 âge,age,era,period,time,epoch,generation
 la porte,door,entrance,gate,exit,way,opening
-amusement,fun,entertainment,enjoyment,pleasure,recreation,pastime
+amusement,entertainment,enjoyment,pleasure,recreation,pastime
 trop,too much/too,enough,very,so,quite,little
 le plaisir,pleasure,enjoyment,delight,fun,joy,satisfaction
 emploi,job,employment,position,post,occupation,work
@@ -1696,7 +1696,7 @@ le souper, supper, evening meal, dinner, late meal,,
 l'alcool, liquor, alcohol, spirits, booze, drink,
 la perceuse, drill, drilling machine, borer, brace,,
 la ruelle, alley, lane, backstreet, passage, narrow street,
-le saut, jump, leap, bound, skip,hip,click
+le saut, jump, leap, bound, skip,clap,click
 la destruction, destruction, demolition, ruin, devastation, annihilation,
 la camelote, junk, rubbish, trash, cheap goods, tat,
 la fusée, rocket, missile, firework, spacecraft, flare,
