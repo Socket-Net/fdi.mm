@@ -1214,11 +1214,16 @@ function parseCSV(text) {
       });
     }
     // === СТАРЫЙ ФОРМАТ (без карточек) ===
-    else if (!isCardMode && parts.length >= 6) {
+    else if (!isCardMode && parts.length >= 4) {
+      const french = parts[0];
+      const correct = parts[1];
+      // Все остальные поля после правильного ответа — это неправильные варианты
+      const wrong = parts.slice(2).filter(w => w);  // Убираем пустые
+      
       words.push({
-        french: parts[0],
-        correct: parts[1],
-        wrong: parts.slice(2, 6),
+        french: french,
+        correct: correct,
+        wrong: wrong,  // ← Теперь массив любой длины
         examples: [],
         isCard: false
       });
@@ -2019,22 +2024,40 @@ if (isCardMode || currentWord.isCard) {
   }
 }
   // === РЕЖИМ ТЕСТА (старый) ===
-  else {
-    els.nextBtn.disabled = true;
-    els.nextBtn.textContent = t.btnNext || 'Next →';
-    els.options.style.display = 'grid';
-    
-    const wrong = allWords.filter(w => w.french !== currentWord.french).map(w => w.correct).sort(() => Math.random() - 0.5).slice(0, 4);
-    const opts = [...wrong, currentWord.correct].sort(() => Math.random() - 0.5);
-    
-    opts.forEach(opt => {
-      const btn = document.createElement('div');
-      btn.className = 'option';
-      btn.textContent = opt;
-      btn.onclick = () => handleAnswer(opt, currentWord.correct);
-      els.options.appendChild(btn);
-    });
+else {
+  els.nextBtn.disabled = true;
+  els.nextBtn.textContent = t.btnNext || 'Next →';
+  els.options.style.display = 'grid';
+  
+  // Берём ВСЕ неправильные варианты из currentWord.wrong
+  const allWrong = currentWord.wrong || [];
+  
+  // Перемешиваем и ограничиваем максимум 8, чтобы не перегружать интерфейс
+  const shuffledWrong = [...allWrong].sort(() => Math.random() - 0.5).slice(0, 8);
+  
+  // Добавляем правильный ответ и перемешиваем всё вместе
+  const opts = [...shuffledWrong, currentWord.correct].sort(() => Math.random() - 0.5);
+  
+  // Адаптируем сетку под количество вариантов
+  const optionCount = opts.length;
+  if (optionCount <= 2) {
+    els.options.style.gridTemplateColumns = '1fr';
+  } else if (optionCount <= 4) {
+    els.options.style.gridTemplateColumns = '1fr 1fr';
+  } else {
+    // Для 5-8 вариантов можно оставить 2 колонки или сделать 3
+    els.options.style.gridTemplateColumns = optionCount > 6 ? '1fr 1fr 1fr' : '1fr 1fr';
   }
+  
+  // Создаём кнопки
+  opts.forEach(opt => {
+    const btn = document.createElement('div');
+    btn.className = 'option';
+    btn.textContent = opt;
+    btn.onclick = () => handleAnswer(opt, currentWord.correct);
+    els.options.appendChild(btn);
+  });
+}
 }
 
     function exitReviewMode() {
