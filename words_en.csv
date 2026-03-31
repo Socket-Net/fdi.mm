@@ -522,6 +522,13 @@ promenade,walk,stroll,amble,saunter,hike,ramble
 coup,cut,strike,hit,shot,blow,stroke
 la puissance,power,strength,force,ability,energy,might
 normal,normal,strange,weird,abnormal,usual,regular
+je serai, I will be, I am going to be, I was, I have been, I am, you will be, he will be, she will be
+tu seras, you will be, you are going to be, you were, you have been, you are, he will be, we will be, they will be
+il sera, he will be, he is going to be, he was, he has been, he is, she will be, they will be, you will be
+elle sera, she will be, she is going to be, she was, she has been, she is, he will be, they will be, you will be
+nous serons, we will be, we are going to be, we were, we have been, we are, you will be, they will be, I will be
+vous serez, you will be, you are going to be, you were, you have been, you are, he will be, we will be, they will be
+ils seront, they will be, they are going to be, they were, they have been, they are, he will be, she will be, you will be
 l'histoire,history,story,past,tale,account,narrative
 le magasin,shop,store,market,supermarket,boutique,retail
 cheval,horse,steed,stallion,mare,equine,charger
@@ -547,6 +554,13 @@ dur,hard,soft,easy,tough,difficult,solid
 club,club,society,association,group,organization,venue
 car,because,so,but,and,or,then
 comme,like/as/because,so,but,and,or,than
+j'aurai, I will have, I am going to have, I had, I have had, I have, you will have, he will have, she will have
+tu auras, you will have, you are going to have, you had, you have had, you have, he will have, we will have, they will have
+il aura, he will have, he is going to have, he had, he has had, he has, she will have, they will have, you will have
+elle aura, she will have, she is going to have, she had, she has had, she has, he will have, they will have, you will have
+nous aurons, we will have, we are going to have, we had, we have had, we have, you will have, they will have, I will have
+vous aurez, you will have, you are going to have, you had, you have had, you have, he will have, we will have, they will have
+ils auront, they will have, they are going to have, they had, they have had, they have, he will have, she will have, you will have
 parce que,because,so,but,and,or,since
 intelligent,intelligent,smart,clever,bright,brainy,sharp
 salope,bitch,slut,wench,hussy,harlot,shrew
@@ -1357,6 +1371,12 @@ la lutte, struggle, fight, wrestling, battle, effort,
 le masque, mask, disguise, facade, covering, pretense,
 la fièvre, fever, temperature, heat, excitement, frenzy,
 le prêt, loan, lending, borrowing, ready, prepared,
+je pourrai, I will be able to, I can, I could, I was able to, I am going to be able to, you will be able to, he will be able to, she will be able to
+tu pourras, you will be able to, you can, you could, you were able to, you are going to be able to, he will be able to, we will be able to, they will be able to
+il pourra, he will be able to, he can, he could, he was able to, he is going to be able to, she will be able to, they will be able to, you will be able to
+nous pourrons, we will be able to, we can, we could, we were able to, we are going to be able to, you will be able to, they will be able to, I will be able to
+vous pourrez, you will be able to, you can, you could, you were able to, you are going to be able to, he will be able to, we will be able to, they will be able to
+ils pourront, they will be able to, they can, they could, they were able to, they are going to be able to, he will be able to, she will be able to, you will be able to
 le sifflet, whistle, piping, referee whistle, call, hiss,
 la punition, punishment, penalty, chastisement, discipline, correction,
 la production, production, output, manufacturing, show, yield,
@@ -1400,6 +1420,12 @@ l'éclat, shine, brilliance, burst, splinter, sparkle,
 le camarade, comrade, companion, fellow, mate, buddy,
 la chatte, pussy, female cat, vulgar for vagina, kitty,,
 l'approvisionnement, supply, provisioning, stock, provision, feeding,
+j'ai pu, I was able to, I could, I can, I will be able to, I have been able to, you were able to, he was able to, she was able to
+tu as pu, you were able to, you could, you can, you will be able to, you have been able to, he was able to, we were able to, they were able to
+il a pu, he was able to, he could, he can, he will be able to, he has been able to, she was able to, they were able to, you were able to
+j'ai eu, I had, I have had, I have, I will have, I am going to have, you had, he had, she had
+tu as eu, you had, you have had, you have, you will have, you are going to have, he had, we had, they had
+il a eu, he had, he has had, he has, he will have, he is going to have, she had, they had, you had
 le ton, tone, sound, shade, manner, note,
 le client, customer, client, patron, buyer, consumer,
 la sueur, sweat, perspiration, toil, effort, exudation,
@@ -2132,6 +2158,14 @@ la focalisation, focus, concentration, focal point, centering, attention,
 le jardin, garden, yard, park, plot, orchard, flowerbed
 la propriété, property, ownership, estate, asset, quality, characteristic
 le maire, mayor, burgomaster, town leader, head of city, magistrate,
+je suis, I am, I have, I was, I will be, mine, you are, he is, she is
+tu es, you are, you have, you were, yours, he is, she is, we are, they are
+il est, he is, he has, he was, his, she is, it is, they are, you are
+elle est, she is, she has, she was, hers, he is, it is, they are, you are
+nous sommes, we are, we have, we were, ours, you are, they are, I am, he is
+vous êtes, you are, you have, you were, yours, he is, we are, they are, I am
+ils sont, they are, they have, they were, theirs, he is, she is, we are, you are
+elles sont, they are, they have, they were, theirs, he is, she is, we are, you are
 le problème, issue, problem, difficulty, trouble, matter, question
 le copain, pal, friend, buddy, mate, chum, companion
 l'entretien, interview, maintenance, conversation, upkeep, discussion,
@@ -2189,6 +2223,14 @@ le prêtre, priest, clergyman, minister, padre, father,
 le regret, regret, remorse, sorrow, disappointment, lament,
 le contrat, contract, agreement, deal, pact, bond,
 le voleur, thief, robber, burglar, stealer, pickpocket,
+j'ai, I have, I am, I had, I will have, mine, you have, he has, she has
+tu as, you have, you are, you had, yours, he has, she has, we have, they have
+il a, he has, he is, he had, his, she has, it has, they have, you have
+elle a, she has, she is, she had, hers, he has, it has, they have, you have
+nous avons, we have, we are, we had, ours, you have, they have, I have, he has
+vous avez, you have, you are, you had, yours, he has, we have, they have, I have
+ils ont, they have, they are, they had, theirs, he has, she has, we have, you have
+elles ont, they have, they are, they had, theirs, he has, she has, we have, you have
 le divorce, divorce, separation, split, dissolution, breakup,
 la leçon, lesson, class, teaching, moral, lecture,
 la communauté, community, society, group, neighborhood, fellowship,
@@ -2207,6 +2249,12 @@ la paire, pair, couple, duo, two, set, brace
 la ruine, ruin, wreckage, destruction, collapse, decay,
 le grand-père, grandfather, grandpa, grandad, ancestor,,
 le vélo, bike, bicycle, cycle, two-wheeler, pedal bike,
+j'ai été, I was, I have been, I am, I had, he was, you were, we were, they were
+tu as été, you were, you have been, you are, you had, he was, she was, we were, they were
+il a été, he was, he has been, he is, he had, she was, it was, they were, you were
+j'ai eu, I had, I have, I was, I will have, he had, you had, we had, they had
+tu as eu, you had, you have, you were, you will have, he had, she had, we had, they had
+il a eu, he had, he has, he was, he will have, she had, it had, they had, you had
 la perte, loss, defeat, waste, bereavement, leakage,
 le menteur, liar, deceiver, fibber, storyteller, falsifier,
 l'hiver, winter, cold season, wintertime, frost, chill,
@@ -2222,6 +2270,14 @@ la connexion, connection, link, junction, network, bond,
 l'en bas, downstairs, below, beneath, at the bottom, lower level,
 la chambre, bedroom, room, chamber, hall, compartment,
 le professionnel, professional, expert, pro, specialist, practitioner,
+je vais être, I am going to be, I will be, I have been, I was, I am, you are going to be, he is going to be
+tu vas être, you are going to be, you will be, you have been, you were, you are, he is going to be, we are going to be
+il va être, he is going to be, he will be, he has been, he was, he is, she is going to be, they are going to be
+je vais avoir, I am going to have, I will have, I have had, I had, I have, you are going to have, he is going to have
+tu vas avoir, you are going to have, you will have, you have had, you had, you have, he is going to have, we are going to have
+il va avoir, he is going to have, he will have, he has had, he had, he has, she is going to have, they are going to have
+je vais pouvoir, I am going to be able to, I will be able to, I can, I could, I was able to, you are going to be able to, he is going to be able to
+tu vas pouvoir, you are going to be able to, you will be able to, you can, you could, you were able to, he is going to be able to, we are going to be able to
 la tour, turn, tour,tower, trick, rotation, trip
 le joueur, player, gamer, athlete, participant, performer,
 l'argent, silver, money, currency, argentum, cash,
