@@ -518,7 +518,7 @@ salé,salty,sweet,bitter,sour,spicy,tasty
 dîner,dinner,supper,evening meal,dine,feast,banquet
 la lune,moon,sun,star,night,light,dark
 promenade,walk,stroll,amble,saunter,hike,ramble
-coup,blow,strike,hit,shot,cut,stroke
+coup,cut,strike,hit,shot,blow,stroke
 la puissance,power,strength,force,ability,energy,might
 normal,normal,strange,weird,abnormal,usual,regular
 l'histoire,history,story,past,tale,account,narrative
@@ -881,7 +881,6 @@ la faiblesse,weakness,frailty,feebleness,debility,vulnerability,flaw
 idiot,idiot,fool,dummy,moron,blockhead,dunce
 cuisine,kitchen/cooking,food,meal,restaurant,cook,chef
 l'œuf,egg,food,breakfast,protein,shell,chicken
-pain,bread,food,meal,loaf,bun,cake
 gens,people,folks,individuals,persons,humans,crowd
 attention,attention,focus,concentration,care,heed,notice
 la viande,meat,flesh,beef,pork,food,protein
@@ -2158,7 +2157,7 @@ le toit, roof, ceiling, top, housetop, shelter, canopy
 les funérailles, funeral, burial, obsequies, rites, ceremony
 le dommage, damage, harm, injury, loss, detriment, pity
 l'estomac, stomach, belly, abdomen, gut, tummy, digestive organ
-le pain, bread, loaf, food, bakery item, staple
+le pain, bread, loaf, food, bakery, item, staple
 la neige, snow, snowfall, white flakes, winter cover, powder
 le château, castle, palace, fortress, chateau, mansion
 le discours, speech, talk, address, oration, lecture, language
