@@ -108,9 +108,9 @@ compter les moutons,to count sheep,to try fall asleep,to use trick for sleep,to 
 juger une situation,to judge a situation,to try circumstance,to deem condition,to consider context,to estimate scene,to decide case
 goûter,to taste,to try,to sample,to savor,to experience,to enjoy
 juger,to judge,to try,to deem,to consider,to estimate,to decide
-réfléchir avant d'agir,to reflect before acting,to think prior move,to ponder prior deed,to consider before do,to meditate prior action,to contemplate prior step
+réfléchir avant d'agir,to think over before acting,to think prior move,to ponder prior deed,to consider before do,to meditate prior action,to contemplate prior step
 croire,to believe,to think,to trust,to suppose,to credit,to accept
-réfléchir,to reflect,to think,to ponder,to consider,to meditate,to contemplate
+réfléchir,to think over,to ponder,to consider,to meditate,to contemplate
 dire,to say,to tell,to ask,to do,to make,to speak
 dire,to say,to tell,to speak,to state,to declare,to mention
 apprendre,to learn,to teach,to hear,to find out,to memorize,to study
@@ -416,7 +416,7 @@ célébrer,to celebrate,to commemorate,to observe,to honor,to praise,to rejoice
 aller,to go,to come,to run,to walk,to see,to do
 arriver,to arrive,to come,to happen,to occur,to reach,to succeed
 combattre l'injustice,to fight injustice,to combat unfairness,to battle inequality,to struggle wrong,to oppose wrong,to resist bad
-combattre,to fight,to combat,to battle,to struggle,to oppose,to resist
+combattre,to fight,to combat,to struggle,to oppose,to resist
 monter,to go up,to climb,to rise,to ascend,to increase,to mount
 se brosser les dents,to brush teeth,to clean teeth,to use toothbrush,to maintain oral hygiene,to freshen mouth,to care for smile
 se laver les mains,to wash hands,to clean hands,to use soap,to sanitize,to rinse,to prepare hygiene
@@ -678,7 +678,6 @@ baiser,kiss,peck,smooch,smack,bus,oscul
 sommet,summit,peak,top,pinnacle,apex,zenith
 l'ordinateur,computer,PC,laptop,machine,device,technology
 paiement,payment,pay,remuneration,compensation,settlement,reimbursement
-le chemin,way,path,road,route,track,course
 riz,rice,pasta,grain,wheat,bread,cereal
 passe,pass,passage,permit,ticket,through,approval
 l'égalité,legality,parity,equivalence,sameness,balance,fairness
@@ -780,7 +779,6 @@ type,type,kind,sort,category,variety,classification
 l'enfant,child,kid,boy,girl,adult,friend
 attends une minute,wait a minute,just a second,hold on,one moment,wait please,stop
 le bonheur,happiness,joy,bliss,contentment,delight,pleasure
-voyage,trip,journey,travel,voyage,tour,excursion
 le travail,work,job,employment,career,office,task
 il pleut,it's raining,it's snowing,it's sunny,it's windy,it's cloudy,it's hot
 ça va bien,I'm fine,it's going well,all good,I'm okay,it's great,everything fine
@@ -1076,13 +1074,13 @@ la tombe, grave, tomb, burial site, sepulcher, resting place, area
 le géant, giant, colossus, titan, behemoth, monster, huge person
 la plante, plant, vegetation, flora, seedling, herb, bush
 le site, site, location, place, spot, website, area
-la déclaration, statement, declaration, announcement, assertion, testimony,place
+la déclaration, declaration, announcement, assertion, testimony,place
 la hausse, rise, increase, surge, upturn, growth, boost
 la veste, jacket, coat, blazer, windbreaker, outerwear,custom
 la miséricorde, mercy, compassion, pity, clemency, forgiveness, grace
 la prostituée, whore, prostitute, harlot, hooker, sex worker, streetwalker
 l'interrupteur, switch, button, toggle, breaker, lever, figures
-le repas, meal, repast, dinner, lunch, food, serving
+le repas, meal, repast, dinner, lunch, rest, repair
 la direction, direction, way, guidance, management, heading, instruction
 les données, data, information, facts, statistics, records, figures
 la corne, horn, antler, trumpet, bugle, protrusion,corner
@@ -1095,7 +1093,7 @@ la soupe, soup, broth, potage, chowder, consommé,side
 le courage, courage, bravery, valor, boldness, guts, nerve
 le jaune, yellow, gold, lemon, canary, amber, saffron
 l'emplacement, location, position, site, spot, place, venue
-l'imbécile, jerk, idiot, fool, moron, blockhead, dunce
+l'imbécile, jerk, fool, fish, blockhead, dumb
 le chocolat, chocolate, cocoa, sweet, candy, bar, dessert
 l'image, image, picture, photo, representation, impression, figure
 habituel, regular, usual, customary, normal, habitual, ordinary
@@ -1309,7 +1307,7 @@ le réservoir, tank, reservoir, container, cistern, fuel tank,
 la confiance, trust,confidence, faith, reliance, assurance,
 le manque, lack, shortage, deficiency, absence, want,
 l'approche, approach, method, way, manner, advance,
-le poussin, chick, baby chicken, young bird, cute person,,
+le poussin, chick, chicken, young bird, cute person,fish
 la poupée, doll, puppet, figurine, toy, mannequin,
 le canard, duck, newspaper, false rumor, drake,,
 le stock, stock, inventory, shares, supply, broth,
@@ -1339,7 +1337,7 @@ la ceinture, belt, sash, girdle, waistband, zone,
 la garantie, guarantee, warranty, assurance, security, bond,
 le courant, current, stream, flow, electric current, trend,
 les ordures, garbage, rubbish, trash, waste, refuse,
-la garde, custody, guard, keeping, protection, watch,
+la garde, guard, cutody, keeping, protection, watch,
 le démon, demon, devil, fiend, evil spirit, imp,
 la coïncidence, coincidence, chance, accident, concurrence,,
 la tentative, attempt, try, effort, endeavor, trial,
@@ -1579,7 +1577,8 @@ le complexe, complex, compound, intricate, building, inferiority complex,
 la moyenne, average, mean, medium, norm, typical,
 la falaise, cliff, precipice, bluff, crag, escarpment,
 le grec, greek, from Greece, Greek language, Hellenic,,
-le nom, behalf, name, behalf of, account, title,
+le nom, name, behalf of, account, title,behalf
+le nom de, behalf of, name, second name, title
 le punk, punk, hoodlum, rebel, music genre, tough,
 le tuyau, pipe, tube, hose, tip, lead, conduit
 l'échantillon, sample, specimen, example, test, swatch,
@@ -1681,7 +1680,7 @@ l'augmentation, increase, rise, raise, growth, increment,
 l'étirement, stretch, extension, elongation, workout, tension,
 la romance, romance, love story, romanticism, affair, ballad,
 l'hélicoptère, helicopter, chopper, copter, rotary aircraft,,
-le lancer, pitch, throw, launch, cast, toss,
+le lancer, throw, launch, kick, cast, toss,landscape,land
 l'exemple, example, instance, case, illustration, sample,
 le citron, lemon, citrus, sour fruit, yellow, car (slang),
 le mal de tête, headache, migraine, pain in head, nuisance,,
@@ -1875,6 +1874,7 @@ l'avocat, lawyer, attorney, barrister, solicitor, legal counsel, advocate
 le champ, field, meadow, area, domain, terrain, farmland
 le contact, contact, touch, connection, communication, link, acquaintance
 le magasin, store, shop, department store, supermarket, warehouse, outlet
+les gars,guys,train stations,wars,stops,stations,trains,
 la boutique, shop, boutique store, small shop, specialty store, stall, emporium
 le professeur, professor, teacher, lecturer, instructor, academic, don
 la madame, madam, Mrs., lady, ma'am, gentlewoman, missus
@@ -2077,7 +2077,7 @@ la chérie, sweetie, darling, honey, dear, love, babe
 le paquet, pack, package, parcel, bundle, bunch, packet
 le monstre, monster, beast, creature, giant, freak, villain
 le centre, center, centre, middle, hub, core, focus
-le voyage, travel, journey, trip, tour, voyage, excursion
+le voyage, travel, journey, amusement, tour, excursion,event
 glissant,slippery,smooth,straight,steady,solid,strong
 la cible, target, goal, objective, mark, bullseye, prey
 la science, science, knowledge, study, discipline, research, learning
@@ -2176,7 +2176,7 @@ le processus, process, procedure, method, course, operation,
 la saison, season, time of year, period, spice, seasoning,
 l'accès, access, entry, admission, approach, entrance, availability
 le modèle, model, pattern, example, prototype, mannequin, design
-le chemin, path, way, road, route, track, course
+le chemin, route, patch, road, route, track, course
 le russe, russian, Russian language, from Russia, Slavic,,
 le membre, member, limb, participant, part, affiliate,
 le style, style, fashion, manner, type, elegance, design
@@ -2207,7 +2207,6 @@ la permission, permission, permit, leave, authorization, consent,
 la fantaisie, fancy, fantasy, imagination, whim, notion,
 la théorie, theory, hypothesis, idea, concept, speculation,
 le portail, gate, gateway, portal, entrance, door,
-le voyage, journey, travel, trip, voyage, tour, expedition
 la peinture, paint, painting, coating, artwork, picture,
 l'amoureux, lover, sweetheart, boyfriend, romantic, admirer,
 l'humeur, mood, humor, temper, disposition, atmosphere,
