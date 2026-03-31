@@ -667,9 +667,12 @@ le chemin,way,path,road,route,track,course
 riz,rice,pasta,grain,wheat,bread,cereal
 passe,pass,passage,permit,ticket,through,approval
 l'égalité,equality,parity,equivalence,sameness,balance,fairness
+​la fourchette,fork,folk,gab,clotch,spoon,prong
+​la cuillère​,spoon,fork,bump,coo,bailer,troll,
 couple,couple,pair,duo,two,partners,duet
 la peine,pain,sorrow,grief,trouble,difficulty,effort
 feuille,leaf/paper,page,sheet,note,document,book
+au-dessus de,above,au-delà,sauf,plus de,except,include
 pas,step,pace,footstep,stride,move,walk
 général,general,overall,chief,common,widespread,universal
 le résultat,result,outcome,effect,score,product,answer
@@ -1222,7 +1225,6 @@ la solution, solution, answer, resolution, mixture, fix
 la tour, tower, turn, tour, trick, rotation
 la masse, mass, bulk, crowd, weight, lump
 l'extraterrestre, alien, extraterrestrial, foreigner, outsider
-le programme, schedule, program, plan, software, agenda
 l'escalier, stairs, staircase, steps, stairway
 le fruit, fruit, produce, result, benefit, offspring
 l'espion, spy, agent, mole, informant, operative
@@ -1452,7 +1454,7 @@ la déchirure, rip, tear, rent, laceration, split
 le bourgeon, bud, sprout, shoot, germ, blossom
 la thérapie, therapy, treatment, cure, healing, psychotherapy
 la vie, lifetime, life, existence, biography, vitality
-le béguin, crush, infatuation, fancy, liking, flame
+béguin, crush, infatuation, fancy, liking, flame
 le champion, champion, winner, titleholder, victor, defender
 le crâne, skull, cranium, head, death's head, bone
 la version, version, edition, variant, interpretation, rendering
@@ -2055,6 +2057,7 @@ le paquet, pack, package, parcel, bundle, bunch, packet
 le monstre, monster, beast, creature, giant, freak, villain
 le centre, center, centre, middle, hub, core, focus
 le voyage, travel, journey, trip, tour, voyage, excursion
+glissant,slippery,smooth,straight,steady,solid,strong
 la cible, target, goal, objective, mark, bullseye, prey
 la science, science, knowledge, study, discipline, research, learning
 le projet, project, plan, scheme, proposal, undertaking, design
@@ -2065,6 +2068,7 @@ l'enquête, investigation, inquiry, probe, survey, research, examination
 l'infirmière, nurse, caregiver, medical assistant, sister, RN
 l'huile, oil, lubricant, petroleum, cooking oil, olive oil
 le criminel, criminal, offender, lawbreaker, felon, crook, convict
+tout droit,straight,left,right,bottom,top,beneath
 le soldat, soldier, trooper, warrior, serviceman, fighter, private
 la chemise, shirt, blouse, dress shirt, top, garment
 l'exemple, example, instance, model, sample, illustration, case
