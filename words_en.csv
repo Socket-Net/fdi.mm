@@ -7,7 +7,7 @@ déjà,already,yet,still,never,just,soon
 hier il faisait froid,yesterday it was cold,yesterday it was hot,yesterday it was nice,yesterday it rained,yesterday it snowed,yesterday it was sunny
 non,no,yes,maybe,okay,not,sure
 cour,court,yard,courtyard,royal court,law court,enclosure
-faux,FALSE,wrong,fake,untrue,incorrect,bogus
+faux,false,wrong,fake,untrue,incorrect,bogus
 valeur,value,worth,merit,importance,significance,price
 arbre,tree,wood,plant,forest,branch,leaf
 dame,lady,woman,madam,dame,gentlewoman,missus
@@ -56,7 +56,7 @@ guerre,war,warfare,conflict,battle,hostilities,strife
 réveil,alarm clock,waking,awakening,alarm,rousing,arousal
 pari,bet,wager,stake,gamble,odds,speculation
 rêve,dream,vision,fantasy,nightmare,aspiration,ideal
-navire,ship,vessel,craft,boat,liner,steamer
+le navire,ship,vessel,craft,boat,liner,steamer
 la voiture,car,vehicle,truck,bike,train,bus
 les fruits,fruit,vegetables,meat,fish,cheese,bread
 la carotte,carrot,vegetable,orange,root,healthy,raw
