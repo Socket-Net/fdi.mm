@@ -263,7 +263,6 @@ servir,to serve,to help,to use,to work,to eat,to drink
 écouter de la musique,to listen to music,to hear songs,to play music,to enjoy tunes,to have soundtrack,to tune in
 écouter un podcast,to listen to a podcast,to hear audio show,to follow episode,to enjoy talk,to absorb content,to tune in discussion
 écouter,to listen,to hear,to speak,to talk,to say,to tell
-devoir,to owe,to have to,to must,duty,test,obligation
 avoir de la chance,to be lucky,to have fortune,to get good break,to win odds,to benefit from chance,to succeed unexpectedly
 tenir,to hold/to keep,to have,to take,to give,to put,to stand
 être,to be,to have,to do,to go,to see,to know
@@ -932,7 +931,7 @@ le patron,boss,employer,chief,manager,head,leader
 sentiment,feeling,emotion,sensation,mood,impression,notion
 le côté,side,edge,part,direction,aspect,team
 le monde,world,earth,planet,country,place,universe
-le devoir,to have to must,duty,test,obligation,need,should
+devoir,to have to,see,test,obligation,need,should
 stupide,stupid,dumb,foolish,silly,idiotic,unintelligent
 ennuyeux,boring,dull,tedious,tiresome,monotonous,uninteresting
 mec,guy,dude,bloke,fellow,chap,man
@@ -1025,7 +1024,6 @@ l'argent,money,cash,wealth,coin,bill,fortune
 l'infirmière,nurse,caregiver,medical,assistant,health,hospital
 le chocolat,chocolate,candy,sweet,dessert,cocoa,bar
 boîte,box,can,tin,container,case,crate
-devoir,must/to have to,can,may,should,will,would
 tranquillité,tranquility,calm,peace,quiet,serenity,stillness
 le taxi,taxi,cab,ride,driver,car,transport
 au revoir,goodbye,bye,see you,hello,good night,thanks
@@ -1134,7 +1132,7 @@ le palais, palace, mansion, royal residence, court, hall, upturn
 la fissure, crack, split, crevice, rift, fracture, windbreaker
 le talent, talent, gift, skill, aptitude, ability, clemency
 le quartier, neighborhood, district, area, quarter, locality, hooker
-la menace, threat, menace, danger, warning, intimidation, breaker
+la menace, threat, offense, danger, warning, intimidation, breaker
 l'oreille, ear, hearing, auricle, lobe, organ of hearing, lunch
 le miracle, miracle, wonder, marvel, prodigy, phenomenon, management
 la grand-mère, grandmother, grandma, granny, nana, gran, statistics
@@ -1468,7 +1466,6 @@ la sirène, siren, mermaid, alarm, whistle, temptress,
 l'entrée, entrance, entry, admission, inlet, doorway,
 la religion, religion, faith, belief, creed, cult,
 le beurre, butter, dairy spread, fat, grease,,
-le devoir, homework, duty, task, exercise, obligation,
 le stress, stress, tension, pressure, strain, emphasis,
 la casquette, cap, hat, baseball cap, kepi, beret,
 la chauve-souris, bat, flying mammal, club, racket,,
@@ -1938,7 +1935,7 @@ le type, type, kind, sort, category, variety, guy
 la mission, mission, task, assignment, duty, quest, operation
 la faveur, favor, favour, kindness, goodwill, preference, boon
 l'action, action, act, deed, movement, share, lawsuit
-le devoir, duty, obligation, task, homework, responsibility, must
+le devoir, duty, task, responsibility, must
 le prix, price, cost, prize, value, rate, award
 la garde, guard, watch, keeper, protection, sentry, custody
 le risque, risk, danger, hazard, chance, peril, gamble
