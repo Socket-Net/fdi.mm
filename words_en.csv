@@ -138,7 +138,7 @@ diviser le gâteau,to divide the cake,to split dessert,to share sweet,to cut por
 diviser,to divide,to split,to share,to separate,to distribute,to classify
 prendre un bain,to take a bath,to soak in tub,to relax in water,to bathe slowly,to enjoy warm water,to unwind
 pleuvoir,to rain,to snow,to storm,to pour,to drizzle,to fall
-rire,to laugh,to smile,to joke,to mock,to chuckle,to giggle
+rire,to laugh,make a joke,to mock,to chuckle,to giggle
 sentir,to feel,to smell,to sense,to perceive,to detect,to notice
 casser un verre,to break a glass,to smash cup,to shatter item,to crack object,to destroy container,to split material
 casser,to break,to smash,to snap,to burst,to fail,to spoil
@@ -150,6 +150,7 @@ fermer,to close,to shut,to lock,to end,to conclude,to seal
 pousser une porte,to push a door,to shove entrance,to press panel,to open by force,to move barrier,to advance access
 pousser,to push,to shove,to urge,to promote,to grow,to encourage
 bouger,to move,to shift,to stir,to budge,to change,to go
+augmenter,increase,add,additional,adjustment,lift off,sharp,
 payer une facture,to pay a bill,to settle invoice,to reward account,to suffer charge,to yield cost,to compensate debt
 payer,to pay,to settle,to reward,to suffer,to yield,to compensate
 acheter,to buy,to sell,to take,to get,to have,to give
@@ -670,7 +671,7 @@ l'avion,airplane,plane,flight,aircraft,jet,sky
 la partie,part,piece,whole,section,bit,share
 image,image,picture,photo,illustration,representation,depiction
 le médecin,doctor,physician,medic,practitioner,health,professional
-la phrase,sentence,phrase,expression,word,statement,line
+la phrase,sentence,expression,word,statement,line,
 le chat,cat,pet,animal,dog,horse,friend
 le chien,dog,pet,animal,cat,horse,friend
 sel,salt,pepper,sugar,spice,seasoning,flavor
@@ -681,7 +682,7 @@ paiement,payment,pay,remuneration,compensation,settlement,reimbursement
 le chemin,way,path,road,route,track,course
 riz,rice,pasta,grain,wheat,bread,cereal
 passe,pass,passage,permit,ticket,through,approval
-l'égalité,equality,parity,equivalence,sameness,balance,fairness
+l'égalité,legality,parity,equivalence,sameness,balance,fairness
 ​la fourchette,fork,folk,gab,clotch,spoon,prong
 ​la cuillère​,spoon,fork,bump,coo,bailer,troll
 couple,couple,pair,duo,two,partners,duet
@@ -742,7 +743,7 @@ absent,absent,missing,away,not present,gone,unavailable
 la tête,head,mind,brain,top,leader,face
 armée,army,military,forces,troops,soldiers,armed forces
 déjeuner,lunch,midday meal,noon meal,light meal,dine,luncheon
-le métro,subway,metro,underground,train,transport,city
+le métro,metro,underground,train,transport,city,tram
 le système,system,method,setup,network,structure,process
 poisson,fish,meat,seafood,animal,chicken,bird
 poulet,chicken,meat,bird,turkey,duck,egg
@@ -1317,7 +1318,7 @@ le stock, stock, inventory, shares, supply, broth,
 la bibliothèque, library, bookcase, bookshelf, collection,,
 l'échec, failure, defeat, setback, flop, miss,
 le mouvement, movement, motion, shift, campaign, gesture,
-l'arc, bow, arch, curve, arc, rainbow,
+l'arc, arch, curve, arc, rainbow,bow
 la queue, tail, line, queue, penis (slang), rear,
 le sénateur, senator, lawmaker, legislator, politician,,
 le cauchemar, nightmare, bad dream, horror, terror,,
@@ -1861,7 +1862,6 @@ l'appareil photo, camera, photographic device, cam, lens, shooter, recorder
 le collège, college, secondary school, high school, academy, institution, school
 le juge, judge, justice, magistrate, arbiter, adjudicator, referee
 la position, position, location, posture, stance, situation, placement
-l'intérêt, sake, interest, benefit, advantage, concern, stake
 le petit ami, boyfriend, lover, partner, beau, date, sweetheart
 le mur, wall, barrier, partition, fence, blockade, enclosure
 le privé, private, personal, confidential, exclusive, secret, intimate
