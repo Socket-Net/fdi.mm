@@ -32,7 +32,7 @@ quoi,what,where,when,why,how,who
 où,where,when,why,how,who,what
 le pneu,tire,wheel,car,vehicle,rubber,flat
 tu veux quoi,what do you want (informal),what would you like,what do you need,how are you,where are you,who are you
-à quelle heure,at what time,what time is it,when,how long,where,why
+à quelle heure,what time is now,when,how long,where,why
 quel âge as-tu,how old are you (informal),what is your name,where do you live,how are you,what time is it,where are you from
 qu'est-ce que c'est,what is this,what is that,what is it,who is this,where is it,how much is it
 mal,badly/wrong,well,good,okay,fine,nice
@@ -253,8 +253,8 @@ examiner,to examine,to inspect,to investigate,to study,to check,to review
 poser une question,to ask a question,to inquire,to pose query,to seek information,to wonder,to request answer
 multiplier les efforts,to multiply efforts,to increase attempts,to enhance work,to boost tries,to amplify energy,to magnify attempts
 multiplier,to multiply,to increase,to breed,to propagate,to enhance,to magnify
-ajouter du sel,to add salt,to include seasoning,to put condiment,to supplement flavor,to enhance taste,to attach spice
-ajouter,to add,to include,to append,to contribute,to supplement,to attach
+ajouter du sel,to add salt,to add seasoning,to put condiment,to supplement flavor,to enhance taste,to attach spice
+ajouter,to add,to include,to ajust,to contribute,to supplement,to attach
 rêver de voyage,to dream of travel,to imagine journey,to fantasize trip,to wish for adventure,to picture far places,to hope exploration
 chanter sous la douche,to sing in the shower,to hum while washing,to vocalize in bath,to perform under water,to make noise while cleaning,to enjoy voice
 porter un sac,to carry a bag,to hold luggage,to bear load,to transport item,to bring container,to support weight
@@ -1636,7 +1636,6 @@ la cote, side, rating, quotation, estimate, score,
 la signature, signature, signing, autograph, mark, endorsement,
 l'individu, individual, person, single, being, character,
 le charme, charm, appeal, enchantment, attractiveness, spell,
-le président, chairman, president, head, leader, chairperson,
 le cadre, frame, framework, executive, setting, border,
 le soulagement, relief, alleviation, comfort, easement, respite,
 le nuage, cloud, mist, vapor, swarm, gloom,
@@ -1667,7 +1666,7 @@ la boue, mud, mire, sludge, dirt, ooze,
 le profil, profile, outline, side view, description, shape,
 l'angle, angle, corner, viewpoint, perspective, measure,
 le meuble, furniture, piece of furniture, movable, fitting,,
-les fiançailles, engagement, betrothal, wedding plans, promise,,
+les fiançailles, engagement, betrothal, wedding plans, promise,foundrasing,finances
 le crétin, moron, idiot, fool, cretin, imbecile,
 le requin, shark, swindler, predator, loan shark, fish,
 l'humanité, humanity, humankind, mankind, compassion, human race,
