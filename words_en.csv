@@ -1032,7 +1032,7 @@ entreprise,company,business,firm,enterprise,corporation,venture
 balle,ball,bullet,sphere,orb,globe,projectile
 copain,friend,buddy,pal,chum,mate,companion
 la sœur,sister,brother,family,daughter,mother,aunt
-large,wide,broad,large,spacious,ample,extensive
+large,grand,broad,spacious,ample,extensive
 la lumière,light,brightness,illumination,daylight,gleam,beam
 court,short,brief,small,concise,curtailed,near
 le fromage,cheese,bread,the milk,the water,the meat,the fruit
@@ -1111,7 +1111,7 @@ le poison, poison, toxin, venom, contaminant, bane, place
 le mystère, mystery, enigma, puzzle, secret, riddle,people
 l'indien, indian, Native American, from India, indigenous,,strike
 le bang, bang, explosion, loud noise, crash, report,finger
-la maladie, disease, illness, sickness, ailment, disorder, tournament
+la maladie, disease, malfare, sickness, ailment, disorder, tournament
 l'italien, italian, from Italy, Italian language, Italic,, resistance
 le rôle, role, part, function, character, duty, virtue
 les fesses, butt, buttocks, bottom, rear, backside, incident
@@ -1659,7 +1659,7 @@ les mathématiques, math, mathematics, maths, arithmetic, calculation,
 l'abri, shed, shelter, refuge, lean-to, hut,
 la procédure, procedure, process, method, routine, protocol,
 le moniteur, monitor, screen, instructor, supervisor, coach,
-la rotation, spin, rotation, turn, revolution, twist,
+la rotation, rotation, turn, revolution, twist,
 le clown, clown, jester, buffoon, comedian, fool,
 le collier, necklace, collar, chain, beads, pendant,
 la boue, mud, mire, sludge, dirt, ooze,
@@ -1748,7 +1748,7 @@ la tente, tent, marquee, pavilion, canopy, shelter,
 la blonde, blonde, fair-haired woman, light beer, ash blonde,,
 l'intention, intention, purpose, aim, intent, plan,
 l'abus, abuse, misuse, mistreatment, excess, violation,
-la poésie, poetry, verse, poems, poesy, literature,
+la poésie, poetry, verse, poems, literature,
 le jet, jet, stream, spurt, airplane, black gem,
 la résistance, resistance, opposition, endurance, strength, resistor,
 la barbe, beard, facial hair, whiskers, goatee, stubble,
@@ -2288,3 +2288,7 @@ l'aéroport, airport, aerodrome, airfield, terminal, air hub,
 le temple, temple, shrine, church, sanctuary, place of worship,
 la connaissance, knowledge, acquaintance, familiarity, awareness, understanding,
 la carte, map, card, menu, chart, ticket,
+la toiture,roof,foot,ton,car,valet
+retenir,keep,come,become,return,tentative,reflect
+l'outil,tool,utilisation,out rage,patrol,overwhelm,own
+
