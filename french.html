@@ -1067,7 +1067,7 @@ async function translateCurrentOptions(targetLang) {
   
   console.log(`\n🔄 === Translate OPTIONS for "${frenchWord}" ===`);
   console.log(`📦 Dict: ${currentDict} → options in [${optionLang}], interface in [${targetLang}]`);
-  
+  console.log(1);
   // ← Восстановление оригиналов
   if (targetLang === '--/--' || targetLang === optionLang) {
     if (statusEl) statusEl.textContent = `🔄 Restoring...`;
@@ -1079,7 +1079,7 @@ async function translateCurrentOptions(targetLang) {
       opt.textContent = original;
       delete opt.dataset.translated;
     });
-    
+    console.log(2);
     delete currentWord.translatedCorrect;
     
     if (statusEl) setTimeout(() => statusEl.textContent = '', 1000);
@@ -1115,8 +1115,10 @@ async function translateCurrentOptions(targetLang) {
       console.log(`✓ [${i+1}] "${item.original}" → "${frenchWord}" (FR correct, no API)`);
       results.push({ item, translated: frenchWord, isFrenchCorrect: true });
     } else {
+      console.log('---',i);
       const translated = await translateText(item.original, optionLang, targetLang, `opt#${i+1}`);
       results.push({ item, translated: translated || item.original, isFrenchCorrect: false });
+      console.log('+++',i);
     }
   }
   
@@ -1208,59 +1210,65 @@ const COMMON_TRANSLATIONS = {
   }
 };
 
+
 async function translateText(text, fromLang, toLang, context = '') {
   if (!text || fromLang === toLang || toLang === '--/--') {
     return text;
   }
   
-  // ← ПРОВЕРКА РУЧНОГО СЛОВАРЯ (быстро, без API)
+  // ← РУЧНОЙ СЛОВАРЬ (мгновенно)
   const dictKey = `${fromLang}->${toLang}`;
   if (COMMON_TRANSLATIONS[dictKey] && COMMON_TRANSLATIONS[dictKey][text.toLowerCase()]) {
     return COMMON_TRANSLATIONS[dictKey][text.toLowerCase()];
   }
   
-  const cacheKey = `${text}:${fromLang}:${toLang}`;
+  // ← КЭШ С УЧЁТОМ ЯЗЫКОВОЙ ПАРЫ
+  const cacheKey = `${text.toLowerCase().trim()}:${fromLang}:${toLang}`;
   if (translationCache[cacheKey]) {
     return translationCache[cacheKey];
   }
   
+  // ← Запрос к MyMemory API
   try {
-    // ← УБРАЛИ ЗАДЕРЖКУ для скорости
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
-    
     const response = await fetch(url);
+    
+    if (!response.ok) {
+      console.log(`⚠️ API error ${response.status} for "${text}" ${fromLang}→${toLang}`);
+      return text;
+    }
+    
     const data = await response.json();
     
     if (data.responseData?.translatedText) {
       let translated = data.responseData.translatedText.trim();
       
-      // ← Если несколько вариантов — берём первый
+      // ← Берём первый вариант если их несколько
       if (translated.includes(',')) {
         translated = translated.split(',')[0].trim();
       }
       
-      // ← Удаляем лишние символы
+      // ← Чистим кавычки/скобки
       translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '');
       
-      // ← БАЗОВАЯ ПРОВЕРКА: не пустой, не тот же текст, не ошибка API
+      // ← БАЗОВАЯ ПРОВЕРКА
       if (translated && 
-          translated.length >= 1 && 
+          translated.length > 0 && 
           translated.toLowerCase() !== text.toLowerCase() &&
           !translated.includes('INVALID') &&
           !translated.includes('NO CONTENT') &&
           !translated.includes('VERBS_')) {
         
-        // ← КЭШИРУЕМ только хорошие переводы
+        // ← КЭШИРУЕМ хороший перевод
         translationCache[cacheKey] = translated;
         return translated;
       }
     }
   } catch (e) {
-    // ← При ошибке сети — возвращаем оригинал
+    console.log(`⚠️ Fetch error for "${text}":`, e.message);
   }
   
-  // ← КЭШИРУЕМ ошибки чтобы не долбить API
-  translationCache[cacheKey] = text;
+  // ← Фолбэк: оригинал (НЕ кэшируем!)
   return text;
 }
 
@@ -2805,6 +2813,7 @@ function updateStats() {
     els.clearCacheBtn?.addEventListener('click', () => {
       const t = translations[currentLanguage];
       if (confirm(t.cacheConfirm)) {
+        translationCache = {};
         exitReviewMode();
         localStorage.removeItem(CONFIG.STORAGE_KEY);
         alert(t.cacheCleared);
