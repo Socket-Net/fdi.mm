@@ -1140,9 +1140,17 @@ async function translateCurrentOptions(targetLang) {
       console.log(`✓ Correct: "${correctOriginal}" → "${displayText}"`);
     }
     
-    // ← Дубликаты (без учёта регистра)
-    const isDuplicate = translatedValues.filter(v => v === displayText.toLowerCase()).length > 1;
-    const isWrongButSameAsCorrect = item.original !== correctOriginal && 
+    // ← Дубликаты: проверяем ТОЛЬКО если слово длинное (>2 символов)
+    // Короткие слова (предлоги) часто имеют одинаковые переводы — это нормально
+    const isShortWord = item.original.length <= 2;
+    let isDuplicate = false;
+    
+    if (!isShortWord) {
+      isDuplicate = translatedValues.filter(v => v === displayText.toLowerCase()).length > 1;
+    }
+    
+    const isWrongButSameAsCorrect = !isShortWord && 
+                                    item.original !== correctOriginal && 
                                     displayText.toLowerCase() === correctTranslated.toLowerCase();
     
     if (isWrongButSameAsCorrect || (isDuplicate && item.original !== correctOriginal)) {
@@ -1158,7 +1166,9 @@ async function translateCurrentOptions(targetLang) {
       delete item.el.dataset.isDuplicate;
     }
   });
-  
+
+
+
   optionElements.forEach(opt => {
     opt.style.opacity = '1';
     opt.style.cursor = 'pointer';
@@ -1174,9 +1184,39 @@ async function translateCurrentOptions(targetLang) {
   console.log(`🔄 === Complete for "${frenchWord}" ===\n`);
 }
 
+
+// ← РУЧНОЙ СЛОВАРЬ ЧАСТЫХ ПЕРЕВОДОВ (для коротких слов)
+const COMMON_TRANSLATIONS = {
+  'ru->fr': {
+    'я': 'je', 'ты': 'tu', 'он': 'il', 'она': 'elle', 'мы': 'nous', 'вы': 'vous', 'они': 'ils',
+    'да': 'oui', 'нет': 'non', 'может': 'peut-être', 'ладно': "d'accord", 'верно': 'correct',
+    'точно': 'exactement', 'к': 'à', 'с': 'avec', 'от': 'de', 'на': 'sur', 'для': 'pour',
+    'и': 'et', 'или': 'ou', 'но': 'mais', 'если': 'si', 'что': 'que', 'кто': 'qui',
+    'где': 'où', 'когда': 'quand', 'почему': 'pourquoi', 'как': 'comment', 'в': 'dans',
+    'из': 'de', 'по': 'par', 'под': 'sous', 'над': 'au-dessus', 'перед': 'avant',
+    'после': 'après', 'между': 'entre', 'без': 'sans', 'через': 'à travers', 'около': 'environ','к' : 'chez'
+  },
+  'ru->en': {
+    'я': 'I', 'ты': 'you', 'он': 'he', 'она': 'she', 'мы': 'we', 'вы': 'you', 'они': 'they',
+    'да': 'yes', 'нет': 'no', 'может': 'maybe', 'ладно': 'okay', 'верно': 'correct',
+    'точно': 'exactly', 'к': 'to', 'с': 'with', 'от': 'from', 'на': 'on', 'для': 'for','к' : 'to'
+  },
+  'ru->de': {
+    'я': 'ich', 'ты': 'du', 'он': 'er', 'она': 'sie', 'мы': 'wir', 'вы': 'Sie', 'они': 'sie',
+    'да': 'ja', 'нет': 'nein', 'может': 'vielleicht', 'ладно': 'okay', 'верно': 'richtig',
+    'точно': 'genau', 'к': 'zu', 'с': 'mit', 'от': 'von', 'на': 'auf', 'для': 'für'
+  }
+};
+
 async function translateText(text, fromLang, toLang, context = '') {
   if (!text || fromLang === toLang || toLang === '--/--') {
     return text;
+  }
+  
+  // ← ПРОВЕРКА РУЧНОГО СЛОВАРЯ ПЕРВЫМ ДЕЛОМ
+  const dictKey = `${fromLang}->${toLang}`;
+  if (COMMON_TRANSLATIONS[dictKey] && COMMON_TRANSLATIONS[dictKey][text.toLowerCase()]) {
+    return COMMON_TRANSLATIONS[dictKey][text.toLowerCase()];
   }
   
   const cacheKey = `${text}:${fromLang}:${toLang}`;
@@ -1185,7 +1225,6 @@ async function translateText(text, fromLang, toLang, context = '') {
   }
   
   try {
-    // Небольшая задержка
     await new Promise(resolve => setTimeout(resolve, 30));
     
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
@@ -1201,48 +1240,63 @@ async function translateText(text, fromLang, toLang, context = '') {
         translated = translated.split(',')[0].trim();
       }
       
-      // ← Удаляем лишние символы в начале/конце (кавычки, скобки)
-      translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '');
+      // ← Удаляем лишние символы (НО ОСТАВЛЯЕМ ТОЧКУ ДЛЯ FR!)
+      if (toLang !== 'fr') {
+        translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '');
+      } else {
+        // Для французского: убираем кавычки/скобки, но оставляем точку в конце
+        translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '').replace(/\.$/, '.');
+      }
       
-      // ← БАЗОВАЯ ВАЛИДАЦИЯ (универсальная для всех языков)
-      // 1. Не пустое
-      // 2. Длина >= 2 (чтобы отсечь "а", "я" и т.д., если это ошибки)
-      // 3. Не спецсимволы (точка, запятая, тире)
-      // 4. Не совпадает с оригиналом (значит реально перевелось)
+      // ← БАЗОВАЯ ВАЛИДАЦИЯ
       const isBasicValid = translated && 
-                           translated.length >= 2 && 
-                           !['.', ',', '!', '?', '-', '_', '...', '...'].includes(translated) &&
+                           translated.length >= 1 &&
+                           !['.', ',', '!', '?', '-', '_', '...', ''].includes(translated.trim()) &&
                            translated.toLowerCase() !== text.toLowerCase();
       
       if (isBasicValid) {
-        // ← СПЕЦИАЛЬНО ДЛЯ АРАБСКОГО: проверяем что это реально арабский скрипт
-        // (потому что API часто возвращает английский, если не знает слова)
-        if (toLang === 'ar' && !/[\u0600-\u06FF]/.test(translated)) {
-           console.log(`⚠️ Arabic check failed: "${translated}"`);
-           console.log(`↩️ Fallback: "${text}"`);
-           return text;
+        // ← ДОПОЛНИТЕЛЬНАЯ ПРОВЕРКА для коротких слов (1-2 символа)
+        if (text.length <= 2 && !text.includes(' ')) {
+          if (translated.includes(' ') || translated.length > 10) {
+            console.log(`⚠️ Suspicious translation for short word: "${text}" → "${translated}"`);
+            return text;
+          }
         }
         
-        // ← СПЕЦИАЛЬНО ДЛЯ РУССКОГО: проверяем кириллицу
-        // (чтобы не проскочил английский "stone" вместо "камень")
-        if (toLang === 'ru' && !/[\u0400-\u04FF]/.test(translated)) {
-           console.log(`⚠️ Russian check failed: "${translated}"`);
-           console.log(`↩️ Fallback: "${text}"`);
-           return text;
+        // ← ПРОВЕРКА СКРИПТА (с точкой для французского)
+        let scriptValid = true;
+        
+        if (toLang === 'ar') {
+          scriptValid = /^[\u0600-\u06FF\s\'\-\.]+$/.test(translated);
+        } 
+        else if (toLang === 'ru') {
+          scriptValid = /^[\u0400-\u04FF\s\'\-\.]+$/.test(translated);
+        } 
+        else if (['en', 'de', 'fr'].includes(toLang)) {
+          // ← Для французского разрешаем точку в конце
+          if (toLang === 'fr') {
+            scriptValid = /^[a-zA-Z\u00C0-\u00FF\s\'\-\.]+$/.test(translated);
+          } else {
+            scriptValid = /^[a-zA-Z\u00C0-\u00FF\s\'\-]+$/.test(translated);
+          }
         }
-
-        // Всё ок, возвращаем перевод
-        translationCache[cacheKey] = translated;
-        return translated;
+        
+        if (scriptValid) {
+          translationCache[cacheKey] = translated;
+          return translated;
+        } else {
+          console.log(`⚠️ Script mismatch: "${text}" → "${translated}" [${toLang}]`);
+        }
       }
     }
   } catch (e) {
     console.warn(`⚠️ Translation error:`, e.message);
   }
   
-  // Если что-то пошло не так — возвращаем оригинал
   return text;
 }
+
+
 
 // Сброс переводов при следующем слове
 function resetTranslationState() {
@@ -2433,7 +2487,8 @@ function showLearnedWords() {
     }
 
 
-// ===== ANSWER (SIMPLIFIED) =====
+
+// ===== ИСПРАВЛЕННАЯ handleAnswer (с кнопкой удаления) =====
 function handleAnswer(selectedElement, selectedText) {
   if (answered) return;
   answered = true;
@@ -2441,7 +2496,6 @@ function handleAnswer(selectedElement, selectedText) {
   const opts = els.options.querySelectorAll('.option');
   const correctOriginal = currentWord.correct;
   
-  // ← selectedText теперь — это оригинал (потому что передаём opt)
   const selectedOriginal = selectedText;
   const isCorrect = selectedOriginal === correctOriginal;
   
@@ -2450,11 +2504,9 @@ function handleAnswer(selectedElement, selectedText) {
     opt.style.pointerEvents = 'none';
     const optOriginal = opt.dataset.original;
     
-    // Подсветка правильного (по оригиналу)
     if (optOriginal === correctOriginal) {
       opt.classList.add('correct');
     }
-    // Подсветка выбранного неправильного
     if (optOriginal === selectedOriginal && !isCorrect) {
       opt.classList.add('wrong');
     }
@@ -2505,9 +2557,38 @@ function handleAnswer(selectedElement, selectedText) {
   updateStats();
   els.nextBtn.disabled = false;
   
-  // ... (остальной код reviewMode без изменений)
+  // ← КНОПКА УДАЛЕНИЯ ИЗ ИЗБРАННОГО (в режиме review)
+  if (reviewMode && progress[key]?.isFavorite) {
+    // Проверяем, нет ли уже кнопки
+    let removeBtn = document.querySelector('.remove-fav-btn');
+    
+    if (!removeBtn) {
+      removeBtn = document.createElement('button');
+      removeBtn.className = 'secondary-btn remove-fav-btn';
+      removeBtn.style.cssText = 'margin-top:0.5rem;font-size:0.85rem;padding:0.5rem 1rem;';
+      removeBtn.textContent = '❌ Remove from favorites';
+      removeBtn.title = 'Remove from favorites';
+      
+      removeBtn.onclick = () => {
+        progress[key].isFavorite = false;
+        updateFavoriteButton();
+        updateStats();
+        saveData();
+        removeBtn.textContent = '✅ Removed!';
+        removeBtn.disabled = true;
+        setTimeout(() => {
+          removeBtn.remove();
+        }, 1500);
+      };
+      
+      // Добавляем кнопку после feedback
+      const feedbackEl = document.getElementById('feedback');
+      if (feedbackEl) {
+        feedbackEl.parentNode.insertBefore(removeBtn, feedbackEl.nextSibling);
+      }
+    }
+  }
 }
-
 
     // ===== STATS =====
 function updateStats() {
