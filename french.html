@@ -960,6 +960,7 @@
         }
     };
 
+    
     // ===== CONFIG =====
     const CONFIG = {
       POINTS_TO_LEARN: 5,
@@ -1156,7 +1157,7 @@ function getDictProgress(dictName) {
     }
 
     function filterDictionariesByLanguage(lang) {
-      if (lang === '--/--' || lang === 'fr') {
+      if (lang === '--/--') {
         // Show all dictionaries
         return availableDicts;
       }
