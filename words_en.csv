@@ -58,7 +58,7 @@ pari,bet,wager,stake,gamble,odds,speculation
 rêve,dream,vision,fantasy,nightmare,aspiration,ideal
 le navire,ship,vessel,craft,boat,liner,steamer
 la voiture,car,vehicle,truck,bike,train,bus
-les fruits,fruit,vegetables,meat,fish,cheese,bread
+les fruits,fruits,vegetables,meat,fish,cheese,bread
 la carotte,carrot,vegetable,orange,root,healthy,raw
 la pomme de terre,potato,vegetable,tuber,starchy,fried,boiled
 la tomate,tomato,vegetable,red,fruit,sauce,salad
@@ -1246,7 +1246,7 @@ l'espion, spy, agent, mole, informant, operative,
 le senior, senior, older, elder, superior, veteran,
 le garage, garage, carport, workshop, repair shop,
 l'indice, index, clue, hint, sign, indication,
-le magazine, magazine, periodical, journal, storehouse,,
+le magazine, magazine, periodical, mandarine, storehouse,
 la zone, zone, area, region, sector, district,
 l'épaule, shoulder, upper arm, burden, responsibility,,
 le progrès, progress, advancement, development, improvement,,
@@ -1842,7 +1842,6 @@ la part, share, portion, piece, division, allocation, stake
 le rire, laugh, laughter, chuckle, giggle, snicker, roar
 le lieutenant, lieutenant, deputy, second-in-command, officer, assistant, subordinate
 le cri, cry, shout, scream, yell, wail, call
-la maman, mum, mom, mommy, mother, mama, ma
 la visite, visit, call, trip, tour, inspection, visitation
 le siège, seat, chair, throne, headquarters, position, siege
 l'enseignant, teacher, instructor, educator, tutor, lecturer, professor
@@ -2008,7 +2007,7 @@ l'animal, animal, creature, beast, pet, wildlife, brute
 le diable, devil, demon, satan, fiend, evil one, hellion
 le week-end, weekend, Saturday-Sunday, rest days, two-day break, holiday,
 la pierre, stone, rock, pebble, gem, boulder, gravestone
-la chérie, sweetheart, darling, honey, dear, love, babe
+la chérie, darling, dear, love, babe
 la peau, skin, hide, dermis, leather, surface, rind
 le couteau, knife, blade, cutter, dagger, pocket knife, tool
 la drogue, drug, narcotic, medicine, substance, dope, medication
@@ -2069,7 +2068,6 @@ le manager, manager, boss, supervisor, director, handler, executive
 la taille, size, height, waist, stature, dimension, scale
 l'opération, operation, surgery, procedure, action, mission, transaction
 l'astuce, trick, tip, hack, gadget, ruse, clever idea
-la chérie, sweetie, darling, honey, dear, love, babe
 le paquet, pack, package, parcel, bundle, bunch, packet
 le monstre, monster, beast, creature, giant, freak, villain
 le centre, center, centre, middle, hub, core, focus
