@@ -1208,19 +1208,12 @@ const COMMON_TRANSLATIONS = {
   }
 };
 
-
 async function translateText(text, fromLang, toLang, context = '') {
   if (!text || fromLang === toLang || toLang === '--/--') {
     return text;
   }
   
-  // ← НОВОЕ: Если текст слишком длинный — не мучаем API, он всё равно вернет ошибку
-  if (text.length > 100) {
-    console.log(`⚠️ Skipping translation for long text: "${text.substring(0, 30)}..."`);
-    return text;
-  }
-  
-  // ← ПРОВЕРКА РУЧНОГО СЛОВАРЯ
+  // ← ПРОВЕРКА РУЧНОГО СЛОВАРЯ (быстро, без API)
   const dictKey = `${fromLang}->${toLang}`;
   if (COMMON_TRANSLATIONS[dictKey] && COMMON_TRANSLATIONS[dictKey][text.toLowerCase()]) {
     return COMMON_TRANSLATIONS[dictKey][text.toLowerCase()];
@@ -1232,27 +1225,14 @@ async function translateText(text, fromLang, toLang, context = '') {
   }
   
   try {
-    await new Promise(resolve => setTimeout(resolve, 30));
-    
+    // ← УБРАЛИ ЗАДЕРЖКУ для скорости
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
     
     const response = await fetch(url);
     const data = await response.json();
     
-    // ← ПРОВЕРКА НА ОШИБКИ API
     if (data.responseData?.translatedText) {
-      const translatedRaw = data.responseData.translatedText;
-      
-      // ← Если API вернул ошибку — возвращаем оригинал
-      if (translatedRaw.includes('INVALID') || 
-          translatedRaw.includes('NO CONTENT') || 
-          translatedRaw.includes('NOT SUPPORTED') ||
-          (translatedRaw.toUpperCase() === translatedRaw && translatedRaw.length > 20)) {
-        console.log(`⚠️ API error for "${text}": ${translatedRaw.substring(0, 50)}...`);
-        return text;
-      }
-      
-      let translated = translatedRaw.trim();
+      let translated = data.responseData.translatedText.trim();
       
       // ← Если несколько вариантов — берём первый
       if (translated.includes(',')) {
@@ -1260,50 +1240,29 @@ async function translateText(text, fromLang, toLang, context = '') {
       }
       
       // ← Удаляем лишние символы
-      if (toLang !== 'fr') {
-        translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '');
-      } else {
-        translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '').replace(/\.$/, '.');
-      }
+      translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '');
       
-      // ← БАЗОВАЯ ВАЛИДАЦИЯ
-      const isBasicValid = translated && 
-                           translated.length >= 1 &&
-                           !['.', ',', '!', '?', '-', '_', '...', ''].includes(translated.trim()) &&
-                           translated.toLowerCase() !== text.toLowerCase();
-      
-      if (isBasicValid) {
-        // ← ПРОВЕРКА СКРИПТА
-        let scriptValid = true;
+      // ← БАЗОВАЯ ПРОВЕРКА: не пустой, не тот же текст, не ошибка API
+      if (translated && 
+          translated.length >= 1 && 
+          translated.toLowerCase() !== text.toLowerCase() &&
+          !translated.includes('INVALID') &&
+          !translated.includes('NO CONTENT') &&
+          !translated.includes('VERBS_')) {
         
-        if (toLang === 'ar') {
-          scriptValid = /^[\u0600-\u06FF\s\'\-\.]+$/.test(translated);
-        } 
-        else if (toLang === 'ru') {
-          scriptValid = /^[\u0400-\u04FF\s\'\-\.]+$/.test(translated);
-        } 
-        else if (['en', 'de', 'fr'].includes(toLang)) {
-          if (toLang === 'fr') {
-            scriptValid = /^[a-zA-Z\u00C0-\u00FF\s\'\-\.]+$/.test(translated);
-          } else {
-            scriptValid = /^[a-zA-Z\u00C0-\u00FF\s\'\-]+$/.test(translated);
-          }
-        }
-        
-        if (scriptValid) {
-          translationCache[cacheKey] = translated;
-          return translated;
-        }
+        // ← КЭШИРУЕМ только хорошие переводы
+        translationCache[cacheKey] = translated;
+        return translated;
       }
     }
   } catch (e) {
-    console.warn(`⚠️ Translation error:`, e.message);
+    // ← При ошибке сети — возвращаем оригинал
   }
   
+  // ← КЭШИРУЕМ ошибки чтобы не долбить API
+  translationCache[cacheKey] = text;
   return text;
 }
-
-
 
 // Сброс переводов при следующем слове
 function resetTranslationState() {
