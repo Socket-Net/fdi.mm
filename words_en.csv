@@ -870,7 +870,7 @@ la joie,joy,happiness,delight,glee,pleasure,bliss
 beau,beautiful,handsome,pretty,ugly,nice,fine
 salle,room/hall,hall,room,space,area,building
 fusil,rifle,gun,firearm,shotgun,weapon,musket
-ensemble,set,group,collection,whole,unit,assembly
+ensemble,together,group,whole,unit
 poignée,handle,grip,knob,hilt,handful,bunch
 bienvenue,welcome,greeting,reception,admission,acceptance,hello
 les légumes,vegetables,greens,produce,food,healthy,diet
@@ -897,7 +897,7 @@ la faiblesse,weakness,frailty,feebleness,debility,vulnerability,flaw
 idiot,idiot,fool,dummy,moron,blockhead,dunce
 cuisine,kitchen/cooking,food,meal,restaurant,cook,chef
 l'œuf,egg,food,breakfast,protein,shell,chicken
-gens,people,folks,individuals,persons,humans,crowd
+gens,people,folks,individuals,persons,crowd
 attention,attention,focus,concentration,care,heed,notice
 la viande,meat,flesh,beef,pork,food,protein
 feu,fire,flame,heat,light,smoke,burn
@@ -1080,7 +1080,6 @@ la déclaration, declaration, announcement, assertion, testimony,place
 la hausse, rise, increase, surge, upturn, growth, boost
 la veste, jacket, coat, blazer, windbreaker, outerwear,custom
 la miséricorde, mercy, compassion, pity, clemency, forgiveness, grace
-la prostituée, whore, prostitute, harlot, hooker, sex worker, streetwalker
 l'interrupteur, switch, button, toggle, breaker, lever, figures
 le repas, meal, repast, dinner, lunch, rest, repair
 la direction, direction, way, guidance, management, heading, instruction
@@ -1488,7 +1487,7 @@ la plaine, plain, flatland, prairie, level ground,,
 l'expérience, experiment, experience, trial, test, background,
 le moine, monk, friar, brother, religious, ascetic,
 le lion, lion, big cat, king of beasts, celebrity, star,
-le gamin, lad, kid, boy, urchin, youngster,
+le gamin, kid, garmin, urchin, youngster, game
 l'exercice, exercise, practice, drill, workout, training,
 la bourse, purse, scholarship, stock exchange, bag,,
 la grotte, cave, cavern, grotto, den, hollow,
