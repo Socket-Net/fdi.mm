@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🇫🇷 French Vocab Trainer Pro</title>
+  <title>🇫🇷 Vocab Trainer Pro</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -127,7 +127,30 @@
       font-weight: bold;
       color: #fff;
     }
-    
+  .tts-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s;
+  opacity: 0.7;
+}
+
+.tts-btn:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.tts-btn.speaking {
+  animation: pulse 1s infinite;
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}  
     .favorite-btn, .image-toggle-btn {
       background: none;
       border: none;
@@ -474,6 +497,7 @@
           <div style="display:flex;gap:0.5rem">
             <button class="image-toggle-btn" id="imageToggleBtn" title="Show/Hide image">🖼️</button>
             <button class="favorite-btn" id="favoriteBtn" title="Add to favorites">☆</button>
+            <button class="tts-btn" id="ttsBtn" title="Listen">🔊</button>
           </div>
         </div>
         <div class="word-progress" id="wordProgress"></div>
@@ -971,7 +995,8 @@
       errorCount: document.getElementById('errorCount'),
       favoriteCount: document.getElementById('favoriteCount'),
       progressFill: document.getElementById('progressFill'),
-      historyList: document.getElementById('historyList')
+      historyList: document.getElementById('historyList'),
+      ttsBtn: document.getElementById('ttsBtn')
     };
 
 
@@ -1132,6 +1157,46 @@ function getDictProgress(dictName) {
         localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(data));
       } catch (e) { console.warn('Save failed:', e); }
     }
+// ===== TTS FUNCTIONS =====
+const languageVoices = {
+  'fr': 'fr-FR',
+  'de': 'de-DE', 
+  'en': 'en-US',
+  'ru': 'ru-RU',
+  'ar': 'ar-SA'
+};
+
+function speakWord() {
+  if (!currentWord || !window.speechSynthesis) {
+    alert('TTS not supported in this browser');
+    return;
+  }
+  
+  // Cancel any ongoing speech
+  window.speechSynthesis.cancel();
+  
+  const utterance = new SpeechSynthesisUtterance(currentWord.french);
+  
+  // Set language based on current selection
+  const langCode = 'fr-FR';
+  utterance.lang = langCode;
+  utterance.rate = 0.9; // Slightly slower for learning
+  utterance.pitch = 1;
+  
+  // Visual feedback
+  els.ttsBtn.classList.add('speaking');
+  
+  utterance.onend = () => {
+    els.ttsBtn.classList.remove('speaking');
+  };
+  
+  utterance.onerror = () => {
+    els.ttsBtn.classList.remove('speaking');
+    console.error('TTS error');
+  };
+  
+  window.speechSynthesis.speak(utterance);
+}
 
 
 function parseCSV(text) {
@@ -2318,35 +2383,38 @@ function updateStats() {
 
     els.favoriteBtn?.addEventListener('click', toggleFavorite);
     els.imageToggleBtn?.addEventListener('click', toggleImageVisibility); 
-els.nextBtn?.addEventListener('click', () => {
-  // В режиме карточек — сразу засчитываем как правильный ответ
-  if ((isCardMode || currentWord?.isCard) && currentWord) {
-    const key = currentWord.french;
-    if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
-    
-    progress[key].points++; // +1 балл за просмотр
-    stats.totalCorrect++;
-    
-    saveDictStats(currentDict);
-    saveData();
-    
-    const points = progress[key]?.points ?? 0;
-    
-    // Удаляем из пула если выучили (5 баллов)
-    if (points >= CONFIG.POINTS_TO_LEARN) {
-      const beforeLength = activePool.length;
-      activePool = activePool.filter(w => w !== key);
-      console.log(`🎓 "${key}" learned! (${beforeLength} → ${activePool.length})`);
-    }
-    
-    if (activePool.length < poolSize * 0.5) refillActivePool();
-    
-    updateStats();
-  }
-  
-  // Переход к следующему слову (универсально)
-  nextWord();
-});
+
+    els.ttsBtn?.addEventListener('click', speakWord);
+
+    els.nextBtn?.addEventListener('click', () => {
+      // В режиме карточек — сразу засчитываем как правильный ответ
+      if ((isCardMode || currentWord?.isCard) && currentWord) {
+        const key = currentWord.french;
+        if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
+        
+        progress[key].points++; // +1 балл за просмотр
+        stats.totalCorrect++;
+        
+        saveDictStats(currentDict);
+        saveData();
+        
+        const points = progress[key]?.points ?? 0;
+        
+        // Удаляем из пула если выучили (5 баллов)
+        if (points >= CONFIG.POINTS_TO_LEARN) {
+          const beforeLength = activePool.length;
+          activePool = activePool.filter(w => w !== key);
+          console.log(`🎓 "${key}" learned! (${beforeLength} → ${activePool.length})`);
+        }
+        
+        if (activePool.length < poolSize * 0.5) refillActivePool();
+        
+        updateStats();
+      }
+      
+      // Переход к следующему слову (универсально)
+      nextWord();
+    });
 
     els.reviewBtn?.addEventListener('click', () => { 
       console.log('🔄 Review button clicked');
