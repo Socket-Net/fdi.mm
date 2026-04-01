@@ -6,8 +6,8 @@ je,I,you,he,she,we,they
 déjà,already,yet,still,never,just,soon
 hier il faisait froid,yesterday it was cold,yesterday it was hot,yesterday it was nice,yesterday it rained,yesterday it snowed,yesterday it was sunny
 non,no,yes,maybe,okay,not,sure
-cour,court,yard,courtyard,royal court,law court,enclosure
-faux,false,wrong,fake,untrue,incorrect,bogus
+cour,courtyard,royal court,law court,enclosure,court
+faux,false / wrong,fake,untrue,incorrect,bogus
 valeur,value,worth,merit,importance,significance,price
 arbre,tree,wood,plant,forest,branch,leaf
 dame,lady,woman,madam,dame,gentlewoman,missus
@@ -38,7 +38,7 @@ qu'est-ce que c'est,what is this,what is that,what is it,who is this,where is it
 mal,badly/wrong,well,good,okay,fine,nice
 le mois,month,week,day,year,time,period
 le mariage,marriage,wedding,matrimony,union,spousal,ceremony
-le temps,time,weather,hour,day,moment,period
+le temp,time,weather,hour,day,moment,period
 l'usure,wear and tear,erosion,deterioration,depreciation,attrition
 riche,rich,wealthy,affluent,well-off,opulent,prosperous
 nous sommes allés,we went,we have gone,we will go,I went,they went,you went
@@ -72,7 +72,7 @@ impossible,impossible,unfeasible,unattainable,unthinkable,no way,absurd
 oncle,uncle,unc,relative,aunt's husband,father's brother,area
 la laideur,ugliness,unattractiveness,hideousness,repulsiveness,awfulness,monstrosity
 laid,ugly,unattractive,hideous,unsightly,repulsive,awful
-tour,tour,turn,round,trick,spin,rotation
+tour,turn,round,trick,spin,rotation
 confiance,confidence,trust,belief,faith,reliance,assurance
 sans importance,unimportant,trivial,minor,insignificant,negligible,irrelevant
 le trajet,journey,trip,route,travel,passage,commute
@@ -186,7 +186,7 @@ accepter,to accept,to receive,to agree,to admit,to welcome,to approve
 se rappeler un nom,to remember a name,to recall person,to think of title,to bring back memory,to keep in mind,to not forget
 se souvenir,to remember,to recall,to keep in mind,to memorize,to reminisce,to retain
 écrire,to write,to read,to say,to tell,to study,to learn
-asseyez ici,sit down here,send ice,save cube,safe there,support us
+asseyez-vois ici,sit down here,send ice,save cube,safe there,support us
 lever,to lift,to raise,to get up,to rise,to hold up,to pick up
 courir,to run,to race,to hurry,to flow,to manage,to operate
 quitter,to leave,exit,to send,quite,get rid off,to give up,to drop
@@ -314,6 +314,7 @@ découvrir un trésor,to discover a treasure,to find out wealth,to uncover riche
 découvrir,to discover,to find out,to uncover,to reveal,to detect,to invent
 découvrir un nouveau lieu,to discover a new place,to find new spot,to explore unknown,to come across location,to uncover site,to find hidden
 résoudre un puzzle,to solve a puzzle,to figure out riddle,to crack code,to find solution,to complete challenge,to succeed task
+résoudre,to solve,to decide,to evolve,to reorder,to return
 avoir sommeil,to be sleepy,to feel tired,to need sleep,to want to rest,to be drowsy,to yawn
 avoir soif,to be thirsty,to feel thirsty,to need drink,to want water,to crave liquid,to feel dry
 avoir peur,to be afraid,to feel scared,to fear,to dread,to be frightened,to panic
@@ -510,13 +511,14 @@ le mot,word,term,phrase,saying,letter,speech
 maître,master,teacher,instructor,chief,owner,expert
 un café allongé,coffee,tea,drink,milk,juice,espresso
 l'eau,water,tea,coffee,wine,juice,milk
-haut,high,tall,lofty,upper,elevated,raised
+haut,high/tall,lofty,upper,elevated,raised
 douceur,softness,sweetness,gentleness,mildness,tenderness,smoothness
 chéri,darling,sweetheart,dear,love,beloved,honey
 le sucre,sugar,sweetener,white,powder,ingredient,sweet
 acide,sour/acid,sweet,bitter,salty,spicy,tart
 amer,bitter,sweet,sour,salty,spicy,tasty
-salé,dirty,salty,sweet,bitter,sour,spicy,tasty
+salé,salty,sweet,bitter,sour,spicy,tasty,dirty
+sale,dirty,salty,sweet,bitter,sour,spicy,tasty
 épicé,spicy,sweet,salty,bitter,sour,hot
 dîner,dinner,supper,evening meal,dine,feast,banquet
 la lune,moon,sun,star,night,light,dark
@@ -830,7 +832,7 @@ je suis content,I am happy (masc),I am glad,I am pleased,she is happy,we are hap
 je viens de...,I come from...,I am from...,we come from...,they come from...,he comes from...,she comes from...
 je m'appelle...,my name is...,I am called...,what is your name,he is called,we are called,they are called
 tu es,you are,I am,he is,she is,we are,they are
-j'adore...,I love...,I adore...,I really like...,we love...,they love...,he loves...
+j'adore...,I love...,I really like...,we love...,they love...,he loves...
 tu,you (informal),I,he,she,we,they
 le supermarché,supermarket,hypermarket,grocery,store,shop,food
 hâte,haste,hurry,rush,urgency,quickness,speed
@@ -917,7 +919,7 @@ ordinaire,ordinary,extraordinary,special,common,usual,regular
 cher,dear,expensive,costly,precious,valued,beloved
 espoir,hope,expectation,aspiration,wish,dream,optimism
 fatigué,tired,exhausted,energetic,happy,sad,good
-pardon,sorry,excuse me,pardon me,thank you,please,hello
+pardon,sorry,thank you,please,hello
 test,test,exam,trial,check,assessment,evaluation
 preuve,proof,evidence,demonstration,testimony,verification,substantiation
 âge,age,era,period,time,epoch,generation
@@ -1096,7 +1098,7 @@ le jaune, yellow, gold, lemon, canary, amber, saffron
 l'emplacement, location, position, site, spot, place, venue
 l'imbécile, jerk, fool, fish, blockhead, dumb
 le chocolat, chocolate, cocoa, sweet, candy, bar, dessert
-l'image, image, picture, photo, representation, impression, figure
+l'image, image, photo, representation, impression, figure
 habituel, regular, usual, customary, normal, habitual, ordinary
 le taxi, taxi, cab, taxicab, ride, hire car,tax
 la pisse, piss, urine, pee, wee, urination,piece
@@ -1407,7 +1409,6 @@ la voie, lane, way, path, track, route,
 le baseball, baseball, ball game, American sport, diamond game,,
 le titre, title, heading, headline, rank, ownership,
 le commissaire, commissioner, commissary, police chief, official,,
-le pipi, pee, urine, wee, piddle, urination,
 la charité, charity, benevolence, alms, kindness, mercy,
 le drame, drama, play, tragedy, crisis, melodrama,
 la cérémonie, ceremony, ritual, rite, formality, observance,
@@ -1816,7 +1817,7 @@ le,the (masc),a,an,this,that,he
 les,the (plur),a,an,these,those,they
 le siècle,century,100 years,era,age,period,time
 le billet,ticket, note,bill,money,entry,pass
-l'âme, soul, spirit, mind, essence, heart, ghost
+âme, soul, spirit, mind, essence, heart, ghost
 la liste, list, roster, inventory, catalog, register, schedule
 l'or, gold, golden, treasure, wealth, riches, yellow metal
 l'après-midi, afternoon, midday, noontime, daytime, post-lunch, early evening
@@ -1873,7 +1874,6 @@ le contact, contact, touch, connection, communication, link, acquaintance
 le magasin, store, shop, department store, supermarket, warehouse, outlet
 les gars,guys,train stations,wars,stops,stations,trains,
 la boutique, shop, boutique store, small shop, specialty store, stall, emporium
-le professeur, professor, teacher, lecturer, instructor, academic, don
 la madame, madam, Mrs., lady, ma'am, gentlewoman, missus
 le doute, doubt, uncertainty, suspicion, hesitation, misgiving, skepticism
 l'avion, plane, airplane, aircraft, jet, airliner, flight
@@ -1895,7 +1895,7 @@ la saisie, grab, seizure, capture, confiscation, grip, taking
 la victime, victim, casualty, sufferer, injured party, prey, target
 l'ordinateur, computer, PC, laptop, desktop, machine, device
 le camion, truck, lorry, van, vehicle, freight truck, pickup
-l'atteinte, reach, attainment, access, range, grasp, achievement
+la réussite, achievement,attainment, access, range, grasp, reach
 la planche, board, plank, wooden board, surfboard, shelf, panel
 la graisse, fat, grease, lard, blubber, oil, adipose
 la planète, planet, world, earth, globe, celestial body, sphere
@@ -2042,7 +2042,7 @@ le pardon, pardon, forgiveness, excuse, mercy, apology, reprieve
 le lait, milk, dairy, cow's milk, liquid, white drink, calcium source
 la vitesse, speed, velocity, quickness, pace, rate, swiftness
 le dossier, file, folder, record, case, document, portfolio
-ruban, ribbon, band, strip, gang, rape, belt
+ruban, ribbon, band, strip, gang, belt
 la pratique, practice, training, custom, habit, exercise, routine
 l'urgence, emergency, urgency, crisis, rush, priority, accident
 le pont, bridge, span, overpass, deck, connection, viaduct
@@ -2167,7 +2167,7 @@ la chirurgie, surgery, operation, surgical procedure, medical operation,,
 le préjudice, harm, damage, prejudice, injury, detriment, wrong
 le personnel, staff, personnel, employees, workforce, team,
 le chef, chef, boss, head, leader, cook, chief
-le temps, weather, time, period, tense, duration,
+les temps, weather, time, period, tense, duration,
 la distance, distance, space, gap, range, remoteness, length
 le processus, process, procedure, method, course, operation,
 la saison, season, time of year, period, spice, seasoning,
@@ -2227,7 +2227,7 @@ la communauté, community, society, group, neighborhood, fellowship,
 le sujet, subject, topic, theme, citizen, matter,
 le loyer, rent, rental, lease, tenancy, payment,
 la vengeance, revenge, vengeance, retribution, payback, reprisal,
-le commerce, trade, commerce, business, dealing, traffic,
+le commerce, trade, business, dealing, traffic,
 la forêt, forest, woodland, woods, jungle, grove,
 la ruée, rush, stampede, surge, gold rush, dash, onrush
 le propriétaire, owner, proprietor, landlord, possessor, holder,
@@ -2251,13 +2251,14 @@ l'hiver, winter, cold season, wintertime, frost, chill,
 l'assistant, assistant, helper, aide, deputy, support,
 le meurtrier, murderer, killer, assassin, slayer, homicide,
 la ferme, farm, farmhouse, estate, ranch, holding,
-la langue, tongue, language, speech, idiom, dialect,
+la langue, language / tongue, speech, idiom, dialect,
 la toilette, toilet, lavatory, restroom, bathroom, WC,
 le génie, genius, genie, spirit, brilliance, talent,
 le carré, square, plaza, block, squared, four-sided,
 le secrétaire, secretary, clerk, assistant, minister, typist,
 la connexion, connection, link, junction, network, bond,
-normalement,usually,normally,especially,eventually,finelly
+normalement,normally,especially,eventually,finelly,usually
+généralement,usually,especially,eventually,finelly,normally
 l'en bas, downstairs, below, beneath, at the bottom, lower level,
 la chambre, bedroom, room, chamber, hall, compartment,
 le professionnel, professional, expert, pro, specialist, practitioner,
@@ -2284,7 +2285,7 @@ l'aéroport, airport, aerodrome, airfield, terminal, air hub,
 le temple, temple, shrine, church, sanctuary, place of worship,
 la connaissance, knowledge, acquaintance, familiarity, awareness, understanding,
 la carte, map, card, menu, chart, ticket,
-la toiture,roof,foot,ton,car,valet
-retenir,keep,come,become,return,tentative,reflect
-l'outil,tool,utilisation,out rage,patrol,overwhelm,own
-dehors,outside,devide,derive,ruin,rolls,honora
+la toiture,roofing,foot,ton,car,valet
+retenir,to retain / to remember,come,become,return,tentative,reflect
+l'outil,tool,utilisation,outrage,patrol,overwhelm,own
+dehors,outside,devide,countryside,aside,derive
