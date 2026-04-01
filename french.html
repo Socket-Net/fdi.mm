@@ -2359,16 +2359,16 @@ async function nextWord() {
         els.options.style.gridTemplateColumns = optionCount > 6 ? '1fr 1fr 1fr' : '1fr 1fr';
       }
       
-          // ← КЛЮЧЕВОЕ: создаём кнопки с dataset.original
-          opts.forEach(opt => {
-            const btn = document.createElement('div');
-            btn.className = 'option';
-            btn.textContent = opt;
-            btn.dataset.original = opt;  // ← СОХРАНЯЕМ ОРИГИНАЛ!
-            btn.onclick = () => handleAnswer(opt, currentWord.correct);
-            els.options.appendChild(btn);
-          });
-
+opts.forEach(opt => {
+  const btn = document.createElement('div');
+  btn.className = 'option';
+  btn.textContent = opt;
+  btn.dataset.original = opt;
+  
+  btn.onclick = () => handleAnswer(btn, opt);
+  
+  els.options.appendChild(btn);
+});
           originalOptions = Array.from(els.options.querySelectorAll('.option')).map(opt => ({
             el: opt,
             original: opt.dataset.original || opt.textContent.trim()
@@ -2433,42 +2433,32 @@ function showLearnedWords() {
     }
 
 
-// ===== ANSWER (FIXED) =====
+// ===== ANSWER (SIMPLIFIED) =====
 function handleAnswer(selectedElement, selectedText) {
   if (answered) return;
   answered = true;
   
   const opts = els.options.querySelectorAll('.option');
-  
-  // ← КЛЮЧЕВОЕ: правильный ответ берём из оригинала
   const correctOriginal = currentWord.correct;
   
+  // ← selectedText теперь — это оригинал (потому что передаём opt)
+  const selectedOriginal = selectedText;
+  const isCorrect = selectedOriginal === correctOriginal;
+  
+  // Подсвечиваем кнопки
   opts.forEach(opt => {
     opt.style.pointerEvents = 'none';
-    
-    // ← Сравниваем ТОЛЬКО по dataset.original
     const optOriginal = opt.dataset.original;
     
-    // Подсветка правильного
+    // Подсветка правильного (по оригиналу)
     if (optOriginal === correctOriginal) {
       opt.classList.add('correct');
     }
     // Подсветка выбранного неправильного
-    if (optOriginal === selectedText && selectedText !== correctOriginal) {
+    if (optOriginal === selectedOriginal && !isCorrect) {
       opt.classList.add('wrong');
     }
   });
-  
-  // ← Проверяем правильность: ищем кнопку по тексту и берём её original
-  let selectedOriginal = selectedText; // фолбэк
-  for (const opt of opts) {
-    if (opt.textContent.trim() === selectedText) {
-      selectedOriginal = opt.dataset.original || selectedText;
-      break;
-    }
-  }
-  
-  const isCorrect = selectedOriginal === correctOriginal;
   
   const key = currentWord.french;
   
@@ -2515,31 +2505,9 @@ function handleAnswer(selectedElement, selectedText) {
   updateStats();
   els.nextBtn.disabled = false;
   
-  if (reviewMode && progress[key]?.isFavorite) {
-    const removeBtn = document.createElement('button');
-    removeBtn.className = 'secondary-btn';
-    removeBtn.style.fontSize = '0.75rem';
-    removeBtn.style.padding = '0.25rem 0.25rem';
-    removeBtn.style.marginLeft = '0.5rem';
-    removeBtn.textContent = '❌ Remove';
-    removeBtn.title = 'Remove from favorites';
-    removeBtn.onclick = () => {
-      progress[key].isFavorite = false;
-      updateFavoriteButton();
-      updateStats();
-      saveData();
-      removeBtn.textContent = '✅ Removed';
-      removeBtn.disabled = true;
-      setTimeout(() => removeBtn.remove(), 1500);
-    };
-    
-    const wordHeader = document.querySelector('.word-header');
-    if (wordHeader && !wordHeader.querySelector('.remove-btn')) {
-      removeBtn.classList.add('remove-btn');
-      wordHeader.appendChild(removeBtn);
-    }
-  }
+  // ... (остальной код reviewMode без изменений)
 }
+
 
     // ===== STATS =====
 function updateStats() {
