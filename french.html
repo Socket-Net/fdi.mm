@@ -1208,12 +1208,19 @@ const COMMON_TRANSLATIONS = {
   }
 };
 
+
 async function translateText(text, fromLang, toLang, context = '') {
   if (!text || fromLang === toLang || toLang === '--/--') {
     return text;
   }
   
-  // ← ПРОВЕРКА РУЧНОГО СЛОВАРЯ ПЕРВЫМ ДЕЛОМ
+  // ← НОВОЕ: Если текст слишком длинный — не мучаем API, он всё равно вернет ошибку
+  if (text.length > 100) {
+    console.log(`⚠️ Skipping translation for long text: "${text.substring(0, 30)}..."`);
+    return text;
+  }
+  
+  // ← ПРОВЕРКА РУЧНОГО СЛОВАРЯ
   const dictKey = `${fromLang}->${toLang}`;
   if (COMMON_TRANSLATIONS[dictKey] && COMMON_TRANSLATIONS[dictKey][text.toLowerCase()]) {
     return COMMON_TRANSLATIONS[dictKey][text.toLowerCase()];
@@ -1232,19 +1239,30 @@ async function translateText(text, fromLang, toLang, context = '') {
     const response = await fetch(url);
     const data = await response.json();
     
+    // ← ПРОВЕРКА НА ОШИБКИ API
     if (data.responseData?.translatedText) {
-      let translated = data.responseData.translatedText.trim();
+      const translatedRaw = data.responseData.translatedText;
+      
+      // ← Если API вернул ошибку — возвращаем оригинал
+      if (translatedRaw.includes('INVALID') || 
+          translatedRaw.includes('NO CONTENT') || 
+          translatedRaw.includes('NOT SUPPORTED') ||
+          (translatedRaw.toUpperCase() === translatedRaw && translatedRaw.length > 20)) {
+        console.log(`⚠️ API error for "${text}": ${translatedRaw.substring(0, 50)}...`);
+        return text;
+      }
+      
+      let translated = translatedRaw.trim();
       
       // ← Если несколько вариантов — берём первый
       if (translated.includes(',')) {
         translated = translated.split(',')[0].trim();
       }
       
-      // ← Удаляем лишние символы (НО ОСТАВЛЯЕМ ТОЧКУ ДЛЯ FR!)
+      // ← Удаляем лишние символы
       if (toLang !== 'fr') {
         translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '');
       } else {
-        // Для французского: убираем кавычки/скобки, но оставляем точку в конце
         translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '').replace(/\.$/, '.');
       }
       
@@ -1255,15 +1273,7 @@ async function translateText(text, fromLang, toLang, context = '') {
                            translated.toLowerCase() !== text.toLowerCase();
       
       if (isBasicValid) {
-        // ← ДОПОЛНИТЕЛЬНАЯ ПРОВЕРКА для коротких слов (1-2 символа)
-        if (text.length <= 2 && !text.includes(' ')) {
-          if (translated.includes(' ') || translated.length > 10) {
-            console.log(`⚠️ Suspicious translation for short word: "${text}" → "${translated}"`);
-            return text;
-          }
-        }
-        
-        // ← ПРОВЕРКА СКРИПТА (с точкой для французского)
+        // ← ПРОВЕРКА СКРИПТА
         let scriptValid = true;
         
         if (toLang === 'ar') {
@@ -1273,7 +1283,6 @@ async function translateText(text, fromLang, toLang, context = '') {
           scriptValid = /^[\u0400-\u04FF\s\'\-\.]+$/.test(translated);
         } 
         else if (['en', 'de', 'fr'].includes(toLang)) {
-          // ← Для французского разрешаем точку в конце
           if (toLang === 'fr') {
             scriptValid = /^[a-zA-Z\u00C0-\u00FF\s\'\-\.]+$/.test(translated);
           } else {
@@ -1284,8 +1293,6 @@ async function translateText(text, fromLang, toLang, context = '') {
         if (scriptValid) {
           translationCache[cacheKey] = translated;
           return translated;
-        } else {
-          console.log(`⚠️ Script mismatch: "${text}" → "${translated}" [${toLang}]`);
         }
       }
     }
@@ -1312,7 +1319,14 @@ function resetTranslationState() {
       delete opt.dataset.isDuplicate;
     });
   }
+  
+  // ← НОВОЕ: Удаляем кнопку "Remove from favorites", если она есть
+  const removeBtn = document.querySelector('.remove-fav-btn');
+  if (removeBtn) {
+    removeBtn.remove();
+  }
 }
+
 
 function getBaseLanguageFromDict(dictName) {
   const match = dictName?.match(/_(\w+)$/);
