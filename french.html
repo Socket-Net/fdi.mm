@@ -1210,65 +1210,136 @@ const COMMON_TRANSLATIONS = {
   }
 };
 
-
-async function translateText(text, fromLang, toLang, context = '') {
-  if (!text || fromLang === toLang || toLang === '--/--') {
-    return text;
-  }
+// ← Проверка: соответствует ли текст ожидаемому скрипту языка
+function checkScriptMatch(text, lang) {
+  if (!text || text.length === 0) return false;
   
-  // ← РУЧНОЙ СЛОВАРЬ (мгновенно)
+  switch (lang) {
+    case 'ru':
+      // Кириллица
+      return /[\u0400-\u04FF]/.test(text);
+    case 'ar':
+    case 'fa':
+    case 'ur':
+      // Арабская вязь
+      return /[\u0600-\u06FF]/.test(text);
+    case 'zh':
+    case 'ja':
+    case 'ko':
+      // Иероглифы / хангыль
+      return /[\u4E00-\u9FFF\uAC00-\uD7AF\u3040-\u309F\u30A0-\u30FF]/.test(text);
+    case 'en':
+    case 'fr':
+    case 'de':
+    case 'es':
+    case 'it':
+    case 'pt':
+    case 'nl':
+    case 'sv':
+    case 'no':
+    case 'da':
+      // Латиница (с диакритикой)
+      return /^[a-zA-Z\u00C0-\u00FF\s\'\-\.]+$/.test(text);
+    case 'he':
+      // Иврит
+      return /[\u0590-\u05FF]/.test(text);
+    case 'hi':
+    case 'ne':
+    case 'mr':
+      // Деванагари
+      return /[\u0900-\u097F]/.test(text);
+    case 'th':
+      // Тайский
+      return /[\u0E00-\u0E7F]/.test(text);
+    case 'vi':
+      // Вьетнамский (латиница + диакритика)
+      return /^[a-zA-Z\u00C0-\u1EF9\s\'\-\.]+$/.test(text);
+    default:
+      // Для неизвестных языков — пропускаем проверку
+      return true;
+  }
+}
+
+// ← Очистка старого кэша (раз в неделю)
+function cleanupOldTranslations() {
+  try {
+    console.log('cleanupOldTranslations');
+    const now = Date.now();
+    const WEEK = 7 * 24 * 60 * 60 * 1000;
+    
+    for (let key in localStorage) {
+      if (key.startsWith('tr:') && key.endsWith(':ts')) {
+        const ts = parseInt(localStorage.getItem(key));
+        if (now - ts > WEEK) {
+          localStorage.removeItem(key);
+          localStorage.removeItem(key.replace(':ts', ''));
+        }
+      }
+    }
+    console.log('🧹 Old translation cache cleaned');
+  } catch (e) {
+  }
+}
+
+// ← Основная функция перевода
+async function translateText(text, fromLang, toLang, context = '') {
+  if (!text || fromLang === toLang || toLang === '--/--') return text;
+
+  // ← Ручной словарь (мгновенно)
   const dictKey = `${fromLang}->${toLang}`;
-  if (COMMON_TRANSLATIONS[dictKey] && COMMON_TRANSLATIONS[dictKey][text.toLowerCase()]) {
+  if (COMMON_TRANSLATIONS?.[dictKey]?.[text.toLowerCase()]) {
     return COMMON_TRANSLATIONS[dictKey][text.toLowerCase()];
   }
-  
-  // ← КЭШ С УЧЁТОМ ЯЗЫКОВОЙ ПАРЫ
-  const cacheKey = `${text.toLowerCase().trim()}:${fromLang}:${toLang}`;
-  if (translationCache[cacheKey]) {
-    return translationCache[cacheKey];
-  }
-  
-  // ← Запрос к MyMemory API
+
+  // ← Кэш в localStorage
+  const cacheKey = `tr:${text.toLowerCase()}:${fromLang}:${toLang}`;
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) return cached;
+
+  let translated = null;
+  const start = Date.now();
+
+  // ← Небольшая задержка чтобы не спамить API
+  await new Promise(r => setTimeout(r, 180 + Math.random() * 120));
+
+  // ← Запрос к MyMemory
   try {
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      console.log(`⚠️ API error ${response.status} for "${text}" ${fromLang}→${toLang}`);
-      return text;
-    }
-    
-    const data = await response.json();
-    
-    if (data.responseData?.translatedText) {
-      let translated = data.responseData.translatedText.trim();
+    const res = await fetch(url, { signal: AbortSignal.timeout(7000) });
+
+    if (res.ok) {
+      const data = await res.json();
+      let t = data.responseData?.translatedText?.trim();
       
-      // ← Берём первый вариант если их несколько
-      if (translated.includes(',')) {
-        translated = translated.split(',')[0].trim();
-      }
-      
-      // ← Чистим кавычки/скобки
-      translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '');
-      
-      // ← БАЗОВАЯ ПРОВЕРКА
-      if (translated && 
-          translated.length > 0 && 
-          translated.toLowerCase() !== text.toLowerCase() &&
-          !translated.includes('INVALID') &&
-          !translated.includes('NO CONTENT') &&
-          !translated.includes('VERBS_')) {
+      if (t) {
+        // ← Чистим форматирование
+        if (t.includes(',')) t = t.split(',')[0].trim();
+        t = t.replace(/^['"[\(]+|['"\)\]]+$/g, '');
         
-        // ← КЭШИРУЕМ хороший перевод
-        translationCache[cacheKey] = translated;
-        return translated;
+        // ← Проверка: не тот же текст
+        if (t.toLowerCase() !== text.toLowerCase()) {
+          // ← ПРОВЕРКА СКРИПТА
+          if (checkScriptMatch(t, toLang)) {
+            translated = t;
+          } else {
+            console.log(`⚠️ Script mismatch: "${text}" → "${t}" [${toLang}]`);
+          }
+        }
       }
     }
   } catch (e) {
-    console.log(`⚠️ Fetch error for "${text}":`, e.message);
+    console.log(`⚠️ MyMemory failed for "${text}":`, e.message);
   }
-  
-  // ← Фолбэк: оригинал (НЕ кэшируем!)
+
+  // ← Сохраняем в кэш если перевод успешный
+  if (translated) {
+    localStorage.setItem(cacheKey, translated);
+    localStorage.setItem(`${cacheKey}:ts`, Date.now().toString()); // метка времени для очистки
+    console.log(`🎯 "${text}" → "${translated}" (${Date.now() - start}ms)`);
+    return translated;
+  }
+
+  console.log(`⚠️ Нет перевода для "${text}", оставляем оригинал`);
   return text;
 }
 
@@ -2813,7 +2884,6 @@ function updateStats() {
     els.clearCacheBtn?.addEventListener('click', () => {
       const t = translations[currentLanguage];
       if (confirm(t.cacheConfirm)) {
-        translationCache = {};
         exitReviewMode();
         localStorage.removeItem(CONFIG.STORAGE_KEY);
         alert(t.cacheCleared);
@@ -2849,6 +2919,7 @@ function updateStats() {
       if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
     });
           
+cleanupOldTranslations();
 
 // ===== INIT (UPDATED) =====
 window.addEventListener('DOMContentLoaded', async () => {
