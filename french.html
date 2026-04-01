@@ -428,7 +428,6 @@
             <option value="ar">عربی (دری)</option>
           </select>
         </div>
-        <span id="translationStatus" style="font-size:0.75rem;color:#94a3b8;margin-left:0.5rem"></span>
         <div class="dict-selector">
           <label id="lblDictionary">Dictionary:</label>
           <input type="text" id="dictNameInput" placeholder="words_en" value="words_en">
@@ -1057,45 +1056,8 @@ function getDictStats(dictName) {
   return dictStats[dictName];
 }
 
-async function translateText(text, fromLang, toLang, context = '') {
-  if (!text || fromLang === toLang || toLang === '--/--') {
-    return text;
-  }
-  
-  const cacheKey = `${text}:${fromLang}:${toLang}`;
-  if (translationCache[cacheKey]) {
-    return translationCache[cacheKey];
-  }
-  
-  try {
-    await new Promise(resolve => setTimeout(resolve, 30));
-    
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
-    
-    const response = await fetch(url);
-    const data = await response.json();
-    
-    if (data.responseData?.translatedText) {
-      const translated = data.responseData.translatedText.trim();
-      
-      // ← ВАЛИДАЦИЯ: отбрасываем подозрительные результаты
-      if (translated && 
-          translated.length > 1 && 
-          !['.', ',', '!', '?', '-', '_', '...'].includes(translated) &&
-          translated.toLowerCase() !== text.toLowerCase()) {
-        
-        translationCache[cacheKey] = translated;
-        return translated;
-      }
-    }
-  } catch (e) {
-    console.warn(`⚠️ Translation error:`, e.message);
-  }
-  
-  // ← Фолбэк: возвращаем оригинал если перевод плохой
-  return text;
-}
 
+// ===== УЛУЧШЕННЫЙ translateCurrentOptions С ЛОГАМИ =====
 async function translateCurrentOptions(targetLang) {
   if (!currentWord || !els.options) return;
   
@@ -1108,7 +1070,7 @@ async function translateCurrentOptions(targetLang) {
   
   // ← Восстановление оригиналов
   if (targetLang === '--/--' || targetLang === optionLang) {
-    if (statusEl) statusEl.textContent = `🔄 Restoring original...`;
+    if (statusEl) statusEl.textContent = `🔄 Restoring...`;
     
     const optionElements = els.options.querySelectorAll('.option');
     optionElements.forEach((opt, idx) => {
@@ -1147,40 +1109,41 @@ async function translateCurrentOptions(targetLang) {
   const results = [];
   for (let i = 0; i < originalOptions.length; i++) {
     const item = originalOptions[i];
-    const translated = await translateText(item.original, optionLang, targetLang, `opt#${i+1}`);
-    results.push({ item, translated: translated || item.original });
+    
+    // ← Если это правильный ответ И переводим на французский — используем frenchWord
+    if (item.original === currentWord.correct && targetLang === 'fr') {
+      console.log(`✓ [${i+1}] "${item.original}" → "${frenchWord}" (FR correct, no API)`);
+      results.push({ item, translated: frenchWord, isFrenchCorrect: true });
+    } else {
+      const translated = await translateText(item.original, optionLang, targetLang, `opt#${i+1}`);
+      results.push({ item, translated: translated || item.original, isFrenchCorrect: false });
+    }
   }
   
-  // ← Проверка на дубликаты
-  const translatedValues = results.map(r => r.translated);
+  const translatedValues = results.map(r => r.translated.toLowerCase());
   const correctOriginal = currentWord.correct;
   let correctTranslated = '';
   
-  results.forEach(({ item, translated }, idx) => {
-    // ← ВАЛИДАЦИЯ ПЕРЕВОДА: отбрасываем мусор
-    const isValid = translated && 
-                   translated.length > 1 && 
-                   !['.', ',', '!', '?', '-', '_'].includes(translated.trim()) &&
-                   translated.toLowerCase() !== item.original.toLowerCase();
+  results.forEach(({ item, translated, isFrenchCorrect }, idx) => {
+    const isValid = isFrenchCorrect || (
+      translated && 
+      translated.length >= 2 && 
+      translated.toLowerCase() !== item.original.toLowerCase()
+    );
     
     const displayText = isValid ? translated : item.original;
     
-    // Сохраняем перевод правильного ответа (только валидный)
+    // Сохраняем перевод правильного ответа
     if (item.original === correctOriginal) {
-      if (isValid) {
-        correctTranslated = displayText;
-        currentWord.translatedCorrect = displayText;
-        console.log(`✓ Correct: "${correctOriginal}" → "${displayText}"`);
-      } else {
-        // ← Если перевод плохой — оставляем оригинал как "перевод"
-        currentWord.translatedCorrect = correctOriginal;
-        console.log(`⚠️ Correct: "${correctOriginal}" → (keep original, bad translation)`);
-      }
+      correctTranslated = displayText;
+      currentWord.translatedCorrect = displayText;
+      console.log(`✓ Correct: "${correctOriginal}" → "${displayText}"`);
     }
     
-    // ← Дубликаты
-    const isDuplicate = translatedValues.filter(v => v === displayText).length > 1;
-    const isWrongButSameAsCorrect = item.original !== correctOriginal && displayText === correctTranslated;
+    // ← Дубликаты (без учёта регистра)
+    const isDuplicate = translatedValues.filter(v => v === displayText.toLowerCase()).length > 1;
+    const isWrongButSameAsCorrect = item.original !== correctOriginal && 
+                                    displayText.toLowerCase() === correctTranslated.toLowerCase();
     
     if (isWrongButSameAsCorrect || (isDuplicate && item.original !== correctOriginal)) {
       const duplicateText = `[${item.original}]`;
@@ -1209,6 +1172,76 @@ async function translateCurrentOptions(targetLang) {
 
   console.log(`✅ Translated ${results.length} options: ${optionLang} → ${targetLang}`);
   console.log(`🔄 === Complete for "${frenchWord}" ===\n`);
+}
+
+async function translateText(text, fromLang, toLang, context = '') {
+  if (!text || fromLang === toLang || toLang === '--/--') {
+    return text;
+  }
+  
+  const cacheKey = `${text}:${fromLang}:${toLang}`;
+  if (translationCache[cacheKey]) {
+    return translationCache[cacheKey];
+  }
+  
+  try {
+    // Небольшая задержка
+    await new Promise(resolve => setTimeout(resolve, 30));
+    
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    if (data.responseData?.translatedText) {
+      let translated = data.responseData.translatedText.trim();
+      
+      // ← Если несколько вариантов — берём первый
+      if (translated.includes(',')) {
+        translated = translated.split(',')[0].trim();
+      }
+      
+      // ← Удаляем лишние символы в начале/конце (кавычки, скобки)
+      translated = translated.replace(/^['"[\(]+|['"\)\]]+$/g, '');
+      
+      // ← БАЗОВАЯ ВАЛИДАЦИЯ (универсальная для всех языков)
+      // 1. Не пустое
+      // 2. Длина >= 2 (чтобы отсечь "а", "я" и т.д., если это ошибки)
+      // 3. Не спецсимволы (точка, запятая, тире)
+      // 4. Не совпадает с оригиналом (значит реально перевелось)
+      const isBasicValid = translated && 
+                           translated.length >= 2 && 
+                           !['.', ',', '!', '?', '-', '_', '...', '...'].includes(translated) &&
+                           translated.toLowerCase() !== text.toLowerCase();
+      
+      if (isBasicValid) {
+        // ← СПЕЦИАЛЬНО ДЛЯ АРАБСКОГО: проверяем что это реально арабский скрипт
+        // (потому что API часто возвращает английский, если не знает слова)
+        if (toLang === 'ar' && !/[\u0600-\u06FF]/.test(translated)) {
+           console.log(`⚠️ Arabic check failed: "${translated}"`);
+           console.log(`↩️ Fallback: "${text}"`);
+           return text;
+        }
+        
+        // ← СПЕЦИАЛЬНО ДЛЯ РУССКОГО: проверяем кириллицу
+        // (чтобы не проскочил английский "stone" вместо "камень")
+        if (toLang === 'ru' && !/[\u0400-\u04FF]/.test(translated)) {
+           console.log(`⚠️ Russian check failed: "${translated}"`);
+           console.log(`↩️ Fallback: "${text}"`);
+           return text;
+        }
+
+        // Всё ок, возвращаем перевод
+        translationCache[cacheKey] = translated;
+        return translated;
+      }
+    }
+  } catch (e) {
+    console.warn(`⚠️ Translation error:`, e.message);
+  }
+  
+  // Если что-то пошло не так — возвращаем оригинал
+  return text;
 }
 
 // Сброс переводов при следующем слове
