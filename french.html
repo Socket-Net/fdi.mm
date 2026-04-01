@@ -513,6 +513,7 @@
       
       <div class="extra-controls">
         <button class="danger-btn" id="clearCacheBtn" title="Clear cache">🗑️</button>        
+        <button class="secondary-btn" id="learnedBtn" style="padding-left:6px;padding-right:6px">🎓 <span id="btnLearned">Learned</span></button>
         <button class="secondary-btn" id="dictManagerBtn" style="padding-left:6px;padding-right:6px">📚 <span id="btnDictionaries">Dictionaries</span></button>
         <button class="secondary-btn" id="reviewBtn" style="padding-left:6px;padding-right:6px">🔄 <span id="btnReview">Review</span></button>
         <button class="secondary-btn" id="historyBtn" style="padding-left:6px;padding-right:6px">📜 <span id="btnHistory">History</span></button>
@@ -526,6 +527,15 @@
       <div class="history-list" id="historyList" style="max-height:200px;overflow-y:auto;text-align:left;font-size:0.85rem"></div>
       <div class="controls" style="display:flex;justify-content:center;margin-top:1rem">
         <button class="secondary-btn" id="backToQuizBtn">← <span id="btnBack">Back</span></button>
+      </div>
+    </div>
+
+    <div id="learnedSection" class="hidden">
+      <h3 style="text-align:center;margin-bottom:1rem;">🎓 <span id="learnedTitle">Learned Words</span></h3>
+      <div class="history-list" id="learnedList" style="max-height:200px;overflow-y:auto;text-align:left;font-size:0.85rem"></div>
+      <div style="text-align:center;margin:0.5rem 0;font-size:0.8rem;color:#94a3b8" id="learnedCountText"></div>
+      <div class="controls" style="display:flex;justify-content:center;margin-top:1rem">
+        <button class="secondary-btn" id="backToQuizFromLearned">← <span id="btnBack">Back</span></button>
       </div>
     </div>
 
@@ -546,6 +556,10 @@
     // ===== TRANSLATIONS =====
     const translations = {
       '--/--': {
+        btnLearned: 'Learned',
+        learnedTitle: 'Learned Words',
+        noLearnedWords: '⚠️ No learned words yet!\n\nKeep practicing to see them here.',
+        learnedCount: ' words learned', 
         appTitle: '🇫🇷 French Vocab Trainer Pro',
         lblPool: 'Pool:',
         lblLanguage: 'Language:',
@@ -609,6 +623,10 @@
         cardCorrectAnswer: '✓ Correct answer:',
       },
       'ru': {
+        btnLearned: 'Выучено',
+        learnedTitle: 'Выученные слова',
+        noLearnedWords: '⚠️ Еще нет выученных слов!\n\nПродолжайте заниматься.',
+        learnedCount: ' слов выучено',         
         appTitle: '🇫🇷 Тренажер французской лексики',
         lblPool: 'Пул:',
         lblLanguage: 'Язык:',
@@ -672,6 +690,10 @@
         cardCorrectAnswer: '✓ Правильный ответ:',
       },
       'en': {
+        btnLearned: 'Learned',
+        learnedTitle: 'Learned Words',
+        noLearnedWords: '⚠️ No learned words yet!\n\nKeep practicing to see them here.',
+        learnedCount: ' words learned',       
         appTitle: '🇫🇷 French Vocab Trainer Pro',
         lblPool: 'Pool:',
         lblLanguage: 'Language:',
@@ -735,6 +757,10 @@
         cardCorrectAnswer: '✓ Correct answer:',
       },
       'fr': {
+        btnLearned: 'Appris',
+        learnedTitle: 'Mots appris',
+        noLearnedWords: '⚠️ Aucun mot appris pour l’instant !\n\nContinuez à vous entraîner pour les voir apparaître ici.',
+        learnedCount: ' mots appris',         
         appTitle: '🇫🇷 French Vocab Trainer Pro',
         lblPool: 'Pool:',
         lblLanguage: 'Langue:',
@@ -798,6 +824,10 @@
         cardCorrectAnswer: '✓ Réponse correcte:',
       },
       'ar': {
+        btnLearned: 'الكلمات المُكتسبة',
+        learnedTitle: 'كلمات متعلمة',
+        noLearnedWords: '⚠️ لم يتم اكتساب أي كلمات حتى الآن!\n\nاستمر في التدريب لرؤيتها هنا.',
+        learnedCount: ' الكلمات المُكتسبة',          
         appTitle: '🇫🇷 مدرب مفردات فرانسیوی',
         lblPool: 'مجموعه:',
         lblLanguage: 'زبان:',
@@ -862,6 +892,10 @@
         cardCorrectAnswer: '✓ الإجابة الصحيحة:',
       },
       'de': {
+        btnLearned: 'Gelernt',
+        learnedTitle: 'Gelernte Wörter',
+        noLearnedWords: '⚠️ Noch keine Wörter gelernt! Üben Sie weiter, damit sie hier erscheinen.',
+        learnedCount: ' gelernte Wörter',          
           appTitle: '🇫🇷 Französisch Vokabeltrainer Pro',
           lblPool: 'Pool:',
           lblLanguage: 'Sprache:',
@@ -996,7 +1030,16 @@
       favoriteCount: document.getElementById('favoriteCount'),
       progressFill: document.getElementById('progressFill'),
       historyList: document.getElementById('historyList'),
-      ttsBtn: document.getElementById('ttsBtn')
+      ttsBtn: document.getElementById('ttsBtn'),
+      learnedBtn: document.getElementById('learnedBtn'),
+      learnedSection: document.getElementById('learnedSection'),
+      learnedList: document.getElementById('learnedList'),
+      learnedCountText: document.getElementById('learnedCountText'),
+      backToQuizFromLearned: document.getElementById('backToQuizFromLearned'),
+        btnLearned: document.getElementById('btnLearned'),
+        learnedTitle: document.getElementById('learnedTitle'),
+        noLearnedWords: document.getElementById('noLearnedWords'),
+        learnedCount: document.getElementById('learnedCount'), 
     };
 
 
@@ -1095,6 +1138,14 @@ function getDictProgress(dictName) {
       // Update buttons that might be visible
       if (els.nextBtn) els.nextBtn.textContent = t.btnNext;
       
+      if(els.learnedBtn) els.learnedBtn.innerHTML = '🎓 ' + (t.btnLearned || 'Learned');
+      if(document.getElementById('learnedTitle')) {
+        document.getElementById('learnedTitle').textContent = t.learnedTitle || 'Learned Words';
+      }
+      if(document.getElementById('backToQuizFromLearned')) {
+        document.getElementById('backToQuizFromLearned').innerHTML = '← ' + (t.btnBack || 'Back');
+      }
+
       // Update review button text based on mode
       updateReviewButtonText();
       
@@ -1571,28 +1622,21 @@ function saveData() {
     }
 
 
-// ===== NEXT WORD (FIXED) =====
 function getNextWordFromPool() {
-if (allWords.length === 0) {
-  console.warn('⚠️ allWords is empty!');
-  return null;
-}  
-console.log('🔍 getNextWordFromPool debug:', {
-  reviewMode,
-  allWords: allWords.length,
-  progressKeys: Object.keys(progress).length,
-  activePool: activePool.length,
-  recentWords: recentWords.length,
-  notLearnedCount: allWords.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN).length
-});
+  if (allWords.length === 0) {
+    console.warn('⚠️ allWords is empty!');
+    return null;
+  }
 
   if (reviewMode) {
     const favorites = getFavorites();
-    console.error('return before');
     if (favorites.length === 0) return null;
-    return favorites[Math.floor(Math.random() * favorites.length)];
+    // Фильтруем только невыученные фавориты
+    const available = favorites.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
+    if (available.length === 0) return null;
+    return available[Math.floor(Math.random() * available.length)];
   }
-  
+
   // Каждое 5-е слово - новое из словаря
   freshWordCounter++;
   if (freshWordCounter % 5 === 0) {
@@ -1601,64 +1645,56 @@ console.log('🔍 getNextWordFromPool debug:', {
       !activePool.includes(w.french) &&
       !recentWords.includes(w.french)
     );
-    
     if (notLearned.length > 0) {
       const fresh = notLearned[Math.floor(Math.random() * notLearned.length)];
       addToRecent(fresh.french);
-      console.log(`🌱 Fresh word inserted: ${fresh.french} (counter: ${freshWordCounter})`);
       return fresh;
     }
   }
-  
+
   // Заполняем пул если пуст
   if (activePool.length === 0) {
-    console.log('⚠️ Pool empty, refilling...');
     refillActivePool();
   }
-  
+
   if (activePool.length === 0) {
-    console.log('❌ No words available in pool!');
-    return null;
-  }
-  
-  // ФИКС: Берем слова НЕ из recentWords, если они есть
-  const availablePool = activePool.filter(key => !recentWords.includes(key));
-  
-  console.log(`📊 Pool stats: active=${activePool.length}, available=${availablePool.length}, recent=${recentWords.length}, recentSize=${getRecentHistorySize()}`);
-  
-  let poolToUse;
-  if (availablePool.length > 0) {
-    poolToUse = availablePool;
-    console.log(`✅ Using available pool (${availablePool.length} words)`);
-  } else {
-    console.log(`⚠️ All words in recentWords! Clearing oldest...`);
-    recentWords = []; // Очищаем историю
-    poolToUse = activePool;
-    console.log(`🔄 Using full pool (${activePool.length} words)`);
-  }
-
-  const wordKey = poolToUse[Math.floor(Math.random() * poolToUse.length)];
-  console.log(`🎯 Selected: ${wordKey}`);
-  
-  addToRecent(wordKey);
-  console.log(`📝 Recent words: ${recentWords.length}/${getRecentHistorySize()}`,wordKey);
-  const result = allWords.find(w => w.french === wordKey);
-
-  if (!result) {
-    //console.warn(`⚠️ Word "${wordKey}" not found in allWords! Forcing refill...`);
-    // Сбрасываем пул и пробуем найти любое невыученное слово
-    activePool = [];
-    recentWords = [];
+    // Все слова выучены?
+    const allLearned = allWords.every(w => (progress[w.french]?.points ?? 0) >= CONFIG.POINTS_TO_LEARN);
+    if (allLearned) return null;
+    // Или ошибка — пробуем восстановить
     refillActivePool();
-    
-    const fallback = allWords.find(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
-    if (fallback) {
-      return fallback;
-    }
-    return null;
+    if (activePool.length === 0) return null;
   }
-  return result;
+
+  // Берём слово, но с защитой от выученных
+  let attempts = 0;
+  while (attempts < 20) { // защита от зацикливания
+    const availablePool = activePool.filter(key => !recentWords.includes(key));
+    const poolToUse = availablePool.length > 0 ? availablePool : activePool;
+    
+    if (poolToUse.length === 0) break;
+    
+    const wordKey = poolToUse[Math.floor(Math.random() * poolToUse.length)];
+    const word = allWords.find(w => w.french === wordKey);
+    
+    // ✅ ГЛАВНАЯ ПРОВЕРКА: не выучено ли уже?
+    if (word && (progress[wordKey]?.points ?? 0) < CONFIG.POINTS_TO_LEARN) {
+      addToRecent(wordKey);
+      return word;
+    }
+    
+    // Если выучено — удаляем из пула и пробуем снова
+    activePool = activePool.filter(k => k !== wordKey);
+    attempts++;
+  }
+
+  // Если не нашли за 20 попыток — перезаполняем пул
+  refillActivePool();
+  return getNextWordFromPool(); // рекурсия с новым пулом
 }
+
+
+
 
     function addToRecent(wordKey) {
       recentWords.push(wordKey);
@@ -2125,6 +2161,40 @@ else {
 }
 }
 
+
+function showLearnedWords() {
+  exitReviewMode();
+  els.quizSection?.classList.add('hidden');
+  els.learnedSection?.classList.remove('hidden');
+  
+  const t = translations[currentLanguage];
+
+  const learned = Object.entries(progress)
+    .filter(([_, data]) => data.points >= CONFIG.POINTS_TO_LEARN)
+    .map(([word, data]) => ({ word, points: data.points, isFavorite: data.isFavorite }))
+    .sort((a, b) => b.points - a.points); // Сортируем по очкам (убывание)
+  
+  if (learned.length === 0) {
+    els.learnedList.innerHTML = `<div style="text-align:center;padding:1rem;color:#94a3b8">${t.noLearnedWords}</div>`;
+    els.learnedCountText.textContent = '';
+    return;
+  }
+  
+  els.learnedList.innerHTML = learned.map(item => {
+    const wordData = allWords.find(w => w.french === item.word);
+    const translation = wordData?.correct || '—';
+    const favIcon = item.isFavorite ? '⭐ ' : '';
+    return `
+      <div style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2);display:flex;justify-content:space-between;align-items:center">
+        <span><strong>${favIcon}${item.word}</strong><br><small style="color:#94a3b8">${translation}</small></span>
+        <span style="color:#86efac;font-weight:bold">${item.points}/5 ✅</span>
+      </div>
+    `;
+  }).join('');
+
+  els.learnedCountText.textContent = `${learned.length}${t.learnedCount}`;
+}
+
     function exitReviewMode() {
       if (reviewMode) {
         console.log('🔓 Exiting review mode');
@@ -2497,6 +2567,14 @@ function updateStats() {
       e.target.value = '';
     });
 
+    els.learnedBtn?.addEventListener('click', showLearnedWords);
+
+    els.backToQuizFromLearned?.addEventListener('click', () => {
+      els.learnedSection?.classList.add('hidden');
+      els.quizSection?.classList.remove('hidden');
+    });
+
+
     document.addEventListener('keydown', (e) => {
       if (answered && e.key === 'Enter' && els.nextBtn && !els.nextBtn.disabled) nextWord();
     });
@@ -2520,59 +2598,61 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
   
   updateInterfaceLanguage();
-  
-  const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
-  
-  // ===== MIGRATION LOGIC =====
-  if (saved) {
-    try {
-      const oldData = JSON.parse(saved);
       
-      // Проверяем нужна ли миграция (нет dictStats но есть старые данные)
-      if (!oldData.dictStats && (oldData.progress || oldData.dictionary)) {
-        console.log('🔄 Old format detected, starting migration...');
-        
-        // Определяем целевой словарь
-        let targetDict = oldData.currentDict || 'words_en';
-        
-        // Создаем структуру dictStats
-        dictStats = {};
-        dictStats[targetDict] = {
-          progress: oldData.progress || {},
-          stats: {
-            totalCorrect: oldData.stats?.totalCorrect || 0,
-            sessionErrors: oldData.stats?.sessionErrors || 0,
-            totalAnswered: oldData.stats?.totalAnswered || 0
-          },
-          lastUsed: Date.now()
-        };
-        
-        // Сохраняем новую структуру
-        const newData = {
-          dictStats: dictStats,
-          currentDict: targetDict,
-          availableDicts: oldData.availableDicts || [...CONFIG.AVAILABLE_DICTS],
-          showImages: oldData.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT,
-          poolSize: oldData.poolSize || CONFIG.DEFAULT_POOL_SIZE,
-          migrated: true,
-          migratedAt: Date.now()
-        };
-        
-        if (oldData.dictionary) {
-          newData.dictionary = oldData.dictionary;
+      const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+      
+      // ===== MIGRATION LOGIC =====
+      if (saved) {
+        try {
+          const oldData = JSON.parse(saved);
+          
+          // Проверяем нужна ли миграция (нет dictStats но есть старые данные)
+          if (!oldData.dictStats && (oldData.progress || oldData.dictionary)) {
+            console.log('🔄 Old format detected, starting migration...');
+            
+            // Определяем целевой словарь
+            let targetDict = oldData.currentDict || 'words_en';
+            
+            // Создаем структуру dictStats
+            dictStats = {};
+            dictStats[targetDict] = {
+              progress: oldData.progress || {},
+              stats: {
+                totalCorrect: oldData.stats?.totalCorrect || 0,
+                sessionErrors: oldData.stats?.sessionErrors || 0,
+                totalAnswered: oldData.stats?.totalAnswered || 0
+              },
+              lastUsed: Date.now()
+            };
+            
+            // Сохраняем новую структуру
+            const newData = {
+              dictStats: dictStats,
+              currentDict: targetDict,
+              availableDicts: oldData.availableDicts || [...CONFIG.AVAILABLE_DICTS],
+              showImages: oldData.showImages ?? CONFIG.SHOW_IMAGES_BY_DEFAULT,
+              poolSize: oldData.poolSize || CONFIG.DEFAULT_POOL_SIZE,
+              migrated: true,
+              migratedAt: Date.now()
+            };
+            
+            if (oldData.dictionary) {
+              newData.dictionary = oldData.dictionary;
+            }
+            
+            localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(newData));
+            console.log('✅ Migration completed!');
+            console.log(`📊 Migrated ${Object.keys(dictStats[targetDict].progress).length} words to ${targetDict}`);
+            
+            // Перезагружаем чтобы применить новую структуру
+            setTimeout(() => location.reload(), 1000);
+            return;
+          }
+        } catch (e) {
+          console.error('❌ Migration check failed:', e);
         }
-        
-        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(newData));
-        console.log('✅ Migration completed!');
-        console.log(`📊 Migrated ${Object.keys(dictStats[targetDict].progress).length} words to ${targetDict}`);
-        
-        // Перезагружаем чтобы применить новую структуру
-        setTimeout(() => location.reload(), 1000);
-        return;
-      }
-    } catch (e) {
-      console.error('❌ Migration check failed:', e);
-    }
+
+
   }
   
   // ===== NORMAL LOAD =====
