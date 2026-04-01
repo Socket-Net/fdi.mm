@@ -640,7 +640,7 @@ commun,common,rare,unusual,ordinary,usual,shared
 fréquent,frequent,rare,infrequent,common,usual,regular
 gare,station,railway station,train station,depot,terminal,stop
 le train,train,railway,locomotive,transport,station,track
-la colère,anger,rage,fury,wrath,irritation,resentment
+la colère,anger,fury,wrath,irritation,resentment,cold,clearance
 radio,radio,radio station,broadcast,wireless,receiver,transmission
 course,run,race,errand,dash,sprint,jog
 calme,calm,quiet,peaceful,tranquil,serene,still
@@ -1243,7 +1243,6 @@ le fruit, fruit, produce, result, benefit, offspring,
 l'espion, spy, agent, mole, informant, operative,
 le senior, senior, older, elder, superior, veteran,
 le garage, garage, carport, workshop, repair shop,
-la colère, anger, rage, wrath, fury, ire,
 l'indice, index, clue, hint, sign, indication,
 le magazine, magazine, periodical, journal, storehouse,,
 la zone, zone, area, region, sector, district,
@@ -1540,7 +1539,6 @@ le principal, principal, headmaster, main, chief, primary,
 l'enjeu, stake, bet, interest, risk, issue,
 le lien, link, bond, connection, tie, relationship,
 l'industrie, industry, manufacturing, sector, trade, business,
-le costume, costume, suit, outfit, attire, dress,
 l'argument, argument, debate, reasoning, dispute, case,
 le mouvement, motion, movement, gesture, campaign, shift,
 la construction, construction, building, structure, assembly, erection,
@@ -1599,7 +1597,7 @@ l'excuse, apology, excuse, pretext, justification, plea,
 l'examen, exam, examination, test, review, inspection,
 le festival, festival, celebration, fête, gala, event,
 l'actrice, actress, female actor, performer, player,,
-le service, ward, service, department, favor, duty,
+le service, service,ward,department, favor, duty,
 l'activité, activity, action, occupation, exercise, event,
 l'ouvrier, worker, laborer, workman, blue-collar, employee,
 le policier, policeman, police officer, cop, lawman, constable,
@@ -1937,7 +1935,7 @@ le risque, risk, danger, hazard, chance, peril, gamble
 l'avis, notice, opinion, advice, warning, announcement, view
 l'ennemi, enemy, foe, adversary, opponent, rival, antagonist
 la course, race, running, errand, dash, sprint, competition
-le costume, suit, outfit, costume, attire, clothing, dress
+le costume, suit, outfit, attire, clothing, dress
 l'ajustement, fit, adjustment, fitting, adaptation, tailoring, alignment
 le directeur, director, manager, head, chief, leader, supervisor
 la tache, spot, stain, mark, dot, blot, speck
