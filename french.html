@@ -421,14 +421,14 @@
           <label id="lblLanguage">Language:</label>
           <select id="languageSelect">
             <option value="--/--">--/--</option>
-            <option value="fr">Français (tous)</option>
+            <option value="fr">Français</option>
             <option value="de">Deutsch</option>
             <option value="en">English</option>
             <option value="ru">Русский</option>                        
             <option value="ar">عربی (دری)</option>
           </select>
         </div>
-        
+        <span id="translationStatus" style="font-size:0.75rem;color:#94a3b8;margin-left:0.5rem"></span>
         <div class="dict-selector">
           <label id="lblDictionary">Dictionary:</label>
           <input type="text" id="dictNameInput" placeholder="words_en" value="words_en">
@@ -991,6 +991,8 @@
     let currentLanguage = '--/--';
     let isCardMode = false;
     let dictStats = {};
+    let translationCache = {};
+    let originalOptions = []; 
 
     // ===== DOM =====
     const els = {
@@ -1053,6 +1055,181 @@ function getDictStats(dictName) {
     };
   }
   return dictStats[dictName];
+}
+
+async function translateText(text, fromLang, toLang, context = '') {
+  if (!text || fromLang === toLang || toLang === '--/--') {
+    return text;
+  }
+  
+  const cacheKey = `${text}:${fromLang}:${toLang}`;
+  if (translationCache[cacheKey]) {
+    return translationCache[cacheKey];
+  }
+  
+  try {
+    await new Promise(resolve => setTimeout(resolve, 30));
+    
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromLang}|${toLang}`;
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    if (data.responseData?.translatedText) {
+      const translated = data.responseData.translatedText.trim();
+      
+      // ← ВАЛИДАЦИЯ: отбрасываем подозрительные результаты
+      if (translated && 
+          translated.length > 1 && 
+          !['.', ',', '!', '?', '-', '_', '...'].includes(translated) &&
+          translated.toLowerCase() !== text.toLowerCase()) {
+        
+        translationCache[cacheKey] = translated;
+        return translated;
+      }
+    }
+  } catch (e) {
+    console.warn(`⚠️ Translation error:`, e.message);
+  }
+  
+  // ← Фолбэк: возвращаем оригинал если перевод плохой
+  return text;
+}
+
+async function translateCurrentOptions(targetLang) {
+  if (!currentWord || !els.options) return;
+  
+  const optionLang = getBaseLanguageFromDict(currentDict);
+  const statusEl = document.getElementById('translationStatus');
+  const frenchWord = currentWord?.french || 'unknown';
+  
+  console.log(`\n🔄 === Translate OPTIONS for "${frenchWord}" ===`);
+  console.log(`📦 Dict: ${currentDict} → options in [${optionLang}], interface in [${targetLang}]`);
+  
+  // ← Восстановление оригиналов
+  if (targetLang === '--/--' || targetLang === optionLang) {
+    if (statusEl) statusEl.textContent = `🔄 Restoring original...`;
+    
+    const optionElements = els.options.querySelectorAll('.option');
+    optionElements.forEach((opt, idx) => {
+      const original = opt.dataset.original || opt.textContent;
+      console.log(`   ↩️ [${idx+1}] "${original}" (restore)`);
+      opt.textContent = original;
+      delete opt.dataset.translated;
+    });
+    
+    delete currentWord.translatedCorrect;
+    
+    if (statusEl) setTimeout(() => statusEl.textContent = '', 1000);
+    console.log(`✅ Restored ${optionElements.length} original options`);
+    console.log(`🔄 === Complete ===\n`);
+    return;
+  }
+  
+  const optionElements = els.options.querySelectorAll('.option');
+  if (optionElements.length === 0) return;
+  
+  originalOptions = Array.from(optionElements).map(opt => ({
+    el: opt,
+    original: opt.dataset.original || opt.textContent.trim()
+  }));
+  
+  if (statusEl) statusEl.textContent = `🌐 ${optionLang}→${targetLang}...`;
+  
+  optionElements.forEach(opt => {
+    opt.style.opacity = '0.6';
+    opt.style.cursor = 'wait';
+  });
+  
+  console.log(`📋 Translating ${originalOptions.length} options from [${optionLang}] to [${targetLang}]:`);
+  
+  // ← Переводим последовательно
+  const results = [];
+  for (let i = 0; i < originalOptions.length; i++) {
+    const item = originalOptions[i];
+    const translated = await translateText(item.original, optionLang, targetLang, `opt#${i+1}`);
+    results.push({ item, translated: translated || item.original });
+  }
+  
+  // ← Проверка на дубликаты
+  const translatedValues = results.map(r => r.translated);
+  const correctOriginal = currentWord.correct;
+  let correctTranslated = '';
+  
+  results.forEach(({ item, translated }, idx) => {
+    // ← ВАЛИДАЦИЯ ПЕРЕВОДА: отбрасываем мусор
+    const isValid = translated && 
+                   translated.length > 1 && 
+                   !['.', ',', '!', '?', '-', '_'].includes(translated.trim()) &&
+                   translated.toLowerCase() !== item.original.toLowerCase();
+    
+    const displayText = isValid ? translated : item.original;
+    
+    // Сохраняем перевод правильного ответа (только валидный)
+    if (item.original === correctOriginal) {
+      if (isValid) {
+        correctTranslated = displayText;
+        currentWord.translatedCorrect = displayText;
+        console.log(`✓ Correct: "${correctOriginal}" → "${displayText}"`);
+      } else {
+        // ← Если перевод плохой — оставляем оригинал как "перевод"
+        currentWord.translatedCorrect = correctOriginal;
+        console.log(`⚠️ Correct: "${correctOriginal}" → (keep original, bad translation)`);
+      }
+    }
+    
+    // ← Дубликаты
+    const isDuplicate = translatedValues.filter(v => v === displayText).length > 1;
+    const isWrongButSameAsCorrect = item.original !== correctOriginal && displayText === correctTranslated;
+    
+    if (isWrongButSameAsCorrect || (isDuplicate && item.original !== correctOriginal)) {
+      const duplicateText = `[${item.original}]`;
+      console.log(`⚠️ [${idx+1}] Duplicate: "${item.original}" → "${displayText}" → "${duplicateText}"`);
+      item.el.textContent = duplicateText;
+      item.el.dataset.translated = duplicateText;
+      item.el.dataset.isDuplicate = 'true';
+    } else {
+      console.log(`✓ [${idx+1}] "${item.original}" → "${displayText}"`);
+      item.el.textContent = displayText;
+      item.el.dataset.translated = displayText;
+      delete item.el.dataset.isDuplicate;
+    }
+  });
+  
+  optionElements.forEach(opt => {
+    opt.style.opacity = '1';
+    opt.style.cursor = 'pointer';
+  });
+
+  if (statusEl && results.length > 0) {
+    const sample = results[0];
+    statusEl.textContent = `${sample.original}→${sample.item.el.textContent}`;
+    setTimeout(() => statusEl.textContent = '', 3000);
+  }
+
+  console.log(`✅ Translated ${results.length} options: ${optionLang} → ${targetLang}`);
+  console.log(`🔄 === Complete for "${frenchWord}" ===\n`);
+}
+
+// Сброс переводов при следующем слове
+function resetTranslationState() {
+  originalOptions = [];
+  if (currentWord) {
+    delete currentWord.translatedCorrect;
+  }
+
+  const opts = els.options?.querySelectorAll('.option');
+  if (opts) {
+    opts.forEach(opt => {
+      delete opt.dataset.translated;
+      delete opt.dataset.isDuplicate;
+    });
+  }
+}
+
+function getBaseLanguageFromDict(dictName) {
+  const match = dictName?.match(/_(\w+)$/);
+  return match ? match[1] : 'en';
 }
 
 function loadDictStats(dictName) {
@@ -1171,7 +1348,11 @@ function getDictProgress(dictName) {
       localStorage.setItem(CONFIG.STORAGE_KEY + '_language', lang);
       updateInterfaceLanguage();
       
-      // Filter dictionaries based on language
+      if (!els.quizSection.classList.contains('hidden') && currentWord) {
+        resetTranslationState();
+        translateCurrentOptions(lang);
+      }
+  
       if (!els.dictManagerSection.classList.contains('hidden')) {
         renderDictList();
       }
@@ -2003,6 +2184,7 @@ function refillActivePool() {
 
 async function nextWord() {
   answered = false;
+  resetTranslationState(); 
   els.feedback.textContent = '';
   els.feedback.className = 'feedback';
   els.options.innerHTML = '';
@@ -2061,105 +2243,114 @@ async function nextWord() {
   els.wordProgress.innerHTML = `${getWordProgressText(currentWord.french)} ${getWordProgressBar(currentWord.french)}`;
 
 
-// === РЕЖИМ КАРТОЧЕК ===
-if (isCardMode || currentWord.isCard) {
-  els.nextBtn.disabled = false;
-  els.nextBtn.textContent = '>>';
-  els.options.style.display = 'none';
-  
-  const t = translations[currentLanguage];  // ← Получаем переводы
-  
-  // Удаляем старые элементы карточек
-  document.querySelectorAll('.card-examples, .card-translations, .card-translation').forEach(el => el.remove());
-  
-  // 1. РУССКИЙ ПЕРЕВОД — СРАЗУ ПОД ГЛАГОЛОМ
-  if (currentWord.correct) {
-    const translationBox = document.createElement('div');
-    translationBox.className = 'card-translation';
-    translationBox.style.cssText = 'margin:0.5rem 0;padding:0.75rem 1rem;background:rgba(34,197,94,0.15);border-radius:0.5rem;text-align:center;font-size:1.2rem;color:#86efac;font-weight:500;';
-    translationBox.textContent = currentWord.correct;
-    document.getElementById('wordProgress').parentNode.insertBefore(translationBox, document.getElementById('wordProgress').nextSibling);
-  }
-  
-  // 2. ПРИМЕРЫ (перемешанные) — ПОСЛЕ ПЕРЕВОДА
-  if (currentWord.examples?.length > 0) {
-    const shuffledExamples = [...currentWord.examples].sort(() => Math.random() - 0.5);
-    
-    const exBox = document.createElement('div');
-    exBox.className = 'card-examples';
-    exBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(59,130,246,0.1);border-radius:0.5rem;text-align:left;';
-    // ← ИСПОЛЬЗУЕМ ПЕРЕВОД:
-    exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">${t.cardExamples}</div>` +
-      shuffledExamples.map((ex, i) => `<div style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2)">${i+1}. ${ex}</div>`).join('');
-    
-    const translationBox = document.querySelector('.card-translation');
-    if (translationBox) {
-      translationBox.parentNode.insertBefore(exBox, translationBox.nextSibling);
-    } else {
-      document.getElementById('wordProgress').parentNode.insertBefore(exBox, document.getElementById('wordProgress').nextSibling);
-    }
-  }
-  
-  // 3. ПРАВИЛЬНЫЙ ФРАНЦУЗСКИЙ ОТВЕТ — В САМОМ НИЗУ
-  if (currentWord.correctSentence) {
-    const trBox = document.createElement('div');
-    trBox.className = 'card-translations';
-    trBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(34,197,94,0.1);border-radius:0.5rem;text-align:left;';
-    // ← ИСПОЛЬЗУЕМ ПЕРЕВОД:
-    trBox.innerHTML = `
-      <div style="font-weight:bold;color:#86efac;margin-bottom:0.5rem">${t.cardCorrectAnswer}</div>
-      <div style="padding:0.5rem;background:rgba(34,197,94,0.2);border-radius:0.25rem;font-size:1.1rem;color:#86efac;font-weight:600">
-        ${currentWord.correctSentence}
-      </div>`;
-    
-    const exBox = document.querySelector('.card-examples');
-    if (exBox) {
-      exBox.parentNode.insertBefore(trBox, exBox.nextSibling);
-    } else {
-      const translationBox = document.querySelector('.card-translation');
-      if (translationBox) {
-        translationBox.parentNode.insertBefore(trBox, translationBox.nextSibling);
-      } else {
-        document.getElementById('wordProgress').parentNode.insertBefore(trBox, document.getElementById('wordProgress').nextSibling);
+    // === РЕЖИМ КАРТОЧЕК ===
+    if (isCardMode || currentWord.isCard) {
+      els.nextBtn.disabled = false;
+      els.nextBtn.textContent = '>>';
+      els.options.style.display = 'none';
+      
+      const t = translations[currentLanguage];  // ← Получаем переводы
+      
+      // Удаляем старые элементы карточек
+      document.querySelectorAll('.card-examples, .card-translations, .card-translation').forEach(el => el.remove());
+      
+      // 1. РУССКИЙ ПЕРЕВОД — СРАЗУ ПОД ГЛАГОЛОМ
+      if (currentWord.correct) {
+        const translationBox = document.createElement('div');
+        translationBox.className = 'card-translation';
+        translationBox.style.cssText = 'margin:0.5rem 0;padding:0.75rem 1rem;background:rgba(34,197,94,0.15);border-radius:0.5rem;text-align:center;font-size:1.2rem;color:#86efac;font-weight:500;';
+        translationBox.textContent = currentWord.correct;
+        document.getElementById('wordProgress').parentNode.insertBefore(translationBox, document.getElementById('wordProgress').nextSibling);
+      }
+      
+      // 2. ПРИМЕРЫ (перемешанные) — ПОСЛЕ ПЕРЕВОДА
+      if (currentWord.examples?.length > 0) {
+        const shuffledExamples = [...currentWord.examples].sort(() => Math.random() - 0.5);
+        
+        const exBox = document.createElement('div');
+        exBox.className = 'card-examples';
+        exBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(59,130,246,0.1);border-radius:0.5rem;text-align:left;';
+        // ← ИСПОЛЬЗУЕМ ПЕРЕВОД:
+        exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">${t.cardExamples}</div>` +
+          shuffledExamples.map((ex, i) => `<div style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2)">${i+1}. ${ex}</div>`).join('');
+        
+        const translationBox = document.querySelector('.card-translation');
+        if (translationBox) {
+          translationBox.parentNode.insertBefore(exBox, translationBox.nextSibling);
+        } else {
+          document.getElementById('wordProgress').parentNode.insertBefore(exBox, document.getElementById('wordProgress').nextSibling);
+        }
+      }
+      
+      // 3. ПРАВИЛЬНЫЙ ФРАНЦУЗСКИЙ ОТВЕТ — В САМОМ НИЗУ
+      if (currentWord.correctSentence) {
+        const trBox = document.createElement('div');
+        trBox.className = 'card-translations';
+        trBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(34,197,94,0.1);border-radius:0.5rem;text-align:left;';
+        // ← ИСПОЛЬЗУЕМ ПЕРЕВОД:
+        trBox.innerHTML = `
+          <div style="font-weight:bold;color:#86efac;margin-bottom:0.5rem">${t.cardCorrectAnswer}</div>
+          <div style="padding:0.5rem;background:rgba(34,197,94,0.2);border-radius:0.25rem;font-size:1.1rem;color:#86efac;font-weight:600">
+            ${currentWord.correctSentence}
+          </div>`;
+        
+        const exBox = document.querySelector('.card-examples');
+        if (exBox) {
+          exBox.parentNode.insertBefore(trBox, exBox.nextSibling);
+        } else {
+          const translationBox = document.querySelector('.card-translation');
+          if (translationBox) {
+            translationBox.parentNode.insertBefore(trBox, translationBox.nextSibling);
+          } else {
+            document.getElementById('wordProgress').parentNode.insertBefore(trBox, document.getElementById('wordProgress').nextSibling);
+          }
+        }
       }
     }
-  }
-}
-  // === РЕЖИМ ТЕСТА (старый) ===
-else {
-  els.nextBtn.disabled = true;
-  els.nextBtn.textContent = t.btnNext || 'Next →';
-  els.options.style.display = 'grid';
-  
-  // Берём ВСЕ неправильные варианты из currentWord.wrong
-  const allWrong = currentWord.wrong || [];
-  
-  // Перемешиваем и ограничиваем максимум 8, чтобы не перегружать интерфейс
-  const shuffledWrong = [...allWrong].sort(() => Math.random() - 0.5).slice(0, 8);
-  
-  // Добавляем правильный ответ и перемешиваем всё вместе
-  const opts = [...shuffledWrong, currentWord.correct].sort(() => Math.random() - 0.5);
-  
-  // Адаптируем сетку под количество вариантов
-  const optionCount = opts.length;
-  if (optionCount <= 2) {
-    els.options.style.gridTemplateColumns = '1fr';
-  } else if (optionCount <= 4) {
-    els.options.style.gridTemplateColumns = '1fr 1fr';
-  } else {
-    // Для 5-8 вариантов можно оставить 2 колонки или сделать 3
-    els.options.style.gridTemplateColumns = optionCount > 6 ? '1fr 1fr 1fr' : '1fr 1fr';
-  }
-  
-  // Создаём кнопки
-  opts.forEach(opt => {
-    const btn = document.createElement('div');
-    btn.className = 'option';
-    btn.textContent = opt;
-    btn.onclick = () => handleAnswer(opt, currentWord.correct);
-    els.options.appendChild(btn);
-  });
-}
+      // === РЕЖИМ ТЕСТА (старый) ===
+    else {
+      els.nextBtn.disabled = true;
+      els.nextBtn.textContent = t.btnNext || 'Next →';
+      els.options.style.display = 'grid';
+      
+      const allWrong = currentWord.wrong || [];
+      const shuffledWrong = [...allWrong].sort(() => Math.random() - 0.5).slice(0, 8);
+      const opts = [...shuffledWrong, currentWord.correct].sort(() => Math.random() - 0.5);
+      
+      const optionCount = opts.length;
+      if (optionCount <= 2) {
+        els.options.style.gridTemplateColumns = '1fr';
+      } else if (optionCount <= 4) {
+        els.options.style.gridTemplateColumns = '1fr 1fr';
+      } else {
+        els.options.style.gridTemplateColumns = optionCount > 6 ? '1fr 1fr 1fr' : '1fr 1fr';
+      }
+      
+          // ← КЛЮЧЕВОЕ: создаём кнопки с dataset.original
+          opts.forEach(opt => {
+            const btn = document.createElement('div');
+            btn.className = 'option';
+            btn.textContent = opt;
+            btn.dataset.original = opt;  // ← СОХРАНЯЕМ ОРИГИНАЛ!
+            btn.onclick = () => handleAnswer(opt, currentWord.correct);
+            els.options.appendChild(btn);
+          });
+
+          originalOptions = Array.from(els.options.querySelectorAll('.option')).map(opt => ({
+            el: opt,
+            original: opt.dataset.original || opt.textContent.trim()
+          }));
+          
+          // ← АВТО-ПЕРЕВОД если язык интерфейса не базовый
+          if (currentLanguage !== '--/--' && currentLanguage !== getBaseLanguageFromDict(currentDict)) {
+            // Небольшая задержка чтобы дать рендеру завершиться
+            setTimeout(() => {
+              translateCurrentOptions(currentLanguage);
+            }, 50);
+          }
+        }
+    
+
 }
 
 
@@ -2209,19 +2400,43 @@ function showLearnedWords() {
     }
 
 
-// ===== ANSWER (UPDATED) =====
-function handleAnswer(selected, correct) {
+// ===== ANSWER (FIXED) =====
+function handleAnswer(selectedElement, selectedText) {
   if (answered) return;
   answered = true;
   
   const opts = els.options.querySelectorAll('.option');
+  
+  // ← КЛЮЧЕВОЕ: правильный ответ берём из оригинала
+  const correctOriginal = currentWord.correct;
+  
   opts.forEach(opt => {
     opt.style.pointerEvents = 'none';
-    if (opt.textContent === correct) opt.classList.add('correct');
-    if (opt.textContent === selected && selected !== correct) opt.classList.add('wrong');
+    
+    // ← Сравниваем ТОЛЬКО по dataset.original
+    const optOriginal = opt.dataset.original;
+    
+    // Подсветка правильного
+    if (optOriginal === correctOriginal) {
+      opt.classList.add('correct');
+    }
+    // Подсветка выбранного неправильного
+    if (optOriginal === selectedText && selectedText !== correctOriginal) {
+      opt.classList.add('wrong');
+    }
   });
   
-  const isCorrect = selected === correct;
+  // ← Проверяем правильность: ищем кнопку по тексту и берём её original
+  let selectedOriginal = selectedText; // фолбэк
+  for (const opt of opts) {
+    if (opt.textContent.trim() === selectedText) {
+      selectedOriginal = opt.dataset.original || selectedText;
+      break;
+    }
+  }
+  
+  const isCorrect = selectedOriginal === correctOriginal;
+  
   const key = currentWord.french;
   
   if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
@@ -2231,17 +2446,14 @@ function handleAnswer(selected, correct) {
     stats.totalCorrect++;
     els.feedback.innerHTML = reviewMode ? '✅ Still know it!' : '✅ +1';
     els.feedback.className = 'feedback correct';
-    console.log(`✅ ${key}: ${progress[key].points}/${CONFIG.POINTS_TO_LEARN}`);
   } else {
     stats.sessionErrors++;
     if (reviewMode) {
       progress[key].points = 0;
-      els.feedback.innerHTML = `❌ Forgot! Reset<br><span class="correct-answer">${correct}</span>`;
-      console.log(`❌ ${key}: RESET to 0`);
+      els.feedback.innerHTML = `❌ Forgot! Reset<br><span class="correct-answer">${correctOriginal}</span>`;
     } else {
       progress[key].points = Math.max(CONFIG.MIN_POINTS, progress[key].points - 1);
-      els.feedback.innerHTML = `❌ -1<br><span class="correct-answer">${correct}</span>`;
-      console.log(`❌ ${key}: ${progress[key].points}/${CONFIG.POINTS_TO_LEARN}`);
+      els.feedback.innerHTML = `❌ -1<br><span class="correct-answer">${correctOriginal}</span>`;
     }
     els.feedback.className = 'feedback wrong';
   }
@@ -2251,28 +2463,22 @@ function handleAnswer(selected, correct) {
   if (history.length > 50) history.pop();
   
   progress[key].lastSeen = Date.now();
-  
-  // Сохраняем статистику для текущего словаря
   saveDictStats(currentDict);
   saveData();
   
   const points = progress[key]?.points ?? 0;
   
-  // Удаляем из пула если выучили
   if (points >= CONFIG.POINTS_TO_LEARN) {
     const beforeLength = activePool.length;
     activePool = activePool.filter(w => w !== key);
     console.log(`🎓 "${key}" learned! Removed from pool (${beforeLength} → ${activePool.length})`);
   }
 
-  // Перезаполняем пул если меньше 50%
   if (activePool.length < poolSize * 0.5) {
-    console.log(`📉 Pool low (${activePool.length}/${poolSize}), refilling...`);
     refillActivePool();
   }
 
   els.wordProgress.innerHTML = `${getWordProgressText(key)} ${getWordProgressBar(key)}`;
-
   updateStats();
   els.nextBtn.disabled = false;
   
@@ -2301,7 +2507,6 @@ function handleAnswer(selected, correct) {
     }
   }
 }
-
 
     // ===== STATS =====
 function updateStats() {
