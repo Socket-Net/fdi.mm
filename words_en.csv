@@ -719,7 +719,7 @@ le son,sound,noise,tone,ring,call,audio
 de rien,you're welcome,no problem,not at all,thank you,please,sorry
 oui,yes,no,maybe,okay,sure,perhaps
 le soir,evening,night,morning,day,dusk,sunset
-gentil,kind,nice,gentle,pleasant,friendly,good
+gentil,gentle,nice,pleasant,friendly,good,polite
 joli,pretty,nice,beautiful,ugly,good,bad
 vieux,old,new,ancient,classic,used,aged
 quelquefois,sometimes,never,always,often,rarely,usually
@@ -1064,7 +1064,7 @@ attaque,attack,assault,offense,strike,onslaught,aggression
 la main,hand,arm,palm,finger,help,side
 la compétition, competition, contest, rivalry, tournament, matchup, challenge
 la défense, defense, protection, safeguard, resistance, justification, advocacy
-la bonté, goodness, kindness, benevolence, virtue, decency, generosity
+la bonté, kindness, benevolence, virtue, decency, generosity,rioter
 l'événement, event, occurrence, happening, incident, occasion, affair
 la période, period, era, phase, interval, time span, epoch
 la forme, shape, form, figure, appearance, condition, format
@@ -1569,7 +1569,6 @@ la moyenne, average, mean, medium, norm, typical,
 la falaise, cliff, precipice, bluff, crag, escarpment,
 le grec, greek, from Greece, Greek language, Hellenic,,
 le nom, name, behalf of, account, title,behalf
-le nom de, behalf of, name, second name, title
 le punk, punk, hoodlum, rebel, music genre, tough,
 le tuyau, pipe, tube, hose, tip, lead, conduit
 l'échantillon, sample, specimen, example, test, swatch,
@@ -1744,7 +1743,6 @@ la stratégie, strategy, plan, tactic, approach, scheme,
 la chèvre, goat, nanny goat, billy goat, kid, capricious person,
 le prix, award, prize, price, cost, value,
 le maïs, corn, maize, sweetcorn, grain, popcorn,
-le professionnel, pro, professional, expert, specialist,,
 le filet, net, netting, mesh, snare, network,
 le tatouage, tattoo, ink, body art, marking, design,
 l'attaque, stroke, attack, assault, fit, onset,
