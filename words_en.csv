@@ -629,7 +629,7 @@ agité,agitated,restless,turbulent,upset,excited,nervous
 la récupération,recovery,rest,healing,repair,restore,operation
 la similitude,similarity,resemblance,likeness,parallel,analogy,sameness
 le besoin,need,requirement,necessity,want,demand,urge
-la réponse,answer,reply,solution,response,key,result
+la réponse,answer,reply,solution,key,result
 repos,rest,relaxation,repose,leisure,break,respite
 rapport,report,relation,ratio,connection,account,statement
 irrégulier,irregular,regular,random,occasional,frequent,common
@@ -1030,7 +1030,6 @@ le taxi,taxi,cab,ride,driver,car,transport
 au revoir,goodbye,bye,see you,hello,good night,thanks
 donc,so/therefore,but,and,or,then,because
 si,if/so,but,and,or,then,yes
-entreprise,company,business,firm,enterprise,corporation,venture
 balle,ball,bullet,sphere,orb,globe,projectile
 copain,friend,buddy,pal,chum,mate,companion
 la sœur,sister,brother,family,daughter,mother,aunt
@@ -1135,7 +1134,7 @@ la menace, threat, offense, danger, warning, intimidation, breaker
 l'oreille, ear, hearing, auricle, lobe, organ of hearing, lunch
 le miracle, miracle, wonder, marvel, prodigy, phenomenon, management
 la grand-mère, grandmother, grandma, granny, nana, gran, statistics
-l'entreprise, firm, company, business, enterprise, corporation, bugle
+l'entreprise, company, business, corporation, bugle
 le gagnant, winner, victor, champion, conqueror, successful person, solicitor
 la licence, license, permit, degree, freedom, authorization, formal
 l'avantage, advantage, benefit, edge, superiority, perk, snitch
@@ -1516,7 +1515,6 @@ le scénario, script, screenplay, plot, outline,
 le nerf, nerve, boldness, sinew, fiber, courage,
 le sceau, seal, stamp, signet, emblem, closure,
 l'insecte, bug, insect, beetle, pest, creepy-crawly,
-la réponse, response, answer, reply, reaction, retort,
 la surveillance, surveillance, monitoring, watch, observation,,
 le gain, gain, profit, increase, benefit, winnings,
 la gâchette, trigger, catch, lever, switch, release,
@@ -1761,7 +1759,7 @@ l'éléphant, elephant, pachyderm, large mammal, trunked animal,,
 l'otage, hostage, captive, prisoner, pawn, detainee,
 la branche, branch, bough, limb, division, arm,
 l'objection, objection, protest, demurrer, exception, dissent,
-le tour, lap, turn, circuit, round, trick,
+le tour, turn, circuit, round, trick,
 la possession, possession, ownership, property, control, thing owned,
 le robinet, tap, faucet, spigot, valve, cock,
 le supérieur, superior, higher, better, boss, upper,
