@@ -113,7 +113,19 @@
       background: rgba(75,85,99,0.3);
       border: 2px solid rgba(59,130,246,0.3);
     }
-    
+    .example-tts-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.1s;
+  line-height: 1;
+  border-radius: 3px;
+}
+.example-tts-btn:hover { opacity: 1; }
+.example-tts-btn:active { transform: scale(0.95); }
     .word-header {
       display: flex;
       align-items: center;
@@ -1570,6 +1582,21 @@ function speakWord() {
   window.speechSynthesis.speak(utterance);
 }
 
+function speakText(text, lang = 'fr-FR') {
+  if (!window.speechSynthesis) {
+    console.warn('TTS not supported');
+    return;
+  }
+  
+  window.speechSynthesis.cancel(); // останавливаем предыдущее
+  
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = lang;
+  utterance.rate = 0.7;
+  utterance.pitch = 1;
+  
+  window.speechSynthesis.speak(utterance);
+}
 
 function parseCSV(text) {
   isCardMode = false;
@@ -2324,6 +2351,8 @@ function refillActivePool() {
 async function nextWord() {
   answered = false;
   resetTranslationState(); 
+  document.querySelectorAll('.card-examples, .card-translations, .card-translation, .remove-fav-btn').forEach(el => el.remove());
+  
   els.feedback.textContent = '';
   els.feedback.className = 'feedback';
   els.options.innerHTML = '';
@@ -2402,24 +2431,60 @@ async function nextWord() {
         document.getElementById('wordProgress').parentNode.insertBefore(translationBox, document.getElementById('wordProgress').nextSibling);
       }
       
-      // 2. ПРИМЕРЫ (перемешанные) — ПОСЛЕ ПЕРЕВОДА
-      if (currentWord.examples?.length > 0) {
-        const shuffledExamples = [...currentWord.examples].sort(() => Math.random() - 0.5);
-        
-        const exBox = document.createElement('div');
-        exBox.className = 'card-examples';
-        exBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(59,130,246,0.1);border-radius:0.5rem;text-align:left;';
-        // ← ИСПОЛЬЗУЕМ ПЕРЕВОД:
-        exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">${t.cardExamples}</div>` +
-          shuffledExamples.map((ex, i) => `<div style="padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2)">${i+1}. ${ex}</div>`).join('');
-        
-        const translationBox = document.querySelector('.card-translation');
-        if (translationBox) {
-          translationBox.parentNode.insertBefore(exBox, translationBox.nextSibling);
-        } else {
-          document.getElementById('wordProgress').parentNode.insertBefore(exBox, document.getElementById('wordProgress').nextSibling);
-        }
-      }
+      // 2. ПРИМЕРЫ (в порядке из файла) + кнопка озвучки
+if (currentWord.examples?.length > 0) {
+  const exBox = document.createElement('div');
+  exBox.className = 'card-examples';
+  exBox.style.cssText = 'margin:1rem 0;padding:1rem;background:rgba(59,130,246,0.1);border-radius:0.5rem;text-align:left;';
+  
+  // Заголовок
+  exBox.innerHTML = `<div style="font-weight:bold;color:#93c5fd;margin-bottom:0.5rem">${t.cardExamples}</div>`;
+  
+  // Каждый пример + мини-кнопка 🔊
+  currentWord.examples.forEach((ex, i) => {
+    const exLine = document.createElement('div');
+    exLine.style.cssText = 'padding:0.25rem 0;border-bottom:1px solid rgba(75,85,99,0.2);display:flex;align-items:center;gap:0.5rem;';
+    
+    // Номер + текст примера
+    const exText = document.createElement('span');
+    exText.innerHTML = `<span style="color:#94a3b8;margin-right:0.25rem">${i+1}.</span> ${ex}`;
+    
+    // Мини-кнопка 🔊
+    const ttsBtn = document.createElement('button');
+    ttsBtn.innerHTML = '🔊';
+    ttsBtn.title = 'Listen';
+    ttsBtn.style.cssText = `
+      background:none;border:none;cursor:pointer;padding:0.1rem 0.3rem;
+      font-size:0.85rem;opacity:0.6;transition:opacity 0.2s,transform 0.1s;
+      line-height:1;border-radius:3px;
+    `;
+    ttsBtn.onmouseenter = () => ttsBtn.style.opacity = '1';
+    ttsBtn.onmouseleave = () => ttsBtn.style.opacity = '0.6';
+    ttsBtn.onmousedown = () => ttsBtn.style.transform = 'scale(0.95)';
+    ttsBtn.onmouseup = () => ttsBtn.style.transform = 'scale(1)';
+    
+    // Озвучка при клике
+    ttsBtn.onclick = (e) => {
+      e.stopPropagation(); // чтобы не триггерить клик по строке
+      speakText(ex, 'fr-FR'); // ← французский для примеров
+      // Визуальный фидбек
+      ttsBtn.style.opacity = '1';
+      setTimeout(() => ttsBtn.style.opacity = '0.6', 300);
+    };
+    
+    exLine.appendChild(exText);
+    exLine.appendChild(ttsBtn);
+    exBox.appendChild(exLine);
+  });
+  
+  // Вставка в DOM (после перевода или wordProgress)
+  const translationBox = document.querySelector('.card-translation');
+  if (translationBox) {
+    translationBox.parentNode.insertBefore(exBox, translationBox.nextSibling);
+  } else {
+    document.getElementById('wordProgress').parentNode.insertBefore(exBox, document.getElementById('wordProgress').nextSibling);
+  }
+}
       
       // 3. ПРАВИЛЬНЫЙ ФРАНЦУЗСКИЙ ОТВЕТ — В САМОМ НИЗУ
       if (currentWord.correctSentence) {
