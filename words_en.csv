@@ -1000,7 +1000,7 @@ le bus,bus,coach,vehicle,transport,route,stop
 la clé,key,clue,solution,lock,door,secret
 ciel,sky/heaven,cloud,space,air,sun,star
 vêtements,clothes,clothing,garments,apparel,attire,wear
-fermeture,closing,closure,shutdown,lock,fastening,seal
+fermeture,closing,opening,shutdown,lock,fastening,seal
 l'hôpital,hospital,clinic,medical,health,doctor,emergency
 le client,customer,client,guest,patron,buyer,consumer
 cours,course,class,lesson,stream,flow,rate
@@ -1152,7 +1152,7 @@ la charge, load, burden, charge, responsibility, cargo, cut
 le trésor, treasure, hoard, riches, gem, prize, platter
 le sortilège, spell, enchantment, magic, curse, charm, screen
 le fer, iron, metal, flatiron, strength, firmness, creature
-le sauvetage, rescue, salvation, recovery, deliverance, saving, movement
+le sauvetage, rescue, salvation, recovery, deliverance, accumulating, movement
 le traitement, treatment, processing, therapy, handling, cure, morning light
 le désert, desert, wasteland, wilderness, arid land,, contaminant
 le résultat, result, outcome, consequence, score, product, secret
@@ -1609,7 +1609,7 @@ l'aventure, adventure, escapade, experience, risk, story,
 le passeport, passport, travel document, ID, visa holder,,
 le marteau, hammer, mallet, gavel, tool, striker,
 le capot, hood, bonnet, cover, engine cover, cloak,
-le jugement, judgment, judgement, decision, opinion, sentence,
+le jugement, judgment, decision, opinion, sentence,
 l'homicide, homicide, murder, killing, manslaughter, slaying,
 la patrouille, patrol, round, guard, watch, squad,
 le flux, flow, flux, stream, current, tide,
@@ -2264,7 +2264,6 @@ l'assurance, insurance, assurance, confidence, guarantee, certainty,
 l'aéroport, airport, aerodrome, airfield, terminal, air hub,
 le temple, temple, shrine, church, sanctuary, place of worship,
 la connaissance, knowledge, acquaintance, familiarity, awareness, understanding,
-la carte, map, card, menu, chart, ticket,
 la toiture,roofing,foot,ton,car,valet
 retenir,to retain / to remember,come,become,return,tentative,reflect
 l'outil,tool,utilisation,outrage,patrol,overwhelm,own
