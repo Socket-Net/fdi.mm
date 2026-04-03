@@ -571,7 +571,6 @@ salope,bitch,slut,wench,hussy,harlot,shrew
 sommeil,sleep,slumber,drowsiness,nap,rest,doze
 bonne nuit,good night,sleep well,good evening,good morning,goodbye,hello
 le lit,bed,sleep,rest,furniture,room,bedroom
-lit,bed,sleep,mattress,couch,room,rest
 capitaine,captain,skipper,commander,chief,leader,head
 le frère,brother,sister,family,son,father,uncle
 jusqu'à,until/up to,since,before,after,during,from
@@ -976,7 +975,7 @@ moderne,modern,contemporary,up-to-date,new,current,progressive
 conduite,driving,conduct,behavior,management,leadership,operation
 état,state,condition,status,province,nation,republic
 la fin,end,conclusion,finish,termination,close,ending
-inquiétude,worry,concern,anxiety,unease,apprehension,nervousness
+inquiétude,anxiety,concern,unease,apprehension,nervousness
 plein,full,complete,filled,packed,crowded,whole
 l'ami,friend,companion,pal,buddy,partner,acquaintance
 rare,rare,common,usual,ordinary,frequent,scarce
@@ -1540,7 +1539,7 @@ l'électricité, electricity, power, current, energy, wiring,
 le guerrier, warrior, fighter, soldier, combatant, hero,
 la fée, fairy, sprite, pixie, enchantress, elf,
 la température, temperature, fever, heat, climate, degree,
-la cabine, booth, cabin, cubicle, telephone booth, changing room,
+la cabine, cabin, cubicle, telephone booth, changing room,
 l'animal de compagnie, pet, companion animal, house pet, dog or cat,,
 le sport, sport, game, athletics, pastime, fun,
 la caution, bail, security, guarantee, surety, deposit,
@@ -1595,7 +1594,7 @@ l'abri, shelter, refuge, shed, cover, protection,
 l'existence, existence, being, life, presence, reality,
 l'atmosphère, atmosphere, air, mood, environment, ambiance,
 le produit, product, produce, result, commodity, item,
-l'entre-temps, meantime, meanwhile, interim, interval,,
+l'entre-temps,in the meantime, meanwhile, interim, interval,after
 la limite, limit, boundary, restriction, edge, maximum,
 l'élection, election, voting, selection, choice, poll,
 les sous-vêtements, underwear, undergarments, lingerie, briefs,,
@@ -1671,7 +1670,7 @@ le lancer, throw, launch, kick, cast, toss,landscape,land
 l'exemple, example, instance, case, illustration, sample,
 le citron, lemon, citrus, sour fruit, yellow, car (slang),
 le mal de tête, headache, migraine, pain in head, nuisance,,
-la séance, session, sitting, meeting, show, séance,
+la séance, session, sitting, meeting, show,
 l'épingle, pin, needle, brooch, hairpin, badge,
 la publicité, commercial, advertisement, publicity, ad, promo,
 le foie, liver, organ, food, courage (figurative),,
@@ -2027,7 +2026,7 @@ ruban, ribbon, band, strip, gang, belt
 la pratique, practice, training, custom, habit, exercise, routine
 l'urgence, emergency, urgency, crisis, rush, priority, accident
 le pont, bridge, span, overpass, deck, connection, viaduct
-l'entraîneur, coach, trainer, instructor, manager, tutor, mentor
+l'entraîneur, coach, instructor, manager, tutor, mentor
 l'inspecteur, inspector, examiner, investigator, auditor, checker,
 le ministre, minister, pastor, secretary, priest, government official,
 les applaudissements, applause, clapping, ovation, cheers, handclap,
@@ -2182,7 +2181,7 @@ la permission, permission, permit, leave, authorization, consent,
 la fantaisie, fancy, fantasy, imagination, whim, notion,
 la théorie, theory, hypothesis, idea, concept, speculation,
 le portail, gate, gateway, portal, entrance, door,
-la peinture, paint, painting, coating, artwork, picture,
+la peinture, painting, coating, artwork, picture,plenty
 l'amoureux, lover, sweetheart, boyfriend, romantic, admirer,
 l'humeur, mood, humor, temper, disposition, atmosphere,
 la tempête, storm, tempest, gale, thunderstorm, uproar,
