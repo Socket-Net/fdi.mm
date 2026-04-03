@@ -725,7 +725,7 @@ vieux,old,new,ancient,classic,used,aged
 quelquefois,sometimes,never,always,often,rarely,usually
 toujours,always,never,sometimes,often,rarely,usually
 pauvre,poor,needy,impoverished,broke,indigent,meager
-propre,clean,neat,tidy,pure,own,proper
+propre,clean/proper,neat,tidy,pure,own,
 méchant,mean,naughty,wicked,evil,cruel,bad
 le pays,country,nation,state,land,region,kingdom
 mien,mine,my own,belonging to me,my possession,my property,miel
@@ -1895,7 +1895,6 @@ l'été, summer, summertime, warm season, holiday season, hot weather,
 le patient, patient, sick person, case, inpatient, outpatient, sufferer
 la tante, aunt, auntie, relative, mother's sister, father's sister,
 l'expérience, experience, experiment, trial, knowledge, skill, background
-le paradis, heaven, paradise, Eden, bliss, utopia, afterlife
 la rivière, river, stream, waterway, brook, creek, flow
 l'évasion, escape, breakout, getaway, flight, evasion, elopement
 l'adresse, address, location, residence, speech, direction,
