@@ -726,7 +726,7 @@ quelquefois,sometimes,never,always,often,rarely,usually
 toujours,always,never,sometimes,often,rarely,usually
 pauvre,poor,needy,impoverished,broke,indigent,meager
 propre,clean/proper,neat,tidy,pure,own,
-méchant,mean,naughty,wicked,evil,cruel,bad
+méchant,wicked,naughty,evil,cruel,bad
 le pays,country,nation,state,land,region,kingdom
 mien,mine,my own,belonging to me,my possession,my property,miel
 peu,little/few,much,many,a lot,enough,too much
@@ -994,7 +994,6 @@ le rose,pink,color,rose,flower,soft,romantic
 le rouge,red,color,scarlet,crimson,blood,passion
 le vert,green,color,emerald,grass,nature,envy
 monnaie,change/money,coin,cash,currency,bill,banknote
-le thé,tea,coffee,wine,juice,milk,water
 thé,tea,coffee,drink,milk,juice,herb
 le bus,bus,coach,vehicle,transport,route,stop
 la clé,key,clue,solution,lock,door,secret
@@ -1345,7 +1344,7 @@ la guitare, guitar, axe, string instrument, acoustic, electric,
 le détail, detail, particular, item, fine point, trifle,
 le comportement, behavior, conduct, demeanour, attitude, manner,
 la livraison, delivery, supply, childbirth, handing over,,
-la capacité, ability, capacity, capability, volume, skill,
+la capacité, capacity, capability, volume, skill,
 le district, district, area, region, zone, locality,
 la chaussure, shoe, footwear, boot, sneaker, pump,
 l'esclave, slave, bondsman, serf, thrall, captive,
@@ -2169,7 +2168,7 @@ la neige, snow, snowfall, white flakes, winter cover, powder,
 le château, castle, palace, fortress, mansion,
 le discours, speech, talk, address, oration, lecture, language
 le bloc, block, cube, building block, barrier, group,
-la secousse, shake, jolt, tremor, shock, jerk, vibration
+la secousse, jolt, tremor, shock, jerk, vibration
 la fouille, dig, search, excavation, frisk, probe, investigation
 le poste, post, position, job, mail, station, office
 la réalité, reality, actuality, truth, real world, fact,
