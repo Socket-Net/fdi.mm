@@ -869,7 +869,7 @@ mou,soft,hard,firm,tender,weak,flexible
 triste,sad,happy,down,unhappy,melancholy,depressed
 la joie,joy,happiness,delight,glee,pleasure,bliss
 beau,beautiful,handsome,pretty,ugly,nice,fine
-salle,room/hall,hall,room,space,area,building
+salle,room/hall,room,space,area,building
 fusil,rifle,gun,firearm,shotgun,weapon,musket
 ensemble,together,group,whole,unit
 poignée,handle,grip,knob,hilt,handful,bunch
@@ -992,7 +992,7 @@ le noir,black,color,dark,evil,night,absence
 le rose,pink,color,rose,flower,soft,romantic
 le rouge,red,color,scarlet,crimson,blood,passion
 le vert,green,color,emerald,grass,nature,envy
-monnaie,change/money,coin,cash,currency,bill,banknote
+monnaie,change/money,coin,currency,bill,banknote
 thé,tea,coffee,drink,milk,juice,herb
 le bus,bus,coach,vehicle,transport,route,stop
 la clé,key,clue,solution,lock,door,secret
@@ -1096,7 +1096,6 @@ le chocolat, chocolate, cocoa, sweet, candy, bar, dessert
 l'image, image, photo, representation, impression, figure
 habituel, regular, usual, customary, normal, habitual, ordinary
 le taxi, taxi, cab, taxicab, ride, hire car,tax
-la pisse, piss, urine, pee, wee, urination,piece
 la blessure, wound, injury, lesion, cut, trauma, hurt
 l'assiette, plate, dish, saucer, platter, dinner plate,assistant
 la télévision, television, TV, telly, screen, broadcast,cord
@@ -1264,6 +1263,26 @@ l'escouade, team, squad,unit, detachment, crew, domain
 le royaume, kingdom, realm, monarchy, domain, empire,
 l'écran, screen, display, shield, curtain, monitor,
 la mode, fashion, mode, manner, style, method,
+poursuivre,pursue,hunt,service,push,continue,adjudicate
+l’occasion,opportunity,vocation,endeavor,progress,
+réputée,well known,greate,noted,noticed,popular
+sort de usine,factory exit,sort of manufacturer,type of urine,kind of utilise
+la distillerie,distillery,manufacturer,factory,delivery,destiny
+les autorisations,permits,restrictions,prohibits,licenses,certifications
+auprès,near,April,other,previous,next,ago
+s’est mis ensemble,got together,miss together,made mistake,all affairs
+j’avais,i had, i saw,i went, i ran, i go, i will go, i will have
+puis,then, plus, plural,few,persuit, 
+on a décidé,we decided,let's decide,with decision,no decision,on aside
+actuellement,currently,actual,in one moment,in a moment, in a while
+ont été écoulés,have been sold,with accumulation,accumulated,they accumulated,sales
+maintenir,maintain,general,usually,obtain,save,keep,acquanted
+de rendre service,to do a service,return purchase,prepare for service,return goods
+Grâce à ce,thanks to,ice screme for,frosting of,looking-glass,greate to,welcome to
+retiens,remember,return,retain,keep,get rid off,receive
+il prévoit,he predicts/plans,he provokes,he saw, It's rainy
+prédire,predict,read befor,say it befor,look at later,speak about
+chacun,each,piece,shark,share,screen share,chain,cut every
 la vague, wave, surge, billow, undulation, trend,
 l'escalade, climb, escalation, scaling, ascent, rock climbing,
 le stylo, pen, fountain pen, stylus, writing instrument,,
@@ -1277,7 +1296,6 @@ l'étreinte, hug, embrace, clasp, grip, cuddle,
 l'alcool, alcohol, liquor, spirit, booze, ethanol,
 la conférence, conference, lecture, meeting, seminar, talk,
 l'éducation, education, upbringing, training, schooling, learning,
-la politique, politics, policy, political matters, diplomacy,,
 le viol, rape, violation, assault, breach,,
 la momie, mummy, mom, Egyptian mummy, preserved body,,
 la frontière, border, frontier, boundary, limit, edge,
@@ -1302,7 +1320,8 @@ le manque, lack, shortage, deficiency, absence, want,
 l'approche, approach, method, way, manner, advance,
 le poussin, chick, chicken, young bird, cute person,fish
 la poupée, doll, puppet, figurine, toy, mannequin,
-le canard, duck, newspaper, false rumor, drake,,
+le canard, duck, newspaper, false rumor, drake,
+le nettoyage,cleaning,visage,scrub,fiber,nasty
 le stock, stock, inventory, shares, supply, broth,
 la bibliothèque, library, bookcase, bookshelf, collection,,
 l'échec, failure, defeat, setback, flop, miss,
@@ -1676,7 +1695,6 @@ la publicité, commercial, advertisement, publicity, ad, promo,
 le foie, liver, organ, food, courage (figurative),,
 l'ingénieur, engineer, technician, designer, builder, expert,
 le souper, supper, evening meal, dinner, late meal,,
-l'alcool, liquor, alcohol, spirits, booze, drink,
 la perceuse, drill, drilling machine, borer, brace,,
 la ruelle, alley, lane, backstreet, passage, narrow street,
 le saut, jump, leap, bound, skip,clap,click
