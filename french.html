@@ -1004,6 +1004,7 @@
     let dictStats = {};
     let translationCache = {};
     let originalOptions = []; 
+    let shownFavoritesInSession = new Set();
 
     // ===== DOM =====
     const els = {
@@ -1976,13 +1977,26 @@ function getNextWordFromPool() {
     return null;
   }
 
+
+  // === РЕЖИМ ИЗБРАННОГО: просто идём по списку без повторов ===
   if (reviewMode) {
-    const favorites = getFavorites();
-    if (favorites.length === 0) return null;
-    // Фильтруем только невыученные фавориты
-    const available = favorites.filter(w => (progress[w.french]?.points ?? 0) < CONFIG.POINTS_TO_LEARN);
-    if (available.length === 0) return null;
-    return available[Math.floor(Math.random() * available.length)];
+    const allFavorites = getFavorites(); // ВСЕ фавориты, даже выученные
+    if (allFavorites.length === 0) return null;
+    
+    // Фильтруем те, что ещё не показывали в этой сессии
+    const available = allFavorites.filter(w => !shownFavoritesInSession.has(w.french));
+    
+    // Если все показали — сбрасываем и начинаем заново (или возвращаем null)
+    if (available.length === 0) {
+      shownFavoritesInSession.clear(); // ← опционально: начать новый круг
+      return null; // или: return allFavorites[Math.floor(Math.random() * allFavorites.length)];
+    }
+    
+    // Берём первое непосмотренное (или рандомное из доступных)
+    const next = available[0]; // ← по порядку
+    // const next = available[Math.floor(Math.random() * available.length)]; // ← или рандомно
+    shownFavoritesInSession.add(next.french);
+    return next;
   }
 
   // Каждое 5-е слово - новое из словаря
@@ -2896,9 +2910,9 @@ function updateStats() {
       const t = translations[currentLanguage];
       
       if (reviewMode) {
-        console.log('🔓 Exiting review mode');
         reviewMode = false;
         updateReviewButtonText();
+        shownFavoritesInSession.clear(); 
         nextWord();
       } else {
         const favorites = getFavorites();
