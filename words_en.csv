@@ -116,7 +116,7 @@ dire,to say,to tell,to speak,to state,to declare,to mention
 apprendre,to learn,to teach,to hear,to find out,to memorize,to study
 parler,to speak,to talk,to say,to tell,to ask,to call
 emprunter un livre,to borrow a book,to take volume,to copy text,to mimic story,to adopt tale,to assume narrative
-enlever une veste,to remove a jacket,to take off coat,to strip layer,to discard clothing,to clear garment,to shed outerwear
+enlever une veste,to take off jacket,to strip layer,to discard clothing,to clear garment,to shed outerwear
 se déshabiller,to undress,to take off clothes,to remove outfit,to strip,to disrobe,to prepare for bed
 enlever,to remove,to take off,to take away,to kidnap,to strip,to clear
 ramener un ami,to bring back a friend,to take back companion,to reduce buddy,to lead companion,to restore pal,to recall mate
@@ -436,6 +436,8 @@ emporter un souvenir,to take away a memory,to carry off recollection,to remove r
 emporter,to take away,to carry off,to remove,to win,to prevail,to overcome
 apporter,to bring,to carry,to contribute,to add,to supply,to cause
 porter,to wear,to carry,to bear,to support,to bring,to endure
+détruits,destroyed,developed,involved,distracted,delivered
+aérien,air,arials,alliens,allies,augment
 savoir,to know,to can,to think,to believe,to understand,to learn
 vouloir,to want,to can,to know,to like,to love,to need
 vendre,to sell,to buy,to take,to give,to have,to find
@@ -1225,7 +1227,7 @@ l'ambulance, ambulance, emergency vehicle, paramedic van,,,
 l'internet, internet, web, net, online world,,
 la gamme, range, scale, variety, spectrum, series,
 l'expert, expert, specialist, authority, pro, master,
-le gel, freeze, frost, jelly, gel, freezing,
+le gel, gel, frost, jelly, freezing,
 la vente, sale, selling, auction, clearance, transaction,
 le jus, juice, sap, liquid, extract, power,
 la solution, solution, answer, resolution, mixture, fix,
@@ -1934,7 +1936,7 @@ l'avis, opinion, advice, warning, announcement, view
 l'ennemi, enemy, foe, adversary, opponent, rival, antagonist
 la course, race, running, errand, dash, sprint, competition
 le costume, suit, outfit, attire, clothing, dress
-l'ajustement, fit, adjustment, fitting, adaptation, tailoring, alignment
+l'ajustement, adjustment, fitting, adaptation, tailoring, alignment
 le directeur, director, manager, head, chief, leader, supervisor
 la tache, spot, stain, mark, dot, blot, speck
 la croix, cross, crucifix, intersection, mark, X, sign
