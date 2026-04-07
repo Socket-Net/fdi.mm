@@ -453,7 +453,7 @@ commencer,to start,to begin,to commence,to initiate,to launch,to open
 se fâcher,to get angry,to become mad,to lose temper,to quarrel,to argue,to rage
 coûter,to cost,to be expensive,to require,to take,to cause,to entail
 coûter cher,to cost a lot,to be expensive,to require much,to take high,to cause high,to entail big
-avoir raison,to be right,to be correct,to have truth,to know better,to win argument,to prove point
+avoir raison,to be right,to have a reason,to have truth,to know better,to win argument,to prove point
 faire attention,to pay attention,to be careful,to watch out,to take care,to notice,to focus
 s'inquiéter,to worry,to be anxious,to fret,to concern,to fear,to stress
 s'opposer à un projet,to oppose a project,to be against plan,to resist scheme,to object idea,to counteract proposal,to fight concept
@@ -1352,6 +1352,7 @@ la garantie, guarantee, warranty, assurance, security, bond,
 le courant, current, stream, flow, electric current, trend,
 les ordures, garbage, rubbish, trash, waste, refuse,
 la garde, guard, cutody, keeping, protection, watch,
+le tuyau a éclaté,the pipe burst,have a broken thumb,escalate a topic,spread a gossip,notice an elevation
 le démon, demon, devil, fiend, evil spirit, imp,
 la coïncidence, coincidence, chance, accident, concurrence,,
 la tentative, attempt, try, effort, endeavor, trial,
@@ -1699,7 +1700,6 @@ l'ingénieur, engineer, technician, designer, builder, expert,
 le souper, supper, evening meal, dinner, late meal,,
 la perceuse, drill, drilling machine, borer, brace,,
 la ruelle, alley, lane, backstreet, passage, narrow street,
-le saut, jump, leap, bound, skip,clap,click
 la destruction, destruction, demolition, ruin, devastation, annihilation,
 la camelote, junk, rubbish, trash, cheap goods, tat,
 la fusée, rocket, missile, firework, spacecraft, flare,
