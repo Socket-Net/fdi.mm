@@ -232,7 +232,7 @@ avoir tort,to be wrong,to make mistake,to err,to be incorrect,to lose argument,t
 aimer,to love,to want,to know,to see,to have
 perdre son temps,to waste time,to lose minutes,to spend uselessly,to idle away,to fritter hours,to do nothing useful
 regarder,to watch,to look,to see,to listen,to find,to know
-former,train,from,fit,teach,learn,fault,felt,
+former,former,from,fit,teach,learn,fault,felt,
 sembler,to seem,to look,to appear,to be,to feel,to sound
 voir,to see,to look,to watch,to know,to find,to understand
 prêter attention,to lend attention,to loan focus,to give mind,to attribute care,to ascribe notice,to impart concentration
@@ -966,7 +966,6 @@ papa,dad,daddy,father,pop,papa,pa
 présent,present,current,now,gift,here,existing
 équipe,team,crew,squad,group,party,unit
 le collègue,colleague,coworker,associate,partner,teammate,workmate
-campagne,countryside,country,rural area,field,farm,village
 compte,account,count,calculation,tally,bill,statement
 le prix,price,cost,value,rate,amount,charge
 le cœur,heart,core,center,love,beat,feeling
@@ -2114,7 +2113,7 @@ le shérif, sheriff, lawman, constable, peace officer, marshal,
 la couleur, color, hue, shade, tint, pigment, tone
 l'épée, sword, blade, saber, rapier, weapon, foil
 le laboratoire, lab, workshop, research facility, test site,
-la balle, bullet, ball, shot, projectile, sphere, slug
+la balle, ball, shot, projectile, sphere, slug
 la preuve, proof, evidence, testimony, verification, confirmation,
 la base, base, foundation, basis, bottom, headquarters, alkali
 la crème, cream, lotion, dairy cream, best part, elite, ointment
