@@ -449,7 +449,7 @@ baisser la tête,to lower head,to bow,to drop chin,to look down,to bend neck,to 
 mélanger les couleurs,to mix colors,to blend hues,to combine shades,to stir pigments,to create new tone,to merge tones
 mélanger,to mix,to blend,to combine,to confuse,to mingle,to stir
 penser,to think,to believe,to consider,to imagine,to suppose,to reflect
-commencer,to start,to begin,to commence,to initiate,to launch,to open
+commencer,to start,to commence,to initiate,to launch,to open
 se fâcher,to get angry,to become mad,to lose temper,to quarrel,to argue,to rage
 coûter,to cost,to be expensive,to require,to take,to cause,to entail
 coûter cher,to cost a lot,to be expensive,to require much,to take high,to cause high,to entail big
@@ -2095,6 +2095,10 @@ la vue, view, outlook, panorama, opinion, vision,scene
 le programme, program, schedule, software, plan, show
 le brun, brown, tan, brunette, earthy, chocolate, beige
 le lavage, washing, clear, rinse, bath
+les usagers,users,useless,usefull,employees,lactants,avengers
+reconduit,renewed,rejected,reunite,reconcile,retrieve,restrict
+traversée,crossing,trapèze,transfer,turn out,coasting,trap,travel
+moins,less,months,coins,melt,magnits,money,point
 la société, company, corporation, community, association,society
 la libération, release, liberation, freedom, discharge, emancipation,
 la naissance, birth, nativity, origin, beginning, delivery,
@@ -2276,7 +2280,8 @@ la fortune, fortune, wealth, luck, fate, riches, destiny
 le siècle, century, 100 years, era, age, period,
 agréable,pleasant,acceptable,agreable,sweet,comfortable
 imprévisible,unpredictable,improvisation,visible,invisible,unimportant,provision
-la remise, discount,remission,promise,mistake,mission,reunite
+la remise,discount,remission,promise,mistake,mission,reunite
+le rabais,discount,rest,bill,reunite,robbery,trial,abandon,
 l'assurance, insurance, assurance, confidence, guarantee, certainty,
 l'aéroport, airport, aerodrome, airfield, terminal, air hub,
 le temple, temple, shrine, church, sanctuary, place of worship,
