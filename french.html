@@ -2582,10 +2582,10 @@ if (currentWord.examples?.length > 0) {
       els.nextBtn.textContent = t.btnNext || 'Next →';
       els.options.style.display = 'grid';
       
-  const knowItBtnEl = document.getElementById('knowItBtn');
-  if (knowItBtnEl) {
-    knowItBtnEl.style.display = reviewMode ? 'none' : 'inline-block';
-  }
+const knowItBtnEl = document.getElementById('knowItBtn');
+if (knowItBtnEl) {
+  knowItBtnEl.style.display = reviewMode ? 'none' : 'inline-block';
+}
 
       
       const allWrong = currentWord.wrong || [];
