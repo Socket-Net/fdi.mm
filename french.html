@@ -515,11 +515,7 @@
         <div class="options" id="options"></div>
         <div id="imageSource" class="image-note"></div>
       </div>
-      
-      <div class="next-btn-container">
-        <button id="nextBtn" disabled>Next →</button>
-      </div>
-      
+
       <div class="next-btn-container" style="gap: 0.5rem; justify-content: center;">
         <button id="knowItBtn" class="secondary-btn" style="background: rgba(34,197,94,0.8);">
           ✅ <span id="btnKnowIt">I know it</span>
@@ -1488,7 +1484,13 @@ function getDictProgress(dictName) {
       if(document.getElementById('backToQuizFromLearned')) {
         document.getElementById('backToQuizFromLearned').innerHTML = '← ' + (t.btnBack || 'Back');
       }
-
+      
+const knowItBtnEl = document.getElementById('knowItBtn');
+if (knowItBtnEl) {
+  const btnText = knowItBtnEl.querySelector('#btnKnowIt');
+  if (btnText) btnText.textContent = t.btnKnowIt || 'Know it';
+}
+            
       // Update review button text based on mode
       updateReviewButtonText();
       
@@ -1596,6 +1598,40 @@ function speakWord() {
   window.speechSynthesis.speak(utterance);
 }
 
+function markAsLearned() {
+  if (!currentWord) return;
+  
+  const key = currentWord.french;
+  if (!progress[key]) progress[key] = { points: 0, firstSeen: Date.now() };
+
+  if (progress[key].points >= CONFIG.POINTS_TO_LEARN) {
+    nextWord();
+    return;
+  }
+  
+  // Сразу даем максимальное количество очков
+  progress[key].points = CONFIG.POINTS_TO_LEARN;
+  progress[key].lastSeen = Date.now();
+  
+  // Удаляем из активного пула
+  activePool = activePool.filter(w => w !== key);
+  
+  stats.totalCorrect++;
+  saveDictStats(currentDict);
+  saveData();
+  updateStats();
+  
+  // Визуальный фидбек
+  const t = translations[currentLanguage];
+  els.feedback.innerHTML = '✅ ' + (t.allLearned || 'Learned!');
+  els.feedback.className = 'feedback correct';
+  
+  // Переходим к следующему слову через небольшую задержку
+  setTimeout(() => {
+    nextWord();
+  }, 800);
+}
+  
 function speakText(text, lang = 'fr-FR') {
   if (!window.speechSynthesis) {
     console.warn('TTS not supported');
@@ -2443,7 +2479,9 @@ async function nextWord() {
       els.nextBtn.disabled = false;
       els.nextBtn.textContent = '>>';
       els.options.style.display = 'none';
-      
+      if (knowItBtn) {
+        knowItBtn.style.display = reviewMode ? 'none' : 'inline-block';
+      }
       const t = translations[currentLanguage];  // ← Получаем переводы
       
       // Удаляем старые элементы карточек
@@ -2543,6 +2581,12 @@ if (currentWord.examples?.length > 0) {
       els.nextBtn.disabled = true;
       els.nextBtn.textContent = t.btnNext || 'Next →';
       els.options.style.display = 'grid';
+      
+  const knowItBtnEl = document.getElementById('knowItBtn');
+  if (knowItBtnEl) {
+    knowItBtnEl.style.display = reviewMode ? 'none' : 'inline-block';
+  }
+
       
       const allWrong = currentWord.wrong || [];
       const shuffledWrong = [...allWrong].sort(() => Math.random() - 0.5).slice(0, 8);
@@ -2918,6 +2962,11 @@ function updateStats() {
       nextWord();
     });
 
+const knowItBtn = document.getElementById('knowItBtn');
+if (knowItBtn) {
+  knowItBtn.addEventListener('click', markAsLearned);
+}
+  
     els.reviewBtn?.addEventListener('click', () => { 
       console.log('🔄 Review button clicked');
       const t = translations[currentLanguage];
